@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+.npm-cache
+package-lock.json
+README.md
+Dockerfile
+docker-compose.yml
+.dockerignore
