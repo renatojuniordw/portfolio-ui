@@ -23,22 +23,22 @@ export const generateMetadata = () =>
 
 const PROJECTS = [
   {
-    id: "unificando",
+    id: "unificando-automacao",
     title: "Unificando: IA & Automação",
     category: "Inteligência Artificial",
     description:
       "Engine de atendimento distribuído, orquestração de LLMs e automação de fluxos via n8n.",
     accent: "ia",
-    link: "/projetos/unificando",
+    link: "/projetos/unificando/automacao",
   },
   {
-    id: "unificando-plataforma",
+    id: "unificando-vitrine",
     title: "Unificando: Vitrine Digital",
     category: "Branding & Conversão",
     description:
       "Site institucional interativo com foco em autoridade de marca e calculadora de planos em tempo real.",
     accent: "tech",
-    link: "/projetos/unificando-plataforma",
+    link: "/projetos/unificando/vitrine",
   },
   {
     id: "mariaclarasantos",

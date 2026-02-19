@@ -8,8 +8,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
     "/projetos",
-    "/projetos/unificando",
-    "/projetos/unificando-plataforma",
+    "/projetos/unificando/automacao",
+    "/projetos/unificando/vitrine",
     "/projetos/mariaclarasantos",
     "/projetos/seu-barraco-esperto",
     "/sobre",
