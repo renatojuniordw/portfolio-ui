@@ -83,7 +83,7 @@ export default function UnificandoAutomationPage() {
                 Ecosistema completo de <strong>atendimento inteligente</strong>{" "}
                 para redes sociais, transformando{" "}
                 <strong>caixa de entrada unificada</strong> em conversões reais
-                com <strong>automação com IA</strong>.
+                com <strong> automação com IA</strong>.
               </p>
             </div>
             <Button

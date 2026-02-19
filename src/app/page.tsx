@@ -13,6 +13,7 @@ import { buildMetadata } from "@/lib/seo";
 import { personJsonLd, websiteJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { HeroScene } from "@/components/three/HeroSceneWrapper";
+import { PROFILE } from "@/lib/constants";
 
 export const generateMetadata = () =>
   buildMetadata({
@@ -36,15 +37,16 @@ export default function Home() {
             className="text-5xl md:text-7xl font-display font-bold mb-6"
           />
           <h1 className="sr-only">
-            Renato Bezerra - Engenheiro de Software Front-end em Recife
+            {PROFILE.fullName} - {PROFILE.handle} | Renato Bezerra - Engenheiro
+            de Software Front-end em Recife
           </h1>
           <p
             className="text-xl md:text-2xl text-text-secondary mb-8 max-w-2xl mx-auto opacity-0 animate-in fade-in slide-in-from-bottom-5 duration-1000 fill-mode-forwards"
             style={{ animationDelay: "800ms" }}
           >
-            Especialista em <strong>arquitetura front-end</strong>{" "}
-            (React/Angular), <strong>automação residencial</strong> e{" "}
-            <strong>IA</strong> em Recife — do código à estratégia.
+            Especialista em <strong>arquitetura front-end</strong> e{" "}
+            <strong>IA</strong> — baseado em Recife, conectando código e
+            estratégia para o mundo.
           </p>
           <div
             className="flex flex-wrap justify-center gap-4 opacity-0 animate-in fade-in slide-in-from-bottom-5 duration-1000 fill-mode-forwards"

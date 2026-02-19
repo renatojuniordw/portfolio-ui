@@ -20,7 +20,7 @@ export function buildMetadata({
 }: SeoProps = {}): Metadata {
   const fullTitle = title
     ? `${title} | ${PROFILE.name}`
-    : `${PROFILE.name} - ${PROFILE.title}`;
+    : `${PROFILE.fullName} (${PROFILE.handle}) | ${PROFILE.name}`;
   const fullDescription = description || PROFILE.summary;
   const url = `${SITE_URL}${path}`;
 
@@ -52,7 +52,7 @@ export function buildMetadata({
       title: fullTitle,
       description: fullDescription,
       images: [ogImage],
-      creator: "@renatobezerrajr", // Assuming a handle or use name
+      creator: PROFILE.handle,
     },
     robots: {
       index: !noIndex,

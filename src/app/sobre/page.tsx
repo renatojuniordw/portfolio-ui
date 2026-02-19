@@ -24,7 +24,8 @@ export default function AboutPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <header className="mb-16 text-center">
         <h1 className="sr-only">
-          Sobre Renato Bezerra - Engenheiro de Software em Recife
+          Sobre {PROFILE.fullName} ({PROFILE.handle}) - Engenheiro de Software
+          em Recife
         </h1>
         <SplitText
           text="Sobre Mim"
@@ -33,10 +34,10 @@ export default function AboutPage() {
         <Card className="bg-s2/30 border-tech/20">
           <CardContent className="p-8">
             <p className="text-xl text-text leading-relaxed">
-              <strong>Engenheiro de Software</strong> em Recife com foco em{" "}
-              <strong>arquitetura front-end</strong>,
-              <strong>automação com IA</strong> e criação de soluções digitais
-              de alto impacto.
+              <strong>Engenheiro de Software</strong> baseado em Recife com
+              atuação <strong>100% remota e global</strong>. Foco em arquitetura
+              front-end e automação com IA para criação de produtos digitais de
+              alto impacto.
             </p>
           </CardContent>
         </Card>

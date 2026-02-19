@@ -6,7 +6,8 @@ export function personJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: PROFILE.name,
+    name: PROFILE.fullName,
+    alternateName: [PROFILE.name, PROFILE.handle],
     jobTitle: "Software Engineer",
     url: SITE_URL,
     sameAs: [
@@ -28,7 +29,7 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: PROFILE.name,
+    name: `${PROFILE.fullName} - Portfólio`,
     url: SITE_URL,
     potentialAction: {
       "@type": "SearchAction",
@@ -59,12 +60,18 @@ export function serviceJsonLd() {
       "@type": "Person",
       name: PROFILE.name,
     },
-    areaServed: {
-      "@type": "City",
-      name: "Recife",
-    },
+    areaServed: [
+      {
+        "@type": "Country",
+        name: "Brasil",
+      },
+      {
+        "@type": "Country",
+        name: "Worldwide",
+      },
+    ],
     description:
-      "Projetos de casa inteligente com Alexa, automação de processos e criação de sites profissionais.",
+      "Engenharia de software front-end, consultoria em automação com IA e criação de produtos digitais de alta performance com alcance global.",
   };
 }
 
