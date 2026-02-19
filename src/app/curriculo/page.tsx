@@ -14,9 +14,9 @@ export default function CurriculoPage() {
           />
           <p className="text-xl text-text-secondary">{PROFILE.title}</p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-3 rounded-full bg-tech text-white font-bold hover:brightness-110 transition-all shadow-lg active:scale-95">
+        {/* <button className="flex items-center gap-2 px-6 py-3 rounded-full bg-tech text-white font-bold hover:brightness-110 transition-all shadow-lg active:scale-95">
           <Download size={20} /> Baixar PDF
-        </button>
+        </button> */}
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

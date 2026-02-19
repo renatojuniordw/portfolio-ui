@@ -1,7 +1,6 @@
 import { SplitText } from "@/components/fx/SplitText";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -9,20 +8,31 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const PROJECTS = [
   {
     id: "unificando",
     title: "Unificando",
+    category: "Produto Próprio",
     description:
       "Ecosistema de atendimento, IA e automação para Instagram e WhatsApp.",
     accent: "ia",
     link: "/projetos/unificando",
   },
   {
+    id: "mariaclarasantos",
+    title: "Maria Clara Santos",
+    category: "Freelance / Institucional",
+    description:
+      "Landing page de alta conversão para advocacia com sistema de anti-golpe integrado.",
+    accent: "tech",
+    link: "/projetos/mariaclarasantos",
+  },
+  {
     id: "seu-barraco-esperto",
     title: "Seu Barraco Esperto",
+    category: "Produto Próprio",
     description:
       "Automação residencial prática e sem frescura com Alexa e IoT.",
     accent: "barraco",
@@ -31,6 +41,7 @@ const PROJECTS = [
   {
     id: "experiencia-senior",
     title: "Software Engineer",
+    category: "Enterprise / Carreira",
     description:
       "Projetos em larga escala para grandes empresas (Avanade, CESAR, MV).",
     accent: "tech",
@@ -60,6 +71,9 @@ export default function ProjectsPage() {
           >
             <div className={`h-2 w-full bg-${project.accent}`} />
             <CardHeader>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-muted mb-2">
+                {project.category}
+              </span>
               <CardTitle>{project.title}</CardTitle>
               <CardDescription className="mt-2">
                 {project.description}
