@@ -41,16 +41,29 @@ export default function CurriculoPage() {
                 </p>
                 <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
                   <li>
-                    Desenvolvimento de ecossistemas web complexos com Next.js e
-                    React.
+                    Desenvolvimento do ecossistema web (Front-end) utilizando{" "}
+                    <strong>React 19, Next.js e TailwindCSS</strong>, com foco
+                    em performance e SEO.
                   </li>
                   <li>
-                    Integração de APIs de IA e automação de fluxos de
+                    Desenvolvimento de{" "}
+                    <strong>Decision Intelligence Engines</strong> baseados em
+                    LLM (GPT-4) para orquestração de fluxos de vendas e
                     atendimento.
                   </li>
                   <li>
-                    Arquitetura de sistemas focada em performance e
-                    escalabilidade.
+                    Implementação de agentes de triagem (Triage Agents) com
+                    saída Strict-JSON para integração com webhooks e{" "}
+                    <strong>n8n</strong>.
+                  </li>
+                  <li>
+                    Arquitetura de segurança (Cloudflare Workers + Turnstile)
+                    para proteção contra prompt injections e rate limit em
+                    automações públicas.
+                  </li>
+                  <li>
+                    Otimização de fluxos de atendimento com redução de 70% na
+                    carga de suporte humano via automação inteligente.
                   </li>
                 </ul>
               </div>

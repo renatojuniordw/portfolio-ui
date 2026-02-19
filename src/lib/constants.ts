@@ -20,10 +20,10 @@ export const SOCIALS = {
 
 export const PROFILE = {
   name: "Renato Bezerra",
-  title: "Software Engineer • Front-end (Angular/React) • Automação & IA",
+  title: "Software Engineer • Front-end • Automação & IA",
   location: "Recife-PE",
   summary:
-    "Engenheiro de Software com foco em front-end. Atuo do código à estratégia: decisões de design, arquitetura e testes automatizados. Pós em Software Architecture (FIAP) e certificações Microsoft em HTML5, JS e CSS3.",
+    "Engenheiro de Software com sólida trajetória em ecossistemas Front-end (React/Angular). Unifico o desenvolvimento de software de alta performance com arquiteturas de IA Generativa e Automação para criar produtos digitais escaláveis, seguros e centrados no usuário.",
   pcdNote:
     "PCD: deficiência física que não requer adaptações para a realização das atividades profissionais.",
 };

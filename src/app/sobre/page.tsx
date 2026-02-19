@@ -30,11 +30,15 @@ export default function AboutPage() {
           <div className="relative pl-8 border-l border-border">
             <div className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-tech" />
             <span className="text-sm font-bold text-tech uppercase">
-              Experiência Recente
+              Foco Atual
             </span>
-            <h3 className="text-xl font-bold mt-1">Software Engineer</h3>
+            <h3 className="text-xl font-bold mt-1">
+              Software Engineer | Front-end & Automações
+            </h3>
             <p className="text-text-secondary">
-              Foco em ecossistemas Frontend.
+              Especialista no desenvolvimento de interfaces complexas e
+              escaláveis, unindo a robustez do desenvolvimento Front-end com o
+              poder da IA Generativa e Automação de processos.
             </p>
           </div>
 
