@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Float,
@@ -49,30 +49,32 @@ function Orb() {
 export function HeroScene() {
   return (
     <div className="absolute inset-0 -z-10 h-screen w-full bg-bg">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        gl={{ antialias: true }}
-      >
-        <ambientLight intensity={0.8} />
-        <spotLight
-          position={[10, 10, 10]}
-          angle={0.15}
-          penumbra={1}
-          intensity={2}
-        />
-        <pointLight position={[-10, -10, -10]} intensity={1} />
+      <Suspense fallback={<div className="w-full h-full bg-bg" />}>
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 45 }}
+          gl={{ antialias: true }}
+        >
+          <ambientLight intensity={0.8} />
+          <spotLight
+            position={[10, 10, 10]}
+            angle={0.15}
+            penumbra={1}
+            intensity={2}
+          />
+          <pointLight position={[-10, -10, -10]} intensity={1} />
 
-        <Orb />
+          <Orb />
 
-        <Environment preset="city" />
-        <ContactShadows
-          position={[0, -2, 0]}
-          opacity={0.4}
-          scale={10}
-          blur={2}
-          far={10}
-        />
-      </Canvas>
+          <Environment preset="city" />
+          <ContactShadows
+            position={[0, -2, 0]}
+            opacity={0.4}
+            scale={10}
+            blur={2}
+            far={10}
+          />
+        </Canvas>
+      </Suspense>
       {/* Overlay gradiente suave para clarear o centro e melhorar leitura */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--bg)_80%)] pointer-events-none opacity-40" />
       <div className="absolute inset-0 bg-bg/20 pointer-events-none" />

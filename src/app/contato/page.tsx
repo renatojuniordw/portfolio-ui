@@ -2,46 +2,54 @@ import { SplitText } from "@/components/fx/SplitText";
 import { SOCIALS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Instagram, Linkedin, Github, Mail } from "lucide-react";
+import { Linkedin, Github, Mail } from "lucide-react";
+import { buildMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
+
+export const generateMetadata = () =>
+  buildMetadata({
+    title: "Contato | Renato Bezerra",
+    description:
+      "Entre em contato com Renato Bezerra para projetos de engenharia de software, automação residencial e consultoria em IA em Recife.",
+    path: "/contato",
+  });
 
 export default function ContactPage() {
+  const breadcrumbs = [
+    { name: "Home", item: "/" },
+    { name: "Contato", item: "/contato" },
+  ];
+
   const CONTACTS = [
     {
       name: "LinkedIn",
-      icon: <Linkedin />,
+      icon: <Linkedin aria-hidden="true" />,
       url: SOCIALS.personal.linkedin,
       handle: "In/renato-bezerra",
     },
     {
       name: "GitHub",
-      icon: <Github />,
+      icon: <Github aria-hidden="true" />,
       url: SOCIALS.personal.github,
       handle: "@renatojuniordw",
     },
-    // {
-    //   name: "Seu Barraco Esperto",
-    //   icon: <Instagram />,
-    //   url: SOCIALS.barraco.insta,
-    //   handle: "@seubarracoesperto",
-    // },
-    // {
-    //   name: "Unificando Digital",
-    //   icon: <Instagram />,
-    //   url: SOCIALS.unificando.insta,
-    //   handle: "@unificando.digital",
-    // },
   ];
 
   return (
-    <div className="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
+    <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
+      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <header className="mb-16 text-center">
+        <h1 className="sr-only">Contato - Renato Bezerra, Recife</h1>
         <SplitText
           text="Vamos Conversar?"
           className="text-4xl md:text-6xl font-display font-bold mb-4"
         />
         <p className="text-xl text-text-secondary max-w-xl mx-auto">
-          Estou sempre aberto a novos projetos, parcerias ou uma boa conversa
-          sobre tecnologia.
+          Estou sempre aberto a novos projetos de{" "}
+          <strong>desenvolvimento front-end</strong>,{" "}
+          <strong>automação residencial</strong> ou uma boa conversa sobre
+          tecnologia em <strong>Recife</strong>.
         </p>
       </header>
 
@@ -71,12 +79,15 @@ export default function ContactPage() {
         ))}
       </div>
 
-      <div className="mt-20 text-center">
+      <nav className="mt-20 text-center" aria-label="Contato direto">
         <p className="text-text-secondary mb-4">Ou se preferir</p>
-        <Button size="lg" variant="primary">
-          <Mail className="mr-2" /> {SOCIALS.personal.email}
+        <Button size="lg" variant="primary" asChild>
+          <a href={`mailto:${SOCIALS.personal.email}`}>
+            <Mail className="mr-2" aria-hidden="true" />{" "}
+            {SOCIALS.personal.email}
+          </a>
         </Button>
-      </div>
-    </div>
+      </nav>
+    </main>
   );
 }

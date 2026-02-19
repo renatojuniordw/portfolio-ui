@@ -132,3 +132,6 @@ dist
 # Cache do npm
 .npm-cache/
 npm-debug.log*
+
+# Agents
+.agents

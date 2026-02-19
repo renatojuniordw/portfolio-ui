@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { Inter, Space_Grotesk } from "next/font/google";
-import Link from "next/link";
-
-import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { cn } from "@/lib/utils";
+import { buildMetadata } from "@/lib/seo";
 
 import "./globals.css";
+import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({
@@ -14,13 +13,13 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space",
 });
 
-export const metadata: Metadata = {
-  title: "Renato Bezerra | Software Engineer",
-  description:
-    "Portfolio de Renato Bezerra - Engenheiro de Software focado em Frontend, Automação e IA.",
-};
+export const metadata: Metadata = buildMetadata();
 
-import LayoutWrapper from "@/components/layout/LayoutWrapper";
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({
   children,

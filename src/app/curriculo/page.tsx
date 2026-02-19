@@ -1,40 +1,55 @@
 import { Download, FileText, Award, Star } from "lucide-react";
-
 import { SplitText } from "@/components/fx/SplitText";
 import { PROFILE } from "@/lib/constants";
+import { buildMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
+
+export const generateMetadata = () =>
+  buildMetadata({
+    title: "Currículo | Renato Bezerra - Software Engineer",
+    description:
+      "Currículo profissional de Renato Bezerra: Engenheiro de Software com experiência em React, Angular, C# e automações com IA em grandes empresas como CESAR e Avanade.",
+    path: "/curriculo",
+  });
 
 export default function CurriculoPage() {
+  const breadcrumbs = [
+    { name: "Home", item: "/" },
+    { name: "Currículo", item: "/curriculo" },
+  ];
+
   return (
-    <div className="pt-32 pb-24 px-6 max-w-4xl mx-auto">
+    <main className="pt-32 pb-24 px-6 max-w-4xl mx-auto">
+      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div className="flex-1">
+          <h1 className="sr-only">Currículo Profissional - Renato Bezerra</h1>
           <SplitText
             text="Currículo"
             className="text-4xl md:text-6xl font-display font-bold mb-4"
           />
           <p className="text-xl text-text-secondary">{PROFILE.title}</p>
         </div>
-        {/* <button className="flex items-center gap-2 px-6 py-3 rounded-full bg-tech text-white font-bold hover:brightness-110 transition-all shadow-lg active:scale-95">
-          <Download size={20} /> Baixar PDF
-        </button> */}
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div className="md:col-span-2 space-y-12">
-          {/* Experiência */}
-          <section>
-            <h2 className="text-xl font-display font-bold mb-6 flex items-center gap-2">
-              <FileText className="text-tech" size={24} /> Experiência
-              Profissional
+          <section aria-labelledby="experience-title">
+            <h2
+              id="experience-title"
+              className="text-xl font-display font-bold mb-6 flex items-center gap-2"
+            >
+              <FileText className="text-tech" size={24} aria-hidden="true" />{" "}
+              Experiência Profissional
             </h2>
             <div className="space-y-10">
-              {/* Unificando */}
-              <div>
+              <article>
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="font-bold text-lg">Software Engineer</h3>
-                  <span className="text-sm text-text-secondary">
+                  <time className="text-sm text-text-secondary">
                     2026 - Presente
-                  </span>
+                  </time>
                 </div>
                 <p className="text-tech text-sm font-medium mb-2">
                   Unificando Digital / Freelance
@@ -56,25 +71,15 @@ export default function CurriculoPage() {
                     saída Strict-JSON para integração com webhooks e{" "}
                     <strong>n8n</strong>.
                   </li>
-                  <li>
-                    Arquitetura de segurança (Cloudflare Workers + Turnstile)
-                    para proteção contra prompt injections e rate limit em
-                    automações públicas.
-                  </li>
-                  <li>
-                    Otimização de fluxos de atendimento com redução de 70% na
-                    carga de suporte humano via automação inteligente.
-                  </li>
                 </ul>
-              </div>
+              </article>
 
-              {/* CESAR */}
-              <div>
+              <article>
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="font-bold text-lg">Software Engineer</h3>
-                  <span className="text-sm text-text-secondary">
+                  <time className="text-sm text-text-secondary">
                     Out 2021 - Presente
-                  </span>
+                  </time>
                 </div>
                 <p className="text-tech text-sm font-medium mb-2">
                   CESAR (Centro de Estudos e Sistemas Avançados do Recife)
@@ -82,28 +87,23 @@ export default function CurriculoPage() {
                 <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
                   <li>
                     <strong>Plataforma de Gestão de Moedas:</strong> Atuação com
-                    Angular e C#, decisões de design e testes automatizados.
-                  </li>
-                  <li>
-                    <strong>Projeto Social (ONG):</strong> Responsável pelo
-                    frontend utilizando React JS.
+                    Angular e C#, decisões de design.
                   </li>
                   <li>
                     <strong>Setor Petrolífero:</strong> Desenvolvimento frontend
                     e colaboração estratégica com equipes de design e testes.
                   </li>
                 </ul>
-              </div>
+              </article>
 
-              {/* Avanade (Pleno) */}
-              <div>
+              <article>
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="font-bold text-lg">
                     Software Engineer (Pleno)
                   </h3>
-                  <span className="text-sm text-text-secondary">
+                  <time className="text-sm text-text-secondary">
                     Mai 2019 - Set 2021
-                  </span>
+                  </time>
                 </div>
                 <p className="text-tech text-sm font-medium mb-2">Avanade</p>
                 <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
@@ -114,92 +114,55 @@ export default function CurriculoPage() {
                   <li>
                     Manutenção de sistemas críticos em HTML5, CSS3 e JavaScript.
                   </li>
-                  <li>
-                    Manipulação de Banco de Dados com Microsoft SQL Server.
-                  </li>
                 </ul>
-              </div>
-
-              {/* Avanade (Junior) */}
-              <div>
-                <div className="flex justify-between items-start mb-1">
-                  <h3 className="font-bold text-lg">
-                    Associate Software Engineer (Junior)
-                  </h3>
-                  <span className="text-sm text-text-secondary">
-                    Mai 2018 - Mai 2019
-                  </span>
-                </div>
-                <p className="text-tech text-sm font-medium mb-2">Avanade</p>
-                <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
-                  <li>
-                    Desenvolvimento Web APIs com C# e conectividade Azure.
-                  </li>
-                  <li>
-                    Implementação de testes automatizados e soluções SharePoint.
-                  </li>
-                </ul>
-              </div>
-
-              {/* MV */}
-              <div>
-                <div className="flex justify-between items-start mb-1">
-                  <h3 className="font-bold text-lg">Desenvolvedor 1</h3>
-                  <span className="text-sm text-text-secondary">
-                    Jul 2017 - Mai 2018
-                  </span>
-                </div>
-                <p className="text-tech text-sm font-medium mb-2">MV S/A</p>
-                <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
-                  <li>
-                    Execução de testes manuais e elaboração de casos de teste.
-                  </li>
-                  <li>
-                    Automação de testes de produto com Selenium, C# e
-                    JavaScript.
-                  </li>
-                </ul>
-              </div>
+              </article>
             </div>
           </section>
 
-          {/* Formação */}
-          <section>
-            <h2 className="text-xl font-display font-bold mb-6 flex items-center gap-2">
-              <Award className="text-tech" size={24} /> Formação Acadêmica
+          <section aria-labelledby="education-title">
+            <h2
+              id="education-title"
+              className="text-xl font-display font-bold mb-6 flex items-center gap-2"
+            >
+              <Award className="text-tech" size={24} aria-hidden="true" />{" "}
+              Formação Acadêmica
             </h2>
             <div className="space-y-6">
-              <div>
+              <article>
                 <h3 className="font-bold">
                   Pós-graduação Lato Sensu - Especialização, Software
                   Architecture
                 </h3>
-                <p className="text-text-secondary text-sm">FIAP | Completo</p>
-              </div>
-              <div>
+                <p className="text-text-secondary text-sm">
+                  FIAP | Recife/Remoto
+                </p>
+              </article>
+              <article>
                 <h3 className="font-bold">Graduação, Sistema para internet</h3>
                 <p className="text-text-secondary text-sm">
-                  FICR - Faculdade Católica Imaculada Conceição do Recife |
-                  Completo
+                  FICR - Faculdade Católica Imaculada Conceição do Recife
                 </p>
-              </div>
+              </article>
             </div>
           </section>
         </div>
 
-        <div className="space-y-12">
-          {/* Certificações */}
-          <section>
-            <h2 className="text-xl font-display font-bold mb-6 flex items-center gap-2">
-              <Star className="text-tech" size={20} /> Certificações
+        <aside className="space-y-12">
+          <section aria-labelledby="certs-title">
+            <h2
+              id="certs-title"
+              className="text-xl font-display font-bold mb-6 flex items-center gap-2"
+            >
+              <Star className="text-tech" size={20} aria-hidden="true" />{" "}
+              Certificações
             </h2>
             <ul className="space-y-3 text-sm text-text-secondary">
               <li>• Exam 480: Programming in HTML5 with JavaScript and CSS3</li>
               <li>• MTA: Introduction to Programming Using JavaScript</li>
             </ul>
           </section>
-        </div>
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }
