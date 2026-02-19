@@ -1,10 +1,19 @@
 export const SOCIALS = {
-  personalInsta: "https://instagram.com/renatobezerra.jr",
-  barracoInsta: "https://instagram.com/seubarracoesperto",
-  unificandoInsta: "https://instagram.com/unificando.digital",
-  unificandoLinks: "https://unificando.com.br/links",
-  linkedin: "https://linkedin.com/in/renatobezerrajr",
-  github: "https://github.com/renatobezerra",
+  personal: {
+    insta: "https://instagram.com/renatobezerra.jr",
+    linkedin: "https://linkedin.com/in/renato-bezerra",
+    github: "https://github.com/renatojuniordw",
+    email: "renato-bgs@live.com",
+  },
+  barraco: {
+    insta: "https://instagram.com/seubarracoesperto",
+    youtube: "https://www.youtube.com/@seubarracoesperto",
+    tiktok: "https://www.tiktok.com/@seubarracoesperto",
+  },
+  unificando: {
+    insta: "https://instagram.com/unificando.digital",
+    site: "https://unificando.com.br",
+  },
 };
 
 export const PROFILE = {

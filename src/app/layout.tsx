@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+
 import { Inter, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-import { SmoothScroll } from "@/components/fx/SmoothScroll";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { cn } from "@/lib/utils";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({
@@ -69,10 +71,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <footer className="mt-20 border-t border-border p-10 text-center text-sm text-text-secondary">
-          <p>
-            © {new Date().getFullYear()} Renato Bezerra. Built with Next.js &
-            Three.js
-          </p>
+          <p>© {new Date().getFullYear()} Renato Bezerra.</p>
         </footer>
       </body>
     </html>

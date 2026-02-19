@@ -17,7 +17,6 @@ const PROJECTS = [
     title: "Unificando",
     description:
       "Ecosistema de atendimento, IA e automação para Instagram e WhatsApp.",
-    tags: ["IA", "N8N", "Next.js", "Product"],
     accent: "ia",
     link: "/projetos/unificando",
   },
@@ -26,16 +25,14 @@ const PROJECTS = [
     title: "Seu Barraco Esperto",
     description:
       "Automação residencial prática e sem frescura com Alexa e IoT.",
-    tags: ["IoT", "Automação", "Mídia"],
     accent: "barraco",
     link: "/projetos/seu-barraco-esperto",
   },
   {
     id: "experiencia-senior",
-    title: "Sênior Frontend",
+    title: "Software Engineer",
     description:
       "Projetos em larga escala para grandes empresas (Avanade, CESAR, MV).",
-    tags: ["React", "Angular", "Arquitetura"],
     accent: "tech",
     link: "/sobre",
   },
@@ -68,18 +65,7 @@ export default function ProjectsPage() {
                 {project.description}
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 rounded-sm bg-s2 text-[10px] font-bold uppercase tracking-wider text-text-secondary"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </CardContent>
+
             <CardFooter>
               <Button variant="outline" size="sm" className="w-full" asChild>
                 <Link href={project.link}>

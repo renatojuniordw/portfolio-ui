@@ -32,9 +32,9 @@ export default function AboutPage() {
             <span className="text-sm font-bold text-tech uppercase">
               Experiência Recente
             </span>
-            <h3 className="text-xl font-bold mt-1">Sênior Software Engineer</h3>
+            <h3 className="text-xl font-bold mt-1">Software Engineer</h3>
             <p className="text-text-secondary">
-              Foco em ecossistemas Frontend, Arquitetura e IA.
+              Foco em ecossistemas Frontend.
             </p>
           </div>
 

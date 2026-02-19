@@ -7,29 +7,29 @@ import { Instagram, Linkedin, Github, Mail } from "lucide-react";
 export default function ContactPage() {
   const CONTACTS = [
     {
-      name: "Instagram Pessoal",
-      icon: <Instagram />,
-      url: SOCIALS.personalInsta,
-      handle: "@renatobezerra.jr",
-    },
-    {
-      name: "Seu Barraco Esperto",
-      icon: <Instagram />,
-      url: SOCIALS.barracoInsta,
-      handle: "@seubarracoesperto",
-    },
-    {
-      name: "Unificando Digital",
-      icon: <Instagram />,
-      url: SOCIALS.unificandoInsta,
-      handle: "@unificando.digital",
-    },
-    {
       name: "LinkedIn",
       icon: <Linkedin />,
-      url: SOCIALS.linkedin,
-      handle: "In/renatobezerrajr",
+      url: SOCIALS.personal.linkedin,
+      handle: "In/renato-bezerra",
     },
+    {
+      name: "GitHub",
+      icon: <Github />,
+      url: SOCIALS.personal.github,
+      handle: "@renatojuniordw",
+    },
+    // {
+    //   name: "Seu Barraco Esperto",
+    //   icon: <Instagram />,
+    //   url: SOCIALS.barraco.insta,
+    //   handle: "@seubarracoesperto",
+    // },
+    // {
+    //   name: "Unificando Digital",
+    //   icon: <Instagram />,
+    //   url: SOCIALS.unificando.insta,
+    //   handle: "@unificando.digital",
+    // },
   ];
 
   return (
@@ -45,11 +45,11 @@ export default function ContactPage() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="flex flex-wrap justify-center gap-6">
         {CONTACTS.map((contact) => (
           <Card
             key={contact.name}
-            className="hover:border-tech/30 transition-all group"
+            className="hover:border-tech/30 transition-all group w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] min-w-[280px] max-w-[320px]"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -72,11 +72,9 @@ export default function ContactPage() {
       </div>
 
       <div className="mt-20 text-center">
-        <p className="text-text-secondary mb-4">
-          Ou se preferir algo mais formal:
-        </p>
+        <p className="text-text-secondary mb-4">Ou se preferir</p>
         <Button size="lg" variant="primary">
-          <Mail className="mr-2" /> renato.bezerra@exemplo.com
+          <Mail className="mr-2" /> {SOCIALS.personal.email}
         </Button>
       </div>
     </div>

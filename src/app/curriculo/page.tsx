@@ -1,7 +1,7 @@
+import { Download, FileText, Award, Star } from "lucide-react";
+
 import { SplitText } from "@/components/fx/SplitText";
 import { PROFILE } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
-import { Download, FileText, Award, Star } from "lucide-react";
 
 export default function CurriculoPage() {
   return (
@@ -27,14 +27,13 @@ export default function CurriculoPage() {
               <FileText className="text-tech" size={24} /> Experiência
               Profissional
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-10">
+              {/* Unificando */}
               <div>
                 <div className="flex justify-between items-start mb-1">
-                  <h3 className="font-bold text-lg">
-                    Sênior Software Engineer
-                  </h3>
+                  <h3 className="font-bold text-lg">Software Engineer</h3>
                   <span className="text-sm text-text-secondary">
-                    2023 - Presente
+                    2026 - Presente
                   </span>
                 </div>
                 <p className="text-tech text-sm font-medium mb-2">
@@ -56,24 +55,96 @@ export default function CurriculoPage() {
                 </ul>
               </div>
 
+              {/* CESAR */}
               <div>
                 <div className="flex justify-between items-start mb-1">
-                  <h3 className="font-bold text-lg">
-                    Engenheiro de Software Frontend
-                  </h3>
+                  <h3 className="font-bold text-lg">Software Engineer</h3>
                   <span className="text-sm text-text-secondary">
-                    Anos Anteriores
+                    Out 2021 - Presente
                   </span>
                 </div>
                 <p className="text-tech text-sm font-medium mb-2">
-                  Avanade / CESAR / MV
+                  CESAR (Centro de Estudos e Sistemas Avançados do Recife)
                 </p>
                 <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
-                  <li>Atuação em projetos críticos e de grande escala.</li>
                   <li>
-                    Expertise em Angular e React para aplicações empresariais.
+                    <strong>Plataforma de Gestão de Moedas:</strong> Atuação com
+                    Angular e C#, decisões de design e testes automatizados.
                   </li>
-                  <li>Foco em boas práticas (SOLID, Clean Code) e Testes.</li>
+                  <li>
+                    <strong>Projeto Social (ONG):</strong> Responsável pelo
+                    frontend utilizando React JS.
+                  </li>
+                  <li>
+                    <strong>Setor Petrolífero:</strong> Desenvolvimento frontend
+                    e colaboração estratégica com equipes de design e testes.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Avanade (Pleno) */}
+              <div>
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-bold text-lg">
+                    Software Engineer (Pleno)
+                  </h3>
+                  <span className="text-sm text-text-secondary">
+                    Mai 2019 - Set 2021
+                  </span>
+                </div>
+                <p className="text-tech text-sm font-medium mb-2">Avanade</p>
+                <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
+                  <li>
+                    Desenvolvimento SPFx (SharePoint Framework) com React e
+                    Angular.
+                  </li>
+                  <li>
+                    Manutenção de sistemas críticos em HTML5, CSS3 e JavaScript.
+                  </li>
+                  <li>
+                    Manipulação de Banco de Dados com Microsoft SQL Server.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Avanade (Junior) */}
+              <div>
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-bold text-lg">
+                    Associate Software Engineer (Junior)
+                  </h3>
+                  <span className="text-sm text-text-secondary">
+                    Mai 2018 - Mai 2019
+                  </span>
+                </div>
+                <p className="text-tech text-sm font-medium mb-2">Avanade</p>
+                <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
+                  <li>
+                    Desenvolvimento Web APIs com C# e conectividade Azure.
+                  </li>
+                  <li>
+                    Implementação de testes automatizados e soluções SharePoint.
+                  </li>
+                </ul>
+              </div>
+
+              {/* MV */}
+              <div>
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="font-bold text-lg">Desenvolvedor 1</h3>
+                  <span className="text-sm text-text-secondary">
+                    Jul 2017 - Mai 2018
+                  </span>
+                </div>
+                <p className="text-tech text-sm font-medium mb-2">MV S/A</p>
+                <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
+                  <li>
+                    Execução de testes manuais e elaboração de casos de teste.
+                  </li>
+                  <li>
+                    Automação de testes de produto com Selenium, C# e
+                    JavaScript.
+                  </li>
                 </ul>
               </div>
             </div>
@@ -87,14 +158,16 @@ export default function CurriculoPage() {
             <div className="space-y-6">
               <div>
                 <h3 className="font-bold">
-                  Software Architecture (Pós-Graduação)
+                  Pós-graduação Lato Sensu - Especialização, Software
+                  Architecture
                 </h3>
-                <p className="text-text-secondary text-sm">FIAP | 2022</p>
+                <p className="text-text-secondary text-sm">FIAP | Completo</p>
               </div>
               <div>
-                <h3 className="font-bold">Sistemas de Informação</h3>
+                <h3 className="font-bold">Graduação, Sistema para internet</h3>
                 <p className="text-text-secondary text-sm">
-                  Graduação Completa
+                  FICR - Faculdade Católica Imaculada Conceição do Recife |
+                  Completo
                 </p>
               </div>
             </div>
@@ -102,41 +175,14 @@ export default function CurriculoPage() {
         </div>
 
         <div className="space-y-12">
-          {/* Skills */}
-          <section>
-            <h2 className="text-xl font-display font-bold mb-6">Skills</h2>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "React",
-                "Angular",
-                "TypeScript",
-                "Next.js",
-                "Tailwind",
-                "GSAP",
-                "Three.js",
-                "N8N",
-                "IA / LLMs",
-                "Node.js",
-                "Architecture",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 rounded-full border border-border bg-s1 text-xs font-medium"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </section>
-
           {/* Certificações */}
           <section>
             <h2 className="text-xl font-display font-bold mb-6 flex items-center gap-2">
               <Star className="text-tech" size={20} /> Certificações
             </h2>
             <ul className="space-y-3 text-sm text-text-secondary">
-              <li>• Microsoft Specialist: HTML5 + JS + CSS3</li>
-              <li>• Avançado em Arquitetura de Software</li>
+              <li>• Exam 480: Programming in HTML5 with JavaScript and CSS3</li>
+              <li>• MTA: Introduction to Programming Using JavaScript</li>
             </ul>
           </section>
         </div>
