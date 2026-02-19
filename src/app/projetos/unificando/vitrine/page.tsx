@@ -131,7 +131,7 @@ export default function UnificandoVitrinePage() {
                 {
                   icon: <Store className="text-tech" />,
                   title: "Brand Authority",
-                  desc: "Design visual 'SaaS-Clean' que posiciona a marca como referência tecnológica.",
+                  desc: "Design visual 'Tech-Clean' que posiciona a marca como referência tecnológica.",
                 },
               ].map((pill, i) => (
                 <div

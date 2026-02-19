@@ -78,7 +78,7 @@ export default function ProjectsPage() {
         <p className="text-xl text-text-secondary max-w-2xl">
           Uma seleção de trabalhos que unem código, design e impacto real no
           negócio — de <strong>atendimento WhatsApp com IA</strong> a{" "}
-          <strong>arquitetura SaaS de alto nível</strong>.
+          <strong>interações web de alto desempenho</strong>.
         </p>
       </header>
 
