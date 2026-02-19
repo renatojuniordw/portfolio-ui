@@ -32,14 +32,14 @@ function Orb() {
         scale={hovered ? 1.1 : 1}
       >
         <MeshDistortMaterial
-          color={hovered ? "#8B5CF6" : "#2F6BFF"}
+          color={hovered ? "#A78BFA" : "#60A5FA"}
           speed={3}
           distort={0.4}
           radius={1}
-          metalness={0.6}
-          roughness={0.2}
-          emissive={hovered ? "#4C1D95" : "#1E3A8A"}
-          emissiveIntensity={0.5}
+          metalness={0.4}
+          roughness={0.4}
+          emissive={hovered ? "#7C3AED" : "#3B82F6"}
+          emissiveIntensity={0.8}
         />
       </Sphere>
     </Float>
@@ -53,14 +53,14 @@ export function HeroScene() {
         camera={{ position: [0, 0, 5], fov: 45 }}
         gl={{ antialias: true }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.8} />
         <spotLight
           position={[10, 10, 10]}
           angle={0.15}
           penumbra={1}
-          intensity={1}
+          intensity={2}
         />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
+        <pointLight position={[-10, -10, -10]} intensity={1} />
 
         <Orb />
 
@@ -73,6 +73,9 @@ export function HeroScene() {
           far={10}
         />
       </Canvas>
+      {/* Overlay gradiente suave para clarear o centro e melhorar leitura */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--bg)_80%)] pointer-events-none opacity-40" />
+      <div className="absolute inset-0 bg-bg/20 pointer-events-none" />
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function Home() {
     <div className="relative">
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-        {/* <HeroScene /> */}
+        <HeroScene />
         <div className="z-10 text-center max-w-4xl">
           <SplitText
             text="Eu construo experiências web com cara de produto."
