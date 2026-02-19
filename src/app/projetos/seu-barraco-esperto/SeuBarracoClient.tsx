@@ -147,7 +147,6 @@ export function SeuBarracoClient() {
                         <iframe
                           src={`${video.url}${video.url.endsWith("/") ? "" : "/"}embed/`}
                           className="w-full h-full border-0"
-                          allowTransparency
                           allow="encrypted-media"
                           title={`Demonstração de automação ${i + 1}`}
                         />

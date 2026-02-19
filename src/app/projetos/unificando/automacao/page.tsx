@@ -199,30 +199,6 @@ export default function UnificandoAutomationPage() {
                 </Link>
               </Button>
             </div>
-
-            <div className="p-8 rounded-3xl bg-ia/5 border border-ia/10">
-              <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-text">
-                <Globe size={20} className="text-ia" aria-hidden="true" /> Links
-              </h3>
-              <nav className="flex flex-col gap-3">
-                <a
-                  href={SOCIALS.unificando.site}
-                  className="text-sm text-text-secondary hover:text-ia transition-colors flex items-center justify-between font-medium"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Website Oficial <ExternalLink size={14} aria-hidden="true" />
-                </a>
-                <a
-                  href="https://github.com/renatojuniordw/ui-unificando"
-                  className="text-sm text-text-secondary hover:text-ia transition-colors flex items-center justify-between font-medium"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Repositório GitHub <Github size={14} aria-hidden="true" />
-                </a>
-              </nav>
-            </div>
           </aside>
         </div>
       </main>

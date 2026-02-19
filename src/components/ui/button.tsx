@@ -11,7 +11,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-tech text-text-primary shadow-soft-1 hover:brightness-110 hover:shadow-tech/20 hover:shadow-lg",
+          "bg-tech text-white shadow-soft-1 hover:brightness-110 hover:shadow-tech/20 hover:shadow-lg",
         secondary:
           "bg-s2 text-text-primary border border-border hover:bg-s2/80 hover:border-text-secondary/20",
         ghost: "hover:bg-s2 hover:text-text-primary",

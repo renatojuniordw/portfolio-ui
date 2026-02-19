@@ -34,8 +34,7 @@ export default function AboutPage() {
         <Card className="bg-s2/30 border-tech/20">
           <CardContent className="p-8">
             <p className="text-xl text-text leading-relaxed">
-              <strong>Engenheiro de Software</strong> baseado em Recife com
-              atuação <strong>100% remota e global</strong>. Foco em arquitetura
+              <strong>Engenheiro de Software</strong>, com foco em arquitetura
               front-end e automação com IA para criação de produtos digitais de
               alto impacto.
             </p>
