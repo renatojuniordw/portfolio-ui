@@ -31,6 +31,10 @@ export function buildMetadata({
       canonical: url,
     },
     metadataBase: new URL(SITE_URL),
+    icons: {
+      icon: "/r_icon.png",
+      apple: "/r_icon.png",
+    },
     openGraph: {
       title: fullTitle,
       description: fullDescription,

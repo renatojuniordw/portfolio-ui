@@ -21,27 +21,32 @@ export function SplitText({ text, className, delay = 0 }: Props) {
 
     gsap.fromTo(
       split.chars,
-      { opacity: 0, y: 20 },
+      { opacity: 0, y: 15 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        ease: "power4.out",
-        stagger: 0.02,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.015,
         delay,
         scrollTrigger: {
           trigger: elRef.current,
-          start: "top 85%",
-          toggleActions: "play none none none",
+          start: "top 95%",
+          once: true,
         },
       },
     );
 
-    return () => split.revert();
-  }, [delay]);
+    return () => {
+      split.revert();
+    };
+  }, [delay, text]);
 
   return (
-    <h2 ref={elRef} className={cn("overflow-hidden", className)}>
+    <h2
+      ref={elRef}
+      className={cn("will-change-transform opacity-100", className)}
+    >
       {text}
     </h2>
   );
