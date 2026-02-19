@@ -110,7 +110,7 @@ export default function Home() {
               <CardTitle>Visão de Produto</CardTitle>
               <CardDescription>
                 Foco no usuário e estratégia de negócio, entregando de
-                <strong>criação de site profissional</strong> a{" "}
+                <strong> criação de site profissional</strong> a{" "}
                 <strong>automação residencial</strong>.
               </CardDescription>
             </CardHeader>

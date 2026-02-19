@@ -133,9 +133,7 @@ export default function CurriculoPage() {
                   Pós-graduação Lato Sensu - Especialização, Software
                   Architecture
                 </h3>
-                <p className="text-text-secondary text-sm">
-                  FIAP | Recife/Remoto
-                </p>
+                <p className="text-text-secondary text-sm">FIAP</p>
               </article>
               <article>
                 <h3 className="font-bold">Graduação, Sistema para internet</h3>
