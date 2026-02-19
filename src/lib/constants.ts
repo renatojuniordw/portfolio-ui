@@ -4,6 +4,8 @@ export const SOCIALS = {
     linkedin: "https://linkedin.com/in/renato-bezerra",
     github: "https://github.com/renatojuniordw",
     email: "renato-bgs@live.com",
+    site: "https://renatobezerra.com.br",
+    whatsapp: "https://wa.me/5581986986332",
   },
   barraco: {
     insta: "https://instagram.com/seubarracoesperto",
