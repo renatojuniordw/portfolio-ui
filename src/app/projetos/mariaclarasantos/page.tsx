@@ -78,7 +78,7 @@ export default function MariaClaraSantosProjectPage() {
           </div>
           <Button
             size="lg"
-            className="bg-zinc-100 text-zinc-950 hover:bg-zinc-200 shadow-xl"
+            className="bg-tech text-white hover:brightness-110 shadow-xl"
             asChild
           >
             <a
@@ -98,7 +98,7 @@ export default function MariaClaraSantosProjectPage() {
           {/* Overview */}
           <section className="space-y-6">
             <h2 className="text-2xl font-display font-bold">O Desafio</h2>
-            <div className="prose prose-invert max-w-none text-text-secondary space-y-4">
+            <div className="prose max-w-none text-text-secondary space-y-4">
               <p>
                 O objetivo era criar uma presença digital robusta para a Dra.
                 Maria Clara Santos, especialista em Direito Previdenciário. A

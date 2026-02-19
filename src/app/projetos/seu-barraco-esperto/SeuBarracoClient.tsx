@@ -81,7 +81,7 @@ export function SeuBarracoClient() {
             </div>
             <Button
               size="lg"
-              className="bg-barraco hover:bg-barraco/90 shadow-barraco/20 shadow-xl"
+              className="bg-barraco text-white hover:bg-barraco/90 shadow-barraco/20 shadow-xl"
               asChild
             >
               <a
@@ -103,7 +103,7 @@ export function SeuBarracoClient() {
               <h2 className="text-2xl font-display font-bold">
                 O Conceito: Automação com Alexa
               </h2>
-              <div className="prose prose-invert max-w-none text-text-secondary space-y-4">
+              <div className="prose max-w-none text-text-secondary space-y-4">
                 <p>
                   O <strong>Seu Barraco Esperto</strong> nasceu para
                   desmistificar a ideia de que{" "}

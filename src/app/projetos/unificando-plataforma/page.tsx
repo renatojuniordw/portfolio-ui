@@ -79,7 +79,7 @@ export default function UnificandoSitePage() {
           </div>
           <Button
             size="lg"
-            className="bg-tech text-text-primary hover:brightness-110 shadow-xl"
+            className="bg-tech text-white hover:brightness-110 shadow-xl"
             asChild
           >
             <a
@@ -99,7 +99,7 @@ export default function UnificandoSitePage() {
             <h2 className="text-2xl font-display font-bold">
               O Desafio da Conversão
             </h2>
-            <div className="prose prose-invert max-w-none text-text-secondary space-y-4">
+            <div className="prose max-w-none text-text-secondary space-y-4">
               <p>
                 O site do <strong>Unificando</strong> foi projetado para ser a
                 face digital de um ecossistema complexo. Mais do que um site

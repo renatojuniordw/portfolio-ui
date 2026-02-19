@@ -30,7 +30,7 @@ const LinkItem = ({
   variant?: "default" | "barraco" | "unificando" | "personal";
 }) => {
   const themes = {
-    default: "hover:border-white/20 hover:bg-white/5",
+    default: "hover:border-border hover:bg-s2",
     personal: "hover:border-tech/30 hover:bg-tech/5",
     barraco: "hover:border-barraco/30 hover:bg-barraco/5",
     unificando: "hover:border-ia/30 hover:bg-ia/5",
@@ -44,24 +44,24 @@ const LinkItem = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative flex items-center p-4 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm transition-all duration-300 ${themes[variant]}`}
+      className={`group relative flex items-center p-4 rounded-2xl border border-border bg-s1 shadow-sm transition-all duration-300 ${themes[variant]}`}
     >
-      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 group-hover:scale-110 transition-transform duration-300">
+      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-s2 group-hover:scale-110 transition-transform duration-300">
         <Icon
           size={24}
-          className="text-white/80 group-hover:text-white transition-colors"
+          className="text-text/80 group-hover:text-tech transition-colors"
           aria-hidden="true"
         />
       </div>
       <div className="ml-4 flex-grow text-left">
-        <h3 className="font-bold text-sm tracking-tight">{title}</h3>
+        <h3 className="font-bold text-sm tracking-tight text-text">{title}</h3>
         {subtitle && (
           <p className="text-xs text-text-secondary line-clamp-1">{subtitle}</p>
         )}
       </div>
       <ArrowUpRight
         size={18}
-        className="text-white/20 group-hover:text-white/60 transition-colors"
+        className="text-muted group-hover:text-tech transition-colors"
         aria-hidden="true"
       />
     </motion.a>
@@ -72,19 +72,19 @@ export function LinksClient() {
   return (
     <div className="min-h-screen bg-bg relative overflow-hidden flex flex-col items-center py-20 px-6">
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg aspect-square bg-tech/10 blur-[120px] rounded-full -z-10 animate-pulse" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md aspect-square bg-barraco/10 blur-[120px] rounded-full -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg aspect-square bg-tech/5 blur-[120px] rounded-full -z-10" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md aspect-square bg-barraco/5 blur-[120px] rounded-full -z-10" />
 
-      <div className="w-full max-w-[480px] space-y-12 text-center">
+      <div className="w-full max-w-[480px] space-y-12 text-center relative z-10">
         {/* Header */}
         <header className="space-y-4">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-24 h-24 rounded-full border-4 border-white/5 mx-auto overflow-hidden bg-surface-1 flex items-center justify-center relative group"
+            className="w-24 h-24 rounded-full border border-border mx-auto overflow-hidden bg-white shadow-lg flex items-center justify-center relative group"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-tech/20 to-ia/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <span className="text-3xl font-bold bg-gradient-to-br from-white to-white/40 bg-clip-text text-transparent italic">
+            <div className="absolute inset-0 bg-gradient-to-tr from-tech/10 to-ia/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span className="text-3xl font-bold bg-gradient-to-br from-text to-text/40 bg-clip-text text-transparent italic relative z-10">
               RB
             </span>
           </motion.div>
@@ -92,7 +92,7 @@ export function LinksClient() {
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-2xl font-display font-bold"
+              className="text-2xl font-display font-bold text-text"
             >
               {PROFILE.name}
             </motion.h1>

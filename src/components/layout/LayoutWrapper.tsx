@@ -11,11 +11,11 @@ function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center p-6 bg-transparent">
-      <nav className="flex items-center gap-8 rounded-full border border-border bg-s1/50 px-8 py-3 backdrop-blur-md">
+      <nav className="flex items-center gap-8 rounded-full border border-border bg-white/80 px-8 py-3 backdrop-blur-md shadow-lg shadow-black/5">
         <Link
           href="/"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-tech",
+            "text-sm font-bold transition-colors hover:text-tech",
             pathname === "/" ? "text-tech" : "text-text-secondary",
           )}
         >
@@ -24,7 +24,7 @@ function Header() {
         <Link
           href="/projetos"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-tech",
+            "text-sm font-bold transition-colors hover:text-tech",
             pathname.startsWith("/projetos")
               ? "text-tech"
               : "text-text-secondary",
@@ -35,7 +35,7 @@ function Header() {
         <Link
           href="/sobre"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-tech",
+            "text-sm font-bold transition-colors hover:text-tech",
             pathname === "/sobre" ? "text-tech" : "text-text-secondary",
           )}
         >
@@ -44,7 +44,7 @@ function Header() {
         <Link
           href="/curriculo"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-tech",
+            "text-sm font-bold transition-colors hover:text-tech",
             pathname === "/curriculo" ? "text-tech" : "text-text-secondary",
           )}
         >
@@ -53,7 +53,7 @@ function Header() {
         <Link
           href="/contato"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-tech",
+            "text-sm font-bold transition-colors hover:text-tech",
             pathname === "/contato" ? "text-tech" : "text-text-secondary",
           )}
         >
@@ -69,7 +69,7 @@ function Footer() {
   if (pathname === "/links") return null;
 
   return (
-    <footer className="mt-20 border-t border-border p-10 text-center text-sm text-text-secondary">
+    <footer className="mt-20 border-t border-border bg-s1 p-10 text-center text-sm text-text-secondary">
       <p>© {new Date().getFullYear()} Renato Bezerra.</p>
     </footer>
   );
@@ -84,7 +84,7 @@ export default function LayoutWrapper({
     <>
       <SmoothScroll />
       <Header />
-      <main>{children}</main>
+      <main className="bg-bg text-text min-h-screen">{children}</main>
       <Footer />
     </>
   );

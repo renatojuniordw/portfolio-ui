@@ -89,7 +89,7 @@ export default function UnificandoProjectPage() {
             </div>
             <Button
               size="lg"
-              className="bg-ia hover:bg-ia/90 shadow-ia/20 shadow-xl"
+              className="bg-ia text-white hover:bg-ia/90 shadow-ia/20 shadow-xl"
               asChild
             >
               <a
@@ -111,7 +111,7 @@ export default function UnificandoProjectPage() {
               <h2 className="text-2xl font-display font-bold font-space">
                 O Desafio Técnico: Atendimento WhatsApp
               </h2>
-              <div className="prose prose-invert max-w-none text-text-secondary space-y-4">
+              <div className="prose max-w-none text-text-secondary space-y-4">
                 <p>
                   O desafio central do <strong>Unificando</strong> foi criar um
                   <strong> painel de atendimento</strong> que não apenas

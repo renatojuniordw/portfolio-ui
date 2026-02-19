@@ -32,14 +32,14 @@ function Orb() {
         scale={hovered ? 1.1 : 1}
       >
         <MeshDistortMaterial
-          color={hovered ? "#A78BFA" : "#60A5FA"}
+          color={hovered ? "#7C3AED" : "#2563EB"}
           speed={3}
           distort={0.4}
           radius={1}
-          metalness={0.4}
-          roughness={0.4}
-          emissive={hovered ? "#7C3AED" : "#3B82F6"}
-          emissiveIntensity={0.8}
+          metalness={0.2}
+          roughness={0.2}
+          emissive={hovered ? "#4C1D95" : "#1E40AF"}
+          emissiveIntensity={0.5}
         />
       </Sphere>
     </Float>
@@ -48,13 +48,13 @@ function Orb() {
 
 export function HeroScene() {
   return (
-    <div className="absolute inset-0 -z-10 h-screen w-full bg-bg">
-      <Suspense fallback={<div className="w-full h-full bg-bg" />}>
+    <div className="absolute inset-0 -z-10 h-screen w-full bg-white">
+      <Suspense fallback={<div className="w-full h-full bg-white" />}>
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}
           gl={{ antialias: true }}
         >
-          <ambientLight intensity={0.8} />
+          <ambientLight intensity={1.5} />
           <spotLight
             position={[10, 10, 10]}
             angle={0.15}
@@ -68,16 +68,15 @@ export function HeroScene() {
           <Environment preset="city" />
           <ContactShadows
             position={[0, -2, 0]}
-            opacity={0.4}
+            opacity={0.2}
             scale={10}
             blur={2}
             far={10}
           />
         </Canvas>
       </Suspense>
-      {/* Overlay gradiente suave para clarear o centro e melhorar leitura */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--bg)_80%)] pointer-events-none opacity-40" />
-      <div className="absolute inset-0 bg-bg/20 pointer-events-none" />
+      {/* Overlay gradiente suave mais sutil para o tema claro */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0)_0%,rgba(255,255,255,0.8)_100%)] pointer-events-none" />
     </div>
   );
 }
