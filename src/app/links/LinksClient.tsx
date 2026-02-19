@@ -78,16 +78,6 @@ export function LinksClient() {
       <div className="w-full max-w-[480px] space-y-12 text-center relative z-10">
         {/* Header */}
         <header className="space-y-4">
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="w-24 h-24 rounded-full border border-border mx-auto overflow-hidden bg-white shadow-lg flex items-center justify-center relative group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-tr from-tech/10 to-ia/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <span className="text-3xl font-bold bg-gradient-to-br from-text to-text/40 bg-clip-text text-transparent italic relative z-10">
-              RB
-            </span>
-          </motion.div>
           <div className="space-y-1">
             <motion.h1
               initial={{ opacity: 0 }}
