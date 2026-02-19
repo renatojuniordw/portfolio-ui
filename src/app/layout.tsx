@@ -7,10 +7,15 @@ import { buildMetadata } from "@/lib/seo";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space",
+  display: "swap",
 });
 
 export const metadata: Metadata = buildMetadata();
