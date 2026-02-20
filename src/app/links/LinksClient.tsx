@@ -27,13 +27,14 @@ const LinkItem = ({
   title: string;
   subtitle?: string;
   delay?: number;
-  variant?: "default" | "barraco" | "unificando" | "personal";
+  variant?: "default" | "barraco" | "unificando" | "personal" | "oferticando";
 }) => {
   const themes = {
     default: "hover:border-border hover:bg-s2",
     personal: "hover:border-tech/30 hover:bg-tech/5",
     barraco: "hover:border-barraco/30 hover:bg-barraco/5",
     unificando: "hover:border-ia/30 hover:bg-ia/5",
+    oferticando: "hover:border-tech/30 hover:bg-tech/5",
   };
 
   return (
@@ -134,12 +135,20 @@ export function LinksClient() {
                 delay={0.1}
               />
               <LinkItem
-                href={SOCIALS.barraco.insta}
+                href={SOCIALS.oferticando.site}
                 icon={Zap}
+                title="Oferticando"
+                subtitle="Ofertas & Cupons em tempo real"
+                variant="oferticando"
+                delay={0.2}
+              />
+              <LinkItem
+                href={SOCIALS.barraco.insta}
+                icon={Bot}
                 title="Seu Barraco Esperto"
                 subtitle="Smart Home & IoT sem frescura"
                 variant="barraco"
-                delay={0.2}
+                delay={0.3}
               />
             </div>
           </section>
@@ -173,6 +182,14 @@ export function LinksClient() {
                 title="Instagram Pessoal"
                 subtitle="Bastidores e cotidiano"
                 delay={0.5}
+              />
+              <LinkItem
+                href={SOCIALS.oferticando.insta}
+                icon={Instagram}
+                title="Instagram Oferticando"
+                subtitle="As melhores promoções do dia"
+                variant="oferticando"
+                delay={0.6}
               />
             </div>
           </section>

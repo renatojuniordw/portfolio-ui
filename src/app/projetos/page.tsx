@@ -58,6 +58,15 @@ const PROJECTS = [
     accent: "barraco",
     link: "/projetos/seu-barraco-esperto",
   },
+  {
+    id: "oferticando",
+    title: "Oferticando",
+    category: "E-commerce / Afiliados",
+    description:
+      "Plataforma completa de ofertas e cupons com painéis administrativos e de afiliados, busca performática e extração automática de dados.",
+    accent: "tech",
+    link: "/projetos/oferticando",
+  },
 ];
 
 export default function ProjectsPage() {

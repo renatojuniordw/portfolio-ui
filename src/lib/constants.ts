@@ -16,6 +16,10 @@ export const SOCIALS = {
     insta: "https://instagram.com/unificando.digital",
     site: "https://unificando.com.br",
   },
+  oferticando: {
+    site: "https://oferticando.com.br",
+    insta: "https://instagram.com/oferticando",
+  },
 };
 
 export const PROFILE = {
