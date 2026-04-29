@@ -38,7 +38,7 @@
     @apply border-border;
   }
   html {
-    @apply bg-bg text-text-primary;
+    @apply bg-bg text-text;
   }
   body {
     @apply font-body antialiased;

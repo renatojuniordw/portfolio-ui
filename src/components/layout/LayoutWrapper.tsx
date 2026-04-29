@@ -22,7 +22,6 @@ const NAV_ITEMS = [
   { label: "Sobre", href: "/#sobre", icon: User },
   { label: "Projetos", href: "/projetos", icon: FolderOpen },
   { label: "Currículo", href: "/curriculo", icon: FileText },
-  { label: "Contato", href: "/contato", icon: Mail },
 ];
 
 function Header() {
@@ -63,7 +62,7 @@ function Header() {
 
         {/* Links Centralizados (Desktop) */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.filter((item) => item.label !== "Contato").map((item) => {
+          {NAV_ITEMS.map((item) => {
             const [itemPath, itemHash] = item.href.split("#");
             const isActive = itemHash
               ? pathname === itemPath && activeHash === `#${itemHash}`
@@ -89,17 +88,7 @@ function Header() {
           })}
         </nav>
 
-        {/* Botão CTA (Desktop) */}
-        <Link
-          href="/contato"
-          className="group hidden md:flex items-center gap-2 px-5 py-2.5 bg-black text-white rounded-full text-sm font-medium hover:bg-black/80 transition-all"
-        >
-          Contato
-          <ArrowUpRight
-            size={16}
-            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </Link>
+
 
         {/* Botão Hamburger (Mobile) */}
         <button
@@ -177,17 +166,7 @@ function Header() {
                 })}
               </nav>
 
-              {/* CTA na Gaveta */}
-              <div className="p-6 border-t border-border">
-                <Link
-                  href="/contato"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-black text-white rounded-full text-base font-medium hover:bg-black/80 transition-all"
-                >
-                  Contato
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
+
             </motion.aside>
           </>
         )}
