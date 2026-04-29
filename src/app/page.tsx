@@ -4,12 +4,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { HeroSection } from "@/components/home/HeroSection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { ContactSection } from "@/components/home/ContactSection";
+import { PROFILE } from "@/lib/constants";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: "Engenheiro de Software & Arquiteto Front-end | Recife",
+    title: `${PROFILE.fullName} | Engenheiro de Software`,
     description:
-      "Portfólio de Renato Bezerra, Engenheiro de Software em Recife, especialista em React, Angular e automações com IA. Criando arquiteturas front-end de alta performance.",
+      `Portfólio de ${PROFILE.fullName}, Engenheiro de Software em Recife, especialista em React, Angular e automações com IA. Criando arquiteturas front-end de alta performance.`,
   });
 
 export default function Home() {

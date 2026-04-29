@@ -16,6 +16,7 @@ export function AboutSection() {
           Sobre mim
         </h2>
         <p className="text-xl lg:text-2xl text-[#666666] font-light leading-relaxed mb-20">
+          Meu nome é <strong>{PROFILE.fullName}</strong>. Sou{" "}
           <strong>Engenheiro de Software</strong>, com foco em arquitetura
           front-end e automação com IA para criação de produtos digitais de
           alto impacto.

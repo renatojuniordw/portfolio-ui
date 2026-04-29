@@ -2,7 +2,6 @@ import Image from "next/image";
 import { PROFILE, SOCIALS } from "@/lib/constants";
 import { Linkedin, Github } from "lucide-react";
 
-
 export function HeroSection() {
   return (
     <section className="min-h-screen relative flex flex-col lg:flex-row w-full">
@@ -39,8 +38,8 @@ export function HeroSection() {
             Hello
           </h1>
           <p className="text-xl lg:text-2xl text-[#666666] font-medium">
-            — Me chamo {PROFILE.fullName?.split(" ")[0] || "Renato"},
-            Arquiteto Front-end & Especialista em Automações e IA
+            — Me chamo {PROFILE.fullName?.split(" ")[0] || "Renato"}, Front-end
+            & Especialista em Automações e IA
           </p>
 
           <div className="flex flex-wrap gap-6 mt-8">
@@ -50,7 +49,10 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-[#666666] hover:text-[#111111] transition-colors group"
             >
-              <Linkedin aria-hidden="true" className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <Linkedin
+                aria-hidden="true"
+                className="w-4 h-4 group-hover:scale-110 transition-transform"
+              />
               <span>in/renato-bezerra</span>
             </a>
             <a
@@ -59,7 +61,10 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-[#666666] hover:text-[#111111] transition-colors group"
             >
-              <Github aria-hidden="true" className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <Github
+                aria-hidden="true"
+                className="w-4 h-4 group-hover:scale-110 transition-transform"
+              />
               <span>@renatojuniordw</span>
             </a>
           </div>
