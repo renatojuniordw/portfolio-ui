@@ -19,7 +19,9 @@ export function buildMetadata({
   noIndex = false,
 }: SeoProps = {}): Metadata {
   const fullTitle = title
-    ? `${title} | ${PROFILE.name}`
+    ? title.includes(PROFILE.name)
+      ? title
+      : `${title} | ${PROFILE.name}`
     : `${PROFILE.fullName} (${PROFILE.handle}) | ${PROFILE.name}`;
   const fullDescription = description || PROFILE.summary;
   const url = `${SITE_URL}${path}`;

@@ -8,9 +8,9 @@ import { PROFILE } from "@/lib/constants";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: `${PROFILE.fullName} | Engenheiro de Software`,
+    title: `${PROFILE.name} | Engenheiro de Software`,
     description:
-      `Portfólio de ${PROFILE.fullName}, Engenheiro de Software em Recife, especialista em React, Angular e automações com IA. Criando arquiteturas front-end de alta performance.`,
+      `Portfólio de ${PROFILE.name}, Engenheiro de Software em Recife, especialista em React, Angular e automações com IA. Criando arquiteturas front-end de alta performance.`,
   });
 
 export default function Home() {
