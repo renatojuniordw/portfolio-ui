@@ -9,6 +9,7 @@ import {
   Lock,
   Globe,
   Github,
+  ArrowUpRight,
 } from "lucide-react";
 import React from "react";
 import { SOCIALS } from "@/lib/constants";
@@ -122,19 +123,29 @@ const project: ProjectDetails = {
         <nav className="flex flex-col gap-3">
           <a
             href="https://mariaclarasantos.adv.br/"
-            className="text-sm text-text-secondary hover:text-tech transition-colors flex items-center justify-between"
+            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Website Oficial <Globe size={14} aria-hidden="true" />
+            <span className="flex items-center gap-2">
+              <Globe size={16} aria-hidden="true" /> Website Oficial
+            </span>
+            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
+              <ArrowUpRight className="text-surface-1" size={16} aria-hidden="true" />
+            </span>
           </a>
           <a
             href="https://github.com/renatojuniordw/portfolio-maria-clara"
-            className="text-sm text-text-secondary hover:text-tech transition-colors flex items-center justify-between"
+            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Repositório GitHub <Github size={14} aria-hidden="true" />
+            <span className="flex items-center gap-2">
+              <Github size={16} aria-hidden="true" /> Repositório GitHub
+            </span>
+            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
+              <ArrowUpRight className="text-surface-1" size={16} aria-hidden="true" />
+            </span>
           </a>
         </nav>
       ),

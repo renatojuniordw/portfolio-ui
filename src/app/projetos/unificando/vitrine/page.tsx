@@ -7,6 +7,7 @@ import {
   Globe,
   Github,
   ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
 import React from "react";
 import { SOCIALS } from "@/lib/constants";
@@ -91,7 +92,7 @@ const project: ProjectDetails = {
             <p className="text-sm text-text-secondary italic mb-3">
               Quer saber sobre a Engenharia de IA por trás da marca?
             </p>
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="outline" size="sm" className="rounded-full" asChild>
               <Link href="/projetos/unificando/automacao">
                 Ver Case de Automação & IA{" "}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -116,19 +117,29 @@ const project: ProjectDetails = {
         <nav className="flex flex-col gap-3 font-bold">
           <a
             href={SOCIALS.unificando.site}
-            className="text-sm text-text-secondary hover:text-tech transition-colors flex items-center justify-between"
+            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors font-normal"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Website Oficial <Globe size={14} />
+            <span className="flex items-center gap-2">
+              <Globe size={16} /> Website Oficial
+            </span>
+            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
+              <ArrowUpRight className="text-surface-1" size={16} />
+            </span>
           </a>
           <a
             href="https://github.com/renatojuniordw/ui-unificando"
-            className="text-sm text-text-secondary hover:text-tech transition-colors flex items-center justify-between"
+            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors font-normal"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Repositório GitHub <Github size={14} />
+            <span className="flex items-center gap-2">
+              <Github size={16} /> Repositório GitHub
+            </span>
+            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
+              <ArrowUpRight className="text-surface-1" size={16} />
+            </span>
           </a>
         </nav>
       ),

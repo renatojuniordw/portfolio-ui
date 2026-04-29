@@ -108,7 +108,7 @@ const project: ProjectDetails = {
             Interessado na experiência visual e na calculadora de serviços
             deste projeto?
           </p>
-          <Button variant="outline" size="sm" className="w-full" asChild>
+          <Button variant="outline" size="sm" className="w-full rounded-full" asChild>
             <Link href="/projetos/unificando/vitrine">
               Ver Vitrine Digital <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

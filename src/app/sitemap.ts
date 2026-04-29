@@ -1,22 +1,22 @@
 import { MetadataRoute } from "next";
 import { SOCIALS } from "@/lib/constants";
+import { PROJECTS } from "@/app/projetos/page";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SOCIALS.personal.site;
   const lastModified = new Date();
 
-  const routes = [
+  const staticRoutes = [
     "",
     "/projetos",
-    "/projetos/unificando/automacao",
-    "/projetos/unificando/vitrine",
-    "/projetos/mariaclarasantos",
-    "/projetos/seu-barraco-esperto",
-    "/sobre",
     "/curriculo",
     "/contato",
     "/links",
   ];
+
+  const projectRoutes = PROJECTS.map((project) => project.link);
+
+  const routes = [...staticRoutes, ...projectRoutes];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,

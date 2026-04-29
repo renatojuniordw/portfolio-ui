@@ -1,12 +1,5 @@
 import { SplitText } from "@/components/fx/SplitText";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { buildMetadata } from "@/lib/seo";
@@ -21,71 +14,7 @@ export const generateMetadata = () =>
     path: "/projetos",
   });
 
-const PROJECTS = [
-  {
-    id: "unificando-automacao",
-    title: "Unificando: IA & Automação",
-    category: "Inteligência Artificial",
-    description:
-      "Engine de atendimento distribuído, orquestração de LLMs e automação de fluxos via n8n.",
-    accent: "ia",
-    link: "/projetos/unificando/automacao",
-  },
-  {
-    id: "unificando-vitrine",
-    title: "Unificando: Vitrine Digital",
-    category: "Branding & Conversão",
-    description:
-      "Site institucional interativo com foco em autoridade de marca e calculadora de planos em tempo real.",
-    accent: "tech",
-    link: "/projetos/unificando/vitrine",
-  },
-  {
-    id: "mariaclarasantos",
-    title: "Maria Clara Santos",
-    category: "Web Performance / Jurídico",
-    description:
-      "Landing page de alta conversão para advocacia com sistema de anti-golpe integrado.",
-    accent: "tech",
-    link: "/projetos/mariaclarasantos",
-  },
-  {
-    id: "seu-barraco-esperto",
-    title: "Seu Barraco Esperto",
-    category: "IoT / Automação Residencial",
-    description:
-      "Automação residencial prática e sem frescura com Alexa e IoT.",
-    accent: "barraco",
-    link: "/projetos/seu-barraco-esperto",
-  },
-  {
-    id: "oferticando",
-    title: "Oferticando",
-    category: "E-commerce / Afiliados",
-    description:
-      "Plataforma completa de ofertas e cupons com painéis administrativos e de afiliados, busca performática e extração automática de dados.",
-    accent: "tech",
-    link: "/projetos/oferticando",
-  },
-  {
-    id: "ariano-suassuna",
-    title: "Ariano Suassuna - Tributo",
-    category: "Educacional / Cultura",
-    description:
-      "Site educacional sobre a vida e obra de Ariano Suassuna, originado em 2016 no CRC Recife como um esforço da comunidade para preservar sua memória.",
-    accent: "tech",
-    link: "/projetos/ariano-suassuna",
-  },
-  {
-    id: "sheik",
-    title: "Diego Sheik - Mídia Kit",
-    category: "Mídia & Influência",
-    description:
-      "Mídia kit interativo com insights de audiência, formatos de parceria e métricas reais de Instagram para marcas.",
-    accent: "tech",
-    link: "/projetos/sheik",
-  },
-];
+import { PROJECTS } from "@/lib/projects";
 
 export default function ProjectsPage() {
   const breadcrumbs = [
@@ -94,48 +23,53 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <div className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
+    <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
-      <header className="mb-16">
+      <header className="mb-20">
         <h1 className="sr-only">Portfólio de Projetos - Renato Bezerra</h1>
         <SplitText
           text="Meus Projetos"
-          className="text-4xl md:text-6xl font-display font-bold mb-4"
+          className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight"
         />
-        <p className="text-xl text-text-secondary max-w-2xl">
+        <p className="text-lg md:text-xl text-[#666666] max-w-2xl leading-relaxed">
           Uma seleção de trabalhos que unem código, design e impacto real no
           negócio — de <strong>atendimento WhatsApp com IA</strong> a{" "}
           <strong>interações web de alto desempenho</strong>.
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {PROJECTS.map((project) => (
-          <Card
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {PROJECTS.map((project, index) => (
+          <Link
             key={project.id}
-            className="group overflow-hidden hover:border-text-primary/20 transition-all flex flex-col justify-between"
+            href={project.link}
+            className="group relative block bg-[#F9F9F9] hover:bg-[#F4F4F4] p-8 md:p-10 rounded-xl transition-all duration-300 ease-out border border-transparent hover:border-[#E5E5E5] hover:-translate-y-1"
           >
-            <div>
-              <div className={`h-2 w-full bg-${project.accent}`} />
-              <CardHeader>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted mb-2">
-                  {project.category}
-                </span>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription className="mt-2 line-clamp-3">
+            <div className="flex flex-col h-full justify-between gap-8">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-5xl md:text-6xl font-display font-light text-[#E5E5E5] group-hover:text-[#CCCCCC] transition-colors duration-300">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="inline-block px-4 py-1.5 bg-white text-[#111111] text-xs font-medium rounded-full border border-[#EEEEEE]">
+                    {project.category}
+                  </div>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#111111] leading-tight">
+                  {project.title}
+                </h2>
+                <p className="text-[#666666] text-base md:text-lg leading-relaxed">
                   {project.description}
-                </CardDescription>
-              </CardHeader>
-            </div>
+                </p>
+              </div>
 
-            <CardFooter>
-              <Button variant="outline" size="sm" className="w-full" asChild>
-                <Link href={project.link}>
-                  Ver Detalhes <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
+              <div className="flex items-center justify-end">
+                <div className="w-12 h-12 rounded-full bg-[#111111] flex items-center justify-center text-white group-hover:scale-110 transition-all duration-300">
+                  <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                </div>
+              </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
