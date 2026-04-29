@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { SOCIALS } from "@/lib/constants";
-import { PROJECTS } from "@/app/projetos/page";
+import { PROJECTS } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SOCIALS.personal.site;
