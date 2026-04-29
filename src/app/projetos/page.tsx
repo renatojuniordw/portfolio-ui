@@ -67,6 +67,24 @@ const PROJECTS = [
     accent: "tech",
     link: "/projetos/oferticando",
   },
+  {
+    id: "ariano-suassuna",
+    title: "Ariano Suassuna - Tributo",
+    category: "Educacional / Cultura",
+    description:
+      "Site educacional sobre a vida e obra de Ariano Suassuna, originado em 2016 no CRC Recife como um esforço da comunidade para preservar sua memória.",
+    accent: "tech",
+    link: "/projetos/ariano-suassuna",
+  },
+  {
+    id: "sheik",
+    title: "Diego Sheik - Mídia Kit",
+    category: "Mídia & Influência",
+    description:
+      "Mídia kit interativo com insights de audiência, formatos de parceria e métricas reais de Instagram para marcas.",
+    accent: "tech",
+    link: "/projetos/sheik",
+  },
 ];
 
 export default function ProjectsPage() {
