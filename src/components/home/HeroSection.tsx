@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { PROFILE } from "@/lib/constants";
+import { PROFILE, SOCIALS } from "@/lib/constants";
+import { Linkedin, Github } from "lucide-react";
+
 
 export function HeroSection() {
   return (
@@ -40,6 +42,27 @@ export function HeroSection() {
             — Me chamo {PROFILE.fullName?.split(" ")[0] || "Renato"},
             Arquiteto Front-end & Especialista em Automações e IA
           </p>
+
+          <div className="flex flex-wrap gap-6 mt-8">
+            <a
+              href={SOCIALS.personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-medium text-[#666666] hover:text-[#111111] transition-colors group"
+            >
+              <Linkedin aria-hidden="true" className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <span>in/renato-bezerra</span>
+            </a>
+            <a
+              href={SOCIALS.personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-medium text-[#666666] hover:text-[#111111] transition-colors group"
+            >
+              <Github aria-hidden="true" className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <span>@renatojuniordw</span>
+            </a>
+          </div>
         </div>
 
         {/* Bottom */}
