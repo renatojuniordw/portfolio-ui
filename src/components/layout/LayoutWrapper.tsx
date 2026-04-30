@@ -19,9 +19,6 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
-import { GitHubStatus } from "@/components/ui/GitHubStatus";
-
-
 
 const NAV_ITEMS = [
   { label: "Início", href: "/", icon: Home },
@@ -80,8 +77,9 @@ function Header() {
               const isActive = itemHash
                 ? pathname === itemPath && activeHash === `#${itemHash}`
                 : item.href === "/"
-                ? pathname === "/" && (!activeHash || activeHash === "#")
-                : pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                  ? pathname === "/" && (!activeHash || activeHash === "#")
+                  : pathname === item.href ||
+                    (item.href !== "/" && pathname.startsWith(item.href));
 
               return (
                 <Link
@@ -92,7 +90,9 @@ function Header() {
                   }}
                   className={cn(
                     "text-sm font-medium transition-colors hover:text-text",
-                    isActive ? "text-text font-semibold" : "text-text-secondary"
+                    isActive
+                      ? "text-text font-semibold"
+                      : "text-text-secondary",
                   )}
                 >
                   {item.label}
@@ -123,7 +123,7 @@ function Header() {
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           )}
-          
+
           <button
             onClick={() => setIsMenuOpen(true)}
             className="flex items-center justify-center p-2 text-text hover:bg-surface-1 rounded-full transition-colors"
@@ -157,7 +157,9 @@ function Header() {
             >
               {/* Header da Gaveta */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-                <span className="text-xl font-bold tracking-tighter text-text">RB.</span>
+                <span className="text-xl font-bold tracking-tighter text-text">
+                  RB.
+                </span>
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="p-2 hover:bg-surface-1 rounded-full transition-colors"
@@ -174,8 +176,9 @@ function Header() {
                   const isActive = itemHash
                     ? pathname === itemPath && activeHash === `#${itemHash}`
                     : item.href === "/"
-                    ? pathname === "/" && (!activeHash || activeHash === "#")
-                    : pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                      ? pathname === "/" && (!activeHash || activeHash === "#")
+                      : pathname === item.href ||
+                        (item.href !== "/" && pathname.startsWith(item.href));
 
                   return (
                     <Link
@@ -187,12 +190,16 @@ function Header() {
                       }}
                       className={cn(
                         "flex items-center gap-4 text-lg font-medium transition-colors p-2 rounded-xl hover:bg-surface-1",
-                        isActive ? "text-text font-semibold bg-surface-1" : "text-text-secondary"
+                        isActive
+                          ? "text-text font-semibold bg-surface-1"
+                          : "text-text-secondary",
                       )}
                     >
                       <item.icon
                         size={20}
-                        className={isActive ? "text-text" : "text-text-secondary"}
+                        className={
+                          isActive ? "text-text" : "text-text-secondary"
+                        }
                       />
                       {item.label}
                     </Link>
@@ -213,10 +220,8 @@ function Footer() {
 
   return (
     <footer className="mt-20 border-t border-border bg-surface-1 p-10 text-center text-sm text-text-secondary flex flex-col items-center gap-4 transition-colors duration-300">
-      <GitHubStatus />
       <p>© {new Date().getFullYear()} Renato Bezerra.</p>
     </footer>
-
   );
 }
 

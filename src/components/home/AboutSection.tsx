@@ -2,9 +2,7 @@ import Link from "next/link";
 import { Accessibility, ArrowRight } from "lucide-react";
 import { PROFILE } from "@/lib/constants";
 import { PROJECTS } from "@/lib/projects";
-import { GitHubCalendarWrapper } from "@/components/ui/GitHubCalendarWrapper";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
-
 
 export function AboutSection() {
   const yearsOfExperience = new Date().getFullYear() - 2017;
@@ -71,10 +69,7 @@ export function AboutSection() {
           </div>
         </ScrollReveal>
 
-        <GitHubCalendarWrapper />
-        
         <div className="mb-20 mt-12">
-
           <Link
             href="/curriculo"
             className="inline-flex items-center justify-center px-8 py-4 bg-text text-bg rounded-full font-medium text-sm hover:bg-black transition-colors group"
@@ -148,7 +143,6 @@ export function AboutSection() {
               </Link>
             ))}
           </div>
-
         </div>
 
         <div className="mt-20 p-6 rounded-2xl bg-bg border border-border flex flex-col sm:flex-row items-center sm:items-start gap-6 max-w-2xl mx-auto hover:border-[#111111] transition-colors duration-300">
