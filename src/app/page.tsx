@@ -15,7 +15,8 @@ export const generateMetadata = () =>
 
 export default function Home() {
   return (
-    <main className="w-full bg-[#FFFFFF] text-[#111111] relative overflow-x-hidden">
+    <main className="w-full bg-bg text-text relative overflow-x-hidden transition-colors duration-300">
+
       <JsonLd data={personJsonLd()} />
       <JsonLd data={websiteJsonLd()} />
 

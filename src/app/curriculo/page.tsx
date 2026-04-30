@@ -6,6 +6,8 @@ import { EDUCATIONS, CERTIFICATIONS } from "@/lib/education";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PrintButton } from "@/components/ui/PrintButton";
+
 
 export const generateMetadata = () =>
   buildMetadata({
@@ -33,7 +35,11 @@ export default function CurriculoPage() {
           />
           <p className="text-xl text-text-secondary">{PROFILE.title}</p>
         </div>
+        <div className="flex shrink-0">
+          <PrintButton />
+        </div>
       </header>
+
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div className="md:col-span-2 space-y-12">

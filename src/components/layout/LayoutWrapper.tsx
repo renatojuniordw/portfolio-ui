@@ -14,8 +14,14 @@ import {
   ArrowUpRight,
   Menu,
   X,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
+import { GitHubStatus } from "@/components/ui/GitHubStatus";
+
+
 
 const NAV_ITEMS = [
   { label: "Início", href: "/", icon: Home },
@@ -28,9 +34,11 @@ function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Define o hash inicial
+    setMounted(true);
     setActiveHash(window.location.hash);
 
     const handleHashChange = () => {
@@ -48,56 +56,82 @@ function Header() {
 
   if (pathname === "/links") return null;
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <>
       {/* Menu Superior (Desktop e Mobile) */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 bg-white/90 backdrop-blur-md border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 bg-bg/90 backdrop-blur-md border-b border-border transition-colors duration-300">
         {/* Logo Minimalista */}
         <Link
           href="/"
-          className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity text-black"
+          className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity text-text"
         >
           RB.
         </Link>
 
-        {/* Links Centralizados (Desktop) */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => {
-            const [itemPath, itemHash] = item.href.split("#");
-            const isActive = itemHash
-              ? pathname === itemPath && activeHash === `#${itemHash}`
-              : item.href === "/"
-              ? pathname === "/" && (!activeHash || activeHash === "#")
-              : pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+        {/* Links e Toggle (Desktop) */}
+        <div className="hidden md:flex items-center gap-8">
+          <nav className="flex items-center gap-8">
+            {NAV_ITEMS.map((item) => {
+              const [itemPath, itemHash] = item.href.split("#");
+              const isActive = itemHash
+                ? pathname === itemPath && activeHash === `#${itemHash}`
+                : item.href === "/"
+                ? pathname === "/" && (!activeHash || activeHash === "#")
+                : pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => {
-                  setActiveHash(itemHash ? `#${itemHash}` : "");
-                }}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-black",
-                  isActive ? "text-black font-semibold" : "text-text-secondary"
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => {
+                    setActiveHash(itemHash ? `#${itemHash}` : "");
+                  }}
+                  className={cn(
+                    "text-sm font-medium transition-colors hover:text-text",
+                    isActive ? "text-text font-semibold" : "text-text-secondary"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
+          {mounted && (
+            <button
+              onClick={toggleTheme}
+              className="p-2 hover:bg-surface-1 rounded-full transition-colors text-text"
+              aria-label="Alternar tema"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          )}
+        </div>
 
-
-        {/* Botão Hamburger (Mobile) */}
-        <button
-          onClick={() => setIsMenuOpen(true)}
-          className="flex md:hidden items-center justify-center p-2 text-black hover:bg-gray-100 rounded-full transition-colors"
-          aria-label="Abrir menu"
-        >
-          <Menu size={24} />
-        </button>
+        {/* Controles Mobile */}
+        <div className="flex md:hidden items-center gap-4">
+          {mounted && (
+            <button
+              onClick={toggleTheme}
+              className="p-2 hover:bg-surface-1 rounded-full transition-colors text-text"
+              aria-label="Alternar tema"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          )}
+          
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className="flex items-center justify-center p-2 text-text hover:bg-surface-1 rounded-full transition-colors"
+            aria-label="Abrir menu"
+          >
+            <Menu size={24} />
+          </button>
+        </div>
       </header>
 
       {/* Gaveta do Menu Mobile (Aside) */}
@@ -119,17 +153,17 @@ function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 w-full max-w-xs bg-white z-50 shadow-2xl md:hidden flex flex-col"
+              className="fixed inset-y-0 right-0 w-full max-w-xs bg-bg z-50 shadow-2xl md:hidden flex flex-col transition-colors duration-300"
             >
               {/* Header da Gaveta */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-                <span className="text-xl font-bold tracking-tighter text-black">RB.</span>
+                <span className="text-xl font-bold tracking-tighter text-text">RB.</span>
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-2 hover:bg-surface-1 rounded-full transition-colors"
                   aria-label="Fechar menu"
                 >
-                  <X size={24} className="text-black" />
+                  <X size={24} className="text-text" />
                 </button>
               </div>
 
@@ -152,21 +186,19 @@ function Header() {
                         setIsMenuOpen(false);
                       }}
                       className={cn(
-                        "flex items-center gap-4 text-lg font-medium transition-colors p-2 rounded-xl hover:bg-gray-50",
-                        isActive ? "text-black font-semibold bg-gray-50" : "text-text-secondary"
+                        "flex items-center gap-4 text-lg font-medium transition-colors p-2 rounded-xl hover:bg-surface-1",
+                        isActive ? "text-text font-semibold bg-surface-1" : "text-text-secondary"
                       )}
                     >
                       <item.icon
                         size={20}
-                        className={isActive ? "text-black" : "text-text-secondary"}
+                        className={isActive ? "text-text" : "text-text-secondary"}
                       />
                       {item.label}
                     </Link>
                   );
                 })}
               </nav>
-
-
             </motion.aside>
           </>
         )}
@@ -180,9 +212,11 @@ function Footer() {
   if (pathname === "/links") return null;
 
   return (
-    <footer className="mt-20 border-t border-border bg-s1 p-10 text-center text-sm text-text-secondary">
+    <footer className="mt-20 border-t border-border bg-surface-1 p-10 text-center text-sm text-text-secondary flex flex-col items-center gap-4 transition-colors duration-300">
+      <GitHubStatus />
       <p>© {new Date().getFullYear()} Renato Bezerra.</p>
     </footer>
+
   );
 }
 

@@ -63,20 +63,20 @@ export default function ContactPage() {
           <h1 className="sr-only">Contato - Renato Bezerra, Recife</h1>
           <SplitText
             text="Vamos Conversar?"
-            className="text-5xl md:text-7xl font-display font-light tracking-tighter mb-6 text-[#111111]"
+            className="text-5xl md:text-7xl font-display font-light tracking-tighter mb-6 text-text"
           />
-          <p className="text-xl text-[#666666] font-light leading-relaxed max-w-md mb-8">
+          <p className="text-xl text-text-secondary font-light leading-relaxed max-w-md mb-8">
             Estou sempre aberto a novos projetos de{" "}
             <strong>desenvolvimento front-end</strong>,{" "}
             <strong>automação residencial</strong> ou consultoria em{" "}
             <strong>IA</strong>.
           </p>
           
-          <div className="hidden lg:block pt-8 border-t border-[#E5E5E5]">
-            <p className="text-sm text-[#777777] uppercase tracking-widest mb-2">
+          <div className="hidden lg:block pt-8 border-t border-border">
+            <p className="text-sm text-muted uppercase tracking-widest mb-2">
               Localização
             </p>
-            <p className="text-base text-[#111111] font-medium">
+            <p className="text-base text-text font-medium">
               Recife, PE — Atuação Global
             </p>
           </div>
@@ -90,23 +90,23 @@ export default function ContactPage() {
               className={cn(
                 "transition-all duration-300 hover:translate-x-2 border",
                 contact.primary
-                  ? "bg-[#111111] text-white border-[#111111] hover:bg-black"
-                  : "bg-[#FFFFFF] text-[#111111] border-[#E5E5E5] hover:border-[#111111]"
+                  ? "bg-text text-bg border-text hover:opacity-90"
+                  : "bg-surface border-border hover:border-text"
               )}
             >
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className={cn(
                   "text-sm font-medium uppercase tracking-wider",
-                  contact.primary ? "text-[#777777]" : "text-[#777777]"
+                  contact.primary ? "text-bg/60" : "text-muted"
                 )}>
                   {contact.name}
                 </CardTitle>
-                <div className={contact.primary ? "text-white" : "text-[#111111]"}>
+                <div className={contact.primary ? "text-bg" : "text-text"}>
                   {contact.icon}
                 </div>
               </CardHeader>
               <CardContent className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4">
-                <div className="text-xl font-medium tracking-tight">
+                <div className={cn("text-xl font-medium tracking-tight", contact.primary ? "text-bg" : "text-text")}>
                   {contact.handle}
                 </div>
                 <Button
@@ -115,8 +115,8 @@ export default function ContactPage() {
                   className={cn(
                     "rounded-full px-6",
                     contact.primary
-                      ? "bg-white text-black hover:bg-gray-200"
-                      : "border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-white"
+                      ? "bg-bg text-text hover:bg-surface"
+                      : "border-border text-text hover:bg-text hover:text-bg"
                   )}
                   asChild
                 >
@@ -133,10 +133,10 @@ export default function ContactPage() {
           ))}
 
           <div className="mt-4 text-center lg:text-left">
-            <p className="text-sm text-[#777777] mb-2">Ou envie um e-mail</p>
+            <p className="text-sm text-muted mb-2">Ou envie um e-mail</p>
             <a
               href={`mailto:${SOCIALS.personal.email}`}
-              className="text-lg font-medium text-[#111111] hover:underline underline-offset-4"
+              className="text-lg font-medium text-text hover:underline underline-offset-4"
             >
               {SOCIALS.personal.email}
             </a>
@@ -146,4 +146,3 @@ export default function ContactPage() {
     </main>
   );
 }
-

@@ -7,6 +7,10 @@ import { buildMetadata } from "@/lib/seo";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import Script from "next/script";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import { CommandPalette } from "@/components/ui/CommandPalette";
+
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,7 +37,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={cn(inter.variable, spaceGrotesk.variable)}>
+    <html lang="pt-BR" className={cn(inter.variable, spaceGrotesk.variable)} suppressHydrationWarning>
+
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -56,7 +61,12 @@ export default function RootLayout({
             gtag('config', 'G-2WSFGQCP27');
           `}
         </Script>
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <ThemeProvider>
+          <LayoutWrapper>{children}</LayoutWrapper>
+          <CommandPalette />
+        </ThemeProvider>
+
+
       </body>
     </html>
   );
