@@ -9,8 +9,7 @@ import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { CommandPalette } from "@/components/ui/CommandPalette";
-
-
+import { EasterEgg } from "@/components/fx/EasterEgg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,8 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={cn(inter.variable, spaceGrotesk.variable)} suppressHydrationWarning>
-
+    <html
+      lang="pt-BR"
+      className={cn(inter.variable, spaceGrotesk.variable)}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -62,11 +64,10 @@ export default function RootLayout({
           `}
         </Script>
         <ThemeProvider>
+          <EasterEgg />
           <LayoutWrapper>{children}</LayoutWrapper>
           <CommandPalette />
         </ThemeProvider>
-
-
       </body>
     </html>
   );

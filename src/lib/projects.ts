@@ -5,6 +5,7 @@ export interface Project {
   description: string;
   accent: string;
   link: string;
+  techs: string[];
 }
 
 export const PROJECTS: Project[] = [
@@ -16,6 +17,7 @@ export const PROJECTS: Project[] = [
       "Engine de atendimento distribuído, orquestração de LLMs e automação de fluxos via n8n.",
     accent: "ia",
     link: "/projetos/unificando/automacao",
+    techs: ["n8n", "OpenAI", "Node.js", "AWS Lambda"],
   },
   {
     id: "unificando-vitrine",
@@ -25,6 +27,7 @@ export const PROJECTS: Project[] = [
       "Site institucional interativo com foco em autoridade de marca e calculadora de planos em tempo real.",
     accent: "tech",
     link: "/projetos/unificando/vitrine",
+    techs: ["Next.js", "React", "TypeScript", "Tailwind"],
   },
   {
     id: "mariaclarasantos",
@@ -34,6 +37,7 @@ export const PROJECTS: Project[] = [
       "Landing page de alta conversão para advocacia com sistema de anti-golpe integrado.",
     accent: "tech",
     link: "/projetos/mariaclarasantos",
+    techs: ["Next.js", "React", "SEO", "Performance"],
   },
   {
     id: "seu-barraco-esperto",
@@ -43,6 +47,7 @@ export const PROJECTS: Project[] = [
       "Automação residencial prática e sem frescura com Alexa e IoT.",
     accent: "barraco",
     link: "/projetos/seu-barraco-esperto",
+    techs: ["IoT", "Alexa Skills", "Node.js", "AWS"],
   },
   {
     id: "oferticando",
@@ -52,6 +57,7 @@ export const PROJECTS: Project[] = [
       "Plataforma completa de ofertas e cupons com painéis administrativos e de afiliados, busca performática e extração automática de dados.",
     accent: "tech",
     link: "/projetos/oferticando",
+    techs: ["Angular", "Node.js", "PostgreSQL", "Docker"],
   },
   {
     id: "ariano-suassuna",
@@ -61,6 +67,7 @@ export const PROJECTS: Project[] = [
       "Site educacional sobre a vida e obra de Ariano Suassuna, originado em 2016 no CRC Recife como um esforço da comunidade para preservar sua memória.",
     accent: "tech",
     link: "/projetos/ariano-suassuna",
+    techs: ["HTML", "CSS", "JavaScript"],
   },
   {
     id: "sheik",
@@ -70,5 +77,6 @@ export const PROJECTS: Project[] = [
       "Mídia kit interativo com insights de audiência, formatos de parceria e métricas reais de Instagram para marcas.",
     accent: "tech",
     link: "/projetos/sheik",
+    techs: ["React", "Next.js", "Framer Motion"],
   },
 ];

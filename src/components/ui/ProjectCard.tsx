@@ -7,6 +7,7 @@ interface ProjectCardProps {
   description: string;
   category: string;
   link: string;
+  techs?: string[];
 }
 
 export function ProjectCard({
@@ -15,6 +16,7 @@ export function ProjectCard({
   description,
   category,
   link,
+  techs = [],
 }: ProjectCardProps) {
   return (
     <Link
@@ -38,6 +40,22 @@ export function ProjectCard({
             {description}
           </p>
         </div>
+
+        {/* Tech stack reveal on hover */}
+        {techs.length > 0 && (
+          <div className="overflow-hidden max-h-0 group-hover:max-h-16 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
+              {techs.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-block px-3 py-1 bg-surface border border-border text-muted text-xs font-medium rounded-full"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="flex items-center justify-end">
           <div className="w-12 h-12 rounded-full bg-text flex items-center justify-center text-bg group-hover:scale-110 transition-all duration-300">

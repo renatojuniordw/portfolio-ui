@@ -3,6 +3,7 @@ import { Accessibility, ArrowRight } from "lucide-react";
 import { PROFILE } from "@/lib/constants";
 import { PROJECTS } from "@/lib/projects";
 import { GitHubCalendarWrapper } from "@/components/ui/GitHubCalendarWrapper";
+import { ScrollReveal } from "@/components/fx/ScrollReveal";
 
 
 export function AboutSection() {
@@ -14,57 +15,61 @@ export function AboutSection() {
       className="w-full px-8 py-24 lg:py-32 lg:px-24 2xl:px-40 bg-surface-2 relative border-t border-border"
     >
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl lg:text-5xl font-display font-light tracking-tight text-text mb-8">
-          Sobre mim
-        </h2>
-        <p className="text-xl lg:text-2xl text-text-secondary font-light leading-relaxed mb-20">
-          Meu nome é <strong>{PROFILE.fullName}</strong>. Sou{" "}
-          <strong>Engenheiro de Software</strong>, com foco em arquitetura
-          front-end e automação com IA para criação de produtos digitais de
-          alto impacto.
-        </p>
+        <ScrollReveal>
+          <h2 className="text-3xl lg:text-5xl font-display font-light tracking-tight text-text mb-8">
+            Sobre mim
+          </h2>
+          <p className="text-xl lg:text-2xl text-text-secondary font-light leading-relaxed mb-20">
+            Meu nome é <strong>{PROFILE.fullName}</strong>. Sou{" "}
+            <strong>Engenheiro de Software</strong>, com foco em arquitetura
+            front-end e automação com IA para criação de produtos digitais de
+            alto impacto.
+          </p>
+        </ScrollReveal>
 
-        <div className="space-y-6 mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <article className="col-span-1 p-8 rounded-2xl bg-surface-2 border border-border flex flex-col justify-between hover:border-[#111111] transition-colors duration-300">
-              <div>
-                <span className="text-sm font-medium text-muted uppercase tracking-widest mb-4 block">
-                  Experiência
-                </span>
-                <h3 className="text-6xl font-display font-light text-text mb-2">
-                  {yearsOfExperience}+
-                </h3>
-                <p className="text-text-secondary text-lg font-light">
-                  Anos de atuação com tecnologia
-                </p>
-              </div>
-            </article>
-
-            <article className="col-span-1 md:col-span-2 p-8 rounded-2xl bg-surface-2 border border-border flex flex-col justify-center hover:border-[#111111] transition-colors duration-300">
-              <span className="text-sm font-medium text-muted uppercase tracking-widest mb-6 block">
-                Foco e Formação
-              </span>
-              <div className="space-y-6">
+        <ScrollReveal delay={100}>
+          <div className="space-y-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <article className="col-span-1 p-8 rounded-2xl bg-surface-2 border border-border flex flex-col justify-between hover:border-[#111111] transition-colors duration-300">
                 <div>
-                  <h3 className="text-xl font-medium text-text mb-1">
-                    Software Engineer
+                  <span className="text-sm font-medium text-muted uppercase tracking-widest mb-4 block">
+                    Experiência
+                  </span>
+                  <h3 className="text-6xl font-display font-light text-text mb-2">
+                    {yearsOfExperience}+
                   </h3>
-                  <p className="text-text-secondary leading-relaxed">
-                    CESAR & Unificando Digital • Front-end e Automações com IA
+                  <p className="text-text-secondary text-lg font-light">
+                    Anos de atuação com tecnologia
                   </p>
                 </div>
-                <div className="pt-6 border-t border-border">
-                  <h3 className="text-xl font-medium text-text mb-1">
-                    Arquitetura de Software
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed">
-                    Especialização pela FIAP • Microsoft Specialist Certified
-                  </p>
+              </article>
+
+              <article className="col-span-1 md:col-span-2 p-8 rounded-2xl bg-surface-2 border border-border flex flex-col justify-center hover:border-[#111111] transition-colors duration-300">
+                <span className="text-sm font-medium text-muted uppercase tracking-widest mb-6 block">
+                  Foco e Formação
+                </span>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-medium text-text mb-1">
+                      Software Engineer
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed">
+                      CESAR & Unificando Digital • Front-end e Automações com IA
+                    </p>
+                  </div>
+                  <div className="pt-6 border-t border-border">
+                    <h3 className="text-xl font-medium text-text mb-1">
+                      Arquitetura de Software
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed">
+                      Especialização pela FIAP • Microsoft Specialist Certified
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         <GitHubCalendarWrapper />
         
@@ -118,6 +123,23 @@ export function AboutSection() {
                     {project.description}
                   </p>
                 </div>
+
+                {/* Tech stack reveal on hover */}
+                {project.techs?.length > 0 && (
+                  <div className="overflow-hidden max-h-0 group-hover:max-h-12 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    <div className="flex flex-wrap gap-2 pt-3 mt-3 border-t border-border">
+                      {project.techs.map((tech) => (
+                        <span
+                          key={tech}
+                          className="inline-block px-3 py-1 bg-surface border border-border text-muted text-xs font-medium rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex justify-end mt-6">
                   <div className="w-10 h-10 rounded-full bg-[#111111] flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                     <ArrowRight className="w-4 h-4 -rotate-45" />
@@ -126,6 +148,7 @@ export function AboutSection() {
               </Link>
             ))}
           </div>
+
         </div>
 
         <div className="mt-20 p-6 rounded-2xl bg-bg border border-border flex flex-col sm:flex-row items-center sm:items-start gap-6 max-w-2xl mx-auto hover:border-[#111111] transition-colors duration-300">
