@@ -135,3 +135,6 @@ npm-debug.log*
 
 # Agents
 .agents
+
+
+.DS_Store

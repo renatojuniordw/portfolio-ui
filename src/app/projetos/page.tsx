@@ -1,8 +1,8 @@
 import { SplitText } from "@/components/fx/SplitText";
-import { ProjectCard } from "@/components/ui/ProjectCard";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ProjectsClient } from "@/components/ui/ProjectsClient";
 
 export const generateMetadata = () =>
   buildMetadata({
@@ -12,8 +12,6 @@ export const generateMetadata = () =>
     path: "/projetos",
   });
 
-import { PROJECTS } from "@/lib/projects";
-
 export default function ProjectsPage() {
   const breadcrumbs = [
     { name: "Home", item: "/" },
@@ -21,9 +19,10 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
+    <div className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
-      <header className="mb-20">
+
+      <header className="mb-16">
         <h1 className="sr-only">Portfólio de Projetos - Renato Bezerra</h1>
         <SplitText
           text="Meus Projetos"
@@ -36,18 +35,7 @@ export default function ProjectsPage() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {PROJECTS.map((project, index) => (
-          <ProjectCard
-            key={project.id}
-            index={index}
-            title={project.title}
-            description={project.description}
-            category={project.category}
-            link={project.link}
-          />
-        ))}
-      </div>
+      <ProjectsClient />
     </div>
   );
 }
