@@ -15,6 +15,7 @@ export const SOCIALS = {
   unificando: {
     insta: "https://instagram.com/unificando.digital",
     site: "https://unificando.com.br",
+    pdf: "https://pdf.unificando.com.br",
   },
   oferticando: {
     site: "https://oferticando.com.br",

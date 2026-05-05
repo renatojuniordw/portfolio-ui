@@ -30,6 +30,16 @@ export const PROJECTS: Project[] = [
     techs: ["Next.js", "React", "TypeScript", "Tailwind"],
   },
   {
+    id: "unificando-pdf",
+    title: "Unificando PDF",
+    category: "SaaS & Utilitários",
+    description:
+      "Suíte online para manipulação de documentos PDF com foco em privacidade e processamento efêmero.",
+    accent: "tech",
+    link: "/projetos/unificando/pdf",
+    techs: ["Next.js", "pdf-lib", "Docker", "Ghostscript"],
+  },
+  {
     id: "mariaclarasantos",
     title: "Maria Clara Santos",
     category: "Web Performance / Jurídico",
