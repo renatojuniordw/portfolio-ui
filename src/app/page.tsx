@@ -5,7 +5,6 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { ArticlesSection } from "@/components/home/ArticlesSection";
 import { DifferentialsSection } from "@/components/home/DifferentialsSection";
-import { SkillsSection } from "@/components/home/SkillsSection";
 import { ContactSection } from "@/components/home/ContactSection";
 import { PROFILE } from "@/lib/constants";
 
@@ -24,8 +23,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <DifferentialsSection />
-      {/* <SkillsSection /> */}
-      <ArticlesSection />
+<ArticlesSection />
       <ContactSection />
     </main>
   );

@@ -1,4 +1,4 @@
-import { Download, FileText, Award, Star } from "lucide-react";
+import { FileText, Award, Star } from "lucide-react";
 import { SplitText } from "@/components/fx/SplitText";
 import { PROFILE } from "@/lib/constants";
 import { EXPERIENCES } from "@/lib/experience";

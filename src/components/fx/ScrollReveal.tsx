@@ -18,14 +18,6 @@ interface ScrollRevealProps {
   threshold?: number;
 }
 
-const directionMap = {
-  up: { y: 40, x: 0 },
-  down: { y: -40, x: 0 },
-  left: { y: 0, x: 40 },
-  right: { y: 0, x: -40 },
-  none: { y: 0, x: 0 },
-};
-
 export function ScrollReveal({
   children,
   className,

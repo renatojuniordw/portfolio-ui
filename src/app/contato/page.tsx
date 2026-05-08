@@ -2,7 +2,7 @@ import { SplitText } from "@/components/fx/SplitText";
 import { SOCIALS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Linkedin, Github, Mail } from "lucide-react";
+import { Linkedin, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
