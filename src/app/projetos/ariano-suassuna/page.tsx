@@ -19,9 +19,6 @@ export const generateMetadata = () =>
 
 const project: ProjectDetails = {
   id: "ariano-suassuna",
-  seoTitle: "Ariano Suassuna - Site Tributo Educacional",
-  seoDescription:
-    "Site educacional sobre a vida e obra de Ariano Suassuna. Projeto comunitário focado na preservação da memória cultural.",
   jsonLd: {
     name: "Ariano Suassuna - Tributo",
     description:

@@ -21,9 +21,6 @@ export const generateMetadata = () =>
 
 const project: ProjectDetails = {
   id: "unificando/automacao",
-  seoTitle: "Unificando - Atendimento WhatsApp com IA & Automação",
-  seoDescription:
-    "Case Unificando: Orquestração de LLMs (GPT-4) e automação via n8n para atendimento inteligente no WhatsApp e Instagram.",
   jsonLd: {
     name: "Unificando - Automação & IA",
     description:

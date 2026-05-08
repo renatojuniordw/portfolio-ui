@@ -25,9 +25,6 @@ export const generateMetadata = () =>
 
 const project: ProjectDetails = {
   id: "mariaclarasantos",
-  seoTitle: "Maria Clara Santos - Landing Page de Alta Conversão",
-  seoDescription:
-    "Case Maria Clara Santos: Criação de landing page profissional para advocacia com sistema anti-golpe e SEO jurídico em Recife.",
   jsonLd: {
     name: "Maria Clara Santos Advocacia",
     description:

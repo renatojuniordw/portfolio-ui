@@ -24,9 +24,6 @@ export const generateMetadata = () =>
 
 const project: ProjectDetails = {
   id: "unificando/vitrine",
-  seoTitle: "Unificando - Vitrine Digital & Experiência de Conversão",
-  seoDescription:
-    "Arquitetura da vitrine digital do Unificando: UX focada em conversão, calculadora de serviços interativa e performance extrema com React 19.",
   jsonLd: {
     name: "Unificando - Vitrine Digital",
     description:

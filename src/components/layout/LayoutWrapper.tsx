@@ -10,8 +10,6 @@ import {
   FolderOpen,
   User,
   FileText,
-  Mail,
-  ArrowUpRight,
   Menu,
   X,
   Sun,

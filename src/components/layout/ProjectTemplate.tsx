@@ -19,7 +19,6 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
     categoryBadge,
     title,
     shortDescription,
-    themeColor,
     githubUrl,
     liveUrl,
     overviewTitle = "O Projeto",
@@ -32,14 +31,8 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
     sidebarExtraCards,
   } = project;
 
-  // We map the color dynamic classes here to avoid purge issues,
-  // or we can just rely on the existing classes if they are safelisted.
-  // Assuming they are safelisted or we interpolate correctly.
-  // Tailwind v4 uses variable composition, but string interpolation `bg-${themeColor}` works if the classes are used elsewhere.
-
   return (
     <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto font-inter">
-      {/* We can include organizationJsonLd conditionally if needed, but project pages usually just have project + breadcrumb */}
       {id === "unificando/automacao" && <JsonLd data={organizationJsonLd()} />}
       <JsonLd data={projectJsonLd(jsonLd)} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />

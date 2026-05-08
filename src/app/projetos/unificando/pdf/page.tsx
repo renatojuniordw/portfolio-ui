@@ -28,9 +28,6 @@ export const generateMetadata = () =>
 
 const project: ProjectDetails = {
   id: "unificando/pdf",
-  seoTitle: "Unificando PDF - Manipulação de Documentos com Privacidade",
-  seoDescription:
-    "Case Unificando PDF: Uma suíte full-stack para processamento de documentos PDF com foco em segurança, performance e processamento efêmero.",
   jsonLd: {
     name: "Unificando PDF",
     description:

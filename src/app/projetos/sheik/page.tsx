@@ -19,9 +19,6 @@ export const generateMetadata = () =>
 
 const project: ProjectDetails = {
   id: "sheik",
-  seoTitle: "Diego Sheik - Mídia Kit Interativo",
-  seoDescription:
-    "Mídia kit interativo desenvolvido para o criador de conteúdo Diego Sheik, focado em conversão, métricas de Instagram e prospecção de marcas.",
   jsonLd: {
     name: "Diego Sheik - Mídia Kit",
     description:

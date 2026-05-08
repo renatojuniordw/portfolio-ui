@@ -44,9 +44,6 @@ export function SeuBarracoClient() {
 
   const project: ProjectDetails = {
     id: "seu-barraco-esperto",
-    seoTitle: "Seu Barraco Esperto - Automação Residencial & Alexa em Recife",
-    seoDescription:
-      "Aprenda como transformar sua casa em uma casa inteligente com Alexa, dispositivos Tuya e Sonoff. Automação residencial acessível em Recife.",
     jsonLd: {
       name: "Seu Barraco Esperto",
       description:

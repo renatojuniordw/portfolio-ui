@@ -22,9 +22,6 @@ export const generateMetadata = () =>
 
 const project: ProjectDetails = {
   id: "oferticando",
-  seoTitle: "Oferticando - Plataforma de Ofertas & Cupons",
-  seoDescription:
-    "Case Oferticando: Frontend performático para gestão e descoberta de ofertas com Next.js 15, React 19 e Tailwind CSS 4.",
   jsonLd: {
     name: "Oferticando - Plataforma de Ofertas & Cupons",
     description:
