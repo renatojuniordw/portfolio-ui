@@ -1,11 +1,23 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, startTransition } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS, type Project } from "@/lib/projects";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
+
+const ACCENT_COLOR_MAP: Record<string, string> = {
+  ia: "text-ia border-ia/30 bg-ia/5",
+  tech: "text-tech border-tech/30 bg-tech/5",
+  barraco: "text-barraco border-barraco/30 bg-barraco/5",
+};
+
+const ACCENT_DOT_MAP: Record<string, string> = {
+  ia: "bg-ia",
+  tech: "bg-tech",
+  barraco: "bg-barraco",
+};
 
 // Extrai categorias únicas dos dados
 function getFilters(projects: Project[]) {
@@ -29,18 +41,6 @@ export function ProjectsClient() {
 
   const hoveredProject = PROJECTS.find((p) => p.id === hoveredId) ?? null;
 
-  const accentColorMap: Record<string, string> = {
-    ia: "text-ia border-ia/30 bg-ia/5",
-    tech: "text-tech border-tech/30 bg-tech/5",
-    barraco: "text-barraco border-barraco/30 bg-barraco/5",
-  };
-
-  const accentDotMap: Record<string, string> = {
-    ia: "bg-ia",
-    tech: "bg-tech",
-    barraco: "bg-barraco",
-  };
-
   return (
     <div className="flex flex-col lg:flex-row gap-12 items-start">
       {/* Main column */}
@@ -57,7 +57,7 @@ export function ProjectsClient() {
                 key={f}
                 role="tab"
                 aria-selected={activeFilter === f}
-                onClick={() => setActiveFilter(f)}
+                onClick={() => startTransition(() => setActiveFilter(f))}
                 className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${
                   activeFilter === f
                     ? "bg-text text-bg border-text"
@@ -74,6 +74,13 @@ export function ProjectsClient() {
             ))}
           </div>
         </ScrollReveal>
+
+        {/* Live region para screen readers */}
+        <div aria-live="polite" aria-atomic="true" className="sr-only">
+          {filtered.length === PROJECTS.length
+            ? `${filtered.length} projetos`
+            : `${filtered.length} projeto${filtered.length !== 1 ? "s" : ""} em ${activeFilter}`}
+        </div>
 
         {/* Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -111,12 +118,12 @@ export function ProjectsClient() {
                       </span>
                       <span
                         className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border ${
-                          accentColorMap[project.accent] ??
+                          ACCENT_COLOR_MAP[project.accent] ??
                           "text-muted border-border bg-surface"
                         }`}
                       >
                         <span
-                          className={`w-1.5 h-1.5 rounded-full ${accentDotMap[project.accent] ?? "bg-muted"}`}
+                          className={`w-1.5 h-1.5 rounded-full ${ACCENT_DOT_MAP[project.accent] ?? "bg-muted"}`}
                         />
                         {project.category}
                       </span>
@@ -179,7 +186,7 @@ export function ProjectsClient() {
               {/* Accent dot + category */}
               <div className="flex items-center gap-2 mb-4">
                 <span
-                  className={`w-2 h-2 rounded-full ${accentDotMap[hoveredProject.accent] ?? "bg-muted"}`}
+                  className={`w-2 h-2 rounded-full ${ACCENT_DOT_MAP[hoveredProject.accent] ?? "bg-muted"}`}
                 />
                 <span className="text-xs font-medium text-muted uppercase tracking-widest">
                   {hoveredProject.category}

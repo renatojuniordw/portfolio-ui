@@ -21,18 +21,17 @@ export function CommandPalette() {
   const [open, setOpen] = React.useState(false);
   const { theme, setTheme } = useTheme();
 
-  // Atalho de teclado Cmd+K / Ctrl+K
-  React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+  const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
+    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      setOpen((open) => !open);
+    }
   }, []);
+
+  React.useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
   const runCommand = React.useCallback((command: () => void) => {
     setOpen(false);
@@ -52,14 +51,21 @@ export function CommandPalette() {
 
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 pt-[20vh] backdrop-blur-sm px-4">
+          <div
+            className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 pt-[20vh] backdrop-blur-sm px-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
+          >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="command-palette-title"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
               className="w-full max-w-[640px] overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl"
             >
+              <span id="command-palette-title" className="sr-only">Paleta de comandos</span>
               <Command
                 className="flex flex-col"
                 onKeyDown={(e) => {

@@ -16,15 +16,15 @@ export const generateMetadata = () =>
 
 export default function Home() {
   return (
-    <main className="w-full bg-bg text-text relative overflow-x-hidden transition-colors duration-300">
+    <div className="w-full bg-bg text-text relative overflow-x-hidden transition-colors duration-300">
       <JsonLd data={personJsonLd()} />
       <JsonLd data={websiteJsonLd()} />
 
       <HeroSection />
       <AboutSection />
       <DifferentialsSection />
-<ArticlesSection />
+      <ArticlesSection />
       <ContactSection />
-    </main>
+    </div>
   );
 }

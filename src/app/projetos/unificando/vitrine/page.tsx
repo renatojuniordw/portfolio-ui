@@ -7,12 +7,12 @@ import {
   Globe,
   Github,
   ArrowRight,
-  ArrowUpRight,
 } from "lucide-react";
 import React from "react";
 import { SOCIALS } from "@/lib/constants";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { SocialLinkCard } from "@/components/ui/SocialLinkCard";
 
 export const generateMetadata = () =>
   buildMetadata({
@@ -111,33 +111,19 @@ const project: ProjectDetails = {
       icon: <Globe size={20} className="text-tech mr-2" />,
       title: "Links",
       content: (
-        <nav className="flex flex-col gap-3 font-bold">
-          <a
+        <nav className="flex flex-col gap-3">
+          <SocialLinkCard
             href={SOCIALS.unificando.site}
-            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors font-normal"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="flex items-center gap-2">
-              <Globe size={16} /> Website Oficial
-            </span>
-            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
-              <ArrowUpRight className="text-surface-1" size={16} />
-            </span>
-          </a>
-          <a
+            icon={Globe}
+            label="Website Oficial"
+            hoverAccentClass="group-hover:bg-tech"
+          />
+          <SocialLinkCard
             href="https://github.com/renatojuniordw/ui-unificando"
-            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors font-normal"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="flex items-center gap-2">
-              <Github size={16} /> Repositório GitHub
-            </span>
-            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
-              <ArrowUpRight className="text-surface-1" size={16} />
-            </span>
-          </a>
+            icon={Github}
+            label="Repositório GitHub"
+            hoverAccentClass="group-hover:bg-tech"
+          />
         </nav>
       ),
     },

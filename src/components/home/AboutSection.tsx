@@ -1,20 +1,23 @@
 import Link from "next/link";
-import { Accessibility, ArrowRight } from "lucide-react";
-import { PROFILE } from "@/lib/constants";
+import { Accessibility } from "lucide-react";
+import { PROFILE, getYearsOfExperience } from "@/lib/constants";
 import { PROJECTS } from "@/lib/projects";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
+import { ArrowCta } from "@/components/ui/ArrowCta";
+import { Tag } from "@/components/ui/Tag";
 
 export function AboutSection() {
-  const yearsOfExperience = new Date().getFullYear() - 2017;
+  const yearsOfExperience = getYearsOfExperience();
 
   return (
     <section
       id="sobre"
-      className="w-full px-8 py-24 lg:py-32 lg:px-24 2xl:px-40 bg-surface-2 relative border-t border-border"
+      aria-labelledby="sobre-heading"
+      className="section-wrapper bg-surface-2"
     >
       <div className="max-w-4xl mx-auto">
         <ScrollReveal>
-          <h2 className="text-3xl lg:text-5xl font-display font-light tracking-tight text-text mb-8">
+          <h2 id="sobre-heading" className="section-title mb-8">
             Sobre mim
           </h2>
           <p className="text-xl lg:text-2xl text-text-secondary font-light leading-relaxed mb-20">
@@ -84,7 +87,7 @@ export function AboutSection() {
         <div className="pt-20 border-t border-border">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
-              <h2 className="text-3xl lg:text-5xl font-display font-light tracking-tight text-text mb-4">
+              <h2 id="projetos-heading" className="section-title mb-4">
                 Projetos
               </h2>
               <p className="text-xl text-text-secondary font-light">
@@ -108,9 +111,7 @@ export function AboutSection() {
                 className="group p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
               >
                 <div>
-                  <span className="inline-block px-3 py-1 bg-surface border border-border text-text text-xs font-medium rounded-full mb-4">
-                    {project.category}
-                  </span>
+                  <Tag>{project.category}</Tag>
                   <h3 className="text-2xl font-medium text-text mb-2 group-hover:text-text-secondary transition-colors">
                     {project.title}
                   </h3>
@@ -124,21 +125,14 @@ export function AboutSection() {
                   <div className="overflow-hidden max-h-0 group-hover:max-h-12 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                     <div className="flex flex-wrap gap-2 pt-3 mt-3 border-t border-border">
                       {project.techs.map((tech) => (
-                        <span
-                          key={tech}
-                          className="inline-block px-3 py-1 bg-surface border border-border text-muted text-xs font-medium rounded-full"
-                        >
-                          {tech}
-                        </span>
+                        <Tag key={tech}>{tech}</Tag>
                       ))}
                     </div>
                   </div>
                 )}
 
                 <div className="flex justify-end mt-6">
-                  <div className="w-10 h-10 rounded-full bg-[#111111] flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                    <ArrowRight className="w-4 h-4 -rotate-45" />
-                  </div>
+                  <ArrowCta />
                 </div>
               </Link>
             ))}

@@ -9,8 +9,8 @@ import {
   Globe,
   Play,
   ExternalLink,
-  ArrowUpRight,
 } from "lucide-react";
+import { SocialLinkCard } from "@/components/ui/SocialLinkCard";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { ProjectTemplate } from "@/components/layout/ProjectTemplate";
@@ -169,45 +169,24 @@ export function SeuBarracoClient() {
         title: "Presença Online",
         content: (
           <nav className="flex flex-col gap-3">
-            <a
+            <SocialLinkCard
               href={SOCIALS.barraco.insta}
-              className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="flex items-center gap-2">
-                <ExternalLink size={16} aria-hidden="true" /> Instagram
-              </span>
-              <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-barraco transition-colors">
-                <ArrowUpRight className="text-surface-1" size={16} aria-hidden="true" />
-              </span>
-            </a>
-            <a
+              icon={ExternalLink}
+              label="Instagram"
+              hoverAccentClass="group-hover:bg-barraco"
+            />
+            <SocialLinkCard
               href={SOCIALS.barraco.youtube}
-              className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="flex items-center gap-2">
-                <ExternalLink size={16} aria-hidden="true" /> YouTube
-              </span>
-              <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-barraco transition-colors">
-                <ArrowUpRight className="text-surface-1" size={16} aria-hidden="true" />
-              </span>
-            </a>
-            <a
+              icon={ExternalLink}
+              label="YouTube"
+              hoverAccentClass="group-hover:bg-barraco"
+            />
+            <SocialLinkCard
               href={SOCIALS.barraco.tiktok}
-              className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="flex items-center gap-2">
-                <ExternalLink size={16} aria-hidden="true" /> TikTok
-              </span>
-              <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-barraco transition-colors">
-                <ArrowUpRight className="text-surface-1" size={16} aria-hidden="true" />
-              </span>
-            </a>
+              icon={ExternalLink}
+              label="TikTok"
+              hoverAccentClass="group-hover:bg-barraco"
+            />
           </nav>
         ),
       },

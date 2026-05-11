@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { memo, useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ interface ScrollRevealProps {
   threshold?: number;
 }
 
-export function ScrollReveal({
+export const ScrollReveal = memo(function ScrollReveal({
   children,
   className,
   delay = 0,
@@ -29,12 +29,15 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: threshold });
+  const prefersReducedMotion = useReducedMotion();
 
-  const initial = {
-    opacity: 0,
-    y: direction === "up" ? distance : direction === "down" ? -distance : 0,
-    x: direction === "left" ? distance : direction === "right" ? -distance : 0,
-  };
+  const initial = prefersReducedMotion
+    ? { opacity: 0, y: 0, x: 0 }
+    : {
+        opacity: 0,
+        y: direction === "up" ? distance : direction === "down" ? -distance : 0,
+        x: direction === "left" ? distance : direction === "right" ? -distance : 0,
+      };
 
   return (
     <motion.div
@@ -43,12 +46,12 @@ export function ScrollReveal({
       initial={initial}
       animate={isInView ? { opacity: 1, y: 0, x: 0 } : initial}
       transition={{
-        duration,
-        delay: delay / 1000,
+        duration: prefersReducedMotion ? 0.01 : duration,
+        delay: prefersReducedMotion ? 0 : delay / 1000,
         ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}
     </motion.div>
   );
-}
+});
