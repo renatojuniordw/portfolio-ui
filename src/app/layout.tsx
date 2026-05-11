@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { Inter, Space_Grotesk } from "next/font/google";
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import { buildMetadata } from "@/lib/seo";
 
@@ -8,8 +9,12 @@ import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
-import { CommandPalette } from "@/components/ui/CommandPalette";
 import { EasterEgg } from "@/components/fx/EasterEgg";
+
+const CommandPalette = dynamic(
+  () => import("@/components/ui/CommandPalette").then((m) => ({ default: m.CommandPalette })),
+  { ssr: false },
+);
 
 const inter = Inter({
   subsets: ["latin"],

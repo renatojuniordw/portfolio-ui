@@ -39,7 +39,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
 
       <Link
         href="/projetos"
-        className="inline-flex items-center gap-2 text-[#666666] hover:text-[#111111] transition-colors mb-8 group text-sm font-medium"
+        className="inline-flex items-center gap-2 text-text-secondary hover:text-text transition-colors mb-8 group text-sm font-medium"
       >
         <ArrowLeft
           size={16}
@@ -54,16 +54,16 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="max-w-3xl">
               <span
-                className="inline-block px-4 py-1.5 bg-[#F5F5F5] text-[#111111] text-xs font-medium rounded-full mb-4 uppercase tracking-wider"
+                className="inline-block px-4 py-1.5 bg-surface text-text text-xs font-medium rounded-full mb-4 uppercase tracking-wider"
               >
                 {categoryBadge}
               </span>
               <h1 className="sr-only">{title}</h1>
               <SplitText
                 text={title}
-                className="text-4xl md:text-6xl font-display font-light tracking-tight mb-6 text-[#111111]"
+                className="text-4xl md:text-6xl font-display font-light tracking-tight mb-6 text-text"
               />
-              <div className="text-xl text-[#666666] font-light leading-relaxed">
+              <div className="text-xl text-text-secondary font-light leading-relaxed">
                 {shortDescription}
               </div>
             </div>
@@ -73,7 +73,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto rounded-full border-[#E5E5E5] text-[#111111] hover:border-[#111111] hover:bg-transparent font-medium text-sm"
+                  className="w-full sm:w-auto rounded-full border-border text-text hover:border-text hover:bg-transparent font-medium text-sm"
                   asChild
                 >
                   <a href={githubUrl} target="_blank" rel="noopener noreferrer">
@@ -85,7 +85,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
               {liveUrl && (
                 <Button
                   size="lg"
-                  className="bg-[#111111] text-white hover:bg-black transition-colors font-medium w-full sm:w-auto rounded-full text-sm"
+                  className="bg-text text-bg hover:opacity-90 transition-opacity font-medium w-full sm:w-auto rounded-full text-sm"
                   asChild
                 >
                   <a href={liveUrl} target="_blank" rel="noopener noreferrer">
@@ -102,10 +102,10 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
             {/* Overview */}
             {overviewContent && (
               <section className="space-y-6">
-                <h2 className="text-2xl lg:text-3xl font-display font-light tracking-tight text-[#111111]">
+                <h2 className="text-2xl lg:text-3xl font-display font-light tracking-tight text-text">
                   {overviewTitle}
                 </h2>
-                <div className="text-[#666666] space-y-4 text-lg font-light leading-relaxed">
+                <div className="text-text-secondary space-y-4 text-lg font-light leading-relaxed">
                   {overviewContent}
                 </div>
               </section>
@@ -114,23 +114,23 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
             {/* Features */}
             {features && features.length > 0 && (
               <section className="space-y-8">
-                <h2 className="text-2xl lg:text-3xl font-display font-light tracking-tight text-[#111111]">
+                <h2 className="text-2xl lg:text-3xl font-display font-light tracking-tight text-text">
                   {featuresTitle}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {features.map((feature, i) => (
                     <article
                       key={i}
-                      className="p-8 rounded-2xl bg-[#F9F9F9] border border-[#E5E5E5] hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between"
+                      className="project-card hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between"
                     >
                       <div>
                         {feature.icon && (
-                          <div className="mb-6 bg-[#FFFFFF] w-12 h-12 rounded-full border border-[#E5E5E5] flex items-center justify-center">
+                          <div className="mb-6 bg-bg w-12 h-12 rounded-full border border-border flex items-center justify-center">
                              {feature.icon}
                           </div>
                         )}
-                        <h3 className="text-xl font-medium text-[#111111] mb-2">{feature.title}</h3>
-                        <p className="text-[#666666] text-sm font-light leading-relaxed">{feature.description}</p>
+                        <h3 className="text-xl font-medium text-text mb-2">{feature.title}</h3>
+                        <p className="text-text-secondary text-sm font-light leading-relaxed">{feature.description}</p>
                       </div>
                     </article>
                   ))}
@@ -143,22 +143,22 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
               <section
                 key={idx}
                 id={section.id}
-                className="p-8 rounded-2xl bg-[#F9F9F9] border border-[#E5E5E5] space-y-6"
+                className="project-card space-y-6"
                 aria-labelledby={section.id}
               >
                 {section.icon && (
-                   <div className="w-12 h-12 rounded-full bg-[#FFFFFF] border border-[#E5E5E5] flex items-center justify-center">
+                   <div className="w-12 h-12 rounded-full bg-bg border border-border flex items-center justify-center">
                       {section.icon}
                    </div>
                 )}
                 <h2
                   id={section.id}
-                  className="text-2xl lg:text-3xl font-display font-light tracking-tight text-[#111111] flex items-center gap-3"
+                  className="text-2xl lg:text-3xl font-display font-light tracking-tight text-text flex items-center gap-3"
                 >
                   {section.title}
                 </h2>
 
-                <div className="text-[#666666] text-lg font-light leading-relaxed space-y-4">
+                <div className="text-text-secondary text-lg font-light leading-relaxed space-y-4">
                   {section.content}
                 </div>
               </section>
@@ -168,18 +168,18 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
           <aside className="space-y-8">
             {/* Tech Stack */}
             {sidebarTechStack && sidebarTechStack.length > 0 && (
-              <div className="p-8 rounded-2xl bg-[#F9F9F9] border border-[#E5E5E5]">
-                <h3 className="text-lg font-medium mb-6 flex items-center gap-2 text-[#111111]">
-                  <Code2 size={20} className="text-[#111111]" aria-hidden="true" />{" "}
+              <div className="project-card">
+                <h3 className="text-lg font-medium mb-6 flex items-center gap-2 text-text">
+                  <Code2 size={20} className="text-text" aria-hidden="true" />{" "}
                   {sidebarTechStackTitle}
                 </h3>
                 <div className="space-y-4 font-inter text-sm">
                   {sidebarTechStack.map((tech, i) => (
                     <div key={i} className="flex flex-col">
-                      <span className="text-xs text-[#777777] uppercase font-medium tracking-wider">
+                      <span className="text-xs text-muted uppercase font-medium tracking-wider">
                         {tech.label}
                       </span>
-                      <span className="text-[#111111] font-medium">{tech.name}</span>
+                      <span className="text-text font-medium">{tech.name}</span>
                     </div>
                   ))}
                 </div>
@@ -188,12 +188,12 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
 
             {/* Extra Cards */}
             {sidebarExtraCards && sidebarExtraCards.map((card, i) => (
-              <div key={i} className="p-8 rounded-2xl bg-[#F9F9F9] border border-[#E5E5E5]">
-                <h3 className="text-lg font-medium mb-4 flex items-center gap-2 text-[#111111]">
+              <div key={i} className="project-card">
+                <h3 className="text-lg font-medium mb-4 flex items-center gap-2 text-text">
                   {card.icon}
                   {card.title}
                 </h3>
-                <div className="text-sm text-[#666666] leading-relaxed font-light">
+                <div className="text-sm text-text-secondary leading-relaxed font-light">
                   {card.content}
                 </div>
               </div>

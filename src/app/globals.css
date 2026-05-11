@@ -43,6 +43,34 @@
   body {
     @apply font-body antialiased;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-tech);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .section-wrapper {
+    @apply w-full px-8 py-24 lg:py-32 lg:px-24 2xl:px-40 relative border-t border-border;
+  }
+
+  .section-title {
+    @apply text-3xl lg:text-5xl font-display font-light tracking-tight text-text;
+  }
+
+  .section-label {
+    @apply text-sm font-medium text-muted uppercase tracking-widest mb-4 block;
+  }
+
+  .project-card {
+    @apply p-8 rounded-2xl bg-surface-2 border border-border;
+  }
+
+  .tag-pill {
+    @apply inline-block px-3 py-1 bg-surface-1 border border-border text-text text-xs font-medium rounded-full;
+  }
 }
 
 @media print {

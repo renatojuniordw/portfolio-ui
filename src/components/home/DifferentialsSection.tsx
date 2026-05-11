@@ -28,16 +28,17 @@ export function DifferentialsSection() {
   return (
     <section
       id="diferenciais"
-      className="w-full px-8 py-24 lg:py-32 lg:px-24 2xl:px-40 bg-surface-2 relative border-t border-border"
+      aria-labelledby="diferenciais-heading"
+      className="section-wrapper bg-surface-2"
     >
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <ScrollReveal>
           <div className="mb-16">
-            <span className="text-sm font-medium text-muted uppercase tracking-widest mb-4 block">
+            <span className="section-label">
               Por que eu?
             </span>
-            <h2 className="text-3xl lg:text-5xl font-display font-light tracking-tight text-text">
+            <h2 id="diferenciais-heading" className="section-title">
               O que eu faço diferente
             </h2>
           </div>

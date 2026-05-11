@@ -9,11 +9,11 @@ import {
   Lock,
   Globe,
   Github,
-  ArrowUpRight,
 } from "lucide-react";
 import React from "react";
 import { SOCIALS } from "@/lib/constants";
 import Link from "next/link";
+import { SocialLinkCard } from "@/components/ui/SocialLinkCard";
 
 export const generateMetadata = () =>
   buildMetadata({
@@ -118,32 +118,18 @@ const project: ProjectDetails = {
       title: "Links",
       content: (
         <nav className="flex flex-col gap-3">
-          <a
+          <SocialLinkCard
             href="https://mariaclarasantos.adv.br/"
-            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="flex items-center gap-2">
-              <Globe size={16} aria-hidden="true" /> Website Oficial
-            </span>
-            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
-              <ArrowUpRight className="text-surface-1" size={16} aria-hidden="true" />
-            </span>
-          </a>
-          <a
+            icon={Globe}
+            label="Website Oficial"
+            hoverAccentClass="group-hover:bg-tech"
+          />
+          <SocialLinkCard
             href="https://github.com/renatojuniordw/portfolio-maria-clara"
-            className="group flex items-center justify-between py-2 text-sm text-text-secondary hover:text-text transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="flex items-center gap-2">
-              <Github size={16} aria-hidden="true" /> Repositório GitHub
-            </span>
-            <span className="w-8 h-8 rounded-full bg-text flex items-center justify-center group-hover:bg-tech transition-colors">
-              <ArrowUpRight className="text-surface-1" size={16} aria-hidden="true" />
-            </span>
-          </a>
+            icon={Github}
+            label="Repositório GitHub"
+            hoverAccentClass="group-hover:bg-tech"
+          />
         </nav>
       ),
     },

@@ -1,3 +1,9 @@
+const CAREER_START_YEAR = 2017;
+
+export function getYearsOfExperience(): number {
+  return new Date().getFullYear() - CAREER_START_YEAR;
+}
+
 export const SOCIALS = {
   personal: {
     insta: "https://instagram.com/renatobezerra.jr",

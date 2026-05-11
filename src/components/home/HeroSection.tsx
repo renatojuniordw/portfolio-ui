@@ -39,6 +39,7 @@ export function HeroSection() {
         >
           <h1 className="text-[6rem] sm:text-[8rem] lg:text-[11rem] xl:text-[14rem] leading-none font-display font-light tracking-tighter text-text mb-6 -ml-2">
             Olá
+            <span className="sr-only">, sou {PROFILE.name} — Engenheiro de Software</span>
           </h1>
           <p className="text-xl lg:text-2xl text-text-secondary font-medium">
             — Me chamo {PROFILE.fullName?.split(" ")[0] || "Renato"}, sou
@@ -50,6 +51,7 @@ export function HeroSection() {
               href={SOCIALS.personal.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="in/renato-bezerra no LinkedIn (abre em nova aba)"
               className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
             >
               <Linkedin
@@ -62,6 +64,7 @@ export function HeroSection() {
               href={SOCIALS.personal.github}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="@renatojuniordw no GitHub (abre em nova aba)"
               className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
             >
               <Github
