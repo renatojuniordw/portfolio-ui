@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
 import { Inter, Space_Grotesk } from "next/font/google";
-import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import { buildMetadata } from "@/lib/seo";
 
@@ -10,11 +9,7 @@ import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { EasterEgg } from "@/components/fx/EasterEgg";
-
-const CommandPalette = dynamic(
-  () => import("@/components/ui/CommandPalette").then((m) => ({ default: m.CommandPalette })),
-  { ssr: false },
-);
+import { CommandPaletteLoader } from "@/components/ui/CommandPaletteLoader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -71,7 +66,7 @@ export default function RootLayout({
         <ThemeProvider>
           <EasterEgg />
           <LayoutWrapper>{children}</LayoutWrapper>
-          <CommandPalette />
+          <CommandPaletteLoader />
         </ThemeProvider>
       </body>
     </html>
