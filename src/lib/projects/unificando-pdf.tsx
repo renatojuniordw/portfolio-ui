@@ -8,18 +8,19 @@ function Overview() {
   return (
     <div className="space-y-4">
       <p>
-        O <strong>Unificando PDF</strong> nasceu para resolver uma necessidade
-        real de produtividade documental com uma experiência rápida, acessível e,
-        acima de tudo, segura. A proposta é oferecer ferramentas profissionais de
-        forma gratuita, onde os arquivos são processados de forma{" "}
-        <strong>efêmera</strong> e descartados imediatamente após o uso.
+        O <strong>Unificando PDF</strong> reúne <strong>16 ferramentas</strong>{" "}
+        de manipulação de documentos em uma única interface web, pensada para
+        quem precisa de produtividade sem abrir mão da privacidade. Todo o
+        processamento ocorre no servidor usando arquivos temporários em{" "}
+        <code>/tmp</code> — descartados automaticamente após o download. Nenhum
+        arquivo é persistido em banco ou armazenamento permanente.
       </p>
       <p>
-        Além da utilidade prática, o projeto funciona como uma vitrine técnica de
-        domínio em{" "}
-        <strong>processamento de arquivos em larga escala</strong>,
-        arquitetura full-stack moderna e cuidados rigorosos com segurança e
-        infraestrutura em contêineres.
+        Além da utilidade prática, o projeto serve como vitrine técnica de
+        domínio em <strong>processamento de arquivos em larga escala</strong>,
+        arquitetura full-stack moderna com Next.js App Router, orquestração de
+        binários nativos no servidor e infraestrutura containerizada com foco em
+        segurança e isolamento.
       </p>
     </div>
   );
@@ -31,32 +32,37 @@ function TechnicalExcellenceContent() {
       <div className="space-y-4">
         <h3 className="text-xl font-bold text-text">Processamento Efêmero</h3>
         <p className="text-sm">
-          Implementação de uma camada de processamento temporário em{" "}
-          <code>/tmp</code> com limpeza automatizada. Garantimos que nenhum dado
-          sensível persista nos servidores após o download do usuário.
+          Todo arquivo enviado é processado em <code>/tmp</code> com limpeza
+          automatizada logo após o download. Nenhum dado sensível persiste nos
+          servidores — o modelo de privacidade é aplicado por design, não por
+          política.
         </p>
       </div>
       <div className="space-y-4">
         <h3 className="text-xl font-bold text-text">Infraestrutura Blindada</h3>
         <p className="text-sm">
-          Container de produção configurado com usuário <code>non-root</code>,
-          sistema de arquivos <code>read_only</code> e limites rígidos de recursos
-          (CPU/RAM) via Docker para evitar abusos e garantir estabilidade.
+          Container de produção com usuário <code>non-root</code>, sistema de
+          arquivos <code>read_only</code>, <code>tmpfs</code> para{" "}
+          <code>/tmp</code> e limites rígidos de CPU/RAM via Docker Compose,
+          evitando abusos e garantindo previsibilidade em produção.
         </p>
       </div>
       <div className="space-y-4">
         <h3 className="text-xl font-bold text-text">Engine Híbrida</h3>
         <p className="text-sm">
-          Orquestração entre bibliotecas TypeScript (<code>pdf-lib</code>) para
-          manipulação rápida e binários nativos (<code>Ghostscript</code>,{" "}
-          <code>qpdf</code>) para operações avançadas e complexas.
+          Orquestração entre bibliotecas TypeScript (<code>pdf-lib</code>,{" "}
+          <code>pdfjs-dist</code>) para operações rápidas e binários nativos (
+          <code>Ghostscript</code>, <code>LibreOffice</code>,{" "}
+          <code>Poppler</code>, <code>qpdf</code>) para tarefas avançadas como
+          compressão, conversão para Word e extração de páginas.
         </p>
       </div>
       <div className="space-y-4">
         <h3 className="text-xl font-bold text-text">Controle de Concorrência</h3>
         <p className="text-sm">
-          Uso de <code>p-limit</code> e filas de processamento no Node.js para
-          gerenciar picos de tráfego sem comprometer a latência do sistema.
+          Fila de processamento no servidor com limite de concorrência,
+          tamanho máximo de fila e retry configuráveis via variáveis de
+          ambiente, garantindo estabilidade mesmo sob picos de tráfego.
         </p>
       </div>
     </div>
@@ -111,10 +117,10 @@ export const unificandoPdfCase: ProjectCase = {
   title: "Unificando PDF: Privacidade & Produtividade",
   shortDescription: (
     <>
-      Uma suíte online completa para <strong>manipulação de PDFs</strong> focada
-      em <strong>privacidade e performance</strong>. Processamento seguro
-      diretamente no navegador e em servidores otimizados, sem necessidade de
-      cadastro.
+      Suíte com <strong>16 ferramentas de PDF</strong> focada em{" "}
+      <strong>privacidade por design</strong>: processamento server-side com
+      arquivos temporários em <code>/tmp</code>, descartados após o download —
+      sem cadastro, sem persistência.
     </>
   ),
   themeColor: "tech",
@@ -146,7 +152,7 @@ export const unificandoPdfCase: ProjectCase = {
       icon: <FileDigit className="text-tech" size={24} />,
       title: "Conversão Inteligente",
       description:
-        "Transforme PDFs em Word, texto, imagens (JPG/PNG) e Markdown, ou una JPGs em PDF com alta fidelidade.",
+        "Transforme PDFs em Word, texto, imagens (JPG/PNG) e Markdown estruturado — útil para pipelines de RAG e IA. Ou converta JPGs em PDF com alta fidelidade.",
     },
   ],
   extraSections: [
@@ -167,10 +173,12 @@ export const unificandoPdfCase: ProjectCase = {
   sidebarTechStack: [
     { label: "Framework", name: "Next.js 16 (App Router)" },
     { label: "Frontend", name: "React 19 & Framer Motion" },
+    { label: "Drag & Drop", name: "dnd-kit" },
     { label: "Styling", name: "Tailwind CSS 4" },
     { label: "Core PDF", name: "pdf-lib & pdfjs-dist" },
-    { label: "Image Processing", name: "Sharp & Canvas" },
+    { label: "Image Processing", name: "Sharp & @napi-rs/canvas" },
+    { label: "Archiving", name: "archiver (zip)" },
     { label: "Infrastructure", name: "Docker & Docker Compose" },
-    { label: "Native Tools", name: "Ghostscript, Poppler, qpdf" },
+    { label: "Native Tools", name: "Ghostscript, LibreOffice, Poppler, qpdf" },
   ],
 };

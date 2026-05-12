@@ -8,6 +8,7 @@ import { seuBarracoEspertoCase } from "./projects/seu-barraco-esperto";
 import { oferticandoCase } from "./projects/oferticando";
 import { arianoSuassunaCase } from "./projects/ariano-suassuna";
 import { sheikCase } from "./projects/sheik";
+import { sistema18iaCase } from "./projects/sistema-18ia";
 
 export const PROJECT_CASES: ProjectCase[] = [
   unificandoPdfCase,
@@ -18,6 +19,7 @@ export const PROJECT_CASES: ProjectCase[] = [
   oferticandoCase,
   arianoSuassunaCase,
   sheikCase,
+  sistema18iaCase,
 ];
 
 export function getProjectCaseByPath(segments: string[]) {
