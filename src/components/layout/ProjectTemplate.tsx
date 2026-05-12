@@ -2,7 +2,7 @@ import { SplitText } from "@/components/fx/SplitText";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, Github, Code2 } from "lucide-react";
 import Link from "next/link";
-import { projectJsonLd, breadcrumbJsonLd, organizationJsonLd } from "@/lib/structured-data";
+import { projectJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ProjectDetails } from "@/types/project";
 import React from "react";
@@ -33,9 +33,11 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
 
   return (
     <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto font-inter">
-      {id === "unificando/automacao" && <JsonLd data={organizationJsonLd()} />}
       <JsonLd data={projectJsonLd(jsonLd)} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
+      {project.schemas?.map((schema, index) => (
+        <JsonLd key={`${id}-schema-${index}`} data={schema} />
+      ))}
 
       <Link
         href="/projetos"

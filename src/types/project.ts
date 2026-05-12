@@ -1,5 +1,15 @@
 import { ReactNode } from "react";
 
+export interface ProjectCard {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  accent: "ia" | "tech" | "barraco";
+  techs: string[];
+  link?: string;
+}
+
 export interface ProjectFeature {
   icon?: ReactNode;
   title: string;
@@ -37,9 +47,11 @@ export interface ProjectJsonLdData {
 
 export interface ProjectDetails {
   id: string;
+  pathSegments?: string[];
 
   // Structured Data (JSON-LD)
   jsonLd: ProjectJsonLdData;
+  schemas?: Array<Record<string, unknown>>;
   breadcrumbs: ProjectBreadcrumb[];
 
   // Header
@@ -67,4 +79,8 @@ export interface ProjectDetails {
   sidebarTechStackTitle?: string;
   sidebarTechStack?: SidebarTechStack[];
   sidebarExtraCards?: SidebarExtraCard[];
+}
+
+export interface ProjectCase extends ProjectDetails {
+  card: ProjectCard;
 }

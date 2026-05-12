@@ -16,6 +16,7 @@ import {
   ArrowUpRight,
   ArrowLeft,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 const LINKS_DATA = [
   {
@@ -119,7 +120,7 @@ const LinkItem = ({
   variant = "default",
 }: {
   href: string;
-  icon: any;
+  icon: LucideIcon;
   title: string;
   subtitle?: string;
   delay?: number;

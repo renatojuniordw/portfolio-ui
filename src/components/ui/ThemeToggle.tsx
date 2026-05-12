@@ -1,16 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
+function useIsClient() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
+
 export function ThemeToggle({ size = 18 }: { size?: number }) {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClient();
 
   if (!mounted) {
     return (
