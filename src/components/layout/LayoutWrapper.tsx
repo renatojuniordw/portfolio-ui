@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState } from "react";
+import { memo, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const ROTAS_SEM_CHROME = ["/links"];
@@ -11,6 +11,7 @@ import { useActiveNavLink } from "@/hooks/useActiveNavLink";
 import { cn } from "@/lib/utils";
 import { Home, FolderOpen, User, FileText, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IntroLoader } from "@/components/fx/IntroLoader";
 
 const NAV_ITEMS = [
   { label: "Início", href: "/", icon: Home },
@@ -19,7 +20,7 @@ const NAV_ITEMS = [
   { label: "Currículo", href: "/curriculo", icon: FileText },
 ];
 
-const Header = memo(function Header() {
+const Header = memo(function Header({ isIntroFinished }: { isIntroFinished: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isActive, onLinkClick } = useActiveNavLink();
 
@@ -30,9 +31,21 @@ const Header = memo(function Header() {
         {/* Logo Minimalista */}
         <Link
           href="/"
-          className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity text-text"
+          className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity text-text flex items-center"
         >
-          RB.
+          {isIntroFinished ? (
+            <>
+              <motion.span layoutId="navbar-logo-r">R</motion.span>
+              <motion.span layoutId="navbar-logo-b">B</motion.span>
+              <motion.span layoutId="navbar-logo-dot" className="text-tech">.</motion.span>
+            </>
+          ) : (
+            <span className="opacity-0 flex">
+              <span>R</span>
+              <span>B</span>
+              <span className="text-tech">.</span>
+            </span>
+          )}
         </Link>
 
         {/* Links e Toggle (Desktop) */}
@@ -98,8 +111,8 @@ const Header = memo(function Header() {
             >
               {/* Header da Gaveta */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-                <span className="text-xl font-bold tracking-tighter text-text">
-                  RB.
+                <span className="text-xl font-bold tracking-tighter text-text flex items-center">
+                  <span>R</span><span>B</span><span className="text-tech">.</span>
                 </span>
                 <button
                   onClick={() => setIsMenuOpen(false)}
@@ -157,9 +170,28 @@ export default function LayoutWrapper({
 }) {
   const pathname = usePathname();
   const mostrarChrome = !ROTAS_SEM_CHROME.includes(pathname);
+  const [isIntroFinished, setIsIntroFinished] = useState(false);
+
+  // Check se já tocou a intro nessa sessão (opcional, para não tocar em todo refresh)
+  useEffect(() => {
+    const hasPlayed = sessionStorage.getItem("introPlayed");
+    if (hasPlayed) {
+      setIsIntroFinished(true);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    setIsIntroFinished(true);
+    sessionStorage.setItem("introPlayed", "true");
+  };
 
   return (
     <>
+      <AnimatePresence>
+        {!isIntroFinished && (
+          <IntroLoader key="intro-loader" onComplete={handleIntroComplete} />
+        )}
+      </AnimatePresence>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-bg focus:text-text focus:border focus:border-border focus:rounded-lg focus:text-sm focus:font-medium focus:shadow-soft-2"
@@ -167,7 +199,7 @@ export default function LayoutWrapper({
         Pular para o conteúdo principal
       </a>
       <SmoothScroll />
-      {mostrarChrome && <Header />}
+      {mostrarChrome && <Header isIntroFinished={isIntroFinished} />}
       <main id="main-content" className="bg-bg text-text min-h-screen">{children}</main>
       {mostrarChrome && <Footer />}
     </>
