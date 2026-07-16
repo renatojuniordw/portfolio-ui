@@ -1,0 +1,219 @@
+<h2>Qual estilo para o fundo do Hero?</h2>
+<p class="subtitle">Passe o mouse sobre cada preview para ver a animação reagindo ao cursor. Clique na opção que preferir (dá pra clicar mais de uma vez pra comparar antes de decidir).</p>
+
+<style>
+  .demo-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .demo-card {
+    border: 1px solid #262626;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0A0A0A;
+    cursor: pointer;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .demo-card:hover { border-color: #6D28D9; }
+  .demo-card.selected { border-color: #6D28D9; box-shadow: 0 0 0 2px #6D28D9; }
+  .demo-preview {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .demo-label {
+    padding: 14px 20px;
+    background: #141414;
+    border-top: 1px solid #262626;
+  }
+  .demo-label h3 { margin: 0 0 4px; color: #F5F5F5; font-size: 15px; }
+  .demo-label p { margin: 0; color: #A3A3A3; font-size: 13px; }
+  .hero-name {
+    position: relative;
+    z-index: 2;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 300;
+    font-size: 34px;
+    color: #F5F5F5;
+    letter-spacing: -0.02em;
+  }
+
+  /* A: Gradient blob */
+  .blob-canvas { position: absolute; inset: 0; }
+  .blob {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.55;
+    transition: transform 0.3s ease-out;
+  }
+  .blob-1 { background: #6D28D9; top: -80px; left: -60px; animation: float1 9s ease-in-out infinite; }
+  .blob-2 { background: #1D4ED8; bottom: -100px; right: -60px; animation: float2 11s ease-in-out infinite; }
+  @keyframes float1 { 0%,100% { transform: translate(0,0);} 50% { transform: translate(40px, 30px);} }
+  @keyframes float2 { 0%,100% { transform: translate(0,0);} 50% { transform: translate(-30px, -40px);} }
+
+  /* B: Canvas particles */
+  .particles-canvas { position: absolute; inset: 0; }
+
+  /* C: Kinetic typography */
+  .kinetic-title {
+    position: relative;
+    z-index: 2;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #F5F5F5;
+    letter-spacing: -0.02em;
+    display: flex;
+  }
+  .kinetic-title span {
+    display: inline-block;
+    animation: waveLetter 2.4s ease-in-out infinite;
+  }
+  @keyframes waveLetter {
+    0%, 100% { transform: translateY(0); color: #F5F5F5; }
+    50% { transform: translateY(-10px); color: #A78BFA; }
+  }
+</style>
+
+<div class="demo-wrap options" data-multiselect>
+
+  <div class="demo-card" data-choice="blob" onclick="toggleSelect(this)">
+    <div class="demo-preview" id="blob-preview">
+      <div class="blob-canvas">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+      </div>
+      <div class="hero-name">Renato Bezerra</div>
+    </div>
+    <div class="demo-label">
+      <h3>A · Gradiente/blob reagindo ao cursor</h3>
+      <p>Manchas de gradiente desfocadas, flutuando devagar e se inclinando na direção do mouse. Leve, moderno, sem custo de WebGL.</p>
+    </div>
+  </div>
+
+  <div class="demo-card" data-choice="particles" onclick="toggleSelect(this)">
+    <div class="demo-preview" id="particles-preview">
+      <canvas class="particles-canvas" id="particles-canvas"></canvas>
+      <div class="hero-name">Renato Bezerra</div>
+    </div>
+    <div class="demo-label">
+      <h3>B · Partículas/linhas em Canvas 2D</h3>
+      <p>Pontos finos conectando-se por proximidade, estilo "rede", com leve repulsão ao redor do cursor.</p>
+    </div>
+  </div>
+
+  <div class="demo-card" data-choice="kinetic" onclick="toggleSelect(this)">
+    <div class="demo-preview">
+      <div class="kinetic-title" id="kinetic-title"></div>
+    </div>
+    <div class="demo-label">
+      <h3>C · Tipografia cinética</h3>
+      <p>O próprio nome/título ganha vida: letras ondulando em loop suave, sem depender de um fundo animado.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // A: blob reacts to cursor within its preview
+  (function () {
+    const preview = document.getElementById('blob-preview');
+    const b1 = preview.querySelector('.blob-1');
+    const b2 = preview.querySelector('.blob-2');
+    preview.addEventListener('mousemove', (e) => {
+      const rect = preview.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      b1.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+      b2.style.transform = `translate(${x * -40}px, ${y * -40}px)`;
+    });
+  })();
+
+  // B: particle network
+  (function () {
+    const canvas = document.getElementById('particles-canvas');
+    const preview = document.getElementById('particles-preview');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const mouse = { x: -9999, y: -9999 };
+
+    function resize() {
+      w = canvas.width = preview.clientWidth;
+      h = canvas.height = preview.clientHeight;
+    }
+    resize();
+
+    const COUNT = 55;
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+      });
+    }
+
+    preview.addEventListener('mousemove', (e) => {
+      const rect = preview.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    preview.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+    function tick() {
+      ctx.clearRect(0, 0, w, h);
+      for (const p of particles) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 70) {
+          p.x += (dx / dist) * 1.2;
+          p.y += (dy / dist) * 1.2;
+        }
+      }
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i], b = particles[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 90) {
+            ctx.strokeStyle = `rgba(167,139,250,${1 - dist / 90})`;
+            ctx.lineWidth = 0.6;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+        ctx.fillStyle = '#A78BFA';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  // C: kinetic typography
+  (function () {
+    const el = document.getElementById('kinetic-title');
+    const text = 'Renato Bezerra';
+    [...text].forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.textContent = ch === ' ' ? ' ' : ch;
+      span.style.animationDelay = `${i * 0.06}s`;
+      el.appendChild(span);
+    });
+  })();
+</script>

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { PROFILE, SOCIALS } from "@/lib/constants";
 import { Linkedin, Github } from "lucide-react";
-import { HeroScene } from "@/components/three/HeroSceneWrapper";
+import { ParticleField } from "@/components/fx/ParticleField";
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen relative flex flex-col lg:flex-row w-full">
-      <HeroScene />
+    <section className="h-dvh relative flex flex-col lg:flex-row w-full overflow-hidden">
+      <ParticleField className="absolute inset-0 z-0" />
 
       {/* Vertical Rotated Text - Left Edge (Only visible on large screens) */}
       <div className="hidden 2xl:flex absolute left-8 top-0 bottom-0 flex-col justify-between py-24 z-20 text-muted text-sm uppercase tracking-widest pointer-events-none">
@@ -95,7 +95,7 @@ export function HeroSection() {
         className="lg:w-[45%] xl:w-[50%] relative w-full animate-in fade-in slide-in-from-right-8 duration-1000 fill-mode-forwards z-0 px-6 sm:px-12 lg:px-0 pb-12 lg:pb-0"
         style={{ animationDelay: "800ms" }}
       >
-        <div className="relative w-full h-[65vh] lg:h-screen rounded-[2rem] lg:rounded-none overflow-hidden bg-surface-2">
+        <div className="relative w-full h-[65vh] lg:h-dvh rounded-[2rem] lg:rounded-none overflow-hidden bg-surface-2">
           <Image
             src="/RenatoBezerra.png"
             alt={PROFILE.fullName || "Renato Bezerra"}
