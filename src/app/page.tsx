@@ -10,8 +10,13 @@ import { PROFILE } from "@/lib/constants";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: `${PROFILE.name} | Engenheiro de Software`,
-    description: `Portfólio de ${PROFILE.name}, Engenheiro de Software em Recife, especialista em React, Angular e automações com IA. Criando arquiteturas front-end de alta performance.`,
+    title: `${PROFILE.name} | Engenheiro de Software Front-end & IA Generativa`,
+    description: `Portfólio de ${PROFILE.name}, Engenheiro de Software especializado em React, Angular, Next.js e Inteligência Artificial Generativa. Mais de 7 anos criando aplicações escaláveis no setor petrolífero, startups e projetos próprios com automação, RAG e agentes de IA. Pós-graduado em Arquitetura de Software (FIAP).`,
+    keywords: [
+      "Renato Bezerra", "Engenheiro de Software", "Front-end", "React",
+      "Angular", "Next.js", "IA Generativa", "Automação com IA",
+      "Portfólio", "Recife", "Paulista", "PCD",
+    ],
   });
 
 export default function Home() {

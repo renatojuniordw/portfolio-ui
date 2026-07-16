@@ -12,13 +12,17 @@ import {
   Moon,
   Search,
   Download,
+  SquareTerminal,
+  List,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
+import { TerminalPane } from "./TerminalPane";
 
 export function CommandPalette() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
+  const [mode, setMode] = React.useState<"list" | "terminal">("list");
   const { theme, setTheme } = useTheme();
 
   const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
@@ -36,6 +40,19 @@ export function CommandPalette() {
   const runCommand = React.useCallback((command: () => void) => {
     setOpen(false);
     command();
+  }, []);
+
+  const toggleTheme = React.useCallback(() => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }, [theme, setTheme]);
+
+  const downloadCv = React.useCallback(() => {
+    const link = document.createElement("a");
+    link.href = "/Profile.pdf";
+    link.download = "Renato_Bezerra_Curriculo.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }, []);
 
   return (
@@ -66,97 +83,117 @@ export function CommandPalette() {
               className="w-full max-w-[640px] overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl"
             >
               <span id="command-palette-title" className="sr-only">Paleta de comandos</span>
-              <Command
-                className="flex flex-col"
-                onKeyDown={(e) => {
-                  if (e.key === "Escape") setOpen(false);
-                }}
-              >
-                <div className="flex items-center border-b border-border px-4">
-                  <Search className="mr-3 h-5 w-5 shrink-0 text-text-secondary" />
-                  <Command.Input
-                    placeholder="Digite um comando ou pesquise..."
-                    className="flex h-12 w-full bg-transparent text-sm outline-none placeholder:text-text-secondary text-text"
-                  />
-                </div>
 
-                <Command.List className="max-h-[300px] overflow-y-auto p-2 select-none">
-                  <Command.Empty className="py-6 text-center text-sm text-text-secondary">
-                    Nenhum resultado encontrado.
-                  </Command.Empty>
+              <div className="flex items-center justify-end border-b border-border px-2 py-1.5">
+                <button
+                  type="button"
+                  onClick={() => setMode(mode === "list" ? "terminal" : "list")}
+                  aria-pressed={mode === "terminal"}
+                  aria-label={
+                    mode === "list" ? "Ativar modo terminal" : "Voltar para lista"
+                  }
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs text-text-secondary hover:bg-surface-1 hover:text-text transition-colors"
+                >
+                  {mode === "list" ? (
+                    <>
+                      <SquareTerminal size={14} />
+                      <span>Terminal</span>
+                    </>
+                  ) : (
+                    <>
+                      <List size={14} />
+                      <span>Lista</span>
+                    </>
+                  )}
+                </button>
+              </div>
 
-                  <Command.Group heading="Navegação" className="px-2 py-1.5 text-xs font-medium text-text-secondary uppercase tracking-wider">
-                    <Command.Item
-                      onSelect={() => runCommand(() => router.push("/"))}
-                      className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
-                    >
-                      <Home size={18} />
-                      <span>Início</span>
-                    </Command.Item>
-                    <Command.Item
-                      onSelect={() => runCommand(() => router.push("/#sobre"))}
-                      className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
-                    >
-                      <Home size={18} />
-                      <span>Sobre</span>
-                    </Command.Item>
-                    <Command.Item
-                      onSelect={() => runCommand(() => router.push("/projetos"))}
-                      className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
-                    >
-                      <FolderOpen size={18} />
-                      <span>Projetos</span>
-                    </Command.Item>
-                    <Command.Item
-                      onSelect={() => runCommand(() => router.push("/curriculo"))}
-                      className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
-                    >
-                      <FileText size={18} />
-                      <span>Currículo</span>
-                    </Command.Item>
-                    <Command.Item
-                      onSelect={() => runCommand(() => router.push("/contato"))}
-                      className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
-                    >
-                      <Mail size={18} />
-                      <span>Contato</span>
-                    </Command.Item>
-                  </Command.Group>
+              {mode === "terminal" ? (
+                <TerminalPane
+                  onNavigate={(path) => runCommand(() => router.push(path))}
+                  toggleTheme={() => runCommand(toggleTheme)}
+                  setTheme={(t) => runCommand(() => setTheme(t))}
+                  onDownloadCv={() => runCommand(downloadCv)}
+                />
+              ) : (
+                <Command
+                  className="flex flex-col"
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") setOpen(false);
+                  }}
+                >
+                  <div className="flex items-center border-b border-border px-4">
+                    <Search className="mr-3 h-5 w-5 shrink-0 text-text-secondary" />
+                    <Command.Input
+                      placeholder="Digite um comando ou pesquise..."
+                      className="flex h-12 w-full bg-transparent text-sm outline-none placeholder:text-text-secondary text-text"
+                    />
+                  </div>
 
-                  <Command.Separator className="h-px bg-border my-2" />
+                  <Command.List className="max-h-[300px] overflow-y-auto p-2 select-none">
+                    <Command.Empty className="py-6 text-center text-sm text-text-secondary">
+                      Nenhum resultado encontrado.
+                    </Command.Empty>
 
-                  <Command.Group heading="Ações" className="px-2 py-1.5 text-xs font-medium text-text-secondary uppercase tracking-wider">
-                    <Command.Item
-                      onSelect={() =>
-                        runCommand(() =>
-                          setTheme(theme === "dark" ? "light" : "dark")
-                        )
-                      }
-                      className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
-                    >
-                      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-                      <span>Alternar para Tema {theme === "dark" ? "Claro" : "Escuro"}</span>
-                    </Command.Item>
-                    <Command.Item
-                      onSelect={() =>
-                        runCommand(() => {
-                          const link = document.createElement("a");
-                          link.href = "/Profile.pdf";
-                          link.download = "Renato_Bezerra_Curriculo.pdf";
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
-                        })
-                      }
-                      className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
-                    >
-                      <Download size={18} />
-                      <span>Baixar Currículo (PDF)</span>
+                    <Command.Group heading="Navegação" className="px-2 py-1.5 text-xs font-medium text-text-secondary uppercase tracking-wider">
+                      <Command.Item
+                        onSelect={() => runCommand(() => router.push("/"))}
+                        className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
+                      >
+                        <Home size={18} />
+                        <span>Início</span>
+                      </Command.Item>
+                      <Command.Item
+                        onSelect={() => runCommand(() => router.push("/#sobre"))}
+                        className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
+                      >
+                        <Home size={18} />
+                        <span>Sobre</span>
+                      </Command.Item>
+                      <Command.Item
+                        onSelect={() => runCommand(() => router.push("/projetos"))}
+                        className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
+                      >
+                        <FolderOpen size={18} />
+                        <span>Projetos</span>
+                      </Command.Item>
+                      <Command.Item
+                        onSelect={() => runCommand(() => router.push("/curriculo"))}
+                        className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
+                      >
+                        <FileText size={18} />
+                        <span>Currículo</span>
+                      </Command.Item>
+                      <Command.Item
+                        onSelect={() => runCommand(() => router.push("/contato"))}
+                        className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
+                      >
+                        <Mail size={18} />
+                        <span>Contato</span>
+                      </Command.Item>
+                    </Command.Group>
 
-                    </Command.Item>
-                  </Command.Group>
-                </Command.List>
-              </Command>
+                    <Command.Separator className="h-px bg-border my-2" />
+
+                    <Command.Group heading="Ações" className="px-2 py-1.5 text-xs font-medium text-text-secondary uppercase tracking-wider">
+                      <Command.Item
+                        onSelect={() => runCommand(toggleTheme)}
+                        className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
+                      >
+                        {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                        <span>Alternar para Tema {theme === "dark" ? "Claro" : "Escuro"}</span>
+                      </Command.Item>
+                      <Command.Item
+                        onSelect={() => runCommand(downloadCv)}
+                        className="flex items-center gap-3 px-3 py-2 text-sm text-text rounded-xl hover:bg-surface-1 cursor-pointer aria-selected:bg-surface-1"
+                      >
+                        <Download size={18} />
+                        <span>Baixar Currículo (PDF)</span>
+                      </Command.Item>
+                    </Command.Group>
+                  </Command.List>
+                </Command>
+              )}
             </motion.div>
           </div>
         )}

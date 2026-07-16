@@ -12,6 +12,7 @@ import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { SOCIALS, PROFILE } from "@/lib/constants";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { articleJsonLd } from "@/lib/structured-data";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -37,6 +38,10 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.date,
+    tags: post.tags,
+    keywords: post.tags,
   });
 }
 
@@ -110,6 +115,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <article className="pt-32 pb-24 px-6">
         <div className="max-w-3xl mx-auto">
           <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
+          <JsonLd
+            data={articleJsonLd({
+              title: post.title,
+              description: post.description,
+              url: `${SOCIALS.personal.site}/blog/${slug}`,
+              publishedTime: post.date,
+              tags: post.tags,
+            })}
+          />
 
           <Link
             href="/blog"

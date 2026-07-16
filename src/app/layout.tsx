@@ -22,7 +22,10 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-export const metadata: Metadata = buildMetadata();
+export const metadata: Metadata = buildMetadata({
+  description:
+    "Portfólio de Renato Bezerra, Engenheiro de Software especializado em React, Angular, Next.js e IA Generativa. +7 anos de experiência em desenvolvimento front-end, automação com IA e arquitetura de software.",
+});
 
 export const viewport: Viewport = {
   themeColor: "#000000",

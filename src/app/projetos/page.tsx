@@ -6,10 +6,14 @@ import { ProjectsClient } from "@/components/ui/ProjectsClient";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: "Projetos | Engenheiro de Software & Automação",
+    title: "Projetos | Renato Bezerra — Engenharia de Software & IA",
     description:
-      "Explore os projetos de Renato Bezerra: de ecossistemas de atendimento com IA (Unificando) a arquitetura front-end e automação residencial.",
+      "Conheça os projetos de Renato Bezerra: ecossistema de atendimento com IA (Unificando), automação residencial (Seu Barraco Esperto), sites profissionais, LegalTech com API do CNJ, automação para afiliados e mais 9 cases reais.",
     path: "/projetos",
+    keywords: [
+      "Projetos", "Renato Bezerra", "Unificando", "Seu Barraco Esperto",
+      "Oferticando", "IA", "Automação", "Portfólio", "Cases",
+    ],
   });
 
 export default function ProjectsPage() {

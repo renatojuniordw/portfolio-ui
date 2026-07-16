@@ -12,8 +12,12 @@ export const generateMetadata = () =>
   buildMetadata({
     title: "Contato | Renato Bezerra",
     description:
-      "Entre em contato com Renato Bezerra para projetos de engenharia de software, automação residencial e consultoria em IA em Recife.",
+      "Entre em contato com Renato Bezerra para projetos de engenharia de software, front-end (React, Angular, Next.js), automação com IA e consultoria. Disponível via WhatsApp, LinkedIn ou email.",
     path: "/contato",
+    keywords: [
+      "Contato", "Renato Bezerra", "WhatsApp", "LinkedIn",
+      "Contratação", "Freelance", "Consultoria IA",
+    ],
   });
 
 export default function ContactPage() {

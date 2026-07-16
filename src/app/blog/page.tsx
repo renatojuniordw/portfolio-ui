@@ -12,8 +12,13 @@ export const generateMetadata = () =>
   buildMetadata({
     title: "Blog | Renato Bezerra",
     description:
-      "Artigos sobre engenharia de software, front-end, IA generativa, automação e tecnologia.",
+      "Artigos sobre engenharia de software, front-end (React, Angular, Next.js), IA Generativa, automação com n8n, RAG, segurança de LLMs e arquitetura de software por Renato Bezerra.",
     path: "/blog",
+    keywords: [
+      "Blog", "Engenharia de Software", "React", "Angular", "Next.js",
+      "IA Generativa", "Prompt Engineering", "Automação", "n8n",
+      "AWS Lambda", "SharePoint", "Tecnologia",
+    ],
   });
 
 export default function BlogPage() {

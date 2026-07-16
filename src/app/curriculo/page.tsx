@@ -11,10 +11,14 @@ import { PrintButton } from "@/components/ui/PrintButton";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: "Currículo | Renato Bezerra - Software Engineer",
+    title: "Currículo | Renato Bezerra — Engenheiro de Software",
     description:
-      "Currículo profissional de Renato Bezerra: Engenheiro de Software com experiência em React, Angular, C# e automações com IA em grandes empresas como CESAR e Avanade.",
+      "Currículo profissional de Renato Bezerra: Engenheiro de Software com +7 anos de experiência em front-end (React, Angular, Next.js), IA Generativa, arquitetura de software (FIAP), certificado Microsoft. Experiência na CESAR, Avanade e projetos autorais com automação e agentes de IA.",
     path: "/curriculo",
+    keywords: [
+      "Currículo", "Renato Bezerra", "Software Engineer",
+      "Experiência", "CESAR", "Avanade", "FIAP", "Microsoft Certified",
+    ],
   });
 
 export default function CurriculoPage() {

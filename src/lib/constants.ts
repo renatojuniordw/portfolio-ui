@@ -1,7 +1,8 @@
 const CAREER_START_YEAR = 2017;
+const YEARS_OF_EXPERIENCE = 7;
 
 export function getYearsOfExperience(): number {
-  return new Date().getFullYear() - CAREER_START_YEAR;
+  return YEARS_OF_EXPERIENCE;
 }
 
 export const SOCIALS = {

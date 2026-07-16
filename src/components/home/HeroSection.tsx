@@ -1,11 +1,13 @@
 import Image from "next/image";
-import { PROFILE, SOCIALS } from "@/lib/constants";
+import { PROFILE, SOCIALS, getYearsOfExperience } from "@/lib/constants";
 import { Linkedin, Github } from "lucide-react";
 import { ParticleField } from "@/components/fx/ParticleField";
 
 export function HeroSection() {
+  const anos = getYearsOfExperience();
+
   return (
-    <section className="h-dvh relative flex flex-col lg:flex-row w-full overflow-hidden">
+    <section className="min-h-dvh relative flex flex-col lg:flex-row w-full">
       <ParticleField className="absolute inset-0 z-0" />
 
       {/* Vertical Rotated Text - Left Edge (Only visible on large screens) */}
@@ -14,7 +16,7 @@ export function HeroSection() {
           Engenheiro de Software
         </div>
         <div className="origin-left -rotate-90 whitespace-nowrap -translate-x-[40%] mb-12">
-          2026
+          {new Date().getFullYear()}
         </div>
       </div>
 
@@ -24,7 +26,7 @@ export function HeroSection() {
         <div className="flex gap-12 lg:gap-24 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
           <div>
             <p className="text-4xl lg:text-[2.75rem] font-light mb-2 text-text">
-              +{new Date().getFullYear() - 2017}
+              +{anos}
             </p>
             <p className="text-xs text-muted uppercase tracking-wider">
               Anos de experiência
