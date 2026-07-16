@@ -136,5 +136,7 @@ npm-debug.log*
 # Agents
 .agents
 
+# OpenCode / Superpowers
+.superpowers
 
 .DS_Store
