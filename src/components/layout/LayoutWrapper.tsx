@@ -9,7 +9,7 @@ import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useActiveNavLink } from "@/hooks/useActiveNavLink";
 import { cn } from "@/lib/utils";
-import { Home, FolderOpen, User, FileText, Menu, X } from "lucide-react";
+import { Home, FolderOpen, User, FileText, PenLine, Award, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntroLoader } from "@/components/fx/IntroLoader";
 
@@ -17,7 +17,9 @@ const NAV_ITEMS = [
   { label: "Início", href: "/", icon: Home },
   { label: "Sobre", href: "/#sobre", icon: User },
   { label: "Projetos", href: "/projetos", icon: FolderOpen },
+  { label: "Blog", href: "/blog", icon: PenLine },
   { label: "Currículo", href: "/curriculo", icon: FileText },
+  { label: "Certificações", href: "/certificacoes", icon: Award },
 ];
 
 const Header = memo(function Header({ isIntroFinished }: { isIntroFinished: boolean }) {
