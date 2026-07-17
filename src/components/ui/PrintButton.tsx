@@ -1,16 +1,10 @@
 "use client";
 
 import { Download } from "lucide-react";
+import { downloadPDF } from "@/lib/utils";
 
 export function PrintButton() {
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/Profile.pdf";
-    link.download = "Renato_Bezerra_Curriculo.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const handleDownload = () => downloadPDF("/Profile.pdf", "Renato_Bezerra_Curriculo.pdf");
 
   return (
     <button

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { TerminalPane } from "./TerminalPane";
+import { downloadPDF } from "@/lib/utils";
 
 export function CommandPalette() {
   const router = useRouter();
@@ -33,12 +34,7 @@ export function CommandPalette() {
   }, [theme, setTheme]);
 
   const downloadCv = React.useCallback(() => {
-    const link = document.createElement("a");
-    link.href = "/Profile.pdf";
-    link.download = "Renato_Bezerra_Curriculo.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    downloadPDF("/Profile.pdf", "Renato_Bezerra_Curriculo.pdf");
   }, []);
 
   return (

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
-import { SplitText } from "@/components/fx/SplitText";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { Tag } from "@/components/ui/Tag";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { getAllPosts } from "@/lib/blog";
@@ -35,16 +35,11 @@ export default function BlogPage() {
     <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
-      <header className="mb-16">
-        <h1 className="sr-only">Blog - Renato Bezerra</h1>
-        <SplitText
-          text="Blog"
-          className="text-4xl md:text-6xl font-display font-bold mb-4"
-        />
-        <p className="text-xl text-text-secondary">
-          Artigos sobre engenharia de software, IA e tecnologia.
-        </p>
-      </header>
+      <PageHeader
+        title="Blog"
+        description="Artigos sobre engenharia de software, IA e tecnologia."
+        srTitle="Blog - Renato Bezerra"
+      />
 
       {posts.length === 0 ? (
         <p className="text-text-secondary text-lg">

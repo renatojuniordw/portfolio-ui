@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/projects";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
+import { EASE_OUT } from "@/lib/utils";
 
 const ACCENT_COLOR_MAP: Record<string, string> = {
   ia: "text-ia border-ia/30 bg-ia/5",
@@ -33,7 +34,7 @@ export function ProjectsClient() {
           <motion.article
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4, ease: EASE_OUT }}
             className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 md:p-10 shadow-soft-2"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-text/[0.04] via-transparent to-text/[0.02]" />
@@ -117,7 +118,7 @@ export function ProjectsClient() {
               transition={{
                 duration: 0.35,
                 delay: index * 0.04,
-                ease: [0.16, 1, 0.3, 1],
+                ease: EASE_OUT,
               }}
               className="group rounded-3xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-text-secondary hover:bg-surface-2"
             >

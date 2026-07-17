@@ -1,16 +1,8 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
-
-function useIsClient() {
-  return useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
-}
+import { useIsClient } from "@/hooks/useIsClient";
 
 export function ThemeToggle({ size = 18 }: { size?: number }) {
   const { theme, setTheme } = useTheme();

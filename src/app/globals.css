@@ -68,6 +68,10 @@
   .tag-pill {
     @apply inline-block px-3 py-1 bg-surface-1 border border-border text-text text-xs font-medium rounded-full;
   }
+
+  .card-hover {
+    @apply hover:border-[#111111] dark:hover:border-white transition-colors duration-300;
+  }
 }
 
 @layer components {

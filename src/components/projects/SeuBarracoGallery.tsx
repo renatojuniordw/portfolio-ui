@@ -1,14 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
-
-function useIsClient() {
-  return useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
-}
+import { useIsClient } from "@/hooks/useIsClient";
 
 const VIDEOS = [
   {

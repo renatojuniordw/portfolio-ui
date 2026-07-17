@@ -1,6 +1,6 @@
 import { Award, Star, Calendar } from "lucide-react";
-import { SplitText } from "@/components/fx/SplitText";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { EDUCATIONS, CERTIFICATIONS } from "@/lib/education";
@@ -23,16 +23,11 @@ export default function CertificacoesPage() {
     <main className="pt-32 pb-24 px-6 max-w-4xl mx-auto">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
-      <header className="mb-16">
-        <h1 className="sr-only">Certificações - Renato Bezerra</h1>
-        <SplitText
-          text="Certificações"
-          className="text-4xl md:text-6xl font-display font-bold mb-4"
-        />
-        <p className="text-xl text-text-secondary">
-          Formação acadêmica e certificações que consolidam minha base técnica.
-        </p>
-      </header>
+      <PageHeader
+        title="Certificações"
+        description="Formação acadêmica e certificações que consolidam minha base técnica."
+        srTitle="Certificações - Renato Bezerra"
+      />
 
       <section aria-labelledby="education-title" className="mb-20">
         <h2

@@ -2,6 +2,7 @@
 
 import { memo, useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import { EASE_OUT } from "@/lib/utils";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -48,7 +49,7 @@ export const ScrollReveal = memo(function ScrollReveal({
       transition={{
         duration: prefersReducedMotion ? 0.01 : duration,
         delay: prefersReducedMotion ? 0 : delay / 1000,
-        ease: [0.16, 1, 0.3, 1],
+        ease: EASE_OUT,
       }}
     >
       {children}

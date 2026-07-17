@@ -1,8 +1,9 @@
-const CACHE = "renato-portfolio-v1";
+const CACHE = "renato-portfolio-v2";
 const OFFLINE_URL = "/offline.html";
 
 const PRECACHE_ASSETS = [
-  "/r_icon.png",
+  "/icon-192.png",
+  "/icon-512.png",
   "/og-image.jpg",
   "/RenatoBezerra.png",
 ];

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { SOCIALS, PROFILE } from "@/lib/constants";
+import { EASE_OUT } from "@/lib/utils";
 import {
   Instagram,
   Linkedin,
@@ -141,7 +142,7 @@ const LinkItem = ({
       rel={href.startsWith("/") ? undefined : "noopener noreferrer"}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ delay, duration: 0.5, ease: EASE_OUT }}
       className={`group relative flex items-center p-4 rounded-2xl border border-border bg-bg shadow-sm transition-all duration-300 ${themes[variant]}`}
     >
       <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-surface-2 border border-border group-hover:scale-110 transition-transform duration-300">
