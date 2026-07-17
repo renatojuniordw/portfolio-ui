@@ -222,7 +222,7 @@
   header, 
   footer,
   .print\:hidden,
-  [aria-label="Abrir comandos"],
+  [aria-label="Abrir terminal interativo"],
   button {
     display: none !important;
   }

@@ -55,11 +55,7 @@ export function websiteJsonLd() {
     name: `${PROFILE.fullName} — Portfólio`,
     url: SITE_URL,
     description: `${PROFILE.name} — ${PROFILE.title}.`,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_URL}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
+
   };
 }
 
@@ -69,7 +65,6 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: "Unificando",
     url: SOCIALS.unificando.site,
-    logo: `${SITE_URL}/unificando-logo.png`,
     description: "Ecossistema de suporte digital e automação com IA.",
     sameAs: [SOCIALS.unificando.insta],
   };

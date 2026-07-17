@@ -1,22 +1,6 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import type { ComponentType } from "react";
-import dynamic from "next/dynamic";
-
-const ReactPlayer = dynamic(() => import("react-player"), {
-  ssr: false,
-}) as ComponentType<{
-  url: string;
-  width?: string;
-  height?: string;
-  controls?: boolean;
-  config?: {
-    youtube?: {
-      playerVars?: Record<string, number>;
-    };
-  };
-}>;
 
 function useIsClient() {
   return useSyncExternalStore(
@@ -56,26 +40,12 @@ export function SeuBarracoGallery() {
               key={i}
               className="aspect-[9/16] rounded-lg overflow-hidden bg-surface-1 border border-border group relative"
             >
-              {video.type === "instagram" ? (
-                <iframe
-                  src={`${video.url}${video.url.endsWith("/") ? "" : "/"}embed/`}
-                  className="w-full h-full border-0"
-                  allow="encrypted-media"
-                  title={`Demonstração de automação ${i + 1}`}
-                />
-              ) : (
-                <ReactPlayer
-                  url={video.url}
-                  width="100%"
-                  height="100%"
-                  controls={true}
-                  config={{
-                    youtube: {
-                      playerVars: { modestbranding: 1, rel: 0 },
-                    },
-                  }}
-                />
-              )}
+              <iframe
+                src={`${video.url}${video.url.endsWith("/") ? "" : "/"}embed/`}
+                className="w-full h-full border-0"
+                allow="encrypted-media"
+                title={`Demonstração de automação ${i + 1}`}
+              />
             </div>
           ))}
       </div>

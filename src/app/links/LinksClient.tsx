@@ -127,7 +127,7 @@ const LinkItem = ({
   variant?: "default" | "barraco" | "unificando" | "personal" | "oferticando";
 }) => {
   const themes = {
-    default: "hover:border-[#111111] hover:bg-[#F9F9F9]",
+    default: "hover:border-text hover:bg-surface-2",
     personal: "hover:border-tech/30 hover:bg-tech/5",
     barraco: "hover:border-barraco/30 hover:bg-barraco/5",
     unificando: "hover:border-ia/30 hover:bg-ia/5",
@@ -142,24 +142,24 @@ const LinkItem = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative flex items-center p-4 rounded-2xl border border-[#E5E5E5] bg-[#FFFFFF] shadow-sm transition-all duration-300 ${themes[variant]}`}
+      className={`group relative flex items-center p-4 rounded-2xl border border-border bg-bg shadow-sm transition-all duration-300 ${themes[variant]}`}
     >
-      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-[#F9F9F9] border border-[#E5E5E5] group-hover:scale-110 transition-transform duration-300">
+      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-surface-2 border border-border group-hover:scale-110 transition-transform duration-300">
         <Icon
           size={24}
-          className="text-[#111111] group-hover:text-[#111111] transition-colors"
+          className="text-text group-hover:text-text transition-colors"
           aria-hidden="true"
         />
       </div>
       <div className="ml-4 flex-grow text-left">
-        <h3 className="font-medium text-sm tracking-tight text-[#111111]">{title}</h3>
+        <h3 className="font-medium text-sm tracking-tight text-text">{title}</h3>
         {subtitle && (
-          <p className="text-xs text-[#666666] line-clamp-1 mt-0.5">{subtitle}</p>
+          <p className="text-xs text-text-secondary line-clamp-1 mt-0.5">{subtitle}</p>
         )}
       </div>
       <ArrowUpRight
         size={18}
-        className="text-[#777777] group-hover:text-[#111111] transition-colors"
+        className="text-muted group-hover:text-text transition-colors"
         aria-hidden="true"
       />
     </motion.a>
@@ -168,15 +168,15 @@ const LinkItem = ({
 
 export function LinksClient() {
   return (
-    <div className="min-h-screen bg-[#FFFFFF] relative overflow-hidden flex flex-col items-center py-16 px-6">
+    <div className="min-h-screen bg-bg relative overflow-hidden flex flex-col items-center py-16 px-6">
       {/* Background Decorative Elements (Subtle) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg aspect-square bg-[#F9F9F9] blur-[120px] rounded-full -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg aspect-square bg-surface-2 blur-[120px] rounded-full -z-10" />
 
       {/* Back to Portfolio Button */}
       <div className="w-full max-w-[480px] mb-8 flex justify-start">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium text-[#666666] hover:text-[#111111] transition-colors px-3 py-1.5 rounded-full border border-[#E5E5E5] bg-[#FFFFFF] hover:border-[#111111]"
+          className="inline-flex items-center gap-2 text-xs font-medium text-text-secondary hover:text-text transition-colors px-3 py-1.5 rounded-full border border-border bg-bg hover:border-text"
         >
           <ArrowLeft size={14} />
           Voltar para o Portfólio
@@ -190,7 +190,7 @@ export function LinksClient() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[#E5E5E5] bg-[#F9F9F9]"
+            className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-border bg-surface-2"
           >
             <Image
               src="/RenatoBezerra.png"
@@ -205,7 +205,7 @@ export function LinksClient() {
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-2xl font-display font-light tracking-tight text-[#111111]"
+              className="text-2xl font-display font-light tracking-tight text-text"
             >
               {PROFILE.name}
             </motion.h1>
@@ -213,7 +213,7 @@ export function LinksClient() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-xs text-[#666666] uppercase tracking-wider"
+              className="text-xs text-text-secondary uppercase tracking-wider"
             >
               {PROFILE.title}
             </motion.p>
@@ -230,7 +230,7 @@ export function LinksClient() {
             >
               <h2
                 id={`section-${sectionIndex}`}
-                className="text-[10px] font-medium uppercase tracking-widest text-[#777777] text-left pl-2"
+                className="text-[10px] font-medium uppercase tracking-widest text-muted text-left pl-2"
               >
                 {section.title}
               </h2>
@@ -248,8 +248,8 @@ export function LinksClient() {
         </main>
 
         {/* Footer info */}
-        <footer className="pt-4 border-t border-[#E5E5E5]">
-          <p className="text-[10px] text-[#777777] tracking-wider uppercase">
+        <footer className="pt-4 border-t border-border">
+          <p className="text-[10px] text-muted tracking-wider uppercase">
             © {new Date().getFullYear()} {PROFILE.name}
           </p>
         </footer>
