@@ -2,6 +2,8 @@ import Image from "next/image";
 import { PROFILE, SOCIALS, getYearsOfExperience } from "@/lib/constants";
 import { Linkedin, Github } from "lucide-react";
 import { ParticleField } from "@/components/fx/ParticleField";
+import { MagneticButton } from "@/components/fx/MagneticButton";
+import { ParallaxSection } from "@/components/fx/ParallaxSection";
 
 export function HeroSection() {
   const anos = getYearsOfExperience();
@@ -49,32 +51,36 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-6 mt-8">
-            <a
-              href={SOCIALS.personal.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="in/renato-bezerra no LinkedIn (abre em nova aba)"
-              className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
-            >
-              <Linkedin
-                aria-hidden="true"
-                className="w-4 h-4 group-hover:scale-110 transition-transform"
-              />
-              <span>in/renato-bezerra</span>
-            </a>
-            <a
-              href={SOCIALS.personal.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="@renatojuniordw no GitHub (abre em nova aba)"
-              className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
-            >
-              <Github
-                aria-hidden="true"
-                className="w-4 h-4 group-hover:scale-110 transition-transform"
-              />
-              <span>@renatojuniordw</span>
-            </a>
+            <MagneticButton>
+              <a
+                href={SOCIALS.personal.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="in/renato-bezerra no LinkedIn (abre em nova aba)"
+                className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
+              >
+                <Linkedin
+                  aria-hidden="true"
+                  className="w-4 h-4 group-hover:scale-110 transition-transform"
+                />
+                <span>in/renato-bezerra</span>
+              </a>
+            </MagneticButton>
+            <MagneticButton>
+              <a
+                href={SOCIALS.personal.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="@renatojuniordw no GitHub (abre em nova aba)"
+                className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
+              >
+                <Github
+                  aria-hidden="true"
+                  className="w-4 h-4 group-hover:scale-110 transition-transform"
+                />
+                <span>@renatojuniordw</span>
+              </a>
+            </MagneticButton>
           </div>
         </div>
 
@@ -93,21 +99,25 @@ export function HeroSection() {
       </div>
 
       {/* Right Image Area */}
-      <div
+      <ParallaxSection
+        speed={0.1}
         className="lg:w-[45%] xl:w-[50%] relative w-full animate-in fade-in slide-in-from-right-8 duration-1000 fill-mode-forwards z-0 px-6 sm:px-12 lg:px-0 pb-12 lg:pb-0"
-        style={{ animationDelay: "800ms" }}
       >
-        <div className="relative w-full h-[65vh] lg:h-dvh rounded-[2rem] lg:rounded-none overflow-hidden bg-surface-2">
-          <Image
-            src="/RenatoBezerra.png"
-            alt={PROFILE.fullName || "Renato Bezerra"}
-            fill
-            priority
-            className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
+        <div
+          style={{ animationDelay: "800ms" }}
+        >
+          <div className="relative w-full h-[65vh] lg:h-dvh rounded-[2rem] lg:rounded-none overflow-hidden bg-surface-2">
+            <Image
+              src="/RenatoBezerra.png"
+              alt={PROFILE.fullName || "Renato Bezerra"}
+              fill
+              priority
+              className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
         </div>
-      </div>
+      </ParallaxSection>
     </section>
   );
 }
