@@ -1,5 +1,6 @@
 import { SplitText } from "@/components/fx/SplitText";
 import { Button } from "@/components/ui/button";
+import { CaseStudyBlock } from "@/components/ui/CaseStudyBlock";
 import { ArrowLeft, ExternalLink, Github, Code2 } from "lucide-react";
 import Link from "next/link";
 import { projectJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
@@ -120,30 +121,9 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                   Case Study
                 </h2>
                 <div className="grid grid-cols-1 gap-6">
-                  <div className="p-6 rounded-2xl bg-surface-2 border border-border border-l-[3px] border-l-red-500">
-                    <span className="text-xs font-medium text-red-500 uppercase tracking-widest mb-2 block">
-                      Desafio
-                    </span>
-                    <div className="text-text-secondary leading-relaxed">
-                      {project.caseStudy.challenge}
-                    </div>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-surface-2 border border-border border-l-[3px] border-l-tech">
-                    <span className="text-xs font-medium text-tech uppercase tracking-widest mb-2 block">
-                      Solução
-                    </span>
-                    <div className="text-text-secondary leading-relaxed">
-                      {project.caseStudy.solution}
-                    </div>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-surface-2 border border-border border-l-[3px] border-l-green-500">
-                    <span className="text-xs font-medium text-green-500 uppercase tracking-widest mb-2 block">
-                      Resultado
-                    </span>
-                    <div className="text-text-secondary leading-relaxed">
-                      {project.caseStudy.result}
-                    </div>
-                  </div>
+                  <CaseStudyBlock type="challenge">{project.caseStudy.challenge}</CaseStudyBlock>
+                  <CaseStudyBlock type="solution">{project.caseStudy.solution}</CaseStudyBlock>
+                  <CaseStudyBlock type="result">{project.caseStudy.result}</CaseStudyBlock>
                 </div>
               </section>
             )}

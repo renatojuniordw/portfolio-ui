@@ -4,6 +4,7 @@ import { BlogCard } from "@/components/blog/BlogCard";
 import { Tag } from "@/components/ui/Tag";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { getAllPosts } from "@/lib/blog";
@@ -32,7 +33,7 @@ export default function BlogPage() {
   ];
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
+    <PageLayout maxWidth="5xl">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <PageHeader
@@ -112,6 +113,6 @@ export default function BlogPage() {
           )}
         </>
       )}
-    </main>
+    </PageLayout>
   );
 }

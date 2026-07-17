@@ -3,6 +3,7 @@ import { SplitText } from "@/components/fx/SplitText";
 import { PROFILE } from "@/lib/constants";
 import { EXPERIENCES } from "@/lib/experience";
 import { EDUCATIONS, CERTIFICATIONS } from "@/lib/education";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -28,7 +29,7 @@ export default function CurriculoPage() {
   ];
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-4xl mx-auto">
+    <PageLayout maxWidth="4xl">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div className="flex-1">
@@ -122,6 +123,6 @@ export default function CurriculoPage() {
           </section>
         </aside>
       </div>
-    </main>
+    </PageLayout>
   );
 }

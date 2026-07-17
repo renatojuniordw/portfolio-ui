@@ -35,7 +35,7 @@ const Header = memo(function Header({
   isIntroFinished: boolean;
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isActive, onLinkClick } = useActiveNavLink();
+  const { isActive } = useActiveNavLink();
 
   return (
     <>
@@ -70,7 +70,6 @@ const Header = memo(function Header({
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => onLinkClick(item.href)}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-text",
                   isActive(item.href)
@@ -146,9 +145,7 @@ const Header = memo(function Header({
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() =>
-                      onLinkClick(item.href, () => setIsMenuOpen(false))
-                    }
+                    onClick={() => setIsMenuOpen(false)}
                     className={cn(
                       "flex items-center gap-4 text-lg font-medium transition-colors p-2 rounded-xl hover:bg-surface-1",
                       isActive(item.href)

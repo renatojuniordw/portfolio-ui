@@ -25,9 +25,5 @@ export function useActiveNavLink() {
     return pathname === href || (href !== "/" && pathname.startsWith(href));
   }
 
-  function onLinkClick(href: string, extra?: () => void) {
-    extra?.();
-  }
-
-  return { isActive, onLinkClick };
+  return { isActive };
 }

@@ -1,5 +1,6 @@
 import { buildMetadata } from "@/lib/seo";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ProjectsClient } from "@/components/ui/ProjectsClient";
@@ -23,7 +24,7 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <div className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
+    <PageLayout maxWidth="6xl">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <PageHeader
@@ -33,6 +34,6 @@ export default function ProjectsPage() {
       />
 
       <ProjectsClient />
-    </div>
+    </PageLayout>
   );
 }

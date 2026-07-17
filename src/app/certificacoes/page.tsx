@@ -1,6 +1,7 @@
 import { Award, Star, Calendar } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { EDUCATIONS, CERTIFICATIONS } from "@/lib/education";
@@ -20,7 +21,7 @@ export default function CertificacoesPage() {
   ];
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-4xl mx-auto">
+    <PageLayout maxWidth="4xl">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <PageHeader
@@ -93,6 +94,6 @@ export default function CertificacoesPage() {
           ))}
         </div>
       </section>
-    </main>
+    </PageLayout>
   );
 }

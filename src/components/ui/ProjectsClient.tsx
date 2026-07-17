@@ -8,20 +8,10 @@ import { PROJECTS } from "@/lib/projects";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
 import { EASE_OUT } from "@/lib/utils";
 
+import { PROJECT_ACCENT, ACCENT_DOT } from "@/lib/project-theme";
+
 const CARD_INITIAL = { opacity: 0, y: 20 };
 const CARD_ANIMATE = { opacity: 1, y: 0 };
-
-const ACCENT_COLOR_MAP: Record<string, string> = {
-  ia: "text-ia border-ia/30 bg-ia/5",
-  tech: "text-tech border-tech/30 bg-tech/5",
-  barraco: "text-barraco border-barraco/30 bg-barraco/5",
-};
-
-const ACCENT_DOT_MAP: Record<string, string> = {
-  ia: "bg-ia",
-  tech: "bg-tech",
-  barraco: "bg-barraco",
-};
 
 export function ProjectsClient() {
   const featuredProject = useMemo(
@@ -48,12 +38,12 @@ export function ProjectsClient() {
               <div className="flex flex-wrap items-center gap-3">
                 <span
                   className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${
-                    ACCENT_COLOR_MAP[featuredProject.accent] ??
+                    PROJECT_ACCENT[featuredProject.accent] ??
                     "text-muted border-border bg-surface"
                   }`}
                 >
                   <span
-                    className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT_MAP[featuredProject.accent] ?? "bg-muted"}`}
+                    className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT[featuredProject.accent] ?? "bg-muted"}`}
                   />
                   Projeto em destaque
                 </span>
@@ -135,12 +125,12 @@ export function ProjectsClient() {
                   </span>
                   <span
                     className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${
-                      ACCENT_COLOR_MAP[project.accent] ??
+                      PROJECT_ACCENT[project.accent] ??
                       "text-muted border-border bg-surface"
                     }`}
                   >
                     <span
-                      className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT_MAP[project.accent] ?? "bg-muted"}`}
+                      className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT[project.accent] ?? "bg-muted"}`}
                     />
                     {project.category}
                   </span>
