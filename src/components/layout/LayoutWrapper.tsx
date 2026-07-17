@@ -194,10 +194,12 @@ export default function LayoutWrapper({
   const mostrarChrome = !ROTAS_SEM_CHROME.includes(pathname);
   const [isIntroFinished, setIsIntroFinished] = useState(false);
 
-  // Check se já tocou a intro nessa sessão (opcional, para não tocar em todo refresh)
+  // Sincroniza com sessionStorage (external store) após o mount; não pode ser
+  // lido no initial state pois causaria mismatch de hidratação no SSR.
   useEffect(() => {
     const hasPlayed = sessionStorage.getItem("introPlayed");
     if (hasPlayed) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsIntroFinished(true);
     }
   }, []);

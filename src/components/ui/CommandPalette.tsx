@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { Search } from "lucide-react";
+import { SquareTerminal } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { TerminalPane } from "./TerminalPane";
@@ -44,13 +44,43 @@ export function CommandPalette() {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-text text-bg shadow-lg hover:scale-105 transition-transform md:bottom-8 md:right-8"
-        aria-label="Abrir terminal"
-      >
-        <Search size={18} />
-      </button>
+      <div className="fixed bottom-6 right-6 z-50 md:bottom-8 md:right-8 flex items-center gap-3">
+        <motion.span
+          className="hidden md:block text-xs text-text-secondary bg-surface-2 border border-border px-2.5 py-1 rounded-lg"
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.5 }}
+        >
+          Cmd+K
+        </motion.span>
+
+        <motion.button
+          onClick={() => setOpen(true)}
+          className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-text text-bg shadow-lg hover:scale-105 transition-transform"
+          aria-label="Abrir terminal interativo"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+        >
+          <span className="text-xs font-mono font-bold">&gt;_</span>
+          <motion.span
+            className="absolute inset-0 rounded-xl border-2 border-transparent"
+            animate={{
+              boxShadow: [
+                "0 0 0 0 rgba(0,0,0,0)",
+                "0 0 0 6px rgba(0,0,0,0.08)",
+                "0 0 0 0 rgba(0,0,0,0)",
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatDelay: 4,
+              ease: "easeInOut",
+            }}
+          />
+        </motion.button>
+      </div>
 
       <AnimatePresence>
         {open && (
