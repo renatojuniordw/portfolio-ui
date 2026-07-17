@@ -13,6 +13,15 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "placehold.co" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/projetos/unificando",
+        destination: "/projetos/unificando/automacao",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

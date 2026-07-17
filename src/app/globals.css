@@ -14,8 +14,6 @@
   --color-ia: var(--accent-ia);
   --color-barraco: var(--accent-barraco);
   
-  --color-success: var(--success);
-  --color-warning: var(--warning);
   --color-danger: var(--danger);
 
   --radius-sm: var(--radius-sm);
@@ -27,7 +25,6 @@
   --shadow-soft-2: var(--shadow-2);
 
   --ease-out: var(--ease-out);
-  --ease-inout: var(--ease-inout);
   
   --font-display: "Space Grotesk", "Sora", sans-serif;
   --font-body: "Inter", sans-serif;
