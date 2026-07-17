@@ -219,7 +219,7 @@ export function TerminalPane({
           aria-label="Terminal de comandos"
           autoComplete="off"
           spellCheck={false}
-          className="flex-1 bg-transparent outline-none text-text caret-ia"
+          className="flex-1 bg-transparent outline-none text-text caret-ia text-base md:text-sm"
         />
       </form>
     </div>
