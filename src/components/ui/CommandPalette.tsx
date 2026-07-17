@@ -26,7 +26,11 @@ export function CommandPalette() {
 
   const runCommand = React.useCallback((command: () => void) => {
     setOpen(false);
-    command();
+    try {
+      command();
+    } catch {
+      // command errors are non-critical UX actions
+    }
   }, []);
 
   const toggleTheme = React.useCallback(() => {

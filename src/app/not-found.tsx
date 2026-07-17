@@ -8,7 +8,9 @@ import { EASE_OUT } from "@/lib/utils";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 relative overflow-hidden text-center selection:bg-text selection:text-bg">
+    <div
+      role="alert"
+      className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 relative overflow-hidden text-center selection:bg-text selection:text-bg">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,7 +47,7 @@ export default function NotFound() {
             size="lg"
             variant="outline"
             className="px-8 rounded-full font-medium border-border text-text hover:bg-surface-1 transition-all w-full sm:w-auto"
-            onClick={() => window.history.back()}
+            onClick={() => { if (window.history.length > 1) window.history.back(); else window.location.href = "/"; }}
           >
             <ArrowLeft size={18} className="mr-2" />
             Voltar

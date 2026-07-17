@@ -17,14 +17,25 @@ const LANGUAGE_COLORS: Record<string, string> = {
   Dockerfile: "#384D54",
 };
 
+const GH_TIMEOUT = 8_000;
+
 export async function fetchGitHubStats(): Promise<GitHubStats | null> {
   try {
-    const [userRes, reposRes] = await Promise.all([
-      fetch("https://api.github.com/users/renatojuniordw"),
-      fetch("https://api.github.com/users/renatojuniordw/repos?per_page=100&sort=updated"),
-    ]);
+    const ac = new AbortController();
+    const timer = setTimeout(() => ac.abort(), GH_TIMEOUT);
 
-    if (!userRes.ok || !reposRes.ok) return null;
+    const [userRes, reposRes] = await Promise.all([
+      fetch("https://api.github.com/users/renatojuniordw", { signal: ac.signal }),
+      fetch("https://api.github.com/users/renatojuniordw/repos?per_page=100&sort=updated", { signal: ac.signal }),
+    ]);
+    clearTimeout(timer);
+
+    if (!userRes.ok || !reposRes.ok) {
+      if (process.env.NODE_ENV === "development") {
+        console.warn(`[GitHub API] HTTP ${userRes.status} / ${reposRes.status}`);
+      }
+      return null;
+    }
 
     const user = await userRes.json();
     const repos = await reposRes.json();
@@ -58,7 +69,10 @@ export async function fetchGitHubStats(): Promise<GitHubStats | null> {
       topLanguages,
       followers: user.followers,
     };
-  } catch {
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") {
+      console.error("[GitHub API]", err);
+    }
     return null;
   }
 }

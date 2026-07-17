@@ -113,7 +113,10 @@ export function TerminalPane({
 
       case "sudo":
         if (args.join(" ") === "hire-me") {
-          window.open(SOCIALS.personal.linkedin, "_blank", "noopener,noreferrer");
+          const win = window.open(SOCIALS.personal.linkedin, "_blank", "noopener,noreferrer");
+          if (!win) {
+            return [{ type: "error", text: "Popup bloqueado. Permita popups para este site." }];
+          }
           return [
             { type: "output", text: "🚀 Acesso concedido. Redirecionando para o LinkedIn..." },
           ];

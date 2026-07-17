@@ -26,7 +26,7 @@ export function IntroLoader({ onComplete }: { onComplete: () => void }) {
       // End: Trigger fade out and move
       onComplete();
     };
-    runAnimation();
+    runAnimation().catch(() => {});
   }, [onComplete]);
 
   return (

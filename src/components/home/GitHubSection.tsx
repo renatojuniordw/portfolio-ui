@@ -6,7 +6,18 @@ import { ScrollReveal } from "@/components/fx/ScrollReveal";
 export async function GitHubSection() {
   const stats = await fetchGitHubStats();
 
-  if (!stats) return null;
+  if (!stats) {
+    return (
+      <section className="section-wrapper bg-bg">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="section-label">GitHub</span>
+          <p className="text-text-secondary">
+            Dados do GitHub temporariamente indisponíveis.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section-wrapper bg-bg">
