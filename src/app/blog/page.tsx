@@ -39,7 +39,6 @@ export default function BlogPage() {
       <PageHeader
         title="Blog"
         description="Artigos sobre engenharia de software, IA e tecnologia."
-        srTitle="Blog - Renato Bezerra"
       />
 
       {posts.length === 0 ? (

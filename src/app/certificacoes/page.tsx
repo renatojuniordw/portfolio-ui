@@ -27,7 +27,6 @@ export default function CertificacoesPage() {
       <PageHeader
         title="Certificações"
         description="Formação acadêmica e certificações que consolidam minha base técnica."
-        srTitle="Certificações - Renato Bezerra"
       />
 
       <section aria-labelledby="education-title" className="mb-20">

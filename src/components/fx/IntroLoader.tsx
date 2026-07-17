@@ -5,8 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function IntroLoader({ onComplete }: { onComplete: () => void }) {
   const [stage, setStage] = useState(0);
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      onComplete();
+      return;
+    }
+
     const runAnimation = async () => {
       // Stage 0: Initial (Wait a bit)
       await new Promise((r) => setTimeout(r, 200));

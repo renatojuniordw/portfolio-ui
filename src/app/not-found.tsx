@@ -8,9 +8,7 @@ import { EASE_OUT } from "@/lib/utils";
 
 export default function NotFound() {
   return (
-    <div
-      role="alert"
-      className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 relative overflow-hidden text-center selection:bg-text selection:text-bg">
+    <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 relative overflow-hidden text-center selection:bg-text selection:text-bg">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -21,7 +19,7 @@ export default function NotFound() {
           404
         </h1>
 
-        <div className="space-y-4">
+        <div className="space-y-4" role="alert">
           <h2 className="text-4xl md:text-5xl font-medium text-text tracking-tight">
             Página não encontrada
           </h2>

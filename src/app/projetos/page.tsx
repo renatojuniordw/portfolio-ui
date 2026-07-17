@@ -30,7 +30,6 @@ export default function ProjectsPage() {
       <PageHeader
         title="Meus Projetos"
         description={<>Uma seleção de trabalhos que unem código, design e impacto real no negócio — de <strong>atendimento WhatsApp com IA</strong> a <strong>interações web de alto desempenho</strong>.</>}
-        srTitle="Portfólio de Projetos - Renato Bezerra"
       />
 
       <ProjectsClient />

@@ -24,7 +24,7 @@ const AccordionItem = memo(function AccordionItem({
     <div
       role="button"
       tabIndex={0}
-      aria-pressed={isActive}
+      aria-selected={isActive}
       aria-label={item.title}
       onMouseEnter={onActivate}
       onFocus={onActivate}

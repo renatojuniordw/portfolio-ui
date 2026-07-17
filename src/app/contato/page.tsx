@@ -50,7 +50,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen flex flex-col justify-center">
+    <div className="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen flex flex-col justify-center">
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
@@ -139,6 +139,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
