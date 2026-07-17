@@ -5,8 +5,10 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { ArticlesSection } from "@/components/home/ArticlesSection";
 import { DifferentialsSection } from "@/components/home/DifferentialsSection";
+import { GitHubSection } from "@/components/home/GitHubSection";
 import { ContactSection } from "@/components/home/ContactSection";
 import { PROFILE } from "@/lib/constants";
+import { getRecentPosts } from "@/lib/blog";
 
 export const generateMetadata = () =>
   buildMetadata({
@@ -20,6 +22,8 @@ export const generateMetadata = () =>
   });
 
 export default function Home() {
+  const recentPosts = getRecentPosts(2);
+
   return (
     <div className="w-full bg-bg text-text relative overflow-x-hidden transition-colors duration-300">
       <JsonLd data={personJsonLd()} />
@@ -28,7 +32,8 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <DifferentialsSection />
-      <ArticlesSection />
+      <GitHubSection />
+      <ArticlesSection posts={recentPosts} />
       <ContactSection />
     </div>
   );

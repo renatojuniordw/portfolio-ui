@@ -66,6 +66,15 @@ export default function RootLayout({
             gtag('config', 'G-2WSFGQCP27');
           `}
         </Script>
+        <Script id="sw-register" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+              });
+            }
+          `}
+        </Script>
         <ThemeProvider>
           <EasterEgg />
           <LayoutWrapper>{children}</LayoutWrapper>

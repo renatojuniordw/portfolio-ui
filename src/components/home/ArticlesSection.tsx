@@ -1,10 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, PenLine } from "lucide-react";
+import { BookOpen, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
+import { Tag } from "@/components/ui/Tag";
 
-export function ArticlesSection() {
+interface BlogPostSummary {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+  readingTime: string;
+}
+
+interface ArticlesSectionProps {
+  posts?: BlogPostSummary[];
+}
+
+export function ArticlesSection({ posts = [] }: ArticlesSectionProps) {
   return (
     <section
       id="artigos"
@@ -13,31 +27,59 @@ export function ArticlesSection() {
     >
       <div className="max-w-4xl mx-auto">
         <ScrollReveal>
-          <Link
-            href="/blog"
-            className="group block p-8 md:p-12 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-all duration-300"
-          >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="flex items-start gap-6">
-                <div className="hidden md:flex w-14 h-14 rounded-2xl bg-ia/10 border border-ia/20 items-center justify-center shrink-0">
-                  <PenLine className="w-6 h-6 text-ia" />
-                </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <span className="section-label">Blog</span>
+              <h2 id="artigos-heading" className="section-title">
+                Artigos Recentes
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text rounded-full text-sm font-medium hover:border-[#111111] dark:hover:border-white transition-colors shrink-0 group"
+            >
+              Ver todos
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {posts.map((post, index) => (
+            <ScrollReveal key={post.slug} delay={index * 100} direction="up">
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-all duration-300 flex flex-col justify-between min-h-[220px]"
+              >
                 <div>
-                  <h2 id="artigos-heading" className="text-2xl md:text-3xl font-display font-bold text-text mb-2">
-                    Blog
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed">
-                    Artigos sobre engenharia de software, IA, automação e tecnologia.
+                  <div className="flex items-center justify-between mb-4">
+                    <time className="text-xs font-medium text-muted uppercase tracking-widest">
+                      {new Date(post.date).toLocaleDateString("pt-BR", {
+                        year: "numeric",
+                        month: "short",
+                      })}
+                    </time>
+                    <span className="flex items-center gap-1.5 text-xs text-muted">
+                      <BookOpen className="w-3 h-3" />
+                      {post.readingTime}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-medium text-text mb-3 group-hover:text-text-secondary transition-colors leading-snug">
+                    {post.title}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed text-sm line-clamp-2">
+                    {post.description}
                   </p>
                 </div>
-              </div>
-              <span className="flex items-center gap-2 text-sm font-medium text-text whitespace-nowrap group-hover:gap-3 transition-all shrink-0">
-                Ver todos os artigos
-                <ArrowRight className="w-4 h-4" />
-              </span>
-            </div>
-          </Link>
-        </ScrollReveal>
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {post.tags.map((tag) => (
+                    <Tag key={tag}>{tag}</Tag>
+                  ))}
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
+        </div>
       </div>
     </section>
   );

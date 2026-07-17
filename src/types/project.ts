@@ -23,6 +23,12 @@ export interface ProjectExtraSection {
   content: string | ReactNode;
 }
 
+export interface ProjectCaseStudy {
+  challenge: string | ReactNode;
+  solution: string | ReactNode;
+  result: string | ReactNode;
+}
+
 export interface SidebarTechStack {
   label: string;
   name: string;
@@ -71,6 +77,9 @@ export interface ProjectDetails {
   // Content - Features
   featuresTitle?: string;
   features?: ProjectFeature[];
+
+  // Content - Case Study (Desafio → Solução → Resultado)
+  caseStudy?: ProjectCaseStudy;
 
   // Content - Extra Sections
   extraSections?: ProjectExtraSection[];

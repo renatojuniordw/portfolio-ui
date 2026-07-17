@@ -94,6 +94,23 @@ export const unificandoAutomacaoCase: ProjectCase = {
   liveUrl: SOCIALS.unificando.site,
   overviewTitle: "O Desafio Técnico: Atendimento WhatsApp",
   overviewContent: <Overview />,
+  caseStudy: {
+    challenge: (
+      <p>
+        O ecossistema Unificando precisava gerenciar <strong>múltiplos canais de atendimento</strong> (WhatsApp, Instagram, site) sem uma equipe de suporte 24h. O lead time de resposta era de horas, e clientes em potencial estavam perdendo o interesse antes de qualquer contato humano.
+      </p>
+    ),
+    solution: (
+      <p>
+        Implementei uma <strong>arquitetura de agentes de IA</strong> orquestrados via n8n: um agente de triagem classifica a intenção da mensagem em ms, um agente de vendas responde com base em uma base de conhecimento RAG, e um sistema de <strong>handoff estruturado</strong> transfere para humanos quando necessário — tudo com saída JSON validada.
+      </p>
+    ),
+    result: (
+      <p>
+        Redução do tempo de resposta de <strong>horas para segundos</strong>. Mais de 60% dos leads qualificados foram atendidos completamente pelo agente, sem necessidade de intervenção humana. O cliente报告 aumento na taxa de conversão de leads inbound.
+      </p>
+    ),
+  },
   extraSections: [
     {
       id: "tech-highlights-title",

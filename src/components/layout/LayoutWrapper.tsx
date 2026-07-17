@@ -9,20 +9,32 @@ import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useActiveNavLink } from "@/hooks/useActiveNavLink";
 import { cn } from "@/lib/utils";
-import { Home, FolderOpen, User, FileText, PenLine, Award, Menu, X } from "lucide-react";
+import {
+  Home,
+  FolderOpen,
+  User,
+  FileText,
+  PenLine,
+  Award,
+  Menu,
+  X,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntroLoader } from "@/components/fx/IntroLoader";
 
 const NAV_ITEMS = [
   { label: "Início", href: "/", icon: Home },
-  { label: "Sobre", href: "/#sobre", icon: User },
   { label: "Projetos", href: "/projetos", icon: FolderOpen },
   { label: "Blog", href: "/blog", icon: PenLine },
   { label: "Currículo", href: "/curriculo", icon: FileText },
   { label: "Certificações", href: "/certificacoes", icon: Award },
 ];
 
-const Header = memo(function Header({ isIntroFinished }: { isIntroFinished: boolean }) {
+const Header = memo(function Header({
+  isIntroFinished,
+}: {
+  isIntroFinished: boolean;
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isActive, onLinkClick } = useActiveNavLink();
 
@@ -39,7 +51,9 @@ const Header = memo(function Header({ isIntroFinished }: { isIntroFinished: bool
             <>
               <motion.span layoutId="navbar-logo-r">R</motion.span>
               <motion.span layoutId="navbar-logo-b">B</motion.span>
-              <motion.span layoutId="navbar-logo-dot" className="text-tech">.</motion.span>
+              <motion.span layoutId="navbar-logo-dot" className="text-tech">
+                .
+              </motion.span>
             </>
           ) : (
             <span className="opacity-0 flex">
@@ -114,7 +128,9 @@ const Header = memo(function Header({ isIntroFinished }: { isIntroFinished: bool
               {/* Header da Gaveta */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-border">
                 <span className="text-xl font-bold tracking-tighter text-text flex items-center">
-                  <span>R</span><span>B</span><span className="text-tech">.</span>
+                  <span>R</span>
+                  <span>B</span>
+                  <span className="text-tech">.</span>
                 </span>
                 <button
                   onClick={() => setIsMenuOpen(false)}
@@ -131,7 +147,9 @@ const Header = memo(function Header({ isIntroFinished }: { isIntroFinished: bool
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => onLinkClick(item.href, () => setIsMenuOpen(false))}
+                    onClick={() =>
+                      onLinkClick(item.href, () => setIsMenuOpen(false))
+                    }
                     className={cn(
                       "flex items-center gap-4 text-lg font-medium transition-colors p-2 rounded-xl hover:bg-surface-1",
                       isActive(item.href)
@@ -142,7 +160,9 @@ const Header = memo(function Header({ isIntroFinished }: { isIntroFinished: bool
                     <item.icon
                       size={20}
                       className={
-                        isActive(item.href) ? "text-text" : "text-text-secondary"
+                        isActive(item.href)
+                          ? "text-text"
+                          : "text-text-secondary"
                       }
                     />
                     {item.label}
@@ -202,7 +222,9 @@ export default function LayoutWrapper({
       </a>
       <SmoothScroll />
       {mostrarChrome && <Header isIntroFinished={isIntroFinished} />}
-      <main id="main-content" className="bg-bg text-text min-h-screen">{children}</main>
+      <main id="main-content" className="bg-bg text-text min-h-screen">
+        {children}
+      </main>
       {mostrarChrome && <Footer />}
     </>
   );
