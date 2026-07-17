@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 import {
   Home,
   FolderOpen,
-  User,
   FileText,
   PenLine,
   Award,

@@ -5,7 +5,6 @@ import { ArrowLeft, BookOpen, Calendar, Linkedin, MessageCircle } from "lucide-r
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { SplitText } from "@/components/fx/SplitText";
 import { Tag } from "@/components/ui/Tag";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo";

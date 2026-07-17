@@ -39,8 +39,6 @@ export function MagneticButton({
     ref.current.style.transform = "translate(0, 0)";
   };
 
-  const Tag = as;
-
   return (
     <div
       ref={ref}

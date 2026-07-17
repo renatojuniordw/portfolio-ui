@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export interface AccordionImageItem {
   id: string;
   title: string;
@@ -36,12 +38,13 @@ function AccordionItem({ item, isActive, onActivate }: AccordionItemProps) {
         ${isActive ? "w-[200px] md:w-[360px]" : "w-[40px] md:w-[56px]"}
       `}
     >
-      <img
+      <Image
         src={item.imageUrl}
         alt={item.title}
+        fill
+        sizes="(min-width: 768px) 360px, 200px"
         loading="lazy"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="object-cover"
         onError={(e) => {
           e.currentTarget.onerror = null;
           e.currentTarget.src =

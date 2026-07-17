@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { SplitText } from "@/components/fx/SplitText";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { Tag } from "@/components/ui/Tag";

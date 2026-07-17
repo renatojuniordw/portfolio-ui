@@ -1,5 +1,4 @@
 import { SOCIALS, PROFILE } from "./constants";
-import { EXPERIENCES } from "./experience";
 import { EDUCATIONS } from "./education";
 
 const SITE_URL = SOCIALS.personal.site;
