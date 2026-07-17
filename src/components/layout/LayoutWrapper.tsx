@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState, useEffect } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 
 const ROTAS_SEM_CHROME = ["/links"];
@@ -203,10 +203,10 @@ export default function LayoutWrapper({
     }
   }, []);
 
-  const handleIntroComplete = () => {
+  const handleIntroComplete = useCallback(() => {
     setIsIntroFinished(true);
     sessionStorage.setItem("introPlayed", "true");
-  };
+  }, []);
 
   return (
     <>

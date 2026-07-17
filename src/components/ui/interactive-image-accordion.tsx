@@ -1,5 +1,6 @@
 "use client";
 
+import { memo, useCallback } from "react";
 import Image from "next/image";
 
 export interface AccordionImageItem {
@@ -14,7 +15,11 @@ interface AccordionItemProps {
   onActivate: () => void;
 }
 
-function AccordionItem({ item, isActive, onActivate }: AccordionItemProps) {
+const AccordionItem = memo(function AccordionItem({
+  item,
+  isActive,
+  onActivate,
+}: AccordionItemProps) {
   return (
     <div
       role="button"
@@ -68,7 +73,7 @@ function AccordionItem({ item, isActive, onActivate }: AccordionItemProps) {
       </span>
     </div>
   );
-}
+});
 
 interface InteractiveImageAccordionProps {
   items: AccordionImageItem[];
@@ -83,6 +88,11 @@ export function InteractiveImageAccordion({
   onActiveChange,
   className,
 }: InteractiveImageAccordionProps) {
+  const handleActivate = useCallback(
+    (id: string) => () => onActiveChange(id),
+    [onActiveChange],
+  );
+
   return (
     <div
       className={`flex flex-row items-center gap-3 md:gap-4 overflow-x-auto p-1 ${className ?? ""}`}
@@ -92,7 +102,7 @@ export function InteractiveImageAccordion({
           key={item.id}
           item={item}
           isActive={item.id === activeId}
-          onActivate={() => onActiveChange(item.id)}
+          onActivate={handleActivate(item.id)}
         />
       ))}
     </div>

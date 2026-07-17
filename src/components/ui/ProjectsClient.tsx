@@ -1,11 +1,15 @@
 "use client";
 
+import { useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/projects";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
 import { EASE_OUT } from "@/lib/utils";
+
+const CARD_INITIAL = { opacity: 0, y: 20 };
+const CARD_ANIMATE = { opacity: 1, y: 0 };
 
 const ACCENT_COLOR_MAP: Record<string, string> = {
   ia: "text-ia border-ia/30 bg-ia/5",
@@ -20,11 +24,13 @@ const ACCENT_DOT_MAP: Record<string, string> = {
 };
 
 export function ProjectsClient() {
-  const featuredProject =
-    PROJECTS.find((project) => project.id === "unificando-pdf") ??
-    PROJECTS[0];
-  const secondaryProjects = PROJECTS.filter(
-    (project) => project.id !== featuredProject.id,
+  const featuredProject = useMemo(
+    () => PROJECTS.find((project) => project.id === "unificando-pdf") ?? PROJECTS[0],
+    [],
+  );
+  const secondaryProjects = useMemo(
+    () => PROJECTS.filter((project) => project.id !== featuredProject.id),
+    [featuredProject],
   );
 
   return (
@@ -33,7 +39,7 @@ export function ProjectsClient() {
         <section className="grid gap-6">
           <motion.article
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={CARD_ANIMATE}
             transition={{ duration: 0.4, ease: EASE_OUT }}
             className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 md:p-10 shadow-soft-2"
           >
@@ -113,8 +119,8 @@ export function ProjectsClient() {
             <motion.article
               key={project.id}
               layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={CARD_INITIAL}
+              animate={CARD_ANIMATE}
               transition={{
                 duration: 0.35,
                 delay: index * 0.04,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
 import {
   InteractiveImageAccordion,
@@ -58,8 +58,10 @@ const DIFFERENTIALS: Differential[] = [
 
 export function DifferentialsSection() {
   const [activeId, setActiveId] = useState(DIFFERENTIALS[0].id);
-  const active =
-    DIFFERENTIALS.find((item) => item.id === activeId) ?? DIFFERENTIALS[0];
+  const active = useMemo(
+    () => DIFFERENTIALS.find((item) => item.id === activeId) ?? DIFFERENTIALS[0],
+    [activeId],
+  );
 
   return (
     <section

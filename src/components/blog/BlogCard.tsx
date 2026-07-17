@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { Tag } from "@/components/ui/Tag";
@@ -8,7 +9,7 @@ interface BlogCardProps {
   post: BlogPost;
 }
 
-export function BlogCard({ post }: BlogCardProps) {
+export const BlogCard = memo(function BlogCard({ post }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -47,4 +48,4 @@ export function BlogCard({ post }: BlogCardProps) {
       </div>
     </Link>
   );
-}
+});

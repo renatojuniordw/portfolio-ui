@@ -44,14 +44,7 @@ export default function RootLayout({
       className={cn(inter.variable, spaceGrotesk.variable)}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </head>
+      <head />
       <body className="antialiased selection:bg-tech/30">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-2WSFGQCP27"

@@ -112,6 +112,9 @@ const LINKS_DATA = [
   },
 ];
 
+const LINK_INITIAL = { opacity: 0, y: 20 };
+const LINK_ANIMATE = { opacity: 1, y: 0 };
+
 const LinkItem = ({
   href,
   icon: Icon,
@@ -140,8 +143,8 @@ const LinkItem = ({
       href={href}
       target={href.startsWith("/") ? undefined : "_blank"}
       rel={href.startsWith("/") ? undefined : "noopener noreferrer"}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={LINK_INITIAL}
+      animate={LINK_ANIMATE}
       transition={{ delay, duration: 0.5, ease: EASE_OUT }}
       className={`group relative flex items-center p-4 rounded-2xl border border-border bg-bg shadow-sm transition-all duration-300 ${themes[variant]}`}
     >
@@ -197,6 +200,7 @@ export function LinksClient() {
               src="/RenatoBezerra.png"
               alt={PROFILE.name}
               fill
+              priority
               className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
               sizes="96px"
             />
