@@ -22,8 +22,8 @@ const AccordionItem = memo(function AccordionItem({
 }: AccordionItemProps) {
   return (
     <div
-      role="button"
-      tabIndex={0}
+      role="tab"
+      tabIndex={isActive ? 0 : -1}
       aria-selected={isActive}
       aria-label={item.title}
       onMouseEnter={onActivate}
@@ -95,6 +95,7 @@ export function InteractiveImageAccordion({
 
   return (
     <div
+      role="tablist"
       className={`flex flex-row items-center gap-3 md:gap-4 overflow-x-auto p-1 ${className ?? ""}`}
     >
       {items.map((item) => (

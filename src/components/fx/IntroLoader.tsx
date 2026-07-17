@@ -35,7 +35,7 @@ export function IntroLoader({ onComplete }: { onComplete: () => void }) {
       onComplete();
     };
     runAnimation().catch(() => {});
-  }, [onComplete]);
+  }, [onComplete, prefersReducedMotion]);
 
   return (
     <motion.div
