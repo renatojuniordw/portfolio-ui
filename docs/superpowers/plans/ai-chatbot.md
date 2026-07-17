@@ -88,6 +88,20 @@ export function buildSystemPrompt(): string {
 
 ~22K tokens totais → cabe no GPT-4o-mini (128K). RAG com embeddings é overkill para esse volume.
 
+#### ⚠️ Nem todo dado é texto puro
+
+Validado contra o código atual: `PROFILE`, `SOCIALS`, `EDUCATIONS`, `CERTIFICATIONS` e os campos de `getAllPosts()` já são strings simples — dá pra usar direto. Mas:
+
+- `EXPERIENCES[].responsibilities` ([experience.tsx](../../../src/lib/experience.tsx)) é `React.ReactNode[]` — várias entradas usam `<React.Fragment><strong>...`.
+- `PROJECT_CASES` ([project-cases.tsx](../../../src/lib/project-cases.tsx)) tem `overviewContent`, `shortDescription`, `features[].description` e `extraSections[].content` como JSX. Só `card.description`, `card.techs` e `sidebarTechStack` já são string/string[].
+
+**Decisão:** adicionar campos de texto plano em paralelo ao JSX existente, em vez de extrair texto do JSX em runtime. Concretamente:
+
+- `Experience.responsibilitiesText?: string[]` em [experience.tsx](../../../src/lib/experience.tsx), ao lado de `responsibilities`.
+- `ProjectCase.overviewSummary?: string` e `features[].description` já são string — só falta o resumo do overview — em cada um dos 9 arquivos de `src/lib/projects/*.tsx`.
+
+`buildSystemPrompt()` usa esses campos `*Text`/`*Summary` quando existirem; se faltar em algum item, cai para `card.description` (fallback simples, sem quebrar o build). Isso evita ter que tocar em `react-dom/server` no meio de uma API route, ao custo de manter o texto do prompt sincronizado manualmente quando o conteúdo JSX de um projeto mudar.
+
 ### 4.2 API Route
 
 `src/app/api/chat/route.ts`:
@@ -205,7 +219,8 @@ Criar `.env.example` com a variável documentada.
 | # | Tarefa | Arquivos |
 |---|--------|----------|
 | 1 | Instalar deps + configurar env | `npm install`, `.env.local`, `.env.example` |
-| 2 | Criar chat-context.ts | `src/lib/chat-context.ts` |
+| 2a | Adicionar campos de texto plano (`responsibilitiesText`, `overviewSummary`) | `src/lib/experience.tsx`, `src/lib/projects/*.tsx` (9 arquivos) |
+| 2b | Criar chat-context.ts (consome os campos `*Text`/`*Summary`, com fallback pra `card.description`) | `src/lib/chat-context.ts` |
 | 3 | Criar API route | `src/app/api/chat/route.ts` |
 | 4 | Criar tipos | `src/types/chat.ts` |
 | 5 | Criar ChatProvider | `src/components/chat/ChatProvider.tsx` |
