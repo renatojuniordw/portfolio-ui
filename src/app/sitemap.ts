@@ -5,51 +5,52 @@ import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SOCIALS.personal.site;
-  const lastModified = new Date();
 
-  const staticRoutes = [
-    "",
-    "/projetos",
-    "/curriculo",
-    "/contato",
-    "/links",
-    "/blog",
-    "/certificacoes",
+  const staticRoutes: { path: string; priority: number; changeFreq: "daily" | "weekly" | "monthly" }[] = [
+    { path: "", priority: 1, changeFreq: "weekly" },
+    { path: "/projetos", priority: 0.9, changeFreq: "weekly" },
+    { path: "/blog", priority: 0.9, changeFreq: "weekly" },
+    { path: "/curriculo", priority: 0.7, changeFreq: "monthly" },
+    { path: "/certificacoes", priority: 0.7, changeFreq: "monthly" },
+    { path: "/contato", priority: 0.5, changeFreq: "monthly" },
+    { path: "/links", priority: 0.5, changeFreq: "monthly" },
   ];
 
-  const projectRoutes = PROJECTS.map((project) => project.link);
-  const blogRoutes = getAllPosts().map((post) => `/blog/${post.slug}`);
+  const posts = getAllPosts();
+  const postRoutes = posts.map((post) => ({
+    path: `/blog/${post.slug}`,
+    priority: 0.6,
+    changeFreq: "monthly" as const,
+    lastModified: new Date(post.date),
+  }));
 
-  const routes = [...staticRoutes, ...projectRoutes, ...blogRoutes];
+  const projectRoutes = PROJECTS.map((project) => ({
+    path: project.link,
+    priority: 0.8,
+    changeFreq: "monthly" as const,
+    lastModified: new Date(),
+  }));
 
-  return routes.map((route) => {
-    let priority = 0.5;
-    let changeFrequency: "daily" | "weekly" | "monthly" = "monthly";
+  const now = new Date();
 
-    if (route === "") {
-      priority = 1;
-      changeFrequency = "weekly";
-    } else if (route === "/blog" || route === "/projetos") {
-      priority = 0.9;
-      changeFrequency = "weekly";
-    } else if (route === "/curriculo" || route === "/certificacoes") {
-      priority = 0.7;
-      changeFrequency = "monthly";
-    } else if (route.startsWith("/blog/")) {
-      priority = 0.6;
-      changeFrequency = "monthly";
-    } else if (route.startsWith("/projetos/")) {
-      priority = 0.8;
-      changeFrequency = "monthly";
-    } else {
-      priority = 0.5;
-    }
-
-    return {
-      url: `${baseUrl}${route}`,
-      lastModified,
-      changeFrequency,
-      priority,
-    };
-  });
+  return [
+    ...staticRoutes.map((r) => ({
+      url: `${baseUrl}${r.path}`,
+      lastModified: now,
+      changeFrequency: r.changeFreq,
+      priority: r.priority,
+    })),
+    ...postRoutes.map((r) => ({
+      url: `${baseUrl}${r.path}`,
+      lastModified: r.lastModified,
+      changeFrequency: r.changeFreq,
+      priority: r.priority,
+    })),
+    ...projectRoutes.map((r) => ({
+      url: `${baseUrl}${r.path}`,
+      lastModified: r.lastModified,
+      changeFrequency: r.changeFreq,
+      priority: r.priority,
+    })),
+  ];
 }

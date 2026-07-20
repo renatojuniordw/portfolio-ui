@@ -58,19 +58,22 @@ const AccordionItem = memo(function AccordionItem({
       />
       <div className="absolute inset-0 bg-black/45" />
 
-      <span
+      <div
         className={`
-          absolute text-white text-sm md:text-lg font-medium whitespace-nowrap
-          transition-all duration-300 ease-in-out
-          ${
-            isActive
-              ? "bottom-6 left-1/2 -translate-x-1/2 rotate-0"
-              : "bottom-16 md:bottom-24 left-1/2 -translate-x-1/2 rotate-90"
-          }
+          absolute inset-0 flex
+          ${isActive ? "items-end justify-center pb-6" : "items-center justify-center"}
         `}
       >
-        {item.title}
-      </span>
+        <span
+          className={`
+            text-white text-sm md:text-base font-medium whitespace-nowrap
+            transition-all duration-300 ease-in-out
+            ${isActive ? "rotate-0" : "rotate-90"}
+          `}
+        >
+          {item.title}
+        </span>
+      </div>
     </div>
   );
 });

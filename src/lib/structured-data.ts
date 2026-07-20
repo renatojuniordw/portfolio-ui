@@ -127,6 +127,7 @@ export function articleJsonLd(article: {
   description: string;
   url: string;
   publishedTime: string;
+  modifiedTime?: string;
   tags: string[];
 }) {
   return {
@@ -136,6 +137,7 @@ export function articleJsonLd(article: {
     description: article.description,
     url: article.url,
     datePublished: article.publishedTime,
+    ...(article.modifiedTime ? { dateModified: article.modifiedTime } : { dateModified: article.publishedTime }),
     author: {
       "@type": "Person",
       name: PROFILE.name,

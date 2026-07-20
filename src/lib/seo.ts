@@ -99,8 +99,6 @@ export function buildMetadata({
     },
     verification: {
       google: "G-2WSFGQCP27",
-      yandex: undefined,
-      yahoo: undefined,
     },
   };
 }

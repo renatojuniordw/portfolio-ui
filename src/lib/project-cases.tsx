@@ -13,9 +13,9 @@ import { sistema18iaCase } from "./projects/sistema-18ia";
 
 export const PROJECT_CASES: ProjectCase[] = [
   unificandoPdfCase,
+  unificandoMedCase,
   unificandoAutomacaoCase,
   unificandoVitrineCase,
-  unificandoMedCase,
   mariaClaraSantosCase,
   seuBarracoEspertoCase,
   oferticandoCase,
