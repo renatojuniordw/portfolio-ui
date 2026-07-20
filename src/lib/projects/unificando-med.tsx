@@ -23,7 +23,7 @@ function Overview() {
         ativo e classificação terapêutica correspondentes.
       </p>
       <p>
-        O <strong>Unificando Med</strong> resolve isso com{" "}
+        O <strong>Med Unificando</strong> resolve isso com{" "}
         <strong>busca semântica em linguagem natural</strong>, rodando sobre
         um modelo de embeddings executado localmente no servidor — sem
         chamadas a APIs externas de IA. Os dados de medicamentos e preços
@@ -81,14 +81,14 @@ export const unificandoMedCase: ProjectCase = {
   pathSegments: ["unificando", "med"],
   card: card(
     "unificando-med",
-    "Unificando Med",
+    "Med Unificando",
     "Healthcare / IA",
     "Consulta inteligente de medicamentos intercambiáveis da ANVISA, com busca semântica por IA local e comparação de preços CMED.",
     "ia",
     ["Next.js", "Prisma", "PostgreSQL", "IA Local"],
   ),
   jsonLd: {
-    name: "Unificando Med",
+    name: "Med Unificando",
     description:
       "Plataforma de consulta de medicamentos intercambiáveis da ANVISA com busca semântica por IA local.",
     url: LIVE_URL,
@@ -98,7 +98,7 @@ export const unificandoMedCase: ProjectCase = {
     { name: "Med", item: "/projetos/unificando/med" },
   ),
   categoryBadge: "Healthcare / IA",
-  title: "Unificando Med: Medicamentos Intercambiáveis com IA",
+  title: "Med Unificando: Medicamentos Intercambiáveis com IA",
   shortDescription: (
     <>
       Consulta de medicamentos intercambiáveis da <strong>ANVISA</strong> com{" "}
