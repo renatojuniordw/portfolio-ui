@@ -15,7 +15,7 @@ const CARD_ANIMATE = { opacity: 1, y: 0 };
 
 export function ProjectsClient() {
   const featuredProject = useMemo(
-    () => PROJECTS.find((project) => project.id === "unificando-pdf") ?? PROJECTS[0],
+    () => PROJECTS.find((project) => project.id === "unificando-med") ?? PROJECTS[0],
     [],
   );
   const secondaryProjects = useMemo(
