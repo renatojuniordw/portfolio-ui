@@ -3,6 +3,7 @@ import type { ProjectCase } from "@/types/project";
 import { unificandoPdfCase } from "./projects/unificando-pdf";
 import { unificandoAutomacaoCase } from "./projects/unificando-automacao";
 import { unificandoVitrineCase } from "./projects/unificando-vitrine";
+import { unificandoMedCase } from "./projects/unificando-med";
 import { mariaClaraSantosCase } from "./projects/mariaclarasantos";
 import { seuBarracoEspertoCase } from "./projects/seu-barraco-esperto";
 import { oferticandoCase } from "./projects/oferticando";
@@ -14,6 +15,7 @@ export const PROJECT_CASES: ProjectCase[] = [
   unificandoPdfCase,
   unificandoAutomacaoCase,
   unificandoVitrineCase,
+  unificandoMedCase,
   mariaClaraSantosCase,
   seuBarracoEspertoCase,
   oferticandoCase,
