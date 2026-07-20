@@ -1,0 +1,39 @@
+# Renato Bezerra — Engenheiro de Software
+
+> Portfólio profissional com projetos, artigos e experiências em engenharia de software, front-end (React, Angular, Next.js) e IA Generativa aplicada.
+
+## URL
+https://renatobezerra.com.br
+
+## Summary
+Engenheiro de Software com +7 anos de experiência em desenvolvimento front-end, especializado em Angular, React.js e Next.js. Pós-graduado em Arquitetura de Software (FIAP). Atuação em IA Generativa aplicada: agentes autônomos, engenharia de prompts, RAG, n8n.
+
+## Páginas principais
+- Home: https://renatobezerra.com.br/ — Portfólio completo
+- Projetos: https://renatobezerra.com.br/projetos — Case studies detalhados
+- Currículo: https://renatobezerra.com.br/curriculo — Experiência profissional
+- Blog: https://renatobezerra.com.br/blog — Artigos técnicos
+- Certificações: https://renatobezerra.com.br/certificacoes
+- Contato: https://renatobezerra.com.br/contato
+- Links: https://renatobezerra.com.br/links
+
+## Projetos em destaque
+- Sheik: https://renatobezerra.com.br/projetos/sheik — App de delivery com React Native + Node.js
+- Oferticando: https://renatobezerra.com.br/projetos/oferticando — Comparador de preços com IA
+- Seu Barraco Esperto: https://renatobezerra.com.br/projetos/seu-barraco-esperto — Aluguel residencial com gamificação
+- Unificando PDF: https://renatobezerra.com.br/projetos/unificando-pdf — Editor de PDF online
+- Unificando MED: https://renatobezerra.com.br/projetos/unificando-med — Prescrição médica offline-first
+- Sistema 18IA: https://renatobezerra.com.br/projetos/sistema-18ia — Agente autônomo via WhatsApp
+- Unificando Automação: https://renatobezerra.com.br/projetos/unificando-automacao — IA + n8n
+- Unificando Vitrine: https://renatobezerra.com.br/projetos/unificando-vitrine — Site institucional n8n
+- Maria Clara Santos: https://renatobezerra.com.br/projetos/mariaclarasantos — Landing page performance
+- Ariano Suassuna: https://renatobezerra.com.br/projetos/ariano-suassuna — Site enciclopédia temática
+
+## Redes Sociais
+- LinkedIn: https://linkedin.com/in/renato-bezerra
+- GitHub: https://github.com/renatojuniordw
+- Instagram: https://instagram.com/renatobezerra.jr
+
+## Contato
+- Email: renato-bgs@live.com
+- WhatsApp: https://wa.me/5581986986332

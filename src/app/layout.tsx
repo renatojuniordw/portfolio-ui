@@ -44,7 +44,10 @@ export default function RootLayout({
       className={cn(inter.variable, spaceGrotesk.variable)}
       suppressHydrationWarning
     >
-      <head />
+      <head>
+        <link rel="llms" href="/llms.txt" />
+        <link rel="llms" href="/llms.txt" title="AI Discovery" type="text/plain" />
+      </head>
       <body className="antialiased selection:bg-tech/30">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-2WSFGQCP27"
