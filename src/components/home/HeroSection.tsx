@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { PROFILE, SOCIALS, getYearsOfExperience } from "@/lib/constants";
 import { Linkedin, Github } from "lucide-react";
-import { ParticleField } from "@/components/fx/ParticleField";
+import { DynamicParticleField as ParticleField } from "@/components/fx/DynamicParticleField";
 import { MagneticButton } from "@/components/fx/MagneticButton";
 import { ParallaxSection } from "@/components/fx/ParallaxSection";
 
@@ -112,6 +112,8 @@ export function HeroSection() {
               alt={PROFILE.fullName || "Renato Bezerra"}
               fill
               priority
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
               className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />

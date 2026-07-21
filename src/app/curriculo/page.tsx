@@ -1,4 +1,5 @@
 import { FileText, Award, Star } from "lucide-react";
+import type { ReactNode } from "react";
 import { SplitText } from "@/components/fx/SplitText";
 import { PROFILE } from "@/lib/constants";
 import { EXPERIENCES } from "@/lib/experience";
@@ -8,6 +9,16 @@ import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PrintButton } from "@/components/ui/PrintButton";
+
+function FormattedText({ text }: { text: string }): ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
 
 
 export const generateMetadata = () =>
@@ -73,7 +84,7 @@ export default function CurriculoPage() {
                       {exp.responsibilities.map((resp, i) => (
                         <li key={i} className="flex gap-3 items-start">
                           <span className="mt-2 block w-1.5 h-1.5 shrink-0 rounded-full bg-border"></span>
-                          <span className="leading-relaxed">{resp}</span>
+                          <span className="leading-relaxed"><FormattedText text={resp} /></span>
                         </li>
                       ))}
                     </ul>

@@ -1,10 +1,8 @@
-import React from 'react';
-
 export interface Experience {
   company: string;
   role: string;
   period: string;
-  responsibilities: React.ReactNode[];
+  responsibilities: string[];
 }
 
 export const EXPERIENCES: Experience[] = [
@@ -13,11 +11,11 @@ export const EXPERIENCES: Experience[] = [
     role: "Software Engineer / Criador de Produtos",
     period: "Nov 2025 - Presente",
     responsibilities: [
-      <React.Fragment key="1"><strong>Desenvolvimento Web:</strong> Construção de ecossistema front-end moderno utilizando <strong>React 19, Next.js e TailwindCSS</strong>, priorizando Core Web Vitals, performance e SEO.</React.Fragment>,
-      <React.Fragment key="2"><strong>Engenharia de IA & Automação:</strong> Criação de agentes de IA (GPT) focados em automação de atendimento (WhatsApp/Instagram), com detecção de intenção e sentimento para roteamento dinâmico.</React.Fragment>,
-      <React.Fragment key="3"><strong>Orquestração & Dados:</strong> Implementação de agentes de triagem com saída estruturada (JSON) via n8n, aplicando técnicas de RAG sobre Google Docs e persistência de estado no Supabase.</React.Fragment>,
-      <React.Fragment key="4"><strong>APIs & Integrações:</strong> Integração com a Instagram Graph API para automação de respostas a comentários com conversão estruturada para conversas privadas (DM).</React.Fragment>,
-      <React.Fragment key="5"><strong>Produtos em Desenvolvimento:</strong> Automação para Afiliados (E-commerce) com APIs da Shopee e Mercado Livre; MVP de LegalTech para cálculos previdenciários com foco em precisão de dados; e agente jurídico via WhatsApp integrado à API oficial do CNJ (DataJud) com handoff estruturado para atendimento humano.</React.Fragment>,
+      "**Desenvolvimento Web:** Construção de ecossistema front-end moderno utilizando **React 19, Next.js e TailwindCSS**, priorizando Core Web Vitals, performance e SEO.",
+      "**Engenharia de IA & Automação:** Criação de agentes de IA (GPT) focados em automação de atendimento (WhatsApp/Instagram), com detecção de intenção e sentimento para roteamento dinâmico.",
+      "**Orquestração & Dados:** Implementação de agentes de triagem com saída estruturada (JSON) via n8n, aplicando técnicas de RAG sobre Google Docs e persistência de estado no Supabase.",
+      "**APIs & Integrações:** Integração com a Instagram Graph API para automação de respostas a comentários com conversão estruturada para conversas privadas (DM).",
+      "**Produtos em Desenvolvimento:** Automação para Afiliados (E-commerce) com APIs da Shopee e Mercado Livre; MVP de LegalTech para cálculos previdenciários com foco em precisão de dados; e agente jurídico via WhatsApp integrado à API oficial do CNJ (DataJud) com handoff estruturado para atendimento humano.",
     ],
   },
   {
@@ -25,10 +23,10 @@ export const EXPERIENCES: Experience[] = [
     role: "Software Engineer",
     period: "Out 2021 - Presente",
     responsibilities: [
-      <React.Fragment key="1"><strong>Plataforma de Gestão de Moedas:</strong> Atuei com Angular e C#, além de participar das decisões de design e testes automatizados.</React.Fragment>,
-      <React.Fragment key="2"><strong>Projeto para ONG Social:</strong> Responsável pelo front-end, utilizando React JS.</React.Fragment>,
-      <React.Fragment key="3"><strong>Empresa do Setor Petrolífero:</strong> Participei de dois projetos, atuando no front-end e colaborando ativamente nas decisões junto à equipe de design.</React.Fragment>,
-      <React.Fragment key="4"><strong>Contribuições Adicionais:</strong> Minha atuação vai além do desenvolvimento, participando de decisões estratégicas sobre design e testes em cada projeto.</React.Fragment>,
+      "**Plataforma de Gestão de Moedas:** Atuei com Angular e C#, além de participar das decisões de design e testes automatizados.",
+      "**Projeto para ONG Social:** Responsável pelo front-end, utilizando React JS.",
+      "**Empresa do Setor Petrolífero:** Participei de dois projetos, atuando no front-end e colaborando ativamente nas decisões junto à equipe de design.",
+      "**Contribuições Adicionais:** Minha atuação vai além do desenvolvimento, participando de decisões estratégicas sobre design e testes em cada projeto.",
     ],
   },
   {

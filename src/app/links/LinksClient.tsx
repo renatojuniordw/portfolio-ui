@@ -201,6 +201,8 @@ export function LinksClient() {
               alt={PROFILE.name}
               fill
               priority
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
               className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
               sizes="96px"
             />

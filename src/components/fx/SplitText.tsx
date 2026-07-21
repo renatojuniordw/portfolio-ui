@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import SplitType from "split-type";
-import gsap from "gsap";
-import { cn } from "@/lib/utils";
+import { memo, useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { cn, EASE_OUT } from "@/lib/utils";
 
 type Props = {
   text: string;
@@ -11,43 +10,46 @@ type Props = {
   delay?: number;
 };
 
-export function SplitText({ text, className, delay = 0 }: Props) {
-  const elRef = useRef<HTMLHeadingElement | null>(null);
+export const SplitText = memo(function SplitText({
+  text,
+  className,
+  delay = 0,
+}: Props) {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const prefersReducedMotion = useReducedMotion();
 
-  useEffect(() => {
-    if (!elRef.current) return;
-
-    const split = new SplitType(elRef.current, { types: "chars,words" });
-
-    gsap.fromTo(
-      split.chars,
-      { opacity: 0, y: 15 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power3.out",
-        stagger: 0.015,
-        delay,
-        scrollTrigger: {
-          trigger: elRef.current,
-          start: "top 95%",
-          once: true,
-        },
-      },
-    );
-
-    return () => {
-      split.revert();
-    };
-  }, [delay, text]);
+  const chars = text.split("");
 
   return (
-    <h2
-      ref={elRef}
-      className={cn("will-change-transform opacity-100", className)}
-    >
-      {text}
+    <h2 ref={ref} className={cn("overflow-hidden", className)}>
+      <span aria-hidden="true" className="inline-block">
+        {chars.map((char, i) => (
+          <motion.span
+            key={i}
+            className="inline-block"
+            initial={
+              prefersReducedMotion
+                ? { opacity: 1 }
+                : { opacity: 0, y: 15 }
+            }
+            animate={
+              isInView
+                ? { opacity: 1, y: 0 }
+                : prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, y: 15 }
+            }
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.6,
+              delay: prefersReducedMotion ? 0 : delay + i * 0.015,
+              ease: EASE_OUT,
+            }}
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+      </span>
     </h2>
   );
-}
+});

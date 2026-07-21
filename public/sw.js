@@ -1,105 +1,65 @@
-const CACHE = "renato-portfolio-v2";
-const OFFLINE_URL = "/offline.html";
-
-const PRECACHE_ASSETS = [
-  "/icon-192.png",
-  "/icon-512.png",
-  "/og-image.jpg",
+const CACHE_NAME = "portfolio-v1";
+const STATIC_ASSETS = [
+  "/",
+  "/offline.html",
   "/RenatoBezerra.png",
+  "/Profile.pdf",
 ];
 
+// Install: cache static assets
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE);
-      await cache.addAll(PRECACHE_ASSETS);
-    })(),
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(STATIC_ASSETS);
+    }),
   );
   self.skipWaiting();
 });
 
+// Activate: clean old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    (async () => {
-      const keys = await caches.keys();
-      await Promise.all(
-        keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)),
-      );
-    })(),
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))),
+    ),
   );
   self.clients.claim();
 });
 
+// Fetch: network first, fallback to cache, then offline
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  const url = new URL(request.url);
 
+  // Skip non-GET and browser extension requests
+  if (request.method !== "GET" || !request.url.startsWith("http")) return;
+
+  // HTML navigation requests: Network First
   if (request.mode === "navigate") {
-    event.respondWith(networkFirstWithFallback(request));
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() =>
+          caches.match(request).then((cached) => cached || caches.match("/offline.html")),
+        ),
+    );
     return;
   }
 
-  if (isStaticAsset(url)) {
-    event.respondWith(cacheFirst(request));
-    return;
-  }
-
-  if (isImage(url)) {
-    event.respondWith(cacheFirst(request));
-    return;
-  }
-
-  event.respondWith(networkFirst(request));
+  // Static assets: Cache First
+  event.respondWith(
+    caches.match(request).then((cached) => {
+      const fetchPromise = fetch(request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => cached);
+      return cached || fetchPromise;
+    }),
+  );
 });
-
-async function networkFirstWithFallback(request) {
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(CACHE);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    const cached = await caches.match(request);
-    if (cached) return cached;
-    return caches.match(OFFLINE_URL);
-  }
-}
-
-async function networkFirst(request) {
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(CACHE);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    const cached = await caches.match(request);
-    return cached || new Response("", { status: 408 });
-  }
-}
-
-async function cacheFirst(request) {
-  const cached = await caches.match(request);
-  if (cached) return cached;
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(CACHE);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    return new Response("", { status: 408 });
-  }
-}
-
-function isStaticAsset(url) {
-  return /\.(js|css|woff2?|ttf|otf|eot)(\?|$)/.test(url.pathname);
-}
-
-function isImage(url) {
-  return /\.(png|jpg|jpeg|gif|svg|webp|ico)(\?|$)/.test(url.pathname);
-}

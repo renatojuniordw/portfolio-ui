@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 
 const ROTAS_SEM_CHROME = ["/links"];
 import Link from "next/link";
-import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useActiveNavLink } from "@/hooks/useActiveNavLink";
 import { cn } from "@/lib/utils";
@@ -76,6 +75,7 @@ const Header = memo(function Header({
                     ? "text-text font-semibold"
                     : "text-text-secondary",
                 )}
+                aria-current={isActive(item.href) ? "page" : undefined}
               >
                 {item.label}
               </Link>
@@ -117,6 +117,7 @@ const Header = memo(function Header({
             {/* Gaveta Lateral */}
             <motion.aside
               id="mobile-nav"
+              aria-modal="true"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -152,6 +153,7 @@ const Header = memo(function Header({
                         ? "text-text font-semibold bg-surface-1"
                         : "text-text-secondary",
                     )}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                   >
                     <item.icon
                       size={20}
@@ -218,7 +220,6 @@ export default function LayoutWrapper({
       >
         Pular para o conteúdo principal
       </a>
-      <SmoothScroll />
       {mostrarChrome && <Header isIntroFinished={isIntroFinished} />}
       <main id="main-content" className="bg-bg text-text min-h-screen">
         {children}
