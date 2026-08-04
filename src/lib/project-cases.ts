@@ -4,6 +4,7 @@ import { unificandoPdfCase } from "./projects/unificando-pdf";
 import { unificandoAutomacaoCase } from "./projects/unificando-automacao";
 import { unificandoVitrineCase } from "./projects/unificando-vitrine";
 import { unificandoMedCase } from "./projects/unificando-med";
+import { radarUnificandoCase } from "./projects/radar-unificando";
 import { mariaClaraSantosCase } from "./projects/mariaclarasantos";
 import { seuBarracoEspertoCase } from "./projects/seu-barraco-esperto";
 import { oferticandoCase } from "./projects/oferticando";
@@ -14,6 +15,7 @@ import { sistema18iaCase } from "./projects/sistema-18ia";
 export const PROJECT_CASES: ProjectCase[] = [
   unificandoPdfCase,
   unificandoMedCase,
+  radarUnificandoCase,
   unificandoAutomacaoCase,
   unificandoVitrineCase,
   mariaClaraSantosCase,

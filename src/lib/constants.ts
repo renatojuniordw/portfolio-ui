@@ -23,6 +23,7 @@ export const SOCIALS = {
     site: "https://unificando.com.br",
     pdf: "https://pdf.unificando.com.br",
     med: "https://med.unificando.com.br",
+    radar: "https://radar.unificando.com.br",
   },
   oferticando: {
     site: "https://oferticando.com.br",
