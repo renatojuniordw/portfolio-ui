@@ -1,6 +1,6 @@
 ---
-title: "Como usamos MCP + IA para buscar vagas certas no Gupy (não só vagas)"
-description: "Por trás do Radar Unificando: por que abandonamos scraping frágil de HTML e passamos a consumir o MCP oficial da Gupy, e como um LLM cruza isso com o perfil real do candidato para devolver vaga com fit, não lista genérica."
+title: "Como uso MCP + IA para buscar vagas certas no Gupy (não só vagas)"
+description: "Por trás do Radar Unificando: por que abandonei scraping frágil de HTML e passei a consumir o MCP oficial da Gupy, e como um LLM cruza isso com o perfil real do candidato para devolver vaga com fit, não lista genérica."
 date: "2026-08-04"
 tags:
   - IA
@@ -10,7 +10,7 @@ tags:
 readingTime: "7 min"
 ---
 
-## O problema que queríamos resolver
+## O problema que eu queria resolver
 
 Buscar vaga remota hoje é abrir uma dezena de portais de carreira — cada empresa com o seu, cada um no Gupy ou no InHire — e repetir a mesma busca em cada aba. Pior: mesmo achando 40 vagas de "Analista de Dados", a maioria não serve, porque "Analista de Dados" no anúncio às vezes é BI, às vezes é Engenharia de Dados, às vezes é Growth com um nome bonito.
 
@@ -22,7 +22,7 @@ Duas peças fazem isso funcionar: o **MCP oficial da Gupy** para a busca, e um *
 
 A forma clássica de agregar vagas de portais de carreira é scraping: bater na página, parsear HTML, torcer para o layout não mudar. Funciona até quebrar — e quebra sempre que o portal muda um `class` de CSS.
 
-A Gupy expõe um **MCP server oficial** (`candidates.mcp.api.gupy.io/mcp`), com protocolo JSON-RPC, que resolve isso: chamamos a tool `search_jobs` e recebemos dados estruturados, sem depender da estrutura visual da página.
+A Gupy expõe um **MCP server oficial** (`candidates.mcp.api.gupy.io/mcp`), com protocolo JSON-RPC, que resolve isso: chamo a tool `search_jobs` e recebo dados estruturados, sem depender da estrutura visual da página.
 
 ```ts
 export class GupyMcpClient {
@@ -50,7 +50,7 @@ export class GupyMcpClient {
 Duas coisas não óbvias aqui:
 
 - **A resposta pode vir como `text/event-stream` ou JSON puro**, dependendo do servidor MCP — o cliente precisa lidar com os dois formatos, não só o mais comum nos exemplos de documentação.
-- **MCP não é 100% do fluxo.** Ele é a fonte primária quando o usuário está logado e tem query — mas se falhar (timeout, erro de parse, formato inesperado), caímos automaticamente para a **API REST pública** da Gupy como fallback. Usuário anônimo ou busca sem query específica usa REST direto. MCP dá dado mais rico (inclui descrição da vaga, essencial para a IA analisar fit depois); REST é o piso garantido que nunca falha.
+- **MCP não é 100% do fluxo.** Ele é a fonte primária quando o usuário está logado e tem query — mas se falhar (timeout, erro de parse, formato inesperado), o sistema cai automaticamente para a **API REST pública** da Gupy como fallback. Usuário anônimo ou busca sem query específica usa REST direto. MCP dá dado mais rico (inclui descrição da vaga, essencial para a IA analisar fit depois); REST é o piso garantido que nunca falha.
 
 ```
 Logado + com query  → MCP primeiro → falhou? → REST
@@ -90,12 +90,13 @@ export function createChatTools(userId: string) {
         return jobs.map(j => ({ /* ...normalizado para o modelo ler */ }));
       },
     }),
-    // analyze_job_fit, compare_jobs, generate_cover_letter, get_interview_questions...
+    // analyze_job_fit, compare_jobs, generate_cover_letter, get_interview_questions,
+    // generate_resume, recommend_courses...
   };
 }
 ```
 
-Seis tools compõem o assistente: `search_jobs`, `get_my_profile`, `analyze_job_fit`, `compare_jobs`, `generate_cover_letter` e `get_interview_questions`. O modelo encadeia até 10 chamadas por mensagem (`stopWhen: stepCountIs(10)`), decidindo sozinho a sequência — por exemplo, buscar vagas de "Data Analyst", pegar o perfil do usuário, e analisar fit das três primeiras, tudo numa única resposta em streaming.
+Oito tools compõem o assistente hoje: `search_jobs`, `get_my_profile`, `analyze_job_fit`, `compare_jobs`, `generate_cover_letter`, `get_interview_questions`, `generate_resume` (currículo adaptado à vaga, em PDF) e `recommend_courses` (sugestões da Udemy para fechar lacunas técnicas). O modelo encadeia até 10 chamadas por mensagem (`stopWhen: stepCountIs(10)`), decidindo sozinho a sequência — por exemplo, buscar vagas de "Data Analyst", pegar o perfil do usuário, e analisar fit das três primeiras, tudo numa única resposta em streaming.
 
 O ponto que importa: **cada tool valida seu próprio input com Zod antes de fazer qualquer coisa**. `search_jobs` só aceita 2–200 caracteres com regex restrita. `analyze_job_fit` limita descrição de vaga a 8000 caracteres. Isso não é só robustez — é a primeira linha de defesa contra abuso e prompt injection.
 
