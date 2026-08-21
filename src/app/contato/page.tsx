@@ -56,8 +56,8 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
         {/* Coluna Esquerda: Texto */}
         <header className="text-left">
-          <h1 className="sr-only">Contato - Renato Bezerra, Recife</h1>
           <SplitText
+            as="h1"
             text="Vamos Conversar?"
             className="text-5xl md:text-7xl font-display font-light tracking-tighter mb-6 text-text"
           />

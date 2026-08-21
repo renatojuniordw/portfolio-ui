@@ -43,7 +43,7 @@ export function HeroSection() {
         >
           <h1 className="text-[6rem] sm:text-[8rem] lg:text-[11rem] xl:text-[14rem] leading-none font-display font-light tracking-tighter text-text mb-6 -ml-2">
             Olá
-            <span className="sr-only">, sou {PROFILE.name} — Engenheiro de Software</span>
+            <span className="sr-only"> — {PROFILE.name}, Engenheiro de Software Front-end & IA</span>
           </h1>
           <p className="text-xl lg:text-2xl text-text-secondary font-medium">
             — Me chamo {PROFILE.fullName?.split(" ")[0] || "Renato"}, sou

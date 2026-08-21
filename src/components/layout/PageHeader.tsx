@@ -10,8 +10,8 @@ interface PageHeaderProps {
 export function PageHeader({ title, description }: PageHeaderProps) {
   return (
     <header className="mb-16">
-      <h1 className="sr-only">{title}</h1>
       <SplitText
+        as="h1"
         text={title}
         className="text-4xl md:text-6xl font-display font-bold mb-4"
       />

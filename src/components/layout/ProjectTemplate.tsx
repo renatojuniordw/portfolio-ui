@@ -61,8 +61,8 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
               >
                 {categoryBadge}
               </span>
-              <h1 className="sr-only">{title}</h1>
               <SplitText
+                as="h1"
                 text={title}
                 className="text-4xl md:text-6xl font-display font-light tracking-tight mb-6 text-text"
               />

@@ -8,21 +8,24 @@ type Props = {
   text: string;
   className?: string;
   delay?: number;
+  as?: "h1" | "h2" | "p" | "div";
 };
 
 export const SplitText = memo(function SplitText({
   text,
   className,
   delay = 0,
+  as: Tag = "h2",
 }: Props) {
-  const ref = useRef<HTMLHeadingElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const prefersReducedMotion = useReducedMotion();
 
   const chars = text.split("");
 
   return (
-    <h2 ref={ref} className={cn("overflow-hidden", className)}>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <Tag ref={ref as any} className={cn("overflow-hidden", className)}>
       <span aria-hidden="true" className="inline-block">
         {chars.map((char, i) => (
           <motion.span
@@ -50,6 +53,6 @@ export const SplitText = memo(function SplitText({
           </motion.span>
         ))}
       </span>
-    </h2>
+    </Tag>
   );
 });

@@ -7,6 +7,7 @@ export const generateMetadata = () =>
     description:
       "Conecte-se com Renato Bezerra: Portfólio, Unificando (IA), Seu Barraco Esperto (Automação), LinkedIn, GitHub e mais.",
     path: "/links",
+    noIndex: true,
   });
 
 export default function LinksPage() {

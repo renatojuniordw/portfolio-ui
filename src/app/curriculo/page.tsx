@@ -44,8 +44,8 @@ export default function CurriculoPage() {
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div className="flex-1">
-          <h1 className="sr-only">Currículo Profissional - Renato Bezerra</h1>
           <SplitText
+            as="h1"
             text="Currículo"
             className="text-4xl md:text-6xl font-display font-bold mb-4"
           />

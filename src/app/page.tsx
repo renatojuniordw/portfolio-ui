@@ -12,7 +12,7 @@ import { getRecentPosts } from "@/lib/blog";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: `${PROFILE.name} | Engenheiro de Software Front-end & IA Generativa`,
+    title: `${PROFILE.name} | Engenheiro Front-end & IA`,
     description: `Portfólio de ${PROFILE.name}, Engenheiro de Software especializado em React, Angular, Next.js e Inteligência Artificial Generativa. Mais de 7 anos criando aplicações escaláveis no setor petrolífero, startups e projetos próprios com automação, RAG e agentes de IA. Pós-graduado em Arquitetura de Software (FIAP).`,
     keywords: [
       "Renato Bezerra", "Engenheiro de Software", "Front-end", "React",

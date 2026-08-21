@@ -97,8 +97,8 @@ export function buildMetadata({
         "max-snippet": -1,
       },
     },
-    verification: {
-      google: "G-2WSFGQCP27",
-    },
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+      : {}),
   };
 }

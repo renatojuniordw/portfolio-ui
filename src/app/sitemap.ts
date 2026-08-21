@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/curriculo", priority: 0.7, changeFreq: "monthly" },
     { path: "/certificacoes", priority: 0.7, changeFreq: "monthly" },
     { path: "/contato", priority: 0.5, changeFreq: "monthly" },
-    { path: "/links", priority: 0.5, changeFreq: "monthly" },
   ];
 
   const posts = getAllPosts();
@@ -28,7 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     path: project.link,
     priority: 0.8,
     changeFreq: "monthly" as const,
-    lastModified: new Date(),
   }));
 
   const now = new Date();
@@ -48,7 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...projectRoutes.map((r) => ({
       url: `${baseUrl}${r.path}`,
-      lastModified: r.lastModified,
       changeFrequency: r.changeFreq,
       priority: r.priority,
     })),
