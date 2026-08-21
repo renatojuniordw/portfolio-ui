@@ -14,10 +14,10 @@ import { sistema18iaCase } from "./projects/sistema-18ia";
 import { promptsUnificandoCase } from "./projects/prompts-unificando";
 
 export const PROJECT_CASES: ProjectCase[] = [
-  promptsUnificandoCase,
+  radarUnificandoCase,
   unificandoPdfCase,
   unificandoMedCase,
-  radarUnificandoCase,
+  promptsUnificandoCase,
   unificandoAutomacaoCase,
   unificandoVitrineCase,
   mariaClaraSantosCase,
