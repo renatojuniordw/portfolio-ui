@@ -11,8 +11,10 @@ import { oferticandoCase } from "./projects/oferticando";
 import { arianoSuassunaCase } from "./projects/ariano-suassuna";
 import { sheikCase } from "./projects/sheik";
 import { sistema18iaCase } from "./projects/sistema-18ia";
+import { promptsUnificandoCase } from "./projects/prompts-unificando";
 
 export const PROJECT_CASES: ProjectCase[] = [
+  promptsUnificandoCase,
   unificandoPdfCase,
   unificandoMedCase,
   radarUnificandoCase,
