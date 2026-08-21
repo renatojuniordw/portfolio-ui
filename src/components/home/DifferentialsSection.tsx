@@ -19,7 +19,7 @@ const DIFFERENTIALS: Differential[] = [
     index: "01",
     title: "Front-end de Alta Performance",
     description:
-      "Arquiteturas React e Angular focadas em performance e DX. Código que não só funciona, funciona rápido, escala e é fácil de manter.",
+      "Arquiteturas React e Angular focadas em performance e DX. Código que funciona rápido, escala e é fácil de manter.",
     accent: "Front-end · React · Angular · TypeScript",
     imageUrl:
       "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1600&auto=format&fit=crop",
@@ -29,7 +29,7 @@ const DIFFERENTIALS: Differential[] = [
     index: "02",
     title: "IA Generativa",
     description:
-      "Integração de LLMs, RAG e geração de conteúdo direto no produto — não como experimento isolado, mas como camada nativa da arquitetura.",
+      "Integração de LLMs, RAG e geração de conteúdo direto no produto, como camada nativa da arquitetura — não como experimento isolado.",
     accent: "IA Generativa · RAG · OpenAI",
     imageUrl:
       "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1600&auto=format&fit=crop",

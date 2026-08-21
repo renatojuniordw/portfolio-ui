@@ -17,7 +17,7 @@ export function ContactSection() {
           Disponível para novos projetos
         </h2>
         <p className="text-xl text-text-secondary font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-          Tem uma ideia ou projeto em mente? Entre em contato diretamente pelo WhatsApp para uma resposta rápida.
+          Tem uma ideia ou projeto em mente? Entre em contato pelo WhatsApp para uma resposta rápida.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-6">

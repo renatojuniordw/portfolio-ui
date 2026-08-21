@@ -107,7 +107,7 @@ export const unificandoAutomacaoCase: ProjectCase = {
     ),
     result: (
       <p>
-        Redução do tempo de resposta de <strong>horas para segundos</strong>. Mais de 60% dos leads qualificados foram atendidos completamente pelo agente, sem necessidade de intervenção humana. O cliente报告 aumento na taxa de conversão de leads inbound.
+        Redução do tempo de resposta de <strong>horas para segundos</strong>. Mais de 60% dos leads qualificados foram atendidos completamente pelo agente, sem necessidade de intervenção humana. O cliente reportou aumento na taxa de conversão de leads inbound.
       </p>
     ),
   },

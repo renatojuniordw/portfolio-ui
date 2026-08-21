@@ -24,8 +24,8 @@ export default function NotFound() {
             Página não encontrada
           </h2>
           <p className="text-base md:text-lg text-text-secondary max-w-md mx-auto leading-relaxed">
-            O recurso que você procura não existe ou foi movido. 
-            Use os links abaixo para voltar ao caminho certo.
+            O recurso que você procura não existe ou foi movido.
+            Use os links abaixo para voltar.
           </p>
         </div>
 

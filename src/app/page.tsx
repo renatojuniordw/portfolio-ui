@@ -27,11 +27,11 @@ export default function Home() {
   const faqItems = [
     {
       question: "O que diferencia seu trabalho como engenheiro de software front-end?",
-      answer: "Arquiteturas React e Angular focadas em performance e DX. Código que não só funciona, funciona rápido, escala e é fácil de manter.",
+      answer: "Arquiteturas React e Angular focadas em performance e DX. Código que funciona rápido, escala e é fácil de manter.",
     },
     {
       question: "Como você usa IA Generativa nos seus projetos?",
-      answer: "Integração de LLMs, RAG e geração de conteúdo direto no produto — não como experimento isolado, mas como camada nativa da arquitetura.",
+      answer: "Integração de LLMs, RAG e geração de conteúdo direto no produto, como camada nativa da arquitetura — não como experimento isolado.",
     },
     {
       question: "Você trabalha com automação e agentes de IA?",

@@ -16,8 +16,8 @@ function Overview() {
         entender custos.
       </p>
       <p>
-        A tecnologia (React 19 + Vite 6) garante autoridade através de{" "}
-        <strong>performance absoluta</strong>.
+        A tecnologia (React 19 + Vite 6) garante{" "}
+        <strong>performance consistente</strong> em Core Web Vitals.
       </p>
     </>
   );

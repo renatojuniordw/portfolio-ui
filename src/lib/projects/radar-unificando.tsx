@@ -38,7 +38,7 @@ function Overview() {
       </p>
       <p>
         A plataforma é <strong>100% gratuita para o usuário</strong>,
-        mantida por doações via PIX, com tetos justos de uso de IA (janela
+        mantida por doações via PIX, com limites de uso de IA (janela
         de contexto por conversa, limite diário e mensal de tokens).
       </p>
     </div>

@@ -99,7 +99,7 @@ export const unificandoPdfCase: ProjectCase = {
     "unificando-pdf",
     "Unificando PDF",
     "SaaS & Utilitários",
-    "Uma suíte robusta de ferramentas para documentos, com foco em privacidade absoluta e processamento de alto desempenho.",
+    "Uma suíte completa de ferramentas para documentos, com foco em privacidade e processamento de alto desempenho.",
     "tech",
     ["Next.js", "pdf-lib", "Docker", "Ghostscript"],
   ),
