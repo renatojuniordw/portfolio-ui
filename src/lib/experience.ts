@@ -11,11 +11,13 @@ export const EXPERIENCES: Experience[] = [
     role: "Software Engineer / Criador de Produtos",
     period: "Nov 2025 - Presente",
     responsibilities: [
-      "**Desenvolvimento Web:** Construção de ecossistema front-end moderno utilizando **React 19, Next.js e TailwindCSS**, priorizando Core Web Vitals, performance e SEO.",
-      "**Engenharia de IA & Automação:** Criação de agentes de IA (GPT) focados em automação de atendimento (WhatsApp/Instagram), com detecção de intenção e sentimento para roteamento dinâmico.",
-      "**Orquestração & Dados:** Implementação de agentes de triagem com saída estruturada (JSON) via n8n, aplicando técnicas de RAG sobre Google Docs e persistência de estado no Supabase.",
-      "**APIs & Integrações:** Integração com a Instagram Graph API para automação de respostas a comentários com conversão estruturada para conversas privadas (DM).",
-      "**Produtos em Desenvolvimento:** Automação para Afiliados (E-commerce) com APIs da Shopee e Mercado Livre; MVP de LegalTech para cálculos previdenciários com foco em precisão de dados; e agente jurídico via WhatsApp integrado à API oficial do CNJ (DataJud) com handoff estruturado para atendimento humano.",
+      "**Radar Unificando** (radar.unificando.com.br) — Plataforma de busca de vagas em tempo real, para todas as áreas e modalidades, integrando **Gupy via MCP oficial** com fallback para a API REST da InHire. Inclui assistente de carreira com IA: **score ATS 0-100**, currículo adaptado por vaga, carta de apresentação e recomendação de cursos. Stack: Next.js 16, Prisma, Redis, Vercel AI SDK.",
+      "**Segurança e Custo no Radar:** defesa contra **prompt injection em 3 camadas**, redação LGPD automática (CPF/CNPJ/RG/telefone) e limites de tokens por usuário (100k/dia, 2M/mês) para manter o produto gratuito de forma sustentável.",
+      "**Med Unificando** (med.unificando.com.br) — Busca semântica em linguagem natural sobre **medicamentos intercambiáveis da ANVISA** com **embeddings 100% locais** (Xenova Transformers/ONNX, sem APIs externas de IA), comparação lado a lado, preços da tabela CMED, navegação ATC e sincronização automática de dados abertos.",
+      "**Unificando PDF** (pdf.unificando.com.br) — Suíte com **16 ferramentas de PDF** com **privacidade por design**: processamento server-side efêmero (arquivos em /tmp descartados após download, sem persistência), engine híbrida (pdf-lib/pdfjs-dist + Ghostscript, LibreOffice, Poppler, qpdf) e fila com controle de concorrência.",
+      "**Engenharia de IA & Automação:** agentes de IA (GPT) para automação de atendimento (WhatsApp/Instagram) com detecção de intenção e sentimento para roteamento dinâmico; agentes de triagem com **saída estruturada JSON via n8n**, **RAG sobre Google Docs** e persistência de estado no Supabase; integração com a **Instagram Graph API** (comentário → DM).",
+      "**Estudo de Caso Prático (Cliente de Advocacia):** agente jurídico via WhatsApp integrado à API oficial do CNJ (DataJud) para consultas processuais, validação de documentos, cache de dados e **handoff estruturado** para atendimento humano.",
+      "**Desenvolvimento Web:** construção de ecossistema front-end moderno com **React 19, Next.js e TailwindCSS**, priorizando Core Web Vitals, performance e SEO.",
     ],
   },
   {
@@ -65,7 +67,8 @@ export const EXPERIENCES: Experience[] = [
     ],
   },
   {
-    company: "Iterpe - Instituto de Terras e Reforma Agrária do Estado de Pernambuco",
+    company:
+      "Iterpe - Instituto de Terras e Reforma Agrária do Estado de Pernambuco",
     role: "Estagiário de Suporte de Informática",
     period: "Mar 2017 - Jun 2017",
     responsibilities: [

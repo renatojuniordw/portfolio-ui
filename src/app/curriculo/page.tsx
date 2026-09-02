@@ -25,7 +25,7 @@ export const generateMetadata = () =>
   buildMetadata({
     title: "Currículo | Renato Bezerra — Engenheiro de Software",
     description:
-      "Currículo profissional de Renato Bezerra: Engenheiro de Software com +7 anos de experiência em front-end (React, Angular, Next.js), IA Generativa, arquitetura de software (FIAP), certificado Microsoft. Experiência na CESAR, Avanade e projetos autorais com automação e agentes de IA.",
+      "Currículo profissional de Renato Bezerra: Engenheiro de Software com +7 anos de experiência em front-end (React, Angular, Next.js), IA Generativa, arquitetura de software (FIAP), certificado Microsoft. Experiência na CESAR, Avanade e produtos autorais no Unificando — Radar (job board com IA), Med (IA local) e PDF (ferramentas).",
     path: "/curriculo",
     keywords: [
       "Currículo", "Renato Bezerra", "Software Engineer",
