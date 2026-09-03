@@ -17,6 +17,8 @@ export const EXPERIENCES: Experience[] = [
       "**Unificando PDF** (pdf.unificando.com.br) — Suíte com **16 ferramentas de PDF** com **privacidade por design**: processamento server-side efêmero (arquivos em /tmp descartados após download, sem persistência), engine híbrida (pdf-lib/pdfjs-dist + Ghostscript, LibreOffice, Poppler, qpdf) e fila com controle de concorrência.",
       "**Engenharia de IA & Automação:** agentes de IA (GPT) para automação de atendimento (WhatsApp/Instagram) com detecção de intenção e sentimento para roteamento dinâmico; agentes de triagem com **saída estruturada JSON via n8n**, **RAG sobre Google Docs** e persistência de estado no Supabase; integração com a **Instagram Graph API** (comentário → DM).",
       "**Estudo de Caso Prático (Cliente de Advocacia):** agente jurídico via WhatsApp integrado à API oficial do CNJ (DataJud) para consultas processuais, validação de documentos, cache de dados e **handoff estruturado** para atendimento humano.",
+      "**prompts-unificando:** biblioteca de prompts publicada como **pacote npm/CLI** (npx prompts-unificando list) com 6 templates (frontend, fullstack, backend, testes, auditoria de engenharia e segurança/LGPD), agnóstica de stack e de LLM.",
+      "**promptcraft-unificando:** CLI via npx que monta prompts de engenharia a partir de texto cru, com pipe validado em Claude Code e Gemini CLI e persistência em .md (npx promptcraft-unificando \"ideia\" | claude).",
       "**Desenvolvimento Web:** construção de ecossistema front-end moderno com **React 19, Next.js e TailwindCSS**, priorizando Core Web Vitals, performance e SEO.",
     ],
   },

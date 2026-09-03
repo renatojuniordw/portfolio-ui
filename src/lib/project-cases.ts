@@ -12,12 +12,14 @@ import { arianoSuassunaCase } from "./projects/ariano-suassuna";
 import { sheikCase } from "./projects/sheik";
 import { sistema18iaCase } from "./projects/sistema-18ia";
 import { promptsUnificandoCase } from "./projects/prompts-unificando";
+import { promptcraftUnificandoCase } from "./projects/promptcraft-unificando";
 
 export const PROJECT_CASES: ProjectCase[] = [
   radarUnificandoCase,
   unificandoPdfCase,
   unificandoMedCase,
   promptsUnificandoCase,
+  promptcraftUnificandoCase,
   unificandoAutomacaoCase,
   unificandoVitrineCase,
   mariaClaraSantosCase,

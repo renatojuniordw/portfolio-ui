@@ -108,3 +108,5 @@ Agora sim está bom. Um era vago. O outro é um briefing de verdade.
 6. Use à vontade
 
 Pronto. Nada complicado, nada mágico. Só método.
+
+> Se você vive no terminal, existe uma versão automatizada desse fluxo: um CLI via `npx` que monta o prompt de Engenheiro de Prompt no stdout, pronto para pipe em Claude Code e Gemini CLI. Veja em [Engenharia de prompt no terminal](/blog/engenharia-de-prompt-no-terminal).

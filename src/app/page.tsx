@@ -6,6 +6,7 @@ import { AboutSection } from "@/components/home/AboutSection";
 import { ArticlesSection } from "@/components/home/ArticlesSection";
 import { DifferentialsSection } from "@/components/home/DifferentialsSection";
 import { GitHubSection } from "@/components/home/GitHubSection";
+import { ToolsSection } from "@/components/home/ToolsSection";
 import { ContactSection } from "@/components/home/ContactSection";
 import { PROFILE } from "@/lib/constants";
 import { getRecentPosts } from "@/lib/blog";
@@ -53,6 +54,7 @@ export default function Home() {
       <AboutSection />
       <DifferentialsSection />
       <GitHubSection />
+      <ToolsSection />
       <ArticlesSection posts={recentPosts} />
       <ContactSection />
     </div>
