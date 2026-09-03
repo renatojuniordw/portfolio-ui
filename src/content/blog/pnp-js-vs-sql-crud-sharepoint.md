@@ -12,7 +12,7 @@ readingTime: "8 min"
 
 ## Contexto
 
-Quase todos os sistemas desenvolvidos em SharePoint Online envolvem o **PnP JS**, e existem diversas dúvidas de como usar essa biblioteca no dia a dia. Vendo a dificuldade de colegas de trabalho ao usá-la, resolvi escrever este artigo colocando o PnP lado a lado do SQL, fazendo breves comparações entre ambos.
+Quase todos os sistemas desenvolvidos em SharePoint Online envolvem o **PnP JS**, e existem diversas dúvidas de como usar essa biblioteca no dia a dia. Vendo a dificuldade de colegas de trabalho ao usá-la, resolvi escrever este artigo colocando o PnP lado a lado com o SQL, fazendo breves comparações entre ambos.
 
 De um lado, uma linguagem de consulta estruturada usada por milhões de programadores. Do outro, uma coleção de bibliotecas fluentes para consumir as APIs REST do SharePoint, Graph e Microsoft 365, usada por desenvolvedores de aplicações SharePoint.
 
@@ -110,7 +110,7 @@ No PnP JS existem dois métodos para obter dados de uma lista: `get()` e `getAll
 | Funciona o `orderBy()` | Sim | Não |
 | Funciona o `top()` | Sim | Não |
 
-Ou seja: use `get()` quando precisar ordenar (`orderBy()`) ou limitar (`top()`) o resultado — ele respeita esses métodos, mas fica limitado a uma página (até 100 itens). Use `getAll()` quando precisar de **todos** os itens da lista, independente da quantidade — ele pagina automaticamente por trás dos panos, mas ignora `orderBy()` e `top()`.
+Ou seja: use `get()` quando precisar ordenar (`orderBy()`) ou limitar (`top()`) o resultado — ele respeita esses métodos, mas fica limitado a uma página (até 100 itens). Use `getAll()` quando precisar de **todos** os itens da lista, independentemente da quantidade — ele pagina automaticamente por trás dos panos, mas ignora `orderBy()` e `top()`.
 
 ```javascript
 // Até 100 itens, respeitando o filtro e a ordenação

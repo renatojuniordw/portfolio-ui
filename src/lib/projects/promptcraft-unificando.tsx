@@ -14,7 +14,7 @@ function Overview() {
       <strong>CLI Node.js</strong>, distribuído via <code>npx</code>, que monta
       um prompt de &quot;Engenheiro de Prompt&quot; concatenando um prompt-base
       fixo com o texto cru que o usuário digita, e imprime o resultado no{" "}
-      <code>stdout</code> — pronto para colar ou &quot;pipal&quot; em qualquer
+      <code>stdout</code> — pronto para colar ou &quot;pipar&quot; em qualquer
       CLI de LLM (Claude Code, Gemini CLI, etc.).
     </p>
   );

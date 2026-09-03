@@ -145,7 +145,7 @@ Isso é o que a Meta chama de **private replies** / mensagem iniciada por coment
 ## Cuidados na hora de implementar
 
 - **Janela de tempo**: a Graph API só permite abrir a DM por `comment_id` dentro de um prazo limitado após o comentário (poucos dias). Passado esse prazo, a chamada falha — trate o erro em vez de deixar o fluxo quebrar silenciosamente.
-- **Loop de auto-resposta**: sem o filtro de `sender_id`, seu próprio bot vai conversar com ele mesmo. Teste isso specifically antes de ativar em produção.
+- **Loop de auto-resposta**: sem o filtro de `sender_id`, seu próprio bot vai conversar com ele mesmo. Teste isso especificamente antes de ativar em produção.
 - **Escopo de permissão**: o app precisa das permissões `instagram_manage_comments` e `instagram_manage_messages` aprovadas no App Review da Meta — isso não é imediato, planeje o tempo de aprovação.
 - **Rate limits**: a Graph API tem limites por app/página; em campanhas com pico de comentários, vale enfileirar em vez de disparar tudo em paralelo.
 - **Multi-tenant**: se você reusa esse fluxo para mais de uma página/cliente, o filtro de `pageId` na entrada e a segregação da planilha por conta são obrigatórios — sem isso, uma página processa eventos da outra.
