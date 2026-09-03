@@ -13,7 +13,7 @@ export const BlogCard = memo(function BlogCard({ post }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
+      className="group p-8 project-card hover:border-[#111111] dark:hover:border-white transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
     >
       <div>
         <div className="flex items-center justify-between mb-4">

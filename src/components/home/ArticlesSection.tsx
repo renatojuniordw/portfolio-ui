@@ -49,7 +49,7 @@ export function ArticlesSection({ posts = [] }: ArticlesSectionProps) {
             <ScrollReveal key={post.slug} delay={index * 100} direction="up">
               <Link
                 href={`/blog/${post.slug}`}
-                className="group p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-all duration-300 flex flex-col justify-between min-h-[220px]"
+                className="group p-8 project-card hover:border-[#111111] dark:hover:border-white transition-all duration-300 flex flex-col justify-between min-h-[220px]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">

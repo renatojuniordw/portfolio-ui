@@ -54,35 +54,33 @@ export function HeroSection() {
           </h1>
 
           <div className="flex flex-wrap gap-6 mt-8">
-            <MagneticButton>
-              <a
-                href={SOCIALS.personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="in/renato-bezerra no LinkedIn (abre em nova aba)"
-                className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
-              >
-                <Linkedin
-                  aria-hidden="true"
-                  className="w-4 h-4 group-hover:scale-110 transition-transform"
-                />
-                <span>in/renato-bezerra</span>
-              </a>
+            <MagneticButton
+              as="a"
+              href={SOCIALS.personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              ariaLabel="in/renato-bezerra no LinkedIn (abre em nova aba)"
+              className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
+            >
+              <Linkedin
+                aria-hidden="true"
+                className="w-4 h-4 group-hover:scale-110 transition-transform"
+              />
+              <span>in/renato-bezerra</span>
             </MagneticButton>
-            <MagneticButton>
-              <a
-                href={SOCIALS.personal.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="@renatojuniordw no GitHub (abre em nova aba)"
-                className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
-              >
-                <Github
-                  aria-hidden="true"
-                  className="w-4 h-4 group-hover:scale-110 transition-transform"
-                />
-                <span>@renatojuniordw</span>
-              </a>
+            <MagneticButton
+              as="a"
+              href={SOCIALS.personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              ariaLabel="@renatojuniordw no GitHub (abre em nova aba)"
+              className="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors group"
+            >
+              <Github
+                aria-hidden="true"
+                className="w-4 h-4 group-hover:scale-110 transition-transform"
+              />
+              <span>@renatojuniordw</span>
             </MagneticButton>
           </div>
         </div>

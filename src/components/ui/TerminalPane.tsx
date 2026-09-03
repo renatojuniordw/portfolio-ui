@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { PROFILE, SOCIALS } from "@/lib/constants";
+import { NAV_ROUTES } from "@/lib/navigation";
 
 interface TerminalPaneProps {
   onNavigate: (path: string) => void;
@@ -19,10 +20,13 @@ const ROUTE_ALIASES: Record<string, string> = {
   home: "/",
   inicio: "/",
   sobre: "/#sobre",
-  projetos: "/projetos",
-  curriculo: "/curriculo",
   contato: "/contato",
-  blog: "/blog",
+  ...Object.fromEntries(
+    NAV_ROUTES.filter((route) => route.href !== "/").map((route) => [
+      route.href.slice(1),
+      route.href,
+    ]),
+  ),
 };
 
 const HELP_TEXT = [

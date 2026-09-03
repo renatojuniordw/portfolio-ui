@@ -3,7 +3,7 @@ import { ArrowRight, ClipboardCopy, ShieldCheck, TerminalSquare } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { organizationJsonLd } from "@/lib/structured-data";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card, projectPath } from "./helpers";
+import { breadcrumbs, card } from "./helpers";
 
 function Overview() {
   return (

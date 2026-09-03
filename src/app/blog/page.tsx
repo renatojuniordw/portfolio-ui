@@ -54,7 +54,7 @@ export default function BlogPage() {
               </span>
               <Link
                 href={`/blog/${featured.slug}`}
-                className="group block p-8 md:p-12 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-all duration-300"
+                className="group block p-8 md:p-12 project-card hover:border-[#111111] dark:hover:border-white transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                   <div className="flex-1">

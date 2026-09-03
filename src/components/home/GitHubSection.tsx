@@ -43,7 +43,7 @@ export async function GitHubSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <ScrollReveal delay={0}>
-            <div className="p-8 rounded-2xl bg-surface-2 border border-border flex flex-col items-center text-center">
+            <div className="p-8 project-card flex flex-col items-center text-center">
               <Code2 className="w-6 h-6 text-text-secondary mb-3" />
               <p className="text-4xl font-display font-bold text-text">
                 {stats.publicRepos}
@@ -55,7 +55,7 @@ export async function GitHubSection() {
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <div className="p-8 rounded-2xl bg-surface-2 border border-border flex flex-col items-center text-center">
+            <div className="p-8 project-card flex flex-col items-center text-center">
               <Star className="w-6 h-6 text-text-secondary mb-3" />
               <p className="text-4xl font-display font-bold text-text">
                 {stats.totalStars}
@@ -67,7 +67,7 @@ export async function GitHubSection() {
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
-            <div className="p-8 rounded-2xl bg-surface-2 border border-border flex flex-col items-center text-center">
+            <div className="p-8 project-card flex flex-col items-center text-center">
               <Users className="w-6 h-6 text-text-secondary mb-3" />
               <p className="text-4xl font-display font-bold text-text">
                 {stats.followers}
@@ -81,7 +81,7 @@ export async function GitHubSection() {
 
         {stats.topLanguages.length > 0 && (
           <ScrollReveal delay={300}>
-            <div className="mt-8 p-8 rounded-2xl bg-surface-2 border border-border">
+            <div className="mt-8 p-8 project-card">
               <h3 className="text-sm font-medium text-muted uppercase tracking-widest mb-4">
                 Linguagens mais usadas
               </h3>

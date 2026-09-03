@@ -25,7 +25,7 @@ export function initEasterEgg() {
 
   Esse portfólio foi construído com:
   ─────────────────────────────────
-  ⚛️  Next.js 15 + React 19
+  ⚛️  Next.js 16 + React 19
   🔷  TypeScript
   🎨  Tailwind CSS v4
   🎭  Framer Motion

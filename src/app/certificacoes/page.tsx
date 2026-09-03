@@ -42,7 +42,7 @@ export default function CertificacoesPage() {
           {EDUCATIONS.map((edu, index) => (
             <article
               key={index}
-              className="p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-colors"
+              className="p-8 project-card hover:border-[#111111] dark:hover:border-white transition-colors"
             >
               <span className="text-sm font-medium text-muted uppercase tracking-widest block mb-3">
                 {edu.period && (
@@ -74,7 +74,7 @@ export default function CertificacoesPage() {
           {CERTIFICATIONS.map((cert, index) => (
             <article
               key={index}
-              className="p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-colors"
+              className="p-8 project-card hover:border-[#111111] dark:hover:border-white transition-colors"
             >
               {cert.issuer && (
                 <span className="text-xs font-medium text-muted uppercase tracking-widest block mb-3">

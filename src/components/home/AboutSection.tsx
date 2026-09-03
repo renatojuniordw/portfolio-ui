@@ -31,7 +31,7 @@ export function AboutSection() {
         <ScrollReveal delay={100}>
           <div className="space-y-6 mb-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <article className="col-span-1 p-8 rounded-2xl bg-surface-2 border border-border flex flex-col justify-between hover:border-[#111111] transition-colors duration-300">
+              <article className="col-span-1 p-8 project-card flex flex-col justify-between hover:border-[#111111] transition-colors duration-300">
                 <div>
                   <span className="text-sm font-medium text-muted uppercase tracking-widest mb-4 block">
                     Experiência
@@ -45,7 +45,7 @@ export function AboutSection() {
                 </div>
               </article>
 
-              <article className="col-span-1 md:col-span-2 p-8 rounded-2xl bg-surface-2 border border-border flex flex-col justify-center hover:border-[#111111] transition-colors duration-300">
+              <article className="col-span-1 md:col-span-2 p-8 project-card flex flex-col justify-center hover:border-[#111111] transition-colors duration-300">
                 <span className="text-sm font-medium text-muted uppercase tracking-widest mb-6 block">
                   Foco e Formação
                 </span>
@@ -108,7 +108,7 @@ export function AboutSection() {
               <Link
                 key={project.id}
                 href={project.link}
-                className="group p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
+                className="group p-8 project-card hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
               >
                 <div>
                   <Tag>{project.category}</Tag>

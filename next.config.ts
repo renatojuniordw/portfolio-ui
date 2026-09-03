@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion", "gsap"],
+    optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   images: {
     remotePatterns: [

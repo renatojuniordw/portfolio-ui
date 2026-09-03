@@ -1,16 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, type ReactNode } from "react";
 import { motion } from "framer-motion";
 
 interface MagneticButtonProps {
   children: ReactNode;
   className?: string;
-  as?: "button" | "a";
+  as?: "button" | "a" | "link";
   href?: string;
   target?: string;
   rel?: string;
-  onClick?: () => void;
   ariaLabel?: string;
 }
 
@@ -21,7 +21,6 @@ export function MagneticButton({
   href,
   target,
   rel,
-  onClick,
   ariaLabel,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,6 +38,34 @@ export function MagneticButton({
     ref.current.style.transform = "translate(0, 0)";
   };
 
+  const inner = (() => {
+    if (as === "a") {
+      return (
+        <a
+          href={href}
+          target={target}
+          rel={rel}
+          aria-label={ariaLabel}
+          className={className}
+        >
+          {children}
+        </a>
+      );
+    }
+    if (as === "link") {
+      return (
+        <Link href={href ?? "/"} aria-label={ariaLabel} className={className}>
+          {children}
+        </Link>
+      );
+    }
+    return (
+      <button aria-label={ariaLabel} className={className}>
+        {children}
+      </button>
+    );
+  })();
+
   return (
     <div
       ref={ref}
@@ -51,26 +78,7 @@ export function MagneticButton({
         whileTap={{ scale: 0.97 }}
         transition={{ duration: 0.2 }}
       >
-        {as === "a" ? (
-          <a
-            href={href}
-            target={target}
-            rel={rel}
-            onClick={onClick}
-            aria-label={ariaLabel}
-            className={className}
-          >
-            {children}
-          </a>
-        ) : (
-          <button
-            onClick={onClick}
-            aria-label={ariaLabel}
-            className={className}
-          >
-            {children}
-          </button>
-        )}
+        {inner}
       </motion.div>
     </div>
   );

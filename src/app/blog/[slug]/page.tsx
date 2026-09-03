@@ -238,7 +238,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <Link
                   key={related.slug}
                   href={`/blog/${related.slug}`}
-                  className="group p-8 rounded-2xl bg-surface-2 border border-border hover:border-[#111111] dark:hover:border-white transition-all"
+                  className="group p-8 project-card hover:border-[#111111] dark:hover:border-white transition-all"
                 >
                   <time className="text-xs text-muted uppercase tracking-widest block mb-3">
                     {new Date(related.date).toLocaleDateString("pt-BR", {

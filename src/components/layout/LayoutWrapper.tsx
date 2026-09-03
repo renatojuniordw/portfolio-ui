@@ -16,17 +16,24 @@ import {
   Award,
   Menu,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntroLoader } from "@/components/fx/IntroLoader";
+import { NAV_ROUTES } from "@/lib/navigation";
 
-const NAV_ITEMS = [
-  { label: "Início", href: "/", icon: Home },
-  { label: "Projetos", href: "/projetos", icon: FolderOpen },
-  { label: "Blog", href: "/blog", icon: PenLine },
-  { label: "Currículo", href: "/curriculo", icon: FileText },
-  { label: "Certificações", href: "/certificacoes", icon: Award },
-];
+const NAV_ICONS: Record<string, LucideIcon> = {
+  "/": Home,
+  "/projetos": FolderOpen,
+  "/blog": PenLine,
+  "/curriculo": FileText,
+  "/certificacoes": Award,
+};
+
+const NAV_ITEMS = NAV_ROUTES.map((item) => ({
+  ...item,
+  icon: NAV_ICONS[item.href],
+}));
 
 const Header = memo(function Header({
   isIntroFinished,

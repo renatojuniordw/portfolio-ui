@@ -22,7 +22,7 @@ interface CaseStudyBlockProps {
 export function CaseStudyBlock({ type, children }: CaseStudyBlockProps) {
   const styles = CASE_STYLES[type];
   return (
-    <div className={`p-6 rounded-2xl bg-surface-2 border border-border border-l-[3px] ${styles.border}`}>
+    <div className={`p-6 project-card border-l-[3px] ${styles.border}`}>
       <span className={`text-xs font-medium ${styles.label} uppercase tracking-widest mb-2 block`}>
         {CASE_LABELS[type]}
       </span>
