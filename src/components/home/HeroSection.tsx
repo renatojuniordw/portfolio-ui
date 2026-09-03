@@ -24,34 +24,37 @@ export function HeroSection() {
 
       {/* Left Content Area */}
       <div className="flex-1 flex flex-col justify-between px-8 pt-24 pb-12 md:pt-28 lg:px-24 lg:pt-32 lg:pb-16 2xl:pl-40 2xl:pr-24 z-10 bg-transparent">
-        {/* Top Stats */}
-        <div className="flex gap-12 lg:gap-24 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
-          <div>
-            <p className="text-4xl lg:text-[2.75rem] font-light mb-2 text-text">
-              +{anos}
-            </p>
-            <p className="text-xs text-muted uppercase tracking-wider">
-              Anos de experiência
-            </p>
-          </div>
-        </div>
-
         {/* Center Text */}
         <div
           className="mt-20 mb-20 lg:my-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-forwards"
           style={{ animationDelay: "300ms" }}
         >
-          <h1 className="leading-none font-display font-light tracking-tighter text-text mb-4">
-            <span className="block text-[6rem] sm:text-[8rem] lg:text-[11rem] xl:text-[14rem] -ml-2">
-              Olá,
-            </span>
-            <span className="mt-5 block text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight">
-              {PROFILE.name}
-            </span>
-            <span className="mt-2 block text-lg sm:text-xl lg:text-2xl font-light tracking-tight text-text-secondary">
-              Engenheiro de Software Front-end & IA
-            </span>
+          <p className="text-xs sm:text-sm text-muted uppercase tracking-widest mb-8 flex items-center gap-3">
+            <span className="inline-block w-8 h-px bg-text/40" />
+            +{anos} anos de experiência
+          </p>
+
+          <h1 className="leading-[0.9] font-display font-bold tracking-tighter text-text mb-8">
+            {PROFILE.name.split(" ").map((part) => (
+              <span
+                key={part}
+                className="block text-[clamp(4.5rem,11vw,13rem)] -ml-1"
+              >
+                {part}
+              </span>
+            ))}
           </h1>
+
+          <p className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-text">
+            Engenheiro de Software{" "}
+            <span className="bg-gradient-to-r from-tech via-tech/70 to-tech/40 bg-clip-text text-transparent">
+              Front-end & IA
+            </span>
+          </p>
+          <p className="mt-4 max-w-md text-base sm:text-lg font-light text-text-secondary leading-relaxed">
+            Criando arquiteturas escaláveis e automatizando processos com
+            Inteligência Artificial para produtos digitais de alto impacto.
+          </p>
 
           <div className="flex flex-wrap gap-6 mt-8">
             <MagneticButton
