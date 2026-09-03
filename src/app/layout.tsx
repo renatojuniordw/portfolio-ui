@@ -48,7 +48,10 @@ export default function RootLayout({
         <link rel="llms" href="/llms.txt" />
         <link rel="llms" href="/llms.txt" title="AI Discovery" type="text/plain" />
       </head>
-      <body className="antialiased selection:bg-tech/30">
+      <body
+        className="antialiased selection:bg-tech/30"
+        suppressHydrationWarning
+      >
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-2WSFGQCP27"
           strategy="afterInteractive"
