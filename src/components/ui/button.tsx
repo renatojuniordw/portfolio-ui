@@ -13,11 +13,11 @@ const buttonVariants = cva(
         primary:
           "bg-tech text-white shadow-soft-1 hover:brightness-110 hover:shadow-tech/20 hover:shadow-lg",
         secondary:
-          "bg-s2 text-text-primary border border-border hover:bg-s2/80 hover:border-text-secondary/20",
-        ghost: "hover:bg-s2 hover:text-text-primary",
+          "bg-surface-2 text-text border border-border hover:bg-surface-2/80 hover:border-text-secondary/20",
+        ghost: "hover:bg-surface-2 hover:text-text",
         danger: "bg-danger text-white hover:bg-danger/90",
         outline:
-          "border border-border bg-transparent hover:bg-s2 hover:text-text-primary",
+          "border border-border bg-transparent hover:bg-surface-2 hover:text-text",
       },
       size: {
         sm: "h-8 px-3 rounded-sm text-xs",

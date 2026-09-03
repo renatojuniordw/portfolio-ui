@@ -69,17 +69,17 @@ export default function CurriculoPage() {
             </h2>
             <div className="flex flex-col border-t border-border mt-4">
               {EXPERIENCES.map((exp, index) => (
-                <article key={index} className="flex flex-col md:flex-row gap-6 py-8 border-b border-border hover:bg-s1/50 transition-colors px-4 -mx-4 rounded-xl">
+                <article key={index} className="flex flex-col md:flex-row gap-6 py-8 border-b border-border hover:bg-surface-1/50 transition-colors px-4 -mx-4 rounded-xl">
                   <div className="md:w-1/3 shrink-0">
                     <time className="text-sm text-text-secondary font-medium block mb-1">
                       {exp.period}
                     </time>
-                    <p className="text-sm font-medium text-text-primary">
+                    <p className="text-sm font-medium text-text">
                       {exp.company}
                     </p>
                   </div>
                   <div className="md:w-2/3">
-                    <h3 className="text-lg font-medium text-text-primary mb-3">{exp.role}</h3>
+                    <h3 className="text-lg font-medium text-text mb-3">{exp.role}</h3>
                     <ul className="space-y-3 text-sm text-text-secondary">
                       {exp.responsibilities.map((resp, i) => (
                         <li key={i} className="flex gap-3 items-start">
