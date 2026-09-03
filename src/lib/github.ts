@@ -25,8 +25,14 @@ export async function fetchGitHubStats(): Promise<GitHubStats | null> {
     const timer = setTimeout(() => ac.abort(), GH_TIMEOUT);
 
     const [userRes, reposRes] = await Promise.all([
-      fetch("https://api.github.com/users/renatojuniordw", { signal: ac.signal }),
-      fetch("https://api.github.com/users/renatojuniordw/repos?per_page=100&sort=updated", { signal: ac.signal }),
+      fetch("https://api.github.com/users/renatojuniordw", {
+        signal: ac.signal,
+        next: { revalidate: 3600 },
+      }),
+      fetch("https://api.github.com/users/renatojuniordw/repos?per_page=100&sort=updated", {
+        signal: ac.signal,
+        next: { revalidate: 3600 },
+      }),
     ]);
     clearTimeout(timer);
 

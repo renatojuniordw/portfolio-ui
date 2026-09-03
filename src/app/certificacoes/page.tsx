@@ -8,7 +8,7 @@ import { EDUCATIONS, CERTIFICATIONS } from "@/lib/education";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: "Certificações | Renato Bezerra",
+    title: "Certificações | Renato Bezerra — Engenheiro de Software",
     description:
       "Formação acadêmica e certificações profissionais de Renato Bezerra: Pós-graduação em Arquitetura de Software pela FIAP, certificações Microsoft em HTML5, JavaScript e CSS3.",
     path: "/certificacoes",

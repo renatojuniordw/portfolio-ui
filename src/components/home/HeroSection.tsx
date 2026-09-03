@@ -41,14 +41,17 @@ export function HeroSection() {
           className="mt-20 mb-20 lg:my-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-forwards"
           style={{ animationDelay: "300ms" }}
         >
-          <h1 className="text-[6rem] sm:text-[8rem] lg:text-[11rem] xl:text-[14rem] leading-none font-display font-light tracking-tighter text-text mb-6 -ml-2">
-            Olá
-            <span className="sr-only"> — {PROFILE.name}, Engenheiro de Software Front-end & IA</span>
+          <h1 className="leading-none font-display font-light tracking-tighter text-text mb-4">
+            <span className="block text-[6rem] sm:text-[8rem] lg:text-[11rem] xl:text-[14rem] -ml-2">
+              Olá,
+            </span>
+            <span className="mt-5 block text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight">
+              {PROFILE.name}
+            </span>
+            <span className="mt-2 block text-lg sm:text-xl lg:text-2xl font-light tracking-tight text-text-secondary">
+              Engenheiro de Software Front-end & IA
+            </span>
           </h1>
-          <p className="text-xl lg:text-2xl text-text-secondary font-medium">
-            — Me chamo {PROFILE.fullName?.split(" ")[0] || "Renato"}, sou
-            Front-end & Especialista em Automações e IA
-          </p>
 
           <div className="flex flex-wrap gap-6 mt-8">
             <MagneticButton>
@@ -108,7 +111,7 @@ export function HeroSection() {
         >
           <div className="relative w-full h-[65vh] lg:h-dvh rounded-[2rem] lg:rounded-none overflow-hidden bg-surface-2">
             <Image
-              src="/RenatoBezerra.png"
+              src="/RenatoBezerra.avif"
               alt={PROFILE.fullName || "Renato Bezerra"}
               fill
               priority

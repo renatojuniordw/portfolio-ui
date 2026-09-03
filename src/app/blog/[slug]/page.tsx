@@ -124,13 +124,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             })}
           />
 
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text transition-colors mb-12 group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-            Voltar para o blog
-          </Link>
+          <nav aria-label="Breadcrumb" className="mb-12 text-sm font-medium">
+            <ol className="flex flex-wrap items-center gap-2 text-text-secondary">
+              <li>
+                <Link href="/" className="hover:text-text transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-muted">
+                ›
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-text transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-muted">
+                ›
+              </li>
+              <li aria-current="page" className="text-text line-clamp-1">
+                {post.title}
+              </li>
+            </ol>
+          </nav>
 
           <header className="mb-12">
             <div className="flex flex-wrap items-center gap-3 text-sm text-text-secondary mb-6">

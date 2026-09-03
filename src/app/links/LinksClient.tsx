@@ -197,7 +197,7 @@ export function LinksClient() {
             className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-border bg-surface-2"
           >
             <Image
-              src="/RenatoBezerra.png"
+              src="/RenatoBezerra.avif"
               alt={PROFILE.name}
               fill
               priority

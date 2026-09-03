@@ -1,7 +1,7 @@
 import { SplitText } from "@/components/fx/SplitText";
 import { Button } from "@/components/ui/button";
 import { CaseStudyBlock } from "@/components/ui/CaseStudyBlock";
-import { ArrowLeft, ExternalLink, Github, Code2 } from "lucide-react";
+import { ExternalLink, Github, Code2 } from "lucide-react";
 import Link from "next/link";
 import { projectJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -40,17 +40,29 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
         <JsonLd key={`${id}-schema-${index}`} data={schema} />
       ))}
 
-      <Link
-        href="/projetos"
-        className="inline-flex items-center gap-2 text-text-secondary hover:text-text transition-colors mb-8 group text-sm font-medium"
-      >
-        <ArrowLeft
-          size={16}
-          className="group-hover:-translate-x-1 transition-transform"
-          aria-hidden="true"
-        />
-        Voltar para Projetos
-      </Link>
+      <nav aria-label="Breadcrumb" className="mb-8 text-sm font-medium">
+        <ol className="flex flex-wrap items-center gap-2 text-text-secondary">
+          <li>
+            <Link href="/" className="hover:text-text transition-colors">
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-muted">
+            ›
+          </li>
+          <li>
+            <Link href="/projetos" className="hover:text-text transition-colors">
+              Projetos
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-muted">
+            ›
+          </li>
+          <li aria-current="page" className="text-text line-clamp-1">
+            {project.title}
+          </li>
+        </ol>
+      </nav>
 
       <main>
         <header className="mb-16">

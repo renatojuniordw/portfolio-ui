@@ -23,13 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.date),
   }));
 
+  const now = new Date();
+
   const projectRoutes = PROJECTS.map((project) => ({
     path: project.link,
     priority: 0.8,
     changeFreq: "monthly" as const,
+    lastModified: now,
   }));
-
-  const now = new Date();
 
   return [
     ...staticRoutes.map((r) => ({

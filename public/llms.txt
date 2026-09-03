@@ -18,16 +18,19 @@ Engenheiro de Software com +7 anos de experiência em desenvolvimento front-end,
 - Links: https://renatobezerra.com.br/links
 
 ## Projetos em destaque
-- Sheik: https://renatobezerra.com.br/projetos/sheik — App de delivery com React Native + Node.js
-- Oferticando: https://renatobezerra.com.br/projetos/oferticando — Comparador de preços com IA
-- Seu Barraco Esperto: https://renatobezerra.com.br/projetos/seu-barraco-esperto — Aluguel residencial com gamificação
-- Unificando PDF: https://renatobezerra.com.br/projetos/unificando-pdf — Editor de PDF online
-- Unificando MED: https://renatobezerra.com.br/projetos/unificando-med — Prescrição médica offline-first
-- Sistema 18IA: https://renatobezerra.com.br/projetos/sistema-18ia — Agente autônomo via WhatsApp
-- Unificando Automação: https://renatobezerra.com.br/projetos/unificando-automacao — IA + n8n
-- Unificando Vitrine: https://renatobezerra.com.br/projetos/unificando-vitrine — Site institucional n8n
-- Maria Clara Santos: https://renatobezerra.com.br/projetos/mariaclarasantos — Landing page performance
-- Ariano Suassuna: https://renatobezerra.com.br/projetos/ariano-suassuna — Site enciclopédia temática
+- Radar Unificando: https://renatobezerra.com.br/projetos/unificando/radar — Busca de vagas em tempo real com assistente de carreira por IA (score ATS, currículo adaptado)
+- Unificando PDF: https://renatobezerra.com.br/projetos/unificando/pdf — Suíte de ferramentas de documentos com privacidade por design
+- Med Unificando: https://renatobezerra.com.br/projetos/unificando/med — Busca semântica de medicamentos intercambiáveis da ANVISA com IA 100% local
+- prompts-unificando: https://renatobezerra.com.br/projetos/prompts-unificando — Biblioteca de prompts padronizados para auditoria de código, segurança, testes e copy
+- promptcraft-unificando: https://renatobezerra.com.br/projetos/promptcraft-unificando — CLI que monta prompts de Engenheiro de Prompt no stdout para qualquer CLI de LLM
+- Unificando: IA & Automação: https://renatobezerra.com.br/projetos/unificando/automacao — Engine de atendimento com IA, orquestração de LLMs e automação via n8n
+- Unificando: Vitrine Digital: https://renatobezerra.com.br/projetos/unificando/vitrine — Site institucional interativo com calculadora de planos
+- Maria Clara Santos: https://renatobezerra.com.br/projetos/mariaclarasantos — Landing page de alta conversão para advocacia com sistema anti-golpe
+- Seu Barraco Esperto: https://renatobezerra.com.br/projetos/seu-barraco-esperto — Automação residencial prática com Alexa e IoT
+- Oferticando: https://renatobezerra.com.br/projetos/oferticando — Plataforma de ofertas e cupons com painéis de afiliados
+- Ariano Suassuna: https://renatobezerra.com.br/projetos/ariano-suassuna — Site educacional sobre a vida e obra de Ariano Suassuna
+- Diego Sheik - Mídia Kit: https://renatobezerra.com.br/projetos/sheik — Mídia kit interativo com insights de audiência para marcas
+- Sistema 18IA: https://renatobezerra.com.br/projetos/18ia — Landing page de alta conversão para produto digital técnico
 
 ## Redes Sociais
 - LinkedIn: https://linkedin.com/in/renato-bezerra

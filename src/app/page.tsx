@@ -11,9 +11,11 @@ import { ContactSection } from "@/components/home/ContactSection";
 import { PROFILE } from "@/lib/constants";
 import { getRecentPosts } from "@/lib/blog";
 
+export const revalidate = 3600;
+
 export const generateMetadata = () =>
   buildMetadata({
-    title: `${PROFILE.name} | Engenheiro Front-end & IA`,
+    title: `${PROFILE.name} | Engenheiro de Software Front-end & IA`,
     description: `Portfólio de ${PROFILE.name}, Engenheiro de Software especializado em React, Angular, Next.js e Inteligência Artificial Generativa. Mais de 7 anos criando aplicações escaláveis no setor petrolífero, startups e projetos próprios com automação, RAG e agentes de IA. Pós-graduado em Arquitetura de Software (FIAP).`,
     keywords: [
       "Renato Bezerra", "Engenheiro de Software", "Front-end", "React",
@@ -28,7 +30,7 @@ export default function Home() {
   const faqItems = [
     {
       question: "O que diferencia seu trabalho como engenheiro de software front-end?",
-      answer: "Arquiteturas React e Angular focadas em performance e DX. Código que funciona rápido, escala e é fácil de manter.",
+      answer: "Combino arquiteturas React e Angular com decisões orientadas a produto: performance, DX e manutenibilidade guiam cada escolha técnica.",
     },
     {
       question: "Como você usa IA Generativa nos seus projetos?",
@@ -41,6 +43,10 @@ export default function Home() {
     {
       question: "Qual sua abordagem em relação à visão de produto?",
       answer: "Entrego com métricas. Taxa de conversão, tempo de carregamento, custo por operação — cada decisão técnica é justificada por impacto real no negócio.",
+    },
+    {
+      question: "Como posso começar a trabalhar com você?",
+      answer: "O caminho mais rápido é pelo WhatsApp: conte sobre o projeto e eu respondo com um diagnóstico e os próximos passos. Para demandas maiores, marcamos uma call antes da proposta.",
     },
   ];
 

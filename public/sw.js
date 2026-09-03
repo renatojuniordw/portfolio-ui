@@ -2,7 +2,7 @@ const CACHE_NAME = "portfolio-v1";
 const STATIC_ASSETS = [
   "/",
   "/offline.html",
-  "/RenatoBezerra.png",
+  "/RenatoBezerra.avif",
   "/Profile.pdf",
 ];
 

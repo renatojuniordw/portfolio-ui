@@ -11,7 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: "Contato | Renato Bezerra",
+    title: "Contato | Renato Bezerra, Engenheiro Front-end & IA",
     description:
       "Entre em contato com Renato Bezerra para projetos de engenharia de software, front-end (React, Angular, Next.js), automação com IA e consultoria. Disponível via WhatsApp, LinkedIn ou email.",
     path: "/contato",

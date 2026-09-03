@@ -11,7 +11,7 @@ import { getAllPosts } from "@/lib/blog";
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: "Blog | Renato Bezerra",
+    title: "Blog | Renato Bezerra — Engenharia de Software & IA",
     description:
       "Artigos sobre engenharia de software, front-end (React, Angular, Next.js), IA Generativa, automação com n8n, RAG, segurança de LLMs e arquitetura de software por Renato Bezerra.",
     path: "/blog",
