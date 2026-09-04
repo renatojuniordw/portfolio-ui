@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Package } from "lucide-react";
+import { ArrowUpRight, Github, Package, Server } from "lucide-react";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
 
 interface Tool {
@@ -7,9 +7,13 @@ interface Tool {
   name: string;
   tagline: string;
   description: string;
-  command: string;
-  npmUrl: string;
-  githubUrl: string;
+  command?: string;
+  endpoint?: string;
+  npmUrl?: string;
+  githubUrl?: string;
+  docsUrl?: string;
+  docsLabel?: string;
+  casePath?: string;
   stats?: string;
 }
 
@@ -35,6 +39,18 @@ const TOOLS: Tool[] = [
     githubUrl: "https://github.com/renatojuniordw/promptcraft-unificando",
     stats: "131 downloads/semana",
   },
+  {
+    id: "mcp-med-unificando",
+    name: "MCP Med Unificando",
+    tagline: "Servidor MCP aberto em produção",
+    description:
+      "A base ANVISA/CMED exposta como 12 ferramentas read-only para agentes de IA (Claude, Cursor, opencode) via Model Context Protocol — a mesma busca híbrida do site, sem scraping.",
+    endpoint: "https://med.unificando.com.br/api/mcp",
+    docsUrl: "https://med.unificando.com.br/mcp",
+    docsLabel: "Página MCP",
+    casePath: "/projetos/unificando/med",
+    githubUrl: "https://github.com/renatojuniordw/med-unificando",
+  },
 ];
 
 function TerminalCommand({ command }: { command: string }) {
@@ -42,6 +58,15 @@ function TerminalCommand({ command }: { command: string }) {
     <div className="mt-6 p-4 rounded-xl bg-bg border border-border font-mono text-sm overflow-x-auto">
       <span className="text-ia shrink-0">$ </span>
       <span className="text-text-secondary">{command}</span>
+    </div>
+  );
+}
+
+function EndpointBlock({ endpoint }: { endpoint: string }) {
+  return (
+    <div className="mt-6 p-4 rounded-xl bg-bg border border-border font-mono text-sm overflow-x-auto">
+      <span className="text-ia shrink-0">▸ </span>
+      <span className="text-text-secondary">{endpoint}</span>
     </div>
   );
 }
@@ -62,8 +87,8 @@ export function ToolsSection() {
                 Ferramentas & Open Source
               </h2>
               <p className="text-xl text-text-secondary font-light mt-4">
-                Pacotes publicados no npm, instaláveis via <code>npx</code> sem
-                configuração.
+                Pacotes no npm e um servidor MCP aberto — para LLMs via{" "}
+                <code>npx</code> e agentes de IA via Model Context Protocol.
               </p>
             </div>
             <a
@@ -91,13 +116,23 @@ export function ToolsSection() {
                     </h3>
                   </div>
                   <Package className="w-5 h-5 text-text-secondary shrink-0" aria-hidden="true" />
+                  {tool.endpoint && (
+                    <Server
+                      className="w-5 h-5 text-text-secondary shrink-0"
+                      aria-hidden="true"
+                    />
+                  )}
                 </div>
 
                 <p className="text-text-secondary leading-relaxed mt-4 flex-1">
                   {tool.description}
                 </p>
 
-                <TerminalCommand command={tool.command} />
+                {tool.command ? (
+                  <TerminalCommand command={tool.command} />
+                ) : tool.endpoint ? (
+                  <EndpointBlock endpoint={tool.endpoint} />
+                ) : null}
 
                 {tool.stats && (
                   <p className="text-xs font-medium text-ia mt-3">
@@ -107,27 +142,42 @@ export function ToolsSection() {
 
                 <div className="flex flex-wrap gap-4 mt-6 pt-6 border-t border-border">
                   <Link
-                    href={`/projetos/${tool.id}`}
+                    href={tool.casePath ?? `/projetos/${tool.id}`}
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-text hover:text-text-secondary transition-colors"
                   >
                     Ver case <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
-                  <a
-                    href={tool.npmUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
-                  >
-                    npm <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                  </a>
-                  <a
-                    href={tool.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
-                  >
-                    <Github className="w-4 h-4" aria-hidden="true" /> GitHub
-                  </a>
+                  {tool.npmUrl && (
+                    <a
+                      href={tool.npmUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
+                    >
+                      npm <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                    </a>
+                  )}
+                  {tool.docsUrl && (
+                    <a
+                      href={tool.docsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
+                    >
+                      {tool.docsLabel ?? "Docs"}{" "}
+                      <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                    </a>
+                  )}
+                  {tool.githubUrl && (
+                    <a
+                      href={tool.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
+                    >
+                      <Github className="w-4 h-4" aria-hidden="true" /> GitHub
+                    </a>
+                  )}
                 </div>
               </article>
             </ScrollReveal>

@@ -6,6 +6,7 @@ import {
   Download,
   RefreshCw,
   ShieldCheck,
+  Bot,
 } from "lucide-react";
 
 import { SOCIALS } from "@/lib/constants";
@@ -29,6 +30,12 @@ function Overview() {
         chamadas a APIs externas de IA. Os dados de medicamentos e preços
         (tabela CMED) são sincronizados automaticamente a partir dos portais
         abertos da ANVISA.
+      </p>
+      <p>
+        O mesmo domínio de busca também é exposto como{" "}
+        <strong>MCP Server</strong> — 12 ferramentas read-only em{" "}
+        <code>/api/mcp</code> para agentes de IA (Claude, Cursor, opencode)
+        consultarem a base pública via Model Context Protocol, sem scraping.
       </p>
     </div>
   );
@@ -85,12 +92,12 @@ export const unificandoMedCase: ProjectCase = {
     "Healthcare / IA",
     "Consulta inteligente de medicamentos intercambiáveis da ANVISA, com busca semântica por IA local e comparação de preços CMED.",
     "ia",
-    ["Next.js", "Prisma", "PostgreSQL", "IA Local"],
+    ["Next.js", "Prisma", "PostgreSQL", "IA Local", "MCP"],
   ),
   jsonLd: {
     name: "Med Unificando",
     description:
-      "Plataforma de consulta de medicamentos intercambiáveis da ANVISA com busca semântica por IA local.",
+      "Plataforma de consulta de medicamentos intercambiáveis da ANVISA com busca semântica por IA local e MCP Server para agentes de IA.",
     url: LIVE_URL,
   },
   breadcrumbs: breadcrumbs(
@@ -149,6 +156,12 @@ export const unificandoMedCase: ProjectCase = {
       description:
         "Importação periódica dos dados abertos de medicamentos e preços diretamente dos portais da ANVISA.",
     },
+    {
+      icon: <Bot className="text-ia" size={24} aria-hidden="true" />,
+      title: "MCP Server para Agentes de IA",
+      description:
+        "O mesmo domínio de busca vira ferramenta para agentes de IA: 12 funcionalidades read-only via Model Context Protocol (Claude, Cursor, opencode), sem scraping e com rate limit.",
+    },
   ],
   extraSections: [
     {
@@ -165,6 +178,7 @@ export const unificandoMedCase: ProjectCase = {
     { label: "Banco de Dados", name: "PostgreSQL 16 + Prisma 7" },
     { label: "Autenticação", name: "NextAuth v5" },
     { label: "IA (embeddings)", name: "Xenova Transformers (ONNX local)" },
+    { label: "MCP Server", name: "@modelcontextprotocol/sdk (Streamable HTTP)" },
     { label: "PDF", name: "pdfmake (server-side)" },
     { label: "Infraestrutura", name: "Docker Compose (multi-stage)" },
   ],

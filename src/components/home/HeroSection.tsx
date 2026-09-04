@@ -30,8 +30,8 @@ export function HeroSection() {
           style={{ animationDelay: "300ms" }}
         >
           <p className="text-xs sm:text-sm text-muted uppercase tracking-widest mb-8 flex items-center gap-3">
-            <span className="inline-block w-8 h-px bg-text/40" />
-            +{anos} anos de experiência
+            <span className="inline-block w-8 h-px bg-text/40" />+{anos} anos de
+            experiência
           </p>
 
           <h1 className="leading-[0.9] font-display font-bold tracking-tighter text-text mb-8">
@@ -46,10 +46,7 @@ export function HeroSection() {
           </h1>
 
           <p className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-text">
-            Engenheiro de Software{" "}
-            <span className="bg-gradient-to-r from-tech via-tech/70 to-tech/40 bg-clip-text text-transparent">
-              Front-end & IA
-            </span>
+            Engenheiro de Software Front-end & IA
           </p>
           <p className="mt-4 max-w-md text-base sm:text-lg font-light text-text-secondary leading-relaxed">
             Criando arquiteturas escaláveis e automatizando processos com
@@ -107,9 +104,7 @@ export function HeroSection() {
         speed={0.1}
         className="lg:w-[45%] xl:w-[50%] relative w-full animate-in fade-in slide-in-from-right-8 duration-1000 fill-mode-forwards z-0 px-6 sm:px-12 lg:px-0 pb-12 lg:pb-0"
       >
-        <div
-          style={{ animationDelay: "800ms" }}
-        >
+        <div style={{ animationDelay: "800ms" }}>
           <div className="relative w-full h-[65vh] lg:h-dvh rounded-[2rem] lg:rounded-none overflow-hidden bg-surface-2">
             <Image
               src="/RenatoBezerra.avif"
