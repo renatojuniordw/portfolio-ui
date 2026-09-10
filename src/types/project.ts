@@ -14,6 +14,7 @@ export interface ProjectFeature {
   icon?: ReactNode;
   title: string;
   description: string;
+  link?: { href: string; label: string };
 }
 
 export interface ProjectExtraSection {

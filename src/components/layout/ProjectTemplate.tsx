@@ -161,6 +161,17 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                         <h3 className="text-xl font-medium text-text mb-2">{feature.title}</h3>
                         <p className="text-text-secondary text-sm font-light leading-relaxed">{feature.description}</p>
                       </div>
+                      {feature.link && (
+                        <a
+                          href={feature.link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-ia hover:opacity-80 transition-opacity"
+                        >
+                          {feature.link.label}
+                          <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                        </a>
+                      )}
                     </article>
                   ))}
                 </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Package, Server } from "lucide-react";
+import { ArrowUpRight, Github, Package, Puzzle, Server } from "lucide-react";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
+import { SOCIALS } from "@/lib/constants";
 
 interface Tool {
   id: string;
@@ -51,6 +52,18 @@ const TOOLS: Tool[] = [
     casePath: "/projetos/unificando/med",
     githubUrl: "https://github.com/renatojuniordw/med-unificando",
   },
+  {
+    id: "radar-extensao",
+    name: "Radar Unificando (Extensão)",
+    tagline: "Extensão Chrome — análise de vagas no side panel",
+    description:
+      "Analisa a vaga aberta na página atual e mostra score ATS e cursos recomendados sem sair do site da empresa. Publicada e disponível na Chrome Web Store.",
+    docsUrl: SOCIALS.unificando.radarExtensao,
+    docsLabel: "Chrome Web Store",
+    casePath: "/projetos/unificando/radar",
+    githubUrl: "https://github.com/renatojuniordw/radar-unificando",
+    stats: "Disponível na Chrome Web Store",
+  },
 ];
 
 function TerminalCommand({ command }: { command: string }) {
@@ -87,8 +100,9 @@ export function ToolsSection() {
                 Ferramentas & Open Source
               </h2>
               <p className="text-xl text-text-secondary font-light mt-4">
-                Pacotes no npm e um servidor MCP aberto — para LLMs via{" "}
-                <code>npx</code> e agentes de IA via Model Context Protocol.
+                Pacotes no npm, um servidor MCP aberto e uma extensão Chrome —
+                para LLMs via <code>npx</code>, agentes de IA via Model Context
+                Protocol e análise de vagas direto no navegador.
               </p>
             </div>
             <a
@@ -115,7 +129,11 @@ export function ToolsSection() {
                       {tool.name}
                     </h3>
                   </div>
-                  <Package className="w-5 h-5 text-text-secondary shrink-0" aria-hidden="true" />
+                  {tool.id === "radar-extensao" ? (
+                    <Puzzle className="w-5 h-5 text-text-secondary shrink-0" aria-hidden="true" />
+                  ) : (
+                    <Package className="w-5 h-5 text-text-secondary shrink-0" aria-hidden="true" />
+                  )}
                   {tool.endpoint && (
                     <Server
                       className="w-5 h-5 text-text-secondary shrink-0"

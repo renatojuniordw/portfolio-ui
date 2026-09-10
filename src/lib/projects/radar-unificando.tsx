@@ -201,7 +201,11 @@ export const radarUnificandoCase: ProjectCase = {
       icon: <Puzzle className="text-ia" size={24} aria-hidden="true" />,
       title: "Extensão Chrome (Side Panel)",
       description:
-        "Analisa a vaga aberta na página atual e mostra score ATS e cursos recomendados sem sair do site da empresa. Em homologação na Chrome Web Store.",
+        "Analisa a vaga aberta na página atual e mostra score ATS e cursos recomendados sem sair do site da empresa. Já disponível na Chrome Web Store.",
+      link: {
+        href: SOCIALS.unificando.radarExtensao,
+        label: "Instalar na Chrome Web Store",
+      },
     },
     {
       icon: <Download className="text-ia" size={24} aria-hidden="true" />,

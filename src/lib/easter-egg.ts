@@ -29,7 +29,6 @@ export function initEasterEgg() {
   🔷  TypeScript
   🎨  Tailwind CSS v4
   🎭  Framer Motion
-  🌐  Vercel (deploy)
   ─────────────────────────────────
 
   Queres ver mais? Tente rodar:

@@ -24,6 +24,8 @@ export const SOCIALS = {
     pdf: "https://pdf.unificando.com.br",
     med: "https://med.unificando.com.br",
     radar: "https://radar.unificando.com.br",
+    radarExtensao:
+      "https://chromewebstore.google.com/detail/radar-unificando-%E2%80%94-an%C3%A1lis/kcbfealbhifapbhnlbajfgefafjiobdh",
   },
   oferticando: {
     site: "https://oferticando.com.br",

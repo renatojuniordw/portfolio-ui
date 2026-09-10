@@ -18,7 +18,7 @@ Engenheiro de Software com +7 anos de experiência em desenvolvimento front-end,
 - Links: https://renatobezerra.com.br/links
 
 ## Projetos em destaque
-- Radar Unificando: https://renatobezerra.com.br/projetos/unificando/radar — Busca de vagas em tempo real com assistente de carreira por IA (score ATS, currículo adaptado)
+- Radar Unificando: https://renatobezerra.com.br/projetos/unificando/radar — Busca de vagas em tempo real com assistente de carreira por IA (score ATS, currículo adaptado). Extensão Chrome publicada e disponível na Chrome Web Store.
 - Unificando PDF: https://renatobezerra.com.br/projetos/unificando/pdf — Suíte de ferramentas de documentos com privacidade por design
 - Med Unificando: https://renatobezerra.com.br/projetos/unificando/med — Busca semântica de medicamentos intercambiáveis da ANVISA com IA 100% local
 - prompts-unificando: https://renatobezerra.com.br/projetos/prompts-unificando — Biblioteca de prompts padronizados para auditoria de código, segurança, testes e copy
