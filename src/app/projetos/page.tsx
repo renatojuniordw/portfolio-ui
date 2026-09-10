@@ -9,11 +9,11 @@ export const generateMetadata = () =>
   buildMetadata({
     title: "Projetos | Renato Bezerra — Engenharia de Software & IA",
     description:
-      "Conheça os projetos de Renato Bezerra: ecossistema de atendimento com IA (Unificando), automação residencial (Seu Barraco Esperto), sites profissionais, LegalTech com API do CNJ, automação para afiliados e mais 9 cases reais.",
+      "Conheça os projetos de Renato Bezerra: ecossistema de atendimento com IA (Unificando), automação residencial (Seu Barraco Esperto), sites profissionais, LegalTech com API do CNJ e mais cases reais.",
     path: "/projetos",
     keywords: [
       "Projetos", "Renato Bezerra", "Unificando", "Seu Barraco Esperto",
-      "Oferticando", "IA", "Automação", "Portfólio", "Cases",
+      "IA", "Automação", "Portfólio", "Cases",
     ],
   });
 

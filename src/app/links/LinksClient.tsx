@@ -6,12 +6,11 @@ import Link from "next/link";
 import { SOCIALS, PROFILE } from "@/lib/constants";
 import { EASE_OUT } from "@/lib/utils";
 import {
-  Instagram,
   Linkedin,
   Github,
   Youtube,
   MessageCircle,
-  Zap,
+  Instagram,
   Bot,
   Home,
   ArrowUpRight,
@@ -41,13 +40,6 @@ const LINKS_DATA = [
         title: "Unificando",
         subtitle: "Automação & IA para Atendimento",
         variant: "unificando" as const,
-      },
-      {
-        href: SOCIALS.oferticando.site,
-        icon: Zap,
-        title: "Oferticando",
-        subtitle: "Ofertas & Cupons em tempo real",
-        variant: "oferticando" as const,
       },
       {
         href: SOCIALS.barraco.insta,
@@ -81,13 +73,6 @@ const LINKS_DATA = [
         title: "Instagram Pessoal",
         subtitle: "Bastidores e cotidiano",
         variant: "default" as const,
-      },
-      {
-        href: SOCIALS.oferticando.insta,
-        icon: Instagram,
-        title: "Instagram Oferticando",
-        subtitle: "As melhores promoções do dia",
-        variant: "oferticando" as const,
       },
     ],
   },
@@ -128,14 +113,13 @@ const LinkItem = ({
   title: string;
   subtitle?: string;
   delay?: number;
-  variant?: "default" | "barraco" | "unificando" | "personal" | "oferticando";
+  variant?: "default" | "barraco" | "unificando" | "personal";
 }) => {
   const themes = {
     default: "hover:border-text hover:bg-surface-2",
     personal: "hover:border-tech/30 hover:bg-tech/5",
     barraco: "hover:border-barraco/30 hover:bg-barraco/5",
     unificando: "hover:border-ia/30 hover:bg-ia/5",
-    oferticando: "hover:border-tech/30 hover:bg-tech/5",
   };
 
   return (

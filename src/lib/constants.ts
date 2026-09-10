@@ -27,10 +27,6 @@ export const SOCIALS = {
     radarExtensao:
       "https://chromewebstore.google.com/detail/radar-unificando-%E2%80%94-an%C3%A1lis/kcbfealbhifapbhnlbajfgefafjiobdh",
   },
-  oferticando: {
-    site: "https://oferticando.com.br",
-    insta: "https://instagram.com/oferticando",
-  },
 };
 
 export const PROFILE = {
