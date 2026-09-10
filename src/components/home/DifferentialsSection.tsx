@@ -15,18 +15,8 @@ interface Differential extends AccordionImageItem {
 
 const DIFFERENTIALS: Differential[] = [
   {
-    id: "frontend",
-    index: "01",
-    title: "Front-end de Alta Performance",
-    description:
-      "Arquiteturas React e Angular focadas em performance e DX. Código que funciona rápido, escala e é fácil de manter.",
-    accent: "Front-end · React · Angular · TypeScript",
-    imageUrl:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1600&auto=format&fit=crop",
-  },
-  {
     id: "ia-generativa",
-    index: "02",
+    index: "01",
     title: "IA Generativa",
     description:
       "Integração de LLMs, RAG e geração de conteúdo direto no produto, como camada nativa da arquitetura — não como experimento isolado.",
@@ -36,13 +26,23 @@ const DIFFERENTIALS: Differential[] = [
   },
   {
     id: "automacao",
-    index: "03",
+    index: "02",
     title: "Automação & Agentes de IA",
     description:
       "Agentes e fluxos com n8n que reduzem operação manual em semanas, automatizando processos que antes dependiam de times inteiros.",
     accent: "n8n · Agentes de IA · Automação",
     imageUrl:
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1600&auto=format&fit=crop",
+  },
+  {
+    id: "frontend",
+    index: "03",
+    title: "Front-end de Alta Performance",
+    description:
+      "Base de anos em React e Angular: arquiteturas focadas em performance e DX, código que escala e é fácil de manter. É o alicerce de engenharia por trás do resto.",
+    accent: "Front-end · React · Angular · TypeScript",
+    imageUrl:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1600&auto=format&fit=crop",
   },
   {
     id: "produto",

@@ -4,11 +4,11 @@ import { EDUCATIONS } from "./education";
 const SITE_URL = SOCIALS.personal.site;
 
 const SKILLS = [
-  "React", "Angular", "Next.js", "TypeScript", "JavaScript",
-  "TailwindCSS", "Node.js", "C#", "Python",
-  "OpenAI", "LLM", "Prompt Engineering", "n8n", "RAG",
-  "SharePoint", "SQL Server", "MySQL", "AWS Lambda",
-  "Git", "Docker", "HTML5", "CSS3",
+  "Arquitetura de Software", "IA Generativa", "LLM", "OpenAI", "RAG",
+  "Prompt Engineering", "n8n", "Python", "Node.js", "TypeScript",
+  "React", "Angular", "Next.js", "JavaScript", "TailwindCSS",
+  "C#", "AWS Lambda", "Docker", "Git",
+  "SharePoint", "SQL Server", "MySQL", "HTML5", "CSS3",
 ];
 
 export function personJsonLd() {
@@ -74,7 +74,7 @@ export function serviceJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Engenharia de Software, Front-end & Automação com IA",
+    serviceType: "Engenharia de Software, IA Aplicada & Automação",
     provider: {
       "@type": "Person",
       name: PROFILE.name,
@@ -85,7 +85,7 @@ export function serviceJsonLd() {
       { "@type": "Country", name: "Worldwide" },
     ],
     description:
-      "Engenharia de software front-end (React, Angular, Next.js), consultoria em automação com IA (GPT, n8n, RAG) e criação de produtos digitais de alta performance.",
+      "Engenharia de software com IA aplicada e automação (LLMs, RAG, n8n, agentes), arquitetura e front-end (React, Angular, Next.js) para produtos digitais de alta performance.",
   };
 }
 

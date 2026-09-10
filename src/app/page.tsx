@@ -15,11 +15,12 @@ export const revalidate = 3600;
 
 export const generateMetadata = () =>
   buildMetadata({
-    title: `${PROFILE.name} | Engenheiro de Software Front-end & IA`,
-    description: `Portfólio de ${PROFILE.name}, Engenheiro de Software especializado em React, Angular, Next.js e Inteligência Artificial Generativa. Mais de 7 anos criando aplicações escaláveis no setor petrolífero, startups e projetos próprios com automação, RAG e agentes de IA. Pós-graduado em Arquitetura de Software (FIAP).`,
+    title: `${PROFILE.name} | Engenheiro de Software · IA Aplicada & Automação`,
+    description: `Portfólio de ${PROFILE.name}, Engenheiro de Software com +7 anos de experiência. Atuação atual em IA aplicada à engenharia de software e automação — agentes, RAG, n8n — sobre uma base sólida de front-end (React, Angular, Next.js) e arquitetura (FIAP). Experiência no setor petrolífero, startups e produtos próprios.`,
     keywords: [
-      "Renato Bezerra", "Engenheiro de Software", "Front-end", "React",
-      "Angular", "Next.js", "IA Generativa", "Automação com IA",
+      "Renato Bezerra", "Engenheiro de Software", "IA aplicada", "IA Generativa",
+      "Automação com IA", "RAG", "Agentes de IA", "Arquitetura de Software",
+      "Front-end", "React", "Angular", "Next.js",
       "Portfólio", "Recife", "Paulista", "PCD",
     ],
   });

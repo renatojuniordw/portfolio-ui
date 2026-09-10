@@ -46,7 +46,7 @@ export function HeroSection() {
           </h1>
 
           <p className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-text">
-            Engenheiro de Software Front-end & IA
+            Engenheiro de Software · IA aplicada & Automação
           </p>
           <p className="mt-4 max-w-md text-base sm:text-lg font-light text-text-secondary leading-relaxed">
             Criando arquiteturas escaláveis e automatizando processos com

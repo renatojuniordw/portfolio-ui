@@ -1,12 +1,12 @@
 # Renato Bezerra — Engenheiro de Software
 
-> Portfólio profissional com projetos, artigos e experiências em engenharia de software, front-end (React, Angular, Next.js) e IA Generativa aplicada.
+> Portfólio profissional com projetos, artigos e experiências em engenharia de software: IA aplicada e automação (agentes, RAG, n8n), arquitetura e front-end (React, Angular, Next.js).
 
 ## URL
 https://renatobezerra.com.br
 
 ## Summary
-Engenheiro de Software com +7 anos de experiência em desenvolvimento front-end, especializado em Angular, React.js e Next.js. Pós-graduado em Arquitetura de Software (FIAP). Atuação em IA Generativa aplicada: agentes autônomos, engenharia de prompts, RAG, n8n.
+Engenheiro de Software com +7 anos de experiência. Foco atual em IA aplicada à engenharia de software e automação: agentes autônomos, engenharia de prompts, RAG, n8n. Base sólida em front-end (Angular, React, Next.js) e arquitetura de software — pós-graduado pela FIAP.
 
 ## Páginas principais
 - Home: https://renatobezerra.com.br/ — Portfólio completo

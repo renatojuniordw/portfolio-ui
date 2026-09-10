@@ -22,9 +22,9 @@ export function AboutSection() {
           </h2>
           <p className="text-xl lg:text-2xl text-text-secondary font-light leading-relaxed mb-20">
             Meu nome é <strong>{PROFILE.fullName}</strong>. Sou{" "}
-            <strong>Engenheiro de Software</strong>, com foco em arquitetura
-            front-end e automação com IA para criação de produtos digitais de
-            alto impacto.
+            <strong>Engenheiro de Software</strong> com foco atual em{" "}
+            <strong>IA aplicada e automação</strong> — apoiado em anos de base
+            sólida em front-end (React, Angular, Next.js) e arquitetura.
           </p>
         </ScrollReveal>
 
@@ -55,7 +55,8 @@ export function AboutSection() {
                       Software Engineer
                     </h3>
                     <p className="text-text-secondary leading-relaxed">
-                      CESAR & Unificando Digital • Front-end e Automações com IA
+                      CESAR & Unificando Digital • IA aplicada, automação e
+                      front-end
                     </p>
                   </div>
                   <div className="pt-6 border-t border-border">

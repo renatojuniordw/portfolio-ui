@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Renato Bezerra — Engenheiro de Software",
     short_name: "Renato Bezerra",
     description:
-      "Portfólio de Renato Bezerra, Engenheiro de Software especializado em React, Angular, Next.js e IA Generativa. Front-end, automação e arquitetura.",
+      "Portfólio de Renato Bezerra, Engenheiro de Software. IA aplicada, automação, arquitetura e front-end (React, Angular, Next.js).",
     start_url: "/",
     display: "standalone",
     display_override: ["window-controls-overlay", "standalone"],
