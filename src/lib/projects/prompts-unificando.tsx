@@ -72,6 +72,7 @@ export const promptsUnificandoCase: ProjectCase = {
     "CLI e biblioteca npm com prompts padronizados para auditoria de código, segurança, testes e copy — agnóstica de stack e de LLM.",
     "tech",
     ["Node.js", "CLI", "npm", "TypeScript"],
+    "unificando",
   ),
   jsonLd: {
     name: "prompts-unificando",

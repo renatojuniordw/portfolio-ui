@@ -1,174 +1,60 @@
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/projects";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
-import { EASE_OUT } from "@/lib/utils";
-
-import { PROJECT_ACCENT, ACCENT_DOT } from "@/lib/project-theme";
-
-const CARD_INITIAL = { opacity: 0, y: 20 };
-const CARD_ANIMATE = { opacity: 1, y: 0 };
+import { ProjectGrid } from "@/components/ui/ProjectGrid";
 
 export function ProjectsClient() {
-  const featuredProject = useMemo(
-    () => PROJECTS.find((project) => project.id === "unificando-med") ?? PROJECTS[0],
-    [],
-  );
-  const secondaryProjects = useMemo(
-    () => PROJECTS.filter((project) => project.id !== featuredProject.id),
-    [featuredProject],
-  );
+  const unificando = PROJECTS.filter((project) => project.group === "unificando");
+  const standalone = PROJECTS.filter((project) => project.group !== "unificando");
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-16">
       <ScrollReveal>
-        <section className="grid gap-6">
-          <motion.article
-            initial={{ opacity: 0, y: 16 }}
-            animate={CARD_ANIMATE}
-            transition={{ duration: 0.4, ease: EASE_OUT }}
-            className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 md:p-10 shadow-soft-2"
-          >
+        <section className="space-y-6">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 md:p-10 shadow-soft-2">
             <div className="absolute inset-0 bg-gradient-to-br from-text/[0.04] via-transparent to-text/[0.02]" />
-            <div className="relative flex h-full flex-col gap-6">
-              <div className="flex flex-wrap items-center gap-3">
-                <span
-                  className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${
-                    PROJECT_ACCENT[featuredProject.accent] ??
-                    "text-muted border-border bg-surface"
-                  }`}
-                >
-                  <span
-                    className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT[featuredProject.accent] ?? "bg-muted"}`}
-                  />
-                  Projeto em destaque
-                </span>
-                <span className="text-xs uppercase tracking-widest text-muted">
-                  {featuredProject.category}
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="max-w-xl text-3xl font-semibold leading-tight text-text md:text-5xl">
-                  {featuredProject.title}
-                </h2>
-                <p className="max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
-                  {featuredProject.description}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {featuredProject.techs.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-block rounded-full border border-border bg-bg px-3 py-1 text-xs font-medium text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href={featuredProject.link}
-                  className="inline-flex items-center gap-2 rounded-full bg-text px-5 py-3 text-sm font-medium text-bg transition-transform duration-300 hover:-translate-y-0.5"
-                >
-                  Ver projeto
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <p className="text-sm text-muted">
-                  Uma visão mais detalhada do trabalho mais representativo.
-                </p>
-              </div>
+            <div className="relative flex flex-col gap-4">
+              <span className="inline-flex w-max items-center gap-1.5 rounded-full border border-ia/30 bg-ia/5 px-3 py-1 text-xs font-medium text-ia">
+                <span className="h-1.5 w-1.5 rounded-full bg-ia" />
+                Laboratório de produtos
+              </span>
+              <h2 className="max-w-xl text-3xl font-semibold leading-tight text-text md:text-4xl">
+                Unificando
+              </h2>
+              <p className="max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
+                Meu maior projeto: um laboratório de P&amp;D onde levo ideias de
+                IA aplicada e automação da arquitetura à operação —{" "}
+                {unificando.length} ferramentas reunidas sob a mesma marca.
+              </p>
+              <Link
+                href="/unificando"
+                className="inline-flex w-max items-center gap-2 rounded-full bg-text px-5 py-3 text-sm font-medium text-bg transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                Conheça o laboratório
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
-          </motion.article>
+          </div>
+          <ProjectGrid projects={unificando} />
         </section>
       </ScrollReveal>
 
       <section className="space-y-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-widest text-muted">
-              Demais projetos
-            </p>
-            <h3 className="mt-2 text-2xl font-semibold text-text">
-              Uma grade objetiva e fácil de escanear
-            </h3>
-          </div>
-          <p className="hidden text-sm text-muted md:block">
-            Clique em qualquer card para abrir o case completo.
+        <div>
+          <p className="text-xs uppercase tracking-widest text-muted">
+            Fora do Unificando
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold text-text">
+            Projetos independentes
+          </h2>
+          <p className="mt-1 text-sm text-muted">
+            Freelas, tributos e produtos pontuais — cada um com seu case completo.
           </p>
         </div>
-
-        <motion.div layout className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {secondaryProjects.map((project, index) => (
-            <motion.article
-              key={project.id}
-              layout
-              initial={CARD_INITIAL}
-              animate={CARD_ANIMATE}
-              transition={{
-                duration: 0.35,
-                delay: index * 0.04,
-                ease: EASE_OUT,
-              }}
-              className="group rounded-3xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-text-secondary hover:bg-surface-2"
-            >
-              <div className="flex h-full flex-col gap-5">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-3xl font-display font-light text-border transition-colors duration-300 group-hover:text-muted">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${
-                      PROJECT_ACCENT[project.accent] ??
-                      "text-muted border-border bg-surface"
-                    }`}
-                  >
-                    <span
-                      className={`h-1.5 w-1.5 rounded-full ${ACCENT_DOT[project.accent] ?? "bg-muted"}`}
-                    />
-                    {project.category}
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className="text-xl font-semibold leading-tight text-text">
-                    {project.title}
-                  </h4>
-                  <p className="line-clamp-3 text-sm leading-relaxed text-text-secondary">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.techs.map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-block rounded-full border border-border bg-bg px-2.5 py-1 text-xs font-medium text-muted"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-auto pt-2">
-                  <Link
-                    href={project.link}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-text transition-colors hover:text-text-secondary"
-                  >
-                    Ver projeto
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </Link>
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+        <ProjectGrid projects={standalone} />
       </section>
     </div>
   );

@@ -92,16 +92,24 @@ export function AboutSection() {
                 Projetos
               </h2>
               <p className="text-xl text-text-secondary font-light">
-                Uma seleção de <strong>{PROJECTS.length} cases</strong> de
-                sucesso.
+                Do laboratório <strong>Unificando</strong> a trabalhos
+                independentes — {PROJECTS.length} cases no total.
               </p>
             </div>
-            <Link
-              href="/projetos"
-              className="inline-flex items-center justify-center px-6 py-3 border border-border text-text rounded-full font-medium text-sm hover:border-[#111111] transition-colors group"
-            >
-              Ver todos os projetos
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/unificando"
+                className="inline-flex items-center justify-center px-6 py-3 text-text rounded-full font-medium text-sm hover:text-text-secondary transition-colors group"
+              >
+                Conheça o Unificando →
+              </Link>
+              <Link
+                href="/projetos"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border text-text rounded-full font-medium text-sm hover:border-[#111111] transition-colors group"
+              >
+                Ver todos os projetos
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -112,7 +120,6 @@ export function AboutSection() {
                 className="group p-8 project-card hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
               >
                 <div>
-                  <Tag>{project.category}</Tag>
                   <h3 className="text-2xl font-medium text-text mb-2 group-hover:text-text-secondary transition-colors">
                     {project.title}
                   </h3>

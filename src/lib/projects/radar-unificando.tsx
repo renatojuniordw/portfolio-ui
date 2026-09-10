@@ -132,6 +132,7 @@ export const radarUnificandoCase: ProjectCase = {
     "Plataforma de busca de vagas em tempo real (Gupy + InHire, todas as áreas) com assistente de carreira por IA: score ATS, currículo adaptado e recomendação de cursos.",
     "ia",
     ["Next.js 16", "MCP", "Vercel AI SDK", "Prisma", "Redis"],
+    "unificando",
   ),
   jsonLd: {
     name: "Radar Unificando",

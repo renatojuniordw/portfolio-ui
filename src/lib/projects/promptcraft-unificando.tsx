@@ -87,6 +87,7 @@ export const promptcraftUnificandoCase: ProjectCase = {
     "CLI via npx que monta prompts de 'Engenheiro de Prompt' a partir de texto cru, imprimindo no stdout para uso com qualquer CLI de LLM (Claude Code, Gemini CLI).",
     "tech",
     ["Node.js", "CLI", "npm", "npx"],
+    "unificando",
   ),
   jsonLd: {
     name: "promptcraft-unificando",

@@ -5,11 +5,11 @@ import { ExternalLink, Github, Code2 } from "lucide-react";
 import Link from "next/link";
 import { projectJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ProjectDetails } from "@/types/project";
+import { ProjectCase } from "@/types/project";
 import React from "react";
 
 interface ProjectTemplateProps {
-  project: ProjectDetails;
+  project: ProjectCase;
 }
 
 export function ProjectTemplate({ project }: ProjectTemplateProps) {
@@ -68,11 +68,19 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
         <header className="mb-16">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="max-w-3xl">
-              <span
-                className="inline-block px-4 py-1.5 bg-surface text-text text-xs font-medium rounded-full mb-4 uppercase tracking-wider"
-              >
-                {categoryBadge}
-              </span>
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="inline-block px-4 py-1.5 bg-surface text-text text-xs font-medium rounded-full uppercase tracking-wider">
+                  {categoryBadge}
+                </span>
+                {project.card.group === "unificando" && (
+                  <Link
+                    href="/unificando"
+                    className="inline-flex items-center gap-1.5 px-4 py-1.5 border border-ia/30 bg-ia/5 text-ia text-xs font-medium rounded-full uppercase tracking-wider transition-colors hover:bg-ia/10"
+                  >
+                    ⬡ Parte do Unificando
+                  </Link>
+                )}
+              </div>
               <SplitText
                 as="h1"
                 text={title}

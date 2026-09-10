@@ -65,8 +65,9 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: "Unificando",
     url: SOCIALS.unificando.site,
-    description: "Ecossistema de suporte digital e automação com IA.",
-    sameAs: [SOCIALS.unificando.insta],
+    description:
+      "Laboratório de produtos e P&D: ferramentas de IA aplicada, automação e utilitários — Radar (vagas com IA), Med (busca semântica local), PDF (suíte de documentos) e pacotes open source no npm.",
+    sameAs: [SOCIALS.unificando.insta, SOCIALS.unificando.github],
   };
 }
 

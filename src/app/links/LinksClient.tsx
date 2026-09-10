@@ -38,7 +38,7 @@ const LINKS_DATA = [
         href: SOCIALS.unificando.site,
         icon: Bot,
         title: "Unificando",
-        subtitle: "Automação & IA para Atendimento",
+        subtitle: "Laboratório de projetos autorais & IA",
         variant: "unificando" as const,
       },
       {
@@ -140,9 +140,13 @@ const LinkItem = ({
         />
       </div>
       <div className="ml-4 flex-grow text-left">
-        <h3 className="font-medium text-sm tracking-tight text-text">{title}</h3>
+        <h3 className="font-medium text-sm tracking-tight text-text">
+          {title}
+        </h3>
         {subtitle && (
-          <p className="text-xs text-text-secondary line-clamp-1 mt-0.5">{subtitle}</p>
+          <p className="text-xs text-text-secondary line-clamp-1 mt-0.5">
+            {subtitle}
+          </p>
         )}
       </div>
       <ArrowUpRight
@@ -230,7 +234,7 @@ export function LinksClient() {
                   <LinkItem
                     key={item.title}
                     {...item}
-                    delay={(sectionIndex * 0.1) + (itemIndex * 0.05)}
+                    delay={sectionIndex * 0.1 + itemIndex * 0.05}
                   />
                 ))}
               </div>

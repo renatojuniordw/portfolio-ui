@@ -8,6 +8,7 @@ export interface ProjectCard {
   accent: "ia" | "tech" | "barraco";
   techs: string[];
   link?: string;
+  group?: "unificando" | "standalone";
 }
 
 export interface ProjectFeature {

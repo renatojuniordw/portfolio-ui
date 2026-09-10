@@ -8,7 +8,7 @@ function Overview() {
   return (
     <div className="space-y-4">
       <p>
-        O <strong>Unificando PDF</strong> reúne <strong>16 ferramentas</strong>{" "}
+        O <strong>PDF Unificando</strong> reúne <strong>16 ferramentas</strong>{" "}
         de manipulação de documentos em uma única interface web, pensada para
         quem precisa de produtividade sem abrir mão da privacidade. Todo o
         processamento ocorre no servidor usando arquivos temporários em{" "}
@@ -58,11 +58,13 @@ function TechnicalExcellenceContent() {
         </p>
       </div>
       <div className="space-y-4">
-        <h3 className="text-xl font-bold text-text">Controle de Concorrência</h3>
+        <h3 className="text-xl font-bold text-text">
+          Controle de Concorrência
+        </h3>
         <p className="text-sm">
-          Fila de processamento no servidor com limite de concorrência,
-          tamanho máximo de fila e retry configuráveis via variáveis de
-          ambiente, garantindo estabilidade mesmo sob picos de tráfego.
+          Fila de processamento no servidor com limite de concorrência, tamanho
+          máximo de fila e retry configuráveis via variáveis de ambiente,
+          garantindo estabilidade mesmo sob picos de tráfego.
         </p>
       </div>
     </div>
@@ -97,14 +99,15 @@ export const unificandoPdfCase: ProjectCase = {
   pathSegments: ["unificando", "pdf"],
   card: card(
     "unificando-pdf",
-    "Unificando PDF",
+    "PDF Unificando",
     "SaaS & Utilitários",
     "Uma suíte completa de ferramentas para documentos, com foco em privacidade e processamento de alto desempenho.",
     "tech",
     ["Next.js", "pdf-lib", "Docker", "Ghostscript"],
+    "unificando",
   ),
   jsonLd: {
-    name: "Unificando PDF",
+    name: "PDF Unificando",
     description:
       "Plataforma web para processamento de documentos PDF com foco em privacidade e performance.",
     url: `${SOCIALS.personal.site}/projetos/unificando/pdf`,
@@ -114,7 +117,7 @@ export const unificandoPdfCase: ProjectCase = {
     { name: "PDF", item: "/projetos/unificando/pdf" },
   ),
   categoryBadge: "SaaS & Utilitários",
-  title: "Unificando PDF: Privacidade & Produtividade",
+  title: "PDF Unificando: Privacidade & Produtividade",
   shortDescription: (
     <>
       Suíte com <strong>16 ferramentas de PDF</strong> focada em{" "}

@@ -74,6 +74,7 @@ export const unificandoVitrineCase: ProjectCase = {
     "Site institucional interativo com foco em autoridade de marca e calculadora de planos em tempo real.",
     "tech",
     ["Next.js", "React", "TypeScript", "Tailwind"],
+    "unificando",
   ),
   jsonLd: {
     name: "Unificando - Vitrine Digital",

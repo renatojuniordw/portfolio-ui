@@ -14,6 +14,7 @@ import {
   FileText,
   PenLine,
   Award,
+  FlaskConical,
   Menu,
   X,
   type LucideIcon,
@@ -25,6 +26,7 @@ import { NAV_ROUTES } from "@/lib/navigation";
 const NAV_ICONS: Record<string, LucideIcon> = {
   "/": Home,
   "/projetos": FolderOpen,
+  "/unificando": FlaskConical,
   "/blog": PenLine,
   "/curriculo": FileText,
   "/certificacoes": Award,

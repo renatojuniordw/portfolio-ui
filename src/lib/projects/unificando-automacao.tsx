@@ -70,6 +70,7 @@ export const unificandoAutomacaoCase: ProjectCase = {
     "Engine de atendimento distribuído, orquestração de LLMs e automação de fluxos via n8n.",
     "ia",
     ["n8n", "OpenAI", "Node.js", "AWS Lambda"],
+    "unificando",
   ),
   jsonLd: {
     name: "Unificando - Automação & IA",

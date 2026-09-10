@@ -93,6 +93,7 @@ export const unificandoMedCase: ProjectCase = {
     "Consulta inteligente de medicamentos intercambiáveis da ANVISA, com busca semântica por IA local e comparação de preços CMED.",
     "ia",
     ["Next.js", "Prisma", "PostgreSQL", "IA Local", "MCP"],
+    "unificando",
   ),
   jsonLd: {
     name: "Med Unificando",
