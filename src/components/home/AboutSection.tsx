@@ -92,24 +92,22 @@ export function AboutSection() {
                 Projetos
               </h2>
               <p className="text-xl text-text-secondary font-light">
-                Do laboratório <strong>Unificando</strong> a trabalhos
-                independentes — {PROJECTS.length} cases no total.
+                Do laboratório{" "}
+                <Link
+                  href="/unificando"
+                  className="font-medium text-text underline decoration-1 underline-offset-4 transition-all hover:decoration-2"
+                >
+                  Unificando
+                </Link>{" "}
+                a trabalhos independentes — {PROJECTS.length} cases no total.
               </p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/unificando"
-                className="inline-flex items-center justify-center px-6 py-3 text-text rounded-full font-medium text-sm hover:text-text-secondary transition-colors group"
-              >
-                Conheça o Unificando →
-              </Link>
-              <Link
-                href="/projetos"
-                className="inline-flex items-center justify-center px-6 py-3 border border-border text-text rounded-full font-medium text-sm hover:border-[#111111] transition-colors group"
-              >
-                Ver todos os projetos
-              </Link>
-            </div>
+            <Link
+              href="/projetos"
+              className="inline-flex items-center justify-center px-6 py-3 border border-border text-text rounded-full font-medium text-sm hover:border-[#111111] transition-colors group"
+            >
+              Ver todos os projetos
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
