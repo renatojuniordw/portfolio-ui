@@ -50,15 +50,15 @@
 
 - Agente jurídico via WhatsApp integrado à **API oficial do CNJ (DataJud)** para consultas processuais, **validação de documentos**, cache de dados e **handoff estruturado** para atendimento humano.
 
-### prompts-unificando — biblioteca de prompts como pacote npm/CLI
+### @unificando/prompts — biblioteca de prompts como pacote npm/CLI
 
-> npm: https://www.npmjs.com/package/prompts-unificando
+> npm: https://www.npmjs.com/package/@unificando/prompts
 
-- Biblioteca de prompts publicada como **pacote npm / CLI** (`npx prompts-unificando list`) com 6 templates versionados — frontend, fullstack, backend, testes, auditoria de engenharia e segurança/LGPD — **agnóstica de stack e de LLM** (Claude, ChatGPT, Gemini).
+- Biblioteca de prompts publicada como **pacote npm / CLI** (`npx @unificando/prompts list`) com 6 templates versionados — frontend, fullstack, backend, testes, auditoria de engenharia e segurança/LGPD — **agnóstica de stack e de LLM** (Claude, ChatGPT, Gemini).
 
-### promptcraft-unificando — CLI de engenharia de prompt via npx
+### @unificando/refina — CLI de engenharia de prompt via npx
 
-> npm: https://www.npmjs.com/package/promptcraft-unificando · GitHub: https://github.com/renatojuniordw/promptcraft-unificando
+> npm: https://www.npmjs.com/package/@unificando/refina · GitHub: https://github.com/Unificando/refina
 
 - CLI instalável via **npx** que monta um prompt de "Engenheiro de Prompt" a partir do texto cru do usuário e imprime no stdout — pronto para **pipe em CLIs de LLM** (validado com Claude Code e Gemini CLI).
 - Flags: `--project` (ativa contexto de arquitetura do projeto atual) e `--save` (persiste o resultado como `.md`). Publicado no npm com **131 downloads semanais** em poucos dias.
@@ -72,7 +72,7 @@
 - **PDF Unificando** — 16 ferramentas de PDF com processamento efêmero (sem persistência), engine híbrida TypeScript + binários nativos e fila com controle de concorrência. → pdf.unificando.com.br
 - **Automação com IA** — agentes de triagem com saída JSON via n8n, RAG sobre Google Docs, detecção de intenção/sentimento e Instagram Graph API (comentário→DM).
 - **Case Legal Tech** — agenté jurídico via WhatsApp com API do CNJ (DataJud), validação de documentos, cache e handoff para atendimento humano.
-- **promptcraft-unificando / prompts-unificando** — ferramentas open-source publicadas no npm/npx para engenharia de prompt (biblioteca de templates e CLI para pipe em Claude Code/Gemini CLI).
+- **@unificando/refina / @unificando/prompts** — ferramentas open-source publicadas no npm/npx para engenharia de prompt (biblioteca de templates e CLI para pipe em Claude Code/Gemini CLI).
 
 ---
 
@@ -115,8 +115,8 @@ IA de forma sustentável.
 - **PDF Unificando** — 16 ferramentas de PDF com processamento efêmero (privacidade por design); engine híbrida TS + binários nativos (Ghostscript, LibreOffice, Poppler, qpdf).
 - **IA & Automação** — Agentes de atendimento (WhatsApp/Instagram) com triagem JSON via n8n, RAG e Instagram Graph API (comentário → DM).
 - **Case Advocacia** — Agente jurídico via WhatsApp integrado ao CNJ (DataJud) com handoff humano.
-- **prompts-unificando** — Biblioteca de prompts open-source como pacote npm/CLI.
-- **promptcraft-unificando** — CLI via npx que monta prompts de engenheiro a partir de texto cru, com pipe validado em Claude Code e Gemini CLI (131 downloads/semana).
+- **@unificando/prompts** — Biblioteca de prompts open-source como pacote npm/CLI.
+- **@unificando/refina** — CLI via npx que monta prompts de engenheiro a partir de texto cru, com pipe validado em Claude Code e Gemini CLI (131 downloads/semana).
 
 ---
 

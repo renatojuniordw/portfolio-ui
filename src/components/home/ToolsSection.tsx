@@ -20,24 +20,24 @@ interface Tool {
 
 const TOOLS: Tool[] = [
   {
-    id: "prompts-unificando",
-    name: "prompts-unificando",
+    id: "prompts",
+    name: "@unificando/prompts",
     tagline: "Biblioteca de prompts para auditoria de código",
     description:
       "6 templates versionados — frontend, fullstack, backend, testes, auditoria de engenharia e segurança/LGPD. Agnóstica de stack e de LLM (Claude, ChatGPT, Gemini).",
-    command: "npx prompts-unificando list",
-    npmUrl: "https://www.npmjs.com/package/prompts-unificando",
-    githubUrl: "https://github.com/renatojuniordw/prompts-unificando",
+    command: "npx @unificando/prompts list",
+    npmUrl: "https://www.npmjs.com/package/@unificando/prompts",
+    githubUrl: "https://github.com/Unificando/prompts",
   },
   {
-    id: "promptcraft-unificando",
-    name: "promptcraft-unificando",
+    id: "refina",
+    name: "@unificando/refina",
     tagline: "CLI de engenharia de prompt via npx",
     description:
       "Monta um prompt de Engenheiro de Prompt a partir de texto cru e imprime no stdout — pronto para pipe em Claude Code e Gemini CLI, com persistência em .md.",
-    command: "npx promptcraft-unificando \"ideia\" | claude",
-    npmUrl: "https://www.npmjs.com/package/promptcraft-unificando",
-    githubUrl: "https://github.com/renatojuniordw/promptcraft-unificando",
+    command: "npx @unificando/refina \"ideia\" | claude",
+    npmUrl: "https://www.npmjs.com/package/@unificando/refina",
+    githubUrl: "https://github.com/Unificando/refina",
     stats: "131 downloads/semana",
   },
   {

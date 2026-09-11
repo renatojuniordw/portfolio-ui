@@ -10,15 +10,15 @@ import { seuBarracoEspertoCase } from "./projects/seu-barraco-esperto";
 import { arianoSuassunaCase } from "./projects/ariano-suassuna";
 import { sheikCase } from "./projects/sheik";
 import { sistema18iaCase } from "./projects/sistema-18ia";
-import { promptsUnificandoCase } from "./projects/prompts-unificando";
-import { promptcraftUnificandoCase } from "./projects/promptcraft-unificando";
+import { promptsCase } from "./projects/prompts";
+import { refinaCase } from "./projects/refina";
 
 export const PROJECT_CASES: ProjectCase[] = [
   radarUnificandoCase,
   unificandoPdfCase,
   unificandoMedCase,
-  promptsUnificandoCase,
-  promptcraftUnificandoCase,
+  promptsCase,
+  refinaCase,
   unificandoAutomacaoCase,
   unificandoVitrineCase,
   mariaClaraSantosCase,
