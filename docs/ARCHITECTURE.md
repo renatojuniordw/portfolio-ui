@@ -1,466 +1,125 @@
-# Portfolio UI — Arquitetura e Documentação
-
-> Portfólio pessoal de **Renato Bezerra**, Engenheiro de Software.
-> Stack: Next.js 16 + React 19 + TypeScript 5 + Tailwind CSS 4
-
----
-
-## 1. Visão Geral
-
-### Stack
-
-| Camada | Tecnologia | Versão |
-|--------|-----------|--------|
-| Framework | Next.js | 16.1.6 |
-| Runtime | React | 19.2.3 |
-| Language | TypeScript | 5 |
-| Estilos | Tailwind CSS | 4 |
-| Animações | Framer Motion + GSAP | 12.x / 3.x |
-| Smooth Scroll | Lenis | 1.3.17 |
-| Deploy | Docker (standalone) | node:22-alpine |
-
-### Princípios
-
-- **SSG puro** — todas as páginas são geradas estaticamente em build time
-- **Zero back-end** — sem API routes, sem database, sem CMS
-- **Dados centralizados** — todo conteúdo vive em `src/lib/` como TypeScript
-- **Conteúdo em markdown** — blog posts em `.md` com frontmatter
-- **Acessibilidade** — skip-to-content, prefers-reduced-motion, ARIA labels, semântica HTML
-- **SEO** — Open Graph, Twitter Cards, JSON-LD, sitemap.xml, robots.txt
-
----
-
-## 2. Estrutura de Diretórios
-
-```
-src/
-├── app/                    # Next.js App Router (páginas + API)
-│   ├── blog/
-│   ├── certificacoes/
-│   ├── contato/
-│   ├── curriculo/
-│   ├── links/
-│   ├── projetos/
-│   ├── globals.css
-│   ├── layout.tsx          # Root layout
-│   ├── manifest.ts
-│   ├── not-found.tsx
-│   ├── page.tsx            # Home
-│   ├── robots.ts
-│   └── sitemap.ts
-├── components/
-│   ├── blog/               # BlogCard
-│   ├── fx/                 # Efeitos visuais (animação, scroll, partículas)
-│   ├── home/               # Seções da página inicial
-│   ├── layout/             # LayoutWrapper, ProjectTemplate
-│   ├── projects/           # Galerias específicas de projetos
-│   ├── seo/                # JSON-LD
-│   └── ui/                 # Componentes atômicos (Button, Card, Tag, etc.)
-├── content/
-│   └── blog/               # Posts em markdown (.md com frontmatter)
-├── hooks/
-│   └── useActiveNavLink.ts
-├── lib/
-│   ├── projects/           # Definições de cada case de projeto
-│   ├── articles.ts
-│   ├── blog.ts             # Leitor de markdown (gray-matter)
-│   ├── constants.ts        # Perfil + redes sociais
-│   ├── easter-egg.ts
-│   ├── education.ts        # Formação + certificações
-│   ├── experience.tsx      # Experiência profissional
-│   ├── project-cases.tsx   # Registry de projetos
-│   ├── projects.ts         # Mapeamento para cards
-│   ├── seo.ts              # buildMetadata()
-│   ├── structured-data.ts  # JSON-LD generators
-│   └── utils.ts            # cn()
-├── styles/
-│   └── tokens.css          # CSS custom properties (tema claro/escuro)
-└── types/
-    ├── blog.ts
-    └── project.ts
-```
-
----
-
-## 3. Arquitetura
-
-### Geração de Páginas (SSG)
-
-Todas as páginas são **estáticas** (`output: "standalone"`):
-
-```
-Páginas estáticas comuns:  /, /blog, /certificacoes, /contato, /curriculo, /projetos
-Páginas SSG com params:    /blog/[slug], /projetos/[...slug]
-```
-
-- Rotas dinâmicas usam `generateStaticParams()` para definir os slugs em build time
-- `dynamicParams = false` — URLs não previstas retornam 404
-- Isso garante performance máxima e deploy sem servidor
-
-### Fluxo de Dados
-
-```
-dados-fonte (src/lib/) → componentes (server components) → HTML estático
-                                      ↕
-                           src/content/blog/ (markdown)
-                                      ↕
-                           src/lib/blog.ts (gray-matter parse)
-```
-
-- Não há fetching em runtime
-- Não há estado global complexo
-- Componentes "use client" só para interatividade (animações, menu, comando palette)
-
-### Tema (claro/escuro)
-
-- Gerenciado por `next-themes` com `attribute: "class"`
-- Tokens CSS em `src/styles/tokens.css` com `:root` (light) e `.dark` (dark)
-- Tailwind mapeia os tokens via `@theme` em `globals.css`
-- Componentes usam classes como `bg-bg`, `text-text`, `border-border`
-
----
-
-## 4. Rotas e Páginas
-
-| Rota | Arquivo | Tipo | Conteúdo |
-|------|---------|------|----------|
-| `/` | `page.tsx` | Static | Hero + Sobre + Diferenciais + Contato (snap scroll) |
-| `/blog` | `blog/page.tsx` | Static | Listagem com post em destaque + grid |
-| `/blog/[slug]` | `blog/[slug]/page.tsx` | SSG | Post com markdown, barra de progresso, compartilhar |
-| `/certificacoes` | `certificacoes/page.tsx` | Static | Formação acadêmica + certificações |
-| `/contato` | `contato/page.tsx` | Static | Cards de contato (WhatsApp, LinkedIn, GitHub, email) |
-| `/curriculo` | `curriculo/page.tsx` | Static | Timeline de experiência + educação + PDF download |
-| `/links` | `links/page.tsx` | Static | Página "link in bio" (sem chrome do site) |
-| `/projetos` | `projetos/page.tsx` | Static | Grid de projetos com destaque |
-| `/projetos/[...slug]` | `projetos/[...slug]/page.tsx` | SSG | Detalhe do projeto com template |
-| `/projetos/unificando` | `projetos/unificando/page.tsx` | Static | Redirect → `/projetos/unificando/automacao` |
-| 404 | `not-found.tsx` | Static | Página personalizada |
-
-### Rotas API (arquivos de configuração)
-
-| Rota | Arquivo | Tipo |
-|------|---------|------|
-| `/sitemap.xml` | `sitemap.ts` | Dinâmico (build) |
-| `/robots.txt` | `robots.ts` | Dinâmico (build) |
-| `/manifest.webmanifest` | `manifest.ts` | Dinâmico (build) |
-
----
-
-## 5. Componentes
-
-### Hierarquia do Layout
-
-```
-<html>
-  <body>
-    <Scripts /> (Google Analytics)
-    <ThemeProvider>
-      <EasterEgg />
-      <LayoutWrapper>
-        <Header />         ← Fixed top, z-50, backdrop-blur
-        <main>             ← id="main-content"
-          {children}       ← Conteúdo da página
-        </main>
-        <Footer />
-      </LayoutWrapper>
-      <CommandPalette />   ← Floating button bottom-right
-    </ThemeProvider>
-  </body>
-</html>
-```
-
-O chrome (Header + Footer) é ocultado na rota `/links`.
-
-### Componentes Globais
-
-| Componente | Descrição |
-|-----------|-----------|
-| `LayoutWrapper` | Gerencia Header, Footer, IntroLoader, SmoothScroll, skip-to-content |
-| `CommandPalette` | Cmd+K palette com navegação, tema, download currículo |
-| `ThemeToggle` | Alterna tema claro/escuro |
-| `ScrollReveal` | Animação de entrada ao scroll (Framer Motion) |
-| `SplitText` | Animação de texto caractere-por-caractere (GSAP) |
-| `SmoothScroll` | Scroll suave Lenis + ScrollTrigger (desligado na home) |
-| `IntroLoader` | Animação de entrada "Renato Bezerra" |
-
-### Componentes de Página (Home)
-
-A home usa **snap scroll** com 4 slides:
-
-| Slide | Componente | Conteúdo |
-|-------|-----------|----------|
-| 1 | `HeroSection` | Nome, título, stats, foto, ParticleField |
-| 2 | `AboutSection` | "Sobre mim", experiencia, formação, PCD note |
-| 3 | `DifferentialsSection` | 3 diferenciais (Front-end, IA, Produto) |
-| 4 | `ContactSection` | CTA WhatsApp + outras formas de contato |
-
----
-
-## 6. Camada de Dados
-
-### src/lib/constants.ts — Perfil e Redes
-
-```typescript
-PROFILE.name        // "Renato Bezerra"
-PROFILE.fullName    // "Renato Bezerra Gomes da Silva Junior"
-PROFILE.title       // Cargo/título exibido no site
-PROFILE.summary     // Resumo profissional (SEO + about)
-PROFILE.pcdNote     // Nota sobre PCD
-
-SOCIALS.personal    // LinkedIn, GitHub, Instagram, Email, WhatsApp, Site
-SOCIALS.barraco     // Redes do projeto Seu Barraco Esperto
-SOCIALS.unificando  // Redes do projeto Unificando
-SOCIALS.oferticando // Redes do projeto Oferticando
-```
-
-### src/lib/experience.tsx — Experiência
-
-```typescript
-EXPERIENCES: Array<{
-  company: string;
-  role: string;
-  period: string;
-  responsibilities: ReactNode[];  // JSX (permite <strong>)
-}>
-```
-
-7 entradas: Unificando, CESAR, Avanade (Pleno), Avanade (Junior), MV, Iterpe, CPRH.
-
-### src/lib/education.ts — Formação
-
-```typescript
-EDUCATIONS: Array<{ institution, degree, period }>   // 2 entradas
-CERTIFICATIONS: Array<{ name, issuer?, year? }>      // 2 entradas
-```
-
-### src/lib/blog.ts — Blog
-
-Lê arquivos `.md` de `src/content/blog/` usando `gray-matter`.
-
-```typescript
-getAllPosts(): BlogPost[]     // Todos os posts, ordenados por data
-getPostBySlug(slug): BlogPost | null
-getRecentPosts(count): BlogPost[]
-```
-
-**Frontmatter esperado** nos `.md`:
-```yaml
----
-title: "Título do Post"
-description: "Resumo para SEO e cards"
-date: "2026-03-15"
-tags:
-  - Tag1
-  - Tag2
-readingTime: "3 min"  # Opcional — calculado automaticamente
----
-```
-
-### src/lib/project-cases.tsx — Projetos
-
-Registra 9 projetos com dados completos (descrição, features, tech stack, links, JSON-LD).
-
-```typescript
-PROJECT_CASES: ProjectCase[]
-getProjectCaseByPath(segments: string[]): ProjectCase
-```
-
-Cada projeto tem uma `accent` que define a cor: `"ia"` (roxo), `"tech"` (azul), `"barraco"` (laranja).
-
-### Tipos
-
-**src/types/blog.ts:**
-```typescript
-BlogPost { slug, title, description, date, tags, content, readingTime }
-```
-
-**src/types/project.ts:**
-```typescript
-ProjectCard, ProjectDetails, ProjectCase, ProjectFeature,
-ProjectExtraSection, SidebarTechStack, SidebarExtraCard,
-ProjectBreadcrumb, ProjectJsonLdData
-```
-
----
-
-## 7. Sistema de Estilos
-
-### Tailwind CSS v4 (CSS-first)
-
-Diferente do Tailwind v3 (arquivo `tailwind.config.js`), a v4 usa um arquivo CSS com diretiva `@theme` para definir tokens:
-
-```css
-/* globals.css */
-@import "tailwindcss";
-@import "../styles/tokens.css";
-
-@theme {
-  --color-bg: var(--bg);
-  --color-tech: var(--accent-tech);
-  --color-ia: var(--accent-ia);
-  --color-barraco: var(--accent-barraco);
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Inter", sans-serif;
-}
-```
-
-### Tokens Disponíveis
-
-| Classe Tailwind | CSS Variable | Light | Dark |
-|----------------|-------------|-------|------|
-| `bg-bg` | `--bg` | `#FFFFFF` | `#0A0A0A` |
-| `bg-surface-1` | `--surface-1` | `#F5F5F5` | `#141414` |
-| `bg-surface-2` | `--surface-2` | `#F9F9F9` | `#1A1A1A` |
-| `border-border` | `--border` | `#E5E5E5` | `#262626` |
-| `text-text` | `--text` | `#111111` | `#F5F5F5` |
-| `text-text-secondary` | `--text-2` | `#666666` | `#A3A3A3` |
-| `text-muted` | `--muted` | `#777777` | `#737373` |
-| `text-tech` / `border-tech` | `--accent-tech` | `#1D4ED8` | `#1D4ED8` |
-| `text-ia` / `border-ia` | `--accent-ia` | `#6D28D9` | `#6D28D9` |
-| `text-barraco` / `border-barraco` | `--accent-barraco` | `#EA580C` | `#EA580C` |
-
-### Component Classes (globals.css)
-
-```css
-.section-wrapper   /* padding, border-top para seções */
-.section-title     /* Heading de seção (text-3xl lg:text-5xl) */
-.section-label     /* Label "POR QUE EU?" uppercase */
-.project-card      /* Card de projeto */
-.tag-pill          /* Tag pill */
-.blog-content      /* Tipografia para markdown (h2-h4, p, code, pre, blockquote, table, img) */
-```
-
-### Fontes
-
-- **Display**: Space Grotesk (`--font-space`) — títulos, headings
-- **Body**: Inter (`--font-body`) — textos corridos
-- Ambas carregadas via `next/font` com `display: swap`
-
----
-
-## 8. SEO & Metadados
-
-### buildMetadata() — src/lib/seo.ts
-
-Função centralizada que gera metadados para todas as páginas:
-
-```typescript
-buildMetadata({
-  title?: string;        // "Título | Renato Bezerra"
-  description?: string;  // Fallback: PROFILE.summary
-  path?: string;         // Caminho da URL
-  ogImage?: string;      // Padrão: /og-image.jpg
-  noIndex?: boolean;     // Para páginas não-indexáveis
-}): Metadata
-```
-
-### Structured Data (JSON-LD)
-
-Gerado por `src/lib/structured-data.ts`:
-
-| Tipo | Função | Onde é usado |
-|------|--------|-------------|
-| `Person` | `personJsonLd()` | Home |
-| `WebSite` | `websiteJsonLd()` | Home |
-| `Organization` | `organizationJsonLd()` | Projetos Unificando |
-| `Service` | `serviceJsonLd()` | Projetos Seu Barraco |
-| `CreativeWork` | `projectJsonLd()` | Cada projeto individual |
-| `BreadcrumbList` | `breadcrumbJsonLd()` | Páginas internas |
-
-### Sitemap
-
-`src/app/sitemap.ts` gera dinamicamente todas as URLs:
-- Rotas estáticas: `/`, `/blog`, `/projetos`, `/curriculo`, `/contato`, `/links`, `/certificacoes`
-- Rotas de projetos: todos os slugs de `PROJECTS`
-- Rotas de blog: todos os slugs de `getAllPosts()`
-
----
-
-## 9. Deploy (Docker)
-
-### Dockerfile
-
-Multi-stage build com `node:22-alpine`:
-
-1. **Stage 1 (deps)**: `npm ci` — dependências exatas
-2. **Stage 2 (builder)**: `npm run build` — compilação
-3. **Stage 3 (runner)**: `node server.js` — standalone, non-root user `nextjs`, porta 3100
-
-### docker-compose.yml
-
-```yaml
-services:
-  portfolio:
-    build: .
-    ports: ["127.0.0.1:3100:3100"]
-    restart: always
-    read_only: true
-    security_opt: [no-new-privileges: true]
-    cap_drop: [ALL]
-    tmpfs: [/tmp, /app/.next/cache]
-```
-
----
-
-## 10. Adicionar Novo Conteúdo
-
-### Novo Post no Blog
-
-1. Criar `src/content/blog/meu-post.md` com frontmatter:
-   ```markdown
-   ---
-   title: "Título do Post"
-   description: "Resumo para SEO"
-   date: "2026-07-16"
-   tags:
-     - Tag1
-     - Tag2
-   ---
-   
-   Conteúdo do post em markdown...
-   ```
-2. O build gera automaticamente as páginas via `generateStaticParams`
-
-### Nova Experiência
-
-Editar `src/lib/experience.tsx` — adicionar ao array `EXPERIENCES`.
-
-### Nova Certificação
-
-Editar `src/lib/education.ts` — adicionar ao array `CERTIFICATIONS`.
-
-### Novo Projeto
-
-1. Criar `src/lib/projects/meu-projeto.tsx` com `ProjectCase`
-2. Importar e adicionar ao array `PROJECT_CASES` em `src/lib/project-cases.tsx`
-3. O build gera automaticamente a rota `/projetos/meu-projeto`
-
----
-
-## 11. Dependências Principais
-
-| Pacote | Para que serve |
-|--------|---------------|
-| `next` | Framework React com SSG e App Router |
-| `framer-motion` | Animações declarativas (ScrollReveal, IntroLoader, menu) |
-| `gsap` | Animações avançadas (SplitText, snap scroll) |
-| `lenis` | Smooth scroll engine |
-| `gray-matter` | Parse de frontmatter em markdown |
-| `react-markdown` | Renderização de markdown como React |
-| `rehype-highlight` | Syntax highlighting em code blocks |
-| `next-themes` | Tema claro/escuro |
-| `cmdk` | Command palette (Cmd+K) |
-| `lucide-react` | Ícones |
-| `three` / `@react-three/fiber` | 3D (HeroScene — descontinuado) |
-
----
-
-## 12. Convenções e Padrões
-
-- **Naming**: PascalCase para componentes, camelCase para funções/utilities
-- **Imports**: Use `@/` alias para imports absolutos
-- **Componentes**: Prefira server components. Use `"use client"` só quando necessário
-- **Estilos**: Tailwind utility classes + tokens CSS. Evite CSS modules
-- **Animações**: Framer Motion para interações de UI, GSAP para animações orientadas a scroll
-- **Dados**: Centralizados em `src/lib/`. Nunca duplicar dados entre arquivos
-- **Tipos**: Em `src/types/`. Tipos de dados de lib em seus próprios arquivos
+# Arquitetura
+
+Portfólio de Renato Bezerra em Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, next-themes e Framer Motion. Este documento descreve o estado atual do código; o README cobre instalação, comandos e deploy.
+
+## Rotas
+
+| Rota | Arquivo | Geração | Conteúdo |
+| --- | --- | --- | --- |
+| `/` | `src/app/page.tsx` | Estática com revalidação de 1 h | Hero → Projetos selecionados → Sobre → Diferenciais → Ferramentas → GitHub → Artigos → Contato |
+| `/projetos` | `src/app/projetos/page.tsx` | Estática | Catálogo com filtro por área (`?area=ia\|automacao\|frontend`) |
+| `/projetos/[...slug]` | `src/app/projetos/[...slug]/page.tsx` | SSG (`generateStaticParams`, `dynamicParams = false`) | Estudo de caso (ex.: `/projetos/unificando/radar`) |
+| `/projetos/unificando` | `next.config.ts` | Redirect 308 | → `/projetos/unificando/automacao` |
+| `/unificando` | `src/app/unificando/page.tsx` | Estática | Laboratório de produtos |
+| `/blog` | `src/app/blog/page.tsx` | Estática | Listagem com busca local (`?q=`) |
+| `/blog/[slug]` | `src/app/blog/[slug]/page.tsx` | SSG, `dynamicParams = false` | Artigo com sumário, cópia de código, compartilhamento e relacionados |
+| `/curriculo`, `/certificacoes`, `/contato` | `src/app/*/page.tsx` | Estáticas | |
+| `/links` | `src/app/links/page.tsx` | Estática, `noindex` | "Link na bio", sem cabeçalho/rodapé globais |
+| `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest` | `src/app/*.ts` | Estáticas | |
+
+Rotas desconhecidas de projetos e artigos retornam 404.
+
+**Build e servidor.** `output: "standalone"` empacota um servidor Node (`.next/standalone/server.js`); não é exportação estática. Ele serve as páginas pré-renderizadas e revalida a home a cada hora (ISR), que é o único ponto com dado buscado em tempo de execução: a API pública do GitHub (`src/lib/github.ts`). O Docker copia `public/` e `.next/static` para junto do servidor; `npm run start:standalone` faz o mesmo localmente.
+
+## Fronteiras server/client
+
+- Páginas, `ProjectTemplate`, `FeaturedProjectsSection`, `ProjectGrid`, `BlogCard`, `SplitText`, `ArticlesSection`, `GitHubSection` e `ToolsSection` são componentes de servidor.
+- `src/lib/blog.ts` usa `fs` e só roda no servidor. Componentes client recebem `BlogPostSummary` (metadados, **sem** o Markdown).
+- `PROJECT_CASES` (`src/lib/project-cases.ts`) contém JSX e ícones e só é importado no servidor. O catálogo client (`ProjectsClient`) recebe `Project[]`, o DTO serializável do card (`src/lib/projects.ts`). Um teste unitário impede que componentes client importem os cases completos.
+- Módulos puros e seguros para o client: `project-areas.ts` (taxonomia e filtro), `search.ts` (normalização e busca), `dates.ts`, `share.ts`.
+- Componentes client: `LayoutWrapper` (cabeçalho e menu), `ModalDialog`, `CommandPalette`/`TerminalPane` (carregados sob demanda, sem SSR), `ThemeToggle`, `ProjectsClient`, `BlogIndex`, `CodeBlock`, `DifferentialsSection`, `ScrollReveal`, `ParticleField`, `MagneticButton`, `ParallaxSection`.
+- Filtros e busca leem a URL com `useSearchParams` dentro de `Suspense`; o fallback do Suspense é o catálogo/listagem completo, então o HTML estático (e a página sem JS) mostra todo o conteúdo e as páginas continuam estáticas.
+
+## Dados
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| `src/lib/constants.ts` | Perfil, redes, `getYearsOfExperience()` (use em textos em vez de "+7 anos" fixo) |
+| `src/lib/experience.ts`, `education.ts` | Currículo |
+| `src/lib/project-cases.ts` | Registro único dos cases; gera as rotas, o catálogo, o sitemap e os destaques |
+| `src/lib/projects/*.tsx` | Um arquivo por case |
+| `src/lib/projects.ts` | `PROJECTS` (DTOs) e `FEATURED_PROJECT_IDS` (destaques da home, em ordem) |
+| `src/lib/project-areas.ts` | Áreas: `ia` (IA), `automacao` (Automação), `frontend` (Front-end) |
+| `src/content/blog/*.md` | Artigos |
+
+### Modelo do card (`ProjectCard`)
+
+`id`, `title`, `category`, `description`, `accent` (cor), `techs` (stack), `areas` (área funcional, uma ou mais, obrigatória), `group` (`unificando` ou independente) e `thumbnail` opcional (`src`, `width`, `height`, `alt`, `source` com a origem da captura). Área, stack, cor e grupo são independentes.
+
+### Case (`ProjectDetails`)
+
+A página segue contexto (`overviewContent`) → participação (`role`) → desafio/solução/resultado (`caseStudy`) → funcionalidades → seções extras → stack. `role` só é preenchido com informação explícita (hoje: produtos autorais do Unificando, `UNIFICANDO_AUTHORIAL_ROLE`); sem dado verificado, o campo é omitido. Não invente função, período, status ou métricas.
+
+## Adicionar conteúdo
+
+**Projeto**
+
+1. Crie `src/lib/projects/<id>.tsx` exportando um `ProjectCase` (use `card()`, `breadcrumbs()` e, se aplicável, `projectPath()` de `helpers.ts`).
+2. Em `card(...)`, informe `areas` com base no conteúdo do case; `group: "unificando"` quando fizer parte do laboratório.
+3. `pathSegments` define a URL (`["unificando", "radar"]` → `/projetos/unificando/radar`); sem ele, usa o `id`.
+4. Seções extras: dê um `id` estável (vira âncora pública); o heading recebe `<id>-heading`. Sem `id`, o template gera `<projeto>-secao-<n>`.
+5. Registre em `PROJECT_CASES`. Rotas, catálogo, sitemap e filtros se atualizam sozinhos. Atualize `public/llms.txt`.
+6. Thumbnail: só captura real (página pública do produto, sem login e sem dados pessoais), em `public/projetos/`, com `alt` e `source`. Nunca imagem gerada simulando interface.
+7. Para destacar na home, adicione o `id` em `FEATURED_PROJECT_IDS`.
+
+**Artigo:** arquivo em `src/content/blog/` com frontmatter `title`, `description`, `date: "AAAA-MM-DD"` (entre aspas, para não virar objeto Date), `tags`. Headings `##`/`###` alimentam o sumário (a partir de 3). A data é formatada em UTC para não mudar de dia com o fuso.
+
+## Blog
+
+- **Busca** (`BlogIndex`): local, em título, descrição e tags, sem acentos e sem diferenciar maiúsculas; todos os termos precisam aparecer. O termo vai para `?q=` com atraso de 250 ms via `router.replace` (sem uma entrada no histórico por letra). Sem busca, mostra o destaque editorial; com busca, uma única lista.
+- **Sumário**: `extractHeadings` analisa a árvore Markdown (remark), então `#` dentro de blocos de código não conta. O mesmo plugin `remarkHeadingIds` gera os IDs na renderização, garantindo que sumário e headings batam, inclusive com títulos duplicados (`sql`, `sql-1`, ...).
+- **Copiar código** (`CodeBlock`): copia o `textContent` do `<code>`; só mostra "Copiado" depois que a Clipboard API confirma. Em falha, seleciona o código e explica como copiar.
+- **Relacionados** (`getRelatedPosts`): pontua por tags em comum normalizadas, desempata por data e slug, até dois. Sem nenhuma tag em comum, mostra os mais recentes como "Outros artigos".
+- **Compartilhar**: `wa.me/?text=` sem destinatário e LinkedIn (`src/lib/share.ts`). O contato pessoal continua em `SOCIALS.personal.whatsapp`.
+
+## Tema
+
+- next-themes aplica `.dark` no `<html>`; o padrão é claro, preferências salvas continuam valendo.
+- `globals.css` declara `@custom-variant dark (&:where(.dark, .dark *))`, então `dark:` segue o tema do site, não o do sistema. O syntax highlighting também usa `.dark`.
+- Tokens de cor em `src/styles/tokens.css` (`:root` e `.dark`), mapeados para classes em `@theme` (`bg-bg`, `bg-surface-1`, `text-text-secondary`, `text-tech`, `text-on-accent`...). Detalhes e contraste em [design-system.md](design-system.md).
+- Toggle e comando `theme` do terminal usam `resolvedTheme`.
+
+## Movimento
+
+- Nenhuma tela de abertura bloqueia conteúdo. A única intro é decorativa: o logo do cabeçalho anima ~550 ms na primeira visita à home na sessão, marcada por um script no `<head>` (`html[data-intro]`); falha de `sessionStorage` é ignorada.
+- Conteúdo é visível no HTML inicial e sem JavaScript. Animações de entrada usam CSS com `fill-mode: both` (`.fx-rise`, `.split-char`); `ScrollReveal` só oculta, depois de montar, elementos que ainda estão abaixo da dobra.
+- `prefers-reduced-motion`: CSS desliga animações e revelações; `MotionConfig reducedMotion="user"` cobre o Framer Motion; `MagneticButton`, `ParallaxSection` e `ParticleField` checam a preferência. O canvas de partículas pausa fora da viewport e com a aba oculta.
+
+## Acessibilidade
+
+- Um `<main id="main-content" tabIndex={-1}>` por página, vindo do layout; skip link visível ao focar. `scroll-padding-top` evita âncoras escondidas atrás do cabeçalho fixo.
+- `SplitText` expõe o título completo uma vez (`sr-only`) e esconde os caracteres animados.
+- `ModalDialog` (menu mobile e terminal): `<dialog>` nativo com `showModal()`, título, botão fechar visível, foco inicial, Tab preso, Esc/backdrop/botão fecham, rolagem travada e foco devolvido ao acionador. O menu fecha ao navegar e ao passar para a largura desktop (1024 px). Ctrl/⌘+K não abre o terminal com outro modal aberto.
+- Diferenciais: abas completas (setas, Home/End, `tablist`/`tab`/`tabpanel`) a partir de 1024 px; abaixo disso, cards empilhados. Hover não muda seleção.
+- Filtros com `aria-pressed` e contagem em `role="status"`; o foco não se move ao filtrar.
+- Links repetidos ("Ver projeto", "Ver case", "Conectar") têm complemento `sr-only` com o nome do item; links externos avisam "abre em nova aba".
+- Alvos principais com pelo menos 44×44 px.
+
+## Offline (service worker)
+
+Contrato: sem rede, qualquer navegação recebe `/offline.html` (página própria, sem fontes ou scripts externos, com "Tentar novamente"). Foto e `Profile.pdf` já acessados ficam em cache. **Não** há navegação offline pelas páginas já visitadas, de propósito, para não misturar HTML/RSC de releases diferentes.
+
+Política (`public/sw.js`):
+
+- Registrado só em produção (`NODE_ENV === "production"`), inclusive se o evento `load` já tiver ocorrido.
+- Intercepta apenas GET do mesmo origin: navegações (rede primeiro, fallback offline só em falha de rede; 404/500 legítimos passam) e a lista fixa `RenatoBezerra.avif`/`Profile.pdf` (rede primeiro, cache só com status 200 e tipo `basic`, sem Range).
+- `/_next/*`, RSC, prefetch, APIs e terceiros nunca passam pelo worker.
+- Caches: `renato-portfolio-offline-<versão>` e `renato-portfolio-assets-<versão>`. Na ativação remove versões antigas com esse prefixo e o legado `portfolio-v1`; caches de outros apps do mesmo origin ficam intactos.
+- Atualização: incremente `VERSION` ao mudar `sw.js` ou `offline.html`. O worker novo usa `skipWaiting`/`clients.claim` e assume quando o anterior fica ocioso (no máximo ao fechar a aba antiga), sem recarregar a página.
+
+Validar uma atualização: `npm run test:e2e -- --project=offline` (instalação, migração, fallback, erro real de recurso, 404, reconexão e troca de versão com aba aberta).
+
+## SEO
+
+- `buildMetadata()` (`src/lib/seo.ts`): título, descrição, canonical, Open Graph, Twitter, robots. `noIndex` em `/links`.
+- JSON-LD: Person e WebSite na home; BreadcrumbList nas páginas; CreativeWork nos cases; Article nos posts; Organization/Service onde aplicável. Não há FAQPage (não existe FAQ visível).
+- Sitemap: páginas, artigos (com `lastModified` = data do artigo) e cases; sem data inventada para o que não tem data editorial; `/links` fica de fora.
+- `public/llms.txt` resume o site para agentes; mantenha-o em sincronia com o catálogo.
+
+## Checklist de publicação
+
+1. `npm run lint`, `npx tsc --noEmit --incremental false`, `npm test`
+2. `npm run test:e2e` (com rede para baixar as fontes no build)
+3. Se `sw.js` ou `offline.html` mudaram, `VERSION` foi incrementada
+4. Novo case/artigo: `llms.txt` atualizado; thumbnails com origem registrada
+5. `docker compose up --build` e conferência manual de home, um case e um artigo

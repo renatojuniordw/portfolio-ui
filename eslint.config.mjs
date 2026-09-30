@@ -14,6 +14,9 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Relatório de cobertura de testes
     "coverage/**",
+    // Saídas do Playwright
+    "playwright-report/**",
+    "test-results/**",
   ]),
 ]);
 

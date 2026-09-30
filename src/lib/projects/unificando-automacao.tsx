@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { organizationJsonLd } from "@/lib/structured-data";
 import { SOCIALS } from "@/lib/constants";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card, projectPath } from "./helpers";
+import { breadcrumbs, card, projectPath, UNIFICANDO_AUTHORIAL_ROLE } from "./helpers";
 
 function Overview() {
   return (
@@ -70,7 +70,7 @@ export const unificandoAutomacaoCase: ProjectCase = {
     "Engine de atendimento distribuído, orquestração de LLMs e automação de fluxos via n8n.",
     "ia",
     ["n8n", "OpenAI", "Node.js", "AWS Lambda"],
-    "unificando",
+    { group: "unificando", areas: ["ia", "automacao"] },
   ),
   jsonLd: {
     name: "Unificando - Automação & IA",
@@ -83,6 +83,7 @@ export const unificandoAutomacaoCase: ProjectCase = {
     { name: "Automação", item: "/projetos/unificando/automacao" },
   ),
   categoryBadge: "IA & Automação",
+  role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "Unificando: IA & Automação",
   shortDescription: (
     <>

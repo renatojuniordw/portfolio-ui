@@ -3,7 +3,7 @@ import { ArrowRight, ClipboardCopy, ShieldCheck, TerminalSquare } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { organizationJsonLd } from "@/lib/structured-data";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card } from "./helpers";
+import { breadcrumbs, card, UNIFICANDO_AUTHORIAL_ROLE } from "./helpers";
 
 function Overview() {
   return (
@@ -72,7 +72,7 @@ export const promptsCase: ProjectCase = {
     "CLI e biblioteca npm com prompts padronizados para auditoria de código, segurança, testes e copy — agnóstica de stack e de LLM.",
     "tech",
     ["Node.js", "CLI", "npm", "TypeScript"],
-    "unificando",
+    { group: "unificando", areas: ["ia"] },
   ),
   jsonLd: {
     name: "@unificando/prompts",
@@ -85,6 +85,7 @@ export const promptsCase: ProjectCase = {
     item: "/projetos/prompts",
   }),
   categoryBadge: "DevTools",
+  role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "@unificando/prompts",
   shortDescription: (
     <>

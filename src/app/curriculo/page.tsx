@@ -1,7 +1,7 @@
 import { FileText, Award, Star } from "lucide-react";
 import type { ReactNode } from "react";
 import { SplitText } from "@/components/fx/SplitText";
-import { PROFILE } from "@/lib/constants";
+import { PROFILE, getYearsOfExperience } from "@/lib/constants";
 import { EXPERIENCES } from "@/lib/experience";
 import { EDUCATIONS, CERTIFICATIONS } from "@/lib/education";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -25,7 +25,7 @@ export const generateMetadata = () =>
   buildMetadata({
     title: "Currículo | Renato Bezerra — Engenheiro de Software",
     description:
-      "Currículo profissional de Renato Bezerra: Engenheiro de Software com +7 anos de experiência. Foco atual em IA aplicada à engenharia de software e automação (agentes, RAG, n8n); base em front-end (React, Angular, Next.js) e arquitetura de software (FIAP), certificado Microsoft. Experiência na CESAR, Avanade e produtos autorais no Unificando — Radar (job board com IA), Med (IA local) e PDF (ferramentas).",
+      `Currículo profissional de Renato Bezerra: Engenheiro de Software com +${getYearsOfExperience()} anos de experiência. Foco atual em IA aplicada à engenharia de software e automação (agentes, RAG, n8n); base em front-end (React, Angular, Next.js) e arquitetura de software (FIAP), certificado Microsoft. Experiência na CESAR, Avanade e produtos autorais no Unificando — Radar (job board com IA), Med (IA local) e PDF (ferramentas).`,
     path: "/curriculo",
     keywords: [
       "Currículo", "Renato Bezerra", "Software Engineer",

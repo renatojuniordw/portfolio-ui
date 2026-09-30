@@ -32,6 +32,7 @@ export const arianoSuassunaCase: ProjectCase = {
     "Site educacional sobre a vida e obra de Ariano Suassuna, originado em 2016 no CRC Recife como um esforço da comunidade para preservar sua memória.",
     "tech",
     ["HTML", "CSS", "JavaScript"],
+    { areas: ["frontend"] },
   ),
   jsonLd: {
     name: "Ariano Suassuna - Tributo",

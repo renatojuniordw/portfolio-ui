@@ -140,3 +140,7 @@ npm-debug.log*
 .superpowers
 
 .DS_Store
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SocialLinkCard } from "@/components/ui/SocialLinkCard";
 import { SOCIALS } from "@/lib/constants";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card, projectPath } from "./helpers";
+import { breadcrumbs, card, projectPath, UNIFICANDO_AUTHORIAL_ROLE } from "./helpers";
 
 function Overview() {
   return (
@@ -74,7 +74,7 @@ export const unificandoVitrineCase: ProjectCase = {
     "Site institucional interativo com foco em autoridade de marca e calculadora de planos em tempo real.",
     "tech",
     ["Next.js", "React", "TypeScript", "Tailwind"],
-    "unificando",
+    { group: "unificando", areas: ["frontend"] },
   ),
   jsonLd: {
     name: "Unificando - Vitrine Digital",
@@ -87,6 +87,7 @@ export const unificandoVitrineCase: ProjectCase = {
     { name: "Vitrine Digital", item: "/projetos/unificando/vitrine" },
   ),
   categoryBadge: "Branding & Conversion Case",
+  role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "Unificando: Vitrine Digital",
   shortDescription: (
     <>

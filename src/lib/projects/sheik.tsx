@@ -32,6 +32,7 @@ export const sheikCase: ProjectCase = {
     "Mídia kit interativo com insights de audiência, formatos de parceria e métricas reais de Instagram para marcas.",
     "tech",
     ["React", "Next.js", "Framer Motion"],
+    { areas: ["frontend"] },
   ),
   jsonLd: {
     name: "Diego Sheik - Mídia Kit",

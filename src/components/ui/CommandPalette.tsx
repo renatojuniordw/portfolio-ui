@@ -3,26 +3,35 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { AnimatePresence, motion } from "framer-motion";
 import { TerminalPane } from "./TerminalPane";
+import { ModalDialog } from "./ModalDialog";
 import { downloadPDF } from "@/lib/utils";
+
+function isApplePlatform() {
+  const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
+  const platform = nav.userAgentData?.platform ?? nav.platform ?? "";
+  return /mac|iphone|ipad|ipod/i.test(platform);
+}
 
 export function CommandPalette() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  // Componente carregado só no cliente (ssr: false), então navigator existe.
+  const shortcut = isApplePlatform() ? "⌘K" : "Ctrl+K";
 
-  const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
-    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+  React.useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key.toLowerCase() !== "k" || !(e.metaKey || e.ctrlKey)) return;
+      // Não abre o terminal por cima de outro modal (ex.: menu mobile).
+      if (document.querySelector("dialog[open]:not(#terminal-dialog)")) return;
       e.preventDefault();
       setOpen((prev) => !prev);
     }
-  }, []);
-
-  React.useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
+  }, []);
 
   const runCommand = React.useCallback((command: () => void) => {
     setOpen(false);
@@ -34,8 +43,8 @@ export function CommandPalette() {
   }, []);
 
   const toggleTheme = React.useCallback(() => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  }, [theme, setTheme]);
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
   const downloadCv = React.useCallback(() => {
     downloadPDF("/Profile.pdf", "Renato_Bezerra_Curriculo.pdf");
@@ -43,71 +52,52 @@ export function CommandPalette() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50 md:bottom-8 md:right-8 flex items-center gap-3">
-        <motion.span
-          className="hidden md:block text-xs text-text-secondary bg-surface-2 border border-border px-2.5 py-1 rounded-lg"
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.5 }}
+      <div
+        className="fixed z-40 flex items-center gap-3 print:hidden"
+        style={{
+          right: "max(1.5rem, env(safe-area-inset-right))",
+          bottom: "max(1.5rem, env(safe-area-inset-bottom))",
+        }}
+      >
+        <span
+          aria-hidden="true"
+          className="hidden lg:block text-xs text-text-secondary bg-surface-2 border border-border px-2.5 py-1 rounded-lg"
         >
-          Cmd+K
-        </motion.span>
+          {shortcut}
+        </span>
 
-        <motion.button
+        <button
+          type="button"
           onClick={() => setOpen(true)}
-          className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-text text-bg shadow-lg hover:scale-105 transition-transform"
-          aria-label="Abrir terminal interativo"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          className="flex h-12 w-12 items-center justify-center rounded-xl bg-text text-bg shadow-lg transition-transform hover:scale-105 motion-reduce:hover:scale-100"
+          aria-label={`Abrir terminal interativo (${shortcut})`}
+          aria-haspopup="dialog"
+          aria-controls="terminal-dialog"
+          aria-expanded={open}
         >
-          <span className="text-xs font-mono font-bold">&gt;_</span>
-          <motion.span
-            className="absolute inset-0 rounded-xl border-2 border-transparent"
-            animate={{
-              boxShadow: [
-                "0 0 0 0 rgba(0,0,0,0)",
-                "0 0 0 6px rgba(0,0,0,0.08)",
-                "0 0 0 0 rgba(0,0,0,0)",
-              ],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 4,
-              ease: "easeInOut",
-            }}
-          />
-        </motion.button>
+          <span className="text-xs font-mono font-bold" aria-hidden="true">
+            &gt;_
+          </span>
+        </button>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <div
-            className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 pt-[20vh] backdrop-blur-sm px-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
-          >
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="terminal-title"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="w-full max-w-[640px] overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl"
-            >
-              <span id="terminal-title" className="sr-only">Terminal interativo</span>
-              <TerminalPane
-                onNavigate={(path) => runCommand(() => router.push(path))}
-                toggleTheme={() => runCommand(toggleTheme)}
-                setTheme={(t) => runCommand(() => setTheme(t))}
-                onDownloadCv={() => runCommand(downloadCv)}
-              />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <ModalDialog
+        id="terminal-dialog"
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Terminal interativo"
+        closeLabel="Fechar terminal"
+        initialFocusRef={inputRef}
+        className="mx-auto mt-[max(1rem,12dvh)] mb-auto w-[calc(100%-2rem)] max-w-[640px] max-h-[min(36rem,calc(100dvh-2rem))] overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl open:flex flex-col"
+      >
+        <TerminalPane
+          inputRef={inputRef}
+          onNavigate={(path) => runCommand(() => router.push(path))}
+          toggleTheme={() => runCommand(toggleTheme)}
+          setTheme={(t) => runCommand(() => setTheme(t))}
+          onDownloadCv={() => runCommand(downloadCv)}
+        />
+      </ModalDialog>
     </>
   );
 }

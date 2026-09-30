@@ -80,6 +80,7 @@ export const sistema18iaCase: ProjectCase = {
     "Landing page de alta conversão para venda de produto digital técnico, com copywriting em linguagem de dev, mecânicas de urgência e checkout integrado.",
     "tech",
     ["Next.js", "React", "Tailwind CSS", "Kirvano"],
+    { areas: ["frontend"] },
   ),
   jsonLd: {
     name: "Sistema 18IA - Landing Page de Produto Digital",

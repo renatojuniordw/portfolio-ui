@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { Accessibility } from "lucide-react";
 import { PROFILE, getYearsOfExperience } from "@/lib/constants";
-import { PROJECTS } from "@/lib/projects";
 import { ScrollReveal } from "@/components/fx/ScrollReveal";
-import { ArrowCta } from "@/components/ui/ArrowCta";
-import { Tag } from "@/components/ui/Tag";
 
 export function AboutSection() {
   const yearsOfExperience = getYearsOfExperience();
@@ -20,7 +17,7 @@ export function AboutSection() {
           <h2 id="sobre-heading" className="section-title mb-8">
             Sobre mim
           </h2>
-          <p className="text-xl lg:text-2xl text-text-secondary font-light leading-relaxed mb-20">
+          <p className="text-xl lg:text-2xl text-text-secondary font-light leading-relaxed mb-12 lg:mb-20">
             Meu nome é <strong>{PROFILE.fullName}</strong>. Sou{" "}
             <strong>Engenheiro de Software</strong> com foco atual em{" "}
             <strong>IA aplicada e automação</strong> — apoiado em anos de base
@@ -31,7 +28,7 @@ export function AboutSection() {
         <ScrollReveal delay={100}>
           <div className="space-y-6 mb-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <article className="col-span-1 p-8 project-card flex flex-col justify-between hover:border-[#111111] transition-colors duration-300">
+              <article className="col-span-1 p-8 project-card flex flex-col justify-between hover:border-text transition-colors duration-300">
                 <div>
                   <span className="text-sm font-medium text-muted uppercase tracking-widest mb-4 block">
                     Experiência
@@ -45,7 +42,7 @@ export function AboutSection() {
                 </div>
               </article>
 
-              <article className="col-span-1 md:col-span-2 p-8 project-card flex flex-col justify-center hover:border-[#111111] transition-colors duration-300">
+              <article className="col-span-1 md:col-span-2 p-8 project-card flex flex-col justify-center hover:border-text transition-colors duration-300">
                 <span className="text-sm font-medium text-muted uppercase tracking-widest mb-6 block">
                   Foco e Formação
                 </span>
@@ -73,81 +70,24 @@ export function AboutSection() {
           </div>
         </ScrollReveal>
 
-        <div className="mb-20 mt-12">
+        <div className="mt-12">
           <Link
             href="/curriculo"
-            className="inline-flex items-center justify-center px-8 py-4 bg-text text-bg rounded-full font-medium text-sm hover:bg-black transition-colors group"
+            className="inline-flex min-h-11 items-center justify-center px-8 py-4 bg-text text-bg rounded-full font-medium text-sm hover:opacity-90 transition-opacity group"
           >
             Ver currículo completo
-            <span className="ml-3 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+            <span
+              aria-hidden="true"
+              className="ml-3 w-6 h-6 rounded-full bg-bg/20 flex items-center justify-center group-hover:bg-bg/30 transition-colors"
+            >
               <span className="transform -rotate-45 block text-xs">→</span>
             </span>
           </Link>
         </div>
 
-        <div className="pt-20 border-t border-border">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <h2 id="projetos-heading" className="section-title mb-4">
-                Projetos
-              </h2>
-              <p className="text-xl text-text-secondary font-light">
-                Do laboratório{" "}
-                <Link
-                  href="/unificando"
-                  className="font-medium text-text underline decoration-1 underline-offset-4 transition-all hover:decoration-2"
-                >
-                  Unificando
-                </Link>{" "}
-                a trabalhos independentes — {PROJECTS.length} cases no total.
-              </p>
-            </div>
-            <Link
-              href="/projetos"
-              className="inline-flex items-center justify-center px-6 py-3 border border-border text-text rounded-full font-medium text-sm hover:border-[#111111] transition-colors group"
-            >
-              Ver todos os projetos
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {PROJECTS.slice(0, 2).map((project) => (
-              <Link
-                key={project.id}
-                href={project.link}
-                className="group p-8 project-card hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
-              >
-                <div>
-                  <h3 className="text-2xl font-medium text-text mb-2 group-hover:text-text-secondary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tech stack reveal on hover */}
-                {project.techs?.length > 0 && (
-                  <div className="overflow-hidden max-h-0 group-hover:max-h-12 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                    <div className="flex flex-wrap gap-2 pt-3 mt-3 border-t border-border">
-                      {project.techs.map((tech) => (
-                        <Tag key={tech}>{tech}</Tag>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex justify-end mt-6">
-                  <ArrowCta />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-20 p-6 rounded-2xl bg-bg border border-border flex flex-col sm:flex-row items-center sm:items-start gap-6 max-w-2xl mx-auto hover:border-[#111111] transition-colors duration-300">
+        <div className="mt-20 p-6 rounded-2xl bg-bg border border-border flex flex-col sm:flex-row items-center sm:items-start gap-6 max-w-2xl mx-auto hover:border-text transition-colors duration-300">
           <div className="p-4 bg-surface-2 rounded-full shrink-0">
-            <Accessibility size={24} className="text-text" />
+            <Accessibility size={24} className="text-text" aria-hidden="true" />
           </div>
           <div className="text-center sm:text-left">
             <h3 className="text-base font-medium text-text mb-2 uppercase tracking-wider text-xs">

@@ -1,7 +1,8 @@
 "use client";
 
-import { memo, useCallback } from "react";
+import { useRef } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export interface AccordionImageItem {
   id: string;
@@ -9,106 +10,114 @@ export interface AccordionImageItem {
   imageUrl: string;
 }
 
-interface AccordionItemProps {
-  item: AccordionImageItem;
-  isActive: boolean;
-  onActivate: () => void;
-}
-
-const AccordionItem = memo(function AccordionItem({
-  item,
-  isActive,
-  onActivate,
-}: AccordionItemProps) {
-  return (
-    <div
-      role="tab"
-      tabIndex={isActive ? 0 : -1}
-      aria-selected={isActive}
-      aria-label={item.title}
-      onMouseEnter={onActivate}
-      onFocus={onActivate}
-      onClick={onActivate}
-      onMouseDown={(e) => e.preventDefault()}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onActivate();
-        }
-      }}
-      className={`
-        relative h-[320px] md:h-[420px] rounded-[var(--radius-lg)] overflow-hidden cursor-pointer
-        shrink-0 transition-all duration-700 ease-in-out
-        border border-border
-        ${isActive ? "w-[200px] md:w-[360px]" : "w-[40px] md:w-[56px]"}
-      `}
-    >
-      <Image
-        src={item.imageUrl}
-        alt={item.title}
-        fill
-        sizes="(min-width: 768px) 360px, 200px"
-        loading="lazy"
-        className="object-cover"
-        onError={(e) => {
-          e.currentTarget.onerror = null;
-          e.currentTarget.src =
-            "https://placehold.co/400x450/1A1A1A/A3A3A3?text=Renato+Bezerra";
-        }}
-      />
-      <div className="absolute inset-0 bg-black/45" />
-
-      <div
-        className={`
-          absolute inset-0 flex
-          ${isActive ? "items-end justify-center pb-6" : "items-center justify-center"}
-        `}
-      >
-        <span
-          className={`
-            text-white text-sm md:text-base font-medium whitespace-nowrap
-            transition-all duration-300 ease-in-out
-            ${isActive ? "rotate-0" : "rotate-90"}
-          `}
-        >
-          {item.title}
-        </span>
-      </div>
-    </div>
-  );
-});
-
 interface InteractiveImageAccordionProps {
   items: AccordionImageItem[];
   activeId: string;
   onActiveChange: (id: string) => void;
+  /** Rótulo da lista de abas. */
+  label: string;
+  /** id do tabpanel controlado pelas abas. */
+  panelId: string;
+  tabId: (id: string) => string;
   className?: string;
 }
 
+/**
+ * Lista de abas visual (padrão W3C APG "Tabs" com ativação automática).
+ * Setas esquerda/direita percorrem as abas, Home/End vão às extremidades;
+ * hover é apenas visual e nunca troca a seleção de quem navega por teclado.
+ * As imagens são decorativas: título e descrição estão no tabpanel.
+ */
 export function InteractiveImageAccordion({
   items,
   activeId,
   onActiveChange,
+  label,
+  panelId,
+  tabId,
   className,
 }: InteractiveImageAccordionProps) {
-  const handleActivate = useCallback(
-    (id: string) => () => onActiveChange(id),
-    [onActiveChange],
-  );
+  const tabsRef = useRef<Array<HTMLButtonElement | null>>([]);
+
+  function focusTab(index: number) {
+    const target = (index + items.length) % items.length;
+    tabsRef.current[target]?.focus();
+    onActiveChange(items[target].id);
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent, index: number) {
+    const keys: Record<string, number> = {
+      ArrowRight: index + 1,
+      ArrowDown: index + 1,
+      ArrowLeft: index - 1,
+      ArrowUp: index - 1,
+      Home: 0,
+      End: items.length - 1,
+    };
+    if (!(event.key in keys)) return;
+    event.preventDefault();
+    focusTab(keys[event.key]);
+  }
 
   return (
     <div
       role="tablist"
-      className={`flex flex-row items-center gap-3 md:gap-4 overflow-x-auto p-1 ${className ?? ""}`}
+      aria-label={label}
+      aria-orientation="horizontal"
+      className={cn("flex flex-row items-center gap-4 p-1", className)}
     >
-      {items.map((item) => (
-        <AccordionItem
-          key={item.id}
-          item={item}
-          isActive={item.id === activeId}
-          onActivate={handleActivate(item.id)}
-        />
-      ))}
+      {items.map((item, index) => {
+        const isActive = item.id === activeId;
+        return (
+          <button
+            key={item.id}
+            ref={(el) => {
+              tabsRef.current[index] = el;
+            }}
+            type="button"
+            role="tab"
+            id={tabId(item.id)}
+            aria-selected={isActive}
+            aria-controls={panelId}
+            tabIndex={isActive ? 0 : -1}
+            onClick={() => onActiveChange(item.id)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            className={cn(
+              "group relative h-[420px] shrink-0 overflow-hidden rounded-lg border border-border text-left",
+              "transition-[width] duration-700 ease-in-out motion-reduce:transition-none",
+              isActive ? "w-[260px] xl:w-[360px]" : "w-14",
+            )}
+          >
+            <Image
+              src={item.imageUrl}
+              alt=""
+              fill
+              sizes="360px"
+              loading="lazy"
+              className="object-cover"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 bg-black/55 transition-colors group-hover:bg-black/40"
+            />
+            <span
+              className={cn(
+                "absolute inset-0 flex",
+                isActive ? "items-end justify-center pb-6" : "items-center justify-center",
+              )}
+            >
+              <span
+                className={cn(
+                  "text-base font-medium whitespace-nowrap text-white transition-transform duration-300 motion-reduce:transition-none",
+                  isActive ? "rotate-0" : "rotate-90",
+                )}
+              >
+                {item.title}
+              </span>
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }

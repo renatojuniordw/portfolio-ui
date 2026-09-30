@@ -52,6 +52,7 @@ export const fabiaSouzaCase: ProjectCase = {
     "Site institucional para advocacia em Direito da Saúde, com triagem de falso coletivo e verificação de canal oficial anti-golpe.",
     "tech",
     ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+    { areas: ["frontend"] },
   ),
   jsonLd: {
     name: "Fábia Souza Advocacia",

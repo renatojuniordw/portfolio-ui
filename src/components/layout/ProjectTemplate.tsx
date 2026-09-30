@@ -6,7 +6,7 @@ import Link from "next/link";
 import { projectJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ProjectCase } from "@/types/project";
-import React from "react";
+import { extraSectionIds } from "@/lib/projects/helpers";
 
 interface ProjectTemplateProps {
   project: ProjectCase;
@@ -33,7 +33,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
   } = project;
 
   return (
-    <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto font-inter">
+    <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
       <JsonLd data={projectJsonLd(jsonLd)} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       {project.schemas?.map((schema, index) => (
@@ -64,12 +64,12 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
         </ol>
       </nav>
 
-      <main>
+      <article>
         <header className="mb-16">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="max-w-3xl">
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="inline-block px-4 py-1.5 bg-surface text-text text-xs font-medium rounded-full uppercase tracking-wider">
+                <span className="inline-block px-4 py-1.5 bg-surface-1 text-text text-xs font-medium rounded-full uppercase tracking-wider">
                   {categoryBadge}
                 </span>
                 {project.card.group === "unificando" && (
@@ -96,23 +96,26 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto rounded-full border-border text-text hover:border-text hover:bg-transparent font-medium text-sm"
+                  className="h-auto min-h-12 w-full whitespace-normal py-3 text-center sm:w-auto rounded-full border-border text-text hover:border-text hover:bg-transparent font-medium text-sm"
                   asChild
                 >
                   <a href={githubUrl} target="_blank" rel="noopener noreferrer">
                     <Github className="mr-2" size={18} aria-hidden="true" />
                     Ver no GitHub
+                    <span className="sr-only"> (abre em nova aba)</span>
                   </a>
                 </Button>
               )}
               {liveUrl && (
                 <Button
                   size="lg"
-                  className="bg-text text-bg hover:opacity-90 transition-opacity font-medium w-full sm:w-auto rounded-full text-sm"
+                  className="h-auto min-h-12 whitespace-normal py-3 text-center bg-text text-bg hover:opacity-90 transition-opacity font-medium w-full sm:w-auto rounded-full text-sm"
                   asChild
                 >
                   <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                    Acesse o site <ExternalLink className="ml-2" size={18} aria-hidden="true" />
+                    Acesse o site
+                    <span className="sr-only"> de {project.card.title} (abre em nova aba)</span>
+                    <ExternalLink className="ml-2" size={18} aria-hidden="true" />
                   </a>
                 </Button>
               )}
@@ -130,6 +133,21 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                 </h2>
                 <div className="text-text-secondary space-y-4 text-lg font-light leading-relaxed">
                   {overviewContent}
+                </div>
+              </section>
+            )}
+
+            {/* Participação */}
+            {project.role && (
+              <section aria-labelledby="participacao-heading" className="space-y-4">
+                <h2
+                  id="participacao-heading"
+                  className="text-2xl lg:text-3xl font-display font-light tracking-tight text-text"
+                >
+                  Participação
+                </h2>
+                <div className="text-text-secondary text-lg font-light leading-relaxed">
+                  {project.role}
                 </div>
               </section>
             )}
@@ -158,11 +176,11 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                   {features.map((feature, i) => (
                     <article
                       key={i}
-                      className="project-card hover:border-[#111111] transition-colors duration-300 flex flex-col justify-between"
+                      className="project-card hover:border-text transition-colors duration-300 flex flex-col justify-between"
                     >
                       <div>
                         {feature.icon && (
-                          <div className="mb-6 bg-bg w-12 h-12 rounded-full border border-border flex items-center justify-center">
+                          <div aria-hidden="true" className="mb-6 bg-bg w-12 h-12 rounded-full border border-border flex items-center justify-center">
                              {feature.icon}
                           </div>
                         )}
@@ -177,6 +195,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                           className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-ia hover:opacity-80 transition-opacity"
                         >
                           {feature.link.label}
+                          <span className="sr-only"> (abre em nova aba)</span>
                           <ExternalLink className="w-4 h-4" aria-hidden="true" />
                         </a>
                       )}
@@ -187,30 +206,33 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
             )}
 
             {/* Extra Sections */}
-            {extraSections && extraSections.map((section, idx) => (
-              <section
-                key={idx}
-                id={section.id}
-                className="project-card space-y-6"
-                aria-labelledby={section.id}
-              >
-                {section.icon && (
-                   <div className="w-12 h-12 rounded-full bg-bg border border-border flex items-center justify-center">
-                      {section.icon}
-                   </div>
-                )}
-                <h2
-                  id={section.id}
-                  className="text-2xl lg:text-3xl font-display font-light tracking-tight text-text flex items-center gap-3"
+            {extraSections && extraSections.map((section, idx) => {
+              const ids = extraSectionIds(id, section.id, idx);
+              return (
+                <section
+                  key={ids.anchor}
+                  id={ids.anchor}
+                  className="project-card space-y-6"
+                  aria-labelledby={ids.heading}
                 >
-                  {section.title}
-                </h2>
+                  {section.icon && (
+                     <div aria-hidden="true" className="w-12 h-12 rounded-full bg-bg border border-border flex items-center justify-center">
+                        {section.icon}
+                     </div>
+                  )}
+                  <h2
+                    id={ids.heading}
+                    className="text-2xl lg:text-3xl font-display font-light tracking-tight text-text flex items-center gap-3"
+                  >
+                    {section.title}
+                  </h2>
 
-                <div className="text-text-secondary text-lg font-light leading-relaxed space-y-4">
-                  {section.content}
-                </div>
-              </section>
-            ))}
+                  <div className="text-text-secondary text-lg font-light leading-relaxed space-y-4">
+                    {section.content}
+                  </div>
+                </section>
+              );
+            })}
           </div>
 
           <aside className="space-y-8">
@@ -221,7 +243,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                   <Code2 size={20} className="text-text" aria-hidden="true" />{" "}
                   {sidebarTechStackTitle}
                 </h3>
-                <div className="space-y-4 font-inter text-sm">
+                <div className="space-y-4 text-sm">
                   {sidebarTechStack.map((tech, i) => (
                     <div key={i} className="flex flex-col">
                       <span className="text-xs text-muted uppercase font-medium tracking-wider">
@@ -248,7 +270,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
             ))}
           </aside>
         </div>
-      </main>
+      </article>
     </div>
   );
 }

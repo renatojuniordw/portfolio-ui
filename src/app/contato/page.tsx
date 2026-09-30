@@ -87,13 +87,13 @@ export default function ContactPage() {
                 "transition-all duration-300 hover:translate-x-2 border",
                 contact.primary
                   ? "bg-text text-bg border-text hover:opacity-90"
-                  : "bg-surface border-border hover:border-text"
+                  : "bg-surface-1 border-border hover:border-text"
               )}
             >
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className={cn(
                   "text-sm font-medium uppercase tracking-wider",
-                  contact.primary ? "text-bg/60" : "text-muted"
+                  contact.primary ? "text-bg/80" : "text-muted"
                 )}>
                   {contact.name}
                 </CardTitle>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                   className={cn(
                     "rounded-full px-6",
                     contact.primary
-                      ? "bg-bg text-text hover:bg-surface"
+                      ? "bg-bg text-text hover:bg-surface-1"
                       : "border-border text-text hover:bg-text hover:text-bg"
                   )}
                   asChild
@@ -122,6 +122,9 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                   >
                     {contact.primary ? "Iniciar Conversa" : "Conectar"}
+                    <span className="sr-only">
+                      {" "}no {contact.name} (abre em nova aba)
+                    </span>
                   </a>
                 </Button>
               </CardContent>

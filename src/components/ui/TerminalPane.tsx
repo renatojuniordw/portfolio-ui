@@ -5,6 +5,7 @@ import { PROFILE, SOCIALS } from "@/lib/constants";
 import { NAV_ROUTES } from "@/lib/navigation";
 
 interface TerminalPaneProps {
+  inputRef: React.RefObject<HTMLInputElement | null>;
   onNavigate: (path: string) => void;
   toggleTheme: () => void;
   setTheme: (theme: "light" | "dark") => void;
@@ -32,7 +33,7 @@ const ROUTE_ALIASES: Record<string, string> = {
 const HELP_TEXT = [
   "Comandos disponíveis:",
   "  help                mostra esta lista",
-  "  cd <rota>           navega (home, sobre, projetos, curriculo, contato, blog)",
+  `  cd <rota>           navega (${Object.keys(ROUTE_ALIASES).join(", ")})`,
   "  theme [light|dark]  alterna ou define o tema",
   "  cv                  baixa o currículo em PDF",
   "  whoami              quem sou eu",
@@ -47,6 +48,7 @@ const WELCOME_LINE: TerminalLine = {
 };
 
 export function TerminalPane({
+  inputRef,
   onNavigate,
   toggleTheme,
   setTheme,
@@ -56,12 +58,7 @@ export function TerminalPane({
   const [value, setValue] = React.useState("");
   const [history, setHistory] = React.useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = React.useState<number | null>(null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
   const logRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
 
   React.useEffect(() => {
     if (logRef.current) {
@@ -178,12 +175,13 @@ export function TerminalPane({
   }
 
   return (
-    <div className="flex flex-col font-mono text-sm">
+    <div className="flex min-h-0 flex-1 flex-col font-mono text-sm">
       <div
         ref={logRef}
         role="log"
         aria-live="polite"
-        className="max-h-[300px] overflow-y-auto p-4 space-y-1"
+        aria-label="Saída do terminal"
+        className="min-h-24 flex-1 overflow-y-auto p-4 space-y-1"
       >
         {lines.map((line, i) => (
           <div
@@ -211,10 +209,14 @@ export function TerminalPane({
 
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-2 border-t border-border px-4 py-3"
+        className="flex shrink-0 items-center gap-2 border-t border-border px-4 py-3 focus-within:bg-surface-1"
       >
-        <span className="text-ia shrink-0">renato@portfolio</span>
-        <span className="text-text-secondary shrink-0">:~$</span>
+        <span className="hidden text-ia shrink-0 sm:inline" aria-hidden="true">
+          renato@portfolio
+        </span>
+        <span className="text-text-secondary shrink-0" aria-hidden="true">
+          :~$
+        </span>
         <input
           ref={inputRef}
           value={value}
@@ -223,7 +225,8 @@ export function TerminalPane({
           aria-label="Terminal de comandos"
           autoComplete="off"
           spellCheck={false}
-          className="flex-1 bg-transparent outline-none text-text caret-ia text-base md:text-sm"
+          enterKeyHint="send"
+          className="min-w-0 flex-1 bg-transparent outline-none text-text caret-ia text-base md:text-sm"
         />
       </form>
     </div>

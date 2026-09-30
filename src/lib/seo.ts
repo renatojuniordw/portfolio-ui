@@ -57,10 +57,6 @@ export function buildMetadata({
         { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
       ],
     },
-    other: {
-      "X-Robots-Tag": "all",
-      "X-Default-Language": "pt-BR",
-    },
     openGraph: {
       title: fullTitle,
       description: fullDescription,

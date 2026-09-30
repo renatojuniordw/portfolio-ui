@@ -27,6 +27,8 @@ export function MagneticButton({
 
   const handleMouse = (e: React.MouseEvent) => {
     if (!ref.current) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = ref.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -60,7 +62,7 @@ export function MagneticButton({
       );
     }
     return (
-      <button aria-label={ariaLabel} className={className}>
+      <button type="button" aria-label={ariaLabel} className={className}>
         {children}
       </button>
     );
@@ -69,11 +71,12 @@ export function MagneticButton({
   return (
     <div
       ref={ref}
-      className="inline-block transition-transform duration-200 ease-out will-change-transform"
+      className="inline-block max-w-full transition-transform duration-200 ease-out motion-reduce:transition-none"
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
     >
       <motion.div
+        className="max-w-full"
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.97 }}
         transition={{ duration: 0.2 }}

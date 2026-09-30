@@ -11,7 +11,7 @@ import {
 
 import { SOCIALS } from "@/lib/constants";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card } from "./helpers";
+import { breadcrumbs, card, UNIFICANDO_AUTHORIAL_ROLE } from "./helpers";
 
 function Overview() {
   return (
@@ -93,7 +93,17 @@ export const unificandoMedCase: ProjectCase = {
     "Consulta inteligente de medicamentos intercambiáveis da ANVISA, com busca semântica por IA local e comparação de preços CMED.",
     "ia",
     ["Next.js", "Prisma", "PostgreSQL", "IA Local", "MCP"],
-    "unificando",
+    {
+      group: "unificando",
+      areas: ["ia"],
+      thumbnail: {
+        src: "/projetos/med-unificando.jpg",
+        width: 1280,
+        height: 640,
+        alt: "Página inicial do Med Unificando com a busca de medicamentos intercambiáveis por descrição",
+        source: "Captura da página pública https://med.unificando.com.br/ (1280×640, tema claro, sem login), 29/09/2026",
+      },
+    },
   ),
   jsonLd: {
     name: "Med Unificando",
@@ -106,6 +116,7 @@ export const unificandoMedCase: ProjectCase = {
     { name: "Med", item: "/projetos/unificando/med" },
   ),
   categoryBadge: "Healthcare / IA",
+  role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "Med Unificando: Medicamentos Intercambiáveis com IA",
   shortDescription: (
     <>

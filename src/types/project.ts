@@ -1,5 +1,21 @@
 import { ReactNode } from "react";
 
+/** Área funcional do projeto (independente de stack, cor ou grupo). */
+export type ProjectArea = "ia" | "automacao" | "frontend";
+
+export interface ProjectThumbnail {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  /** Origem da captura (registrada para manutenção; não é exibida). */
+  source: string;
+}
+
+/**
+ * Dados simples e serializáveis do card. É o único formato de projeto que
+ * pode atravessar a fronteira server → client.
+ */
 export interface ProjectCard {
   id: string;
   title: string;
@@ -7,6 +23,8 @@ export interface ProjectCard {
   description: string;
   accent: "ia" | "tech" | "barraco";
   techs: string[];
+  areas: ProjectArea[];
+  thumbnail?: ProjectThumbnail;
   link?: string;
   group?: "unificando" | "standalone";
 }
@@ -72,9 +90,15 @@ export interface ProjectDetails {
   githubUrl?: string;
   liveUrl?: string;
 
-  // Content - Overview
+  // Content - Overview (contexto)
   overviewTitle?: string;
   overviewContent: string | ReactNode;
+
+  /**
+   * Participação no projeto. Preencher somente com informação explícita;
+   * sem dado verificado, omitir (não inventar função, período ou status).
+   */
+  role?: string | ReactNode;
 
   // Content - Features
   featuresTitle?: string;

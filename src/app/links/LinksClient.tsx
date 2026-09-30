@@ -1,10 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { SOCIALS, PROFILE } from "@/lib/constants";
-import { EASE_OUT } from "@/lib/utils";
+import type { CSSProperties } from "react";
 import {
   Linkedin,
   Github,
@@ -97,8 +94,8 @@ const LINKS_DATA = [
   },
 ];
 
-const LINK_INITIAL = { opacity: 0, y: 20 };
-const LINK_ANIMATE = { opacity: 1, y: 0 };
+const rise = (delaySeconds: number) =>
+  ({ "--fx-delay": `${Math.round(delaySeconds * 1000)}ms` }) as CSSProperties;
 
 const LinkItem = ({
   href,
@@ -122,17 +119,17 @@ const LinkItem = ({
     unificando: "hover:border-ia/30 hover:bg-ia/5",
   };
 
+  const isExternal = !href.startsWith("/");
+
   return (
-    <motion.a
+    <a
       href={href}
-      target={href.startsWith("/") ? undefined : "_blank"}
-      rel={href.startsWith("/") ? undefined : "noopener noreferrer"}
-      initial={LINK_INITIAL}
-      animate={LINK_ANIMATE}
-      transition={{ delay, duration: 0.5, ease: EASE_OUT }}
-      className={`group relative flex items-center p-4 rounded-2xl border border-border bg-bg shadow-sm transition-all duration-300 ${themes[variant]}`}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      style={rise(delay)}
+      className={`fx-rise group relative flex items-center p-4 rounded-2xl border border-border bg-bg shadow-sm transition-colors duration-300 ${themes[variant]}`}
     >
-      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-surface-2 border border-border group-hover:scale-110 transition-transform duration-300">
+      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-surface-2 border border-border group-hover:scale-110 motion-reduce:group-hover:scale-100 transition-transform duration-300">
         <Icon
           size={24}
           className="text-text group-hover:text-text transition-colors"
@@ -142,6 +139,7 @@ const LinkItem = ({
       <div className="ml-4 flex-grow text-left">
         <h3 className="font-medium text-sm tracking-tight text-text">
           {title}
+          {isExternal && <span className="sr-only"> (abre em nova aba)</span>}
         </h3>
         {subtitle && (
           <p className="text-xs text-text-secondary line-clamp-1 mt-0.5">
@@ -154,7 +152,7 @@ const LinkItem = ({
         className="text-muted group-hover:text-text transition-colors"
         aria-hidden="true"
       />
-    </motion.a>
+    </a>
   );
 };
 
@@ -168,9 +166,9 @@ export function LinksClient() {
       <div className="w-full max-w-[480px] mb-8 flex justify-start">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium text-text-secondary hover:text-text transition-colors px-3 py-1.5 rounded-full border border-border bg-bg hover:border-text"
+          className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-text-secondary hover:text-text transition-colors px-4 rounded-full border border-border bg-bg hover:border-text"
         >
-          <ArrowLeft size={14} />
+          <ArrowLeft size={14} aria-hidden="true" />
           Voltar para o Portfólio
         </Link>
       </div>
@@ -178,11 +176,8 @@ export function LinksClient() {
       <div className="w-full max-w-[480px] space-y-12 text-center relative z-10">
         {/* Header */}
         <header className="flex flex-col items-center space-y-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-border bg-surface-2"
+          <div
+            className="fx-rise relative w-24 h-24 rounded-full overflow-hidden border-2 border-border bg-surface-2"
           >
             <Image
               src="/RenatoBezerra.avif"
@@ -194,38 +189,29 @@ export function LinksClient() {
               className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
               sizes="96px"
             />
-          </motion.div>
+          </div>
 
           <div className="space-y-1">
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-2xl font-display font-light tracking-tight text-text"
-            >
+            <h1 className="text-2xl font-display font-light tracking-tight text-text">
               {PROFILE.name}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
-              className="text-xs text-text-secondary uppercase tracking-wider"
-            >
+            </h1>
+            <p className="text-xs text-text-secondary uppercase tracking-wider">
               {PROFILE.title}
-            </motion.p>
+            </p>
           </div>
         </header>
 
-        {/* Links Grid */}
-        <main className="space-y-8 pb-10">
+        {/* Links Grid — o <main> da página vem do layout. */}
+        <div className="space-y-8 pb-10">
           {LINKS_DATA.map((section, sectionIndex) => (
             <section
               key={section.title}
               className="space-y-3"
-              aria-labelledby={`section-${sectionIndex}`}
+              aria-labelledby={`links-secao-${sectionIndex}`}
             >
               <h2
-                id={`section-${sectionIndex}`}
-                className="text-[10px] font-medium uppercase tracking-widest text-muted text-left pl-2"
+                id={`links-secao-${sectionIndex}`}
+                className="text-xs font-medium uppercase tracking-widest text-muted text-left pl-2"
               >
                 {section.title}
               </h2>
@@ -240,11 +226,11 @@ export function LinksClient() {
               </div>
             </section>
           ))}
-        </main>
+        </div>
 
         {/* Footer info */}
         <footer className="pt-4 border-t border-border">
-          <p className="text-[10px] text-muted tracking-wider uppercase">
+          <p className="text-xs text-muted tracking-wider uppercase">
             © {new Date().getFullYear()} {PROFILE.name}
           </p>
         </footer>

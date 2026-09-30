@@ -48,3 +48,39 @@ describe("fetchGitHubStats", () => {
     expect(stats!.topLanguages[1].name).toBe("Python");
   });
 });
+describe("fetchGitHubStats — amostra e falhas", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("informa o tamanho da amostra usada nas estrelas e linguagens", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockImplementation((url: string) =>
+        Promise.resolve({
+          ok: true,
+          json: () =>
+            Promise.resolve(
+              url.includes("repos")
+                ? [{ stargazers_count: 1, language: "Go" }]
+                : { public_repos: 250, followers: 1 },
+            ),
+        }),
+      ),
+    );
+    const stats = await fetchGitHubStats();
+    expect(stats!.sampledRepos).toBe(1);
+    expect(stats!.publicRepos).toBe(250);
+  });
+
+  it("retorna null (indisponível, não zero) quando a rede falha ou a resposta é inválida", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline")));
+    expect(await fetchGitHubStats()).toBeNull();
+
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve({ message: "rate limit" }) }),
+    );
+    expect(await fetchGitHubStats()).toBeNull();
+  });
+});

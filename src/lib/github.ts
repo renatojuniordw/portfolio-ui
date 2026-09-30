@@ -1,9 +1,16 @@
 export interface GitHubStats {
+  /** Total de repositórios públicos informado pelo perfil. */
   publicRepos: number;
+  /** Quantos repositórios entraram no cálculo de estrelas e linguagens. */
+  sampledRepos: number;
   totalStars: number;
+  /** Percentual de repositórios por linguagem principal (não por bytes de código). */
   topLanguages: { name: string; percentage: number; color: string }[];
   followers: number;
 }
+
+/** Limite da amostra: uma página da API, ordenada por atualização recente. */
+export const GITHUB_REPO_SAMPLE = 100;
 
 const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: "#3178C6",
@@ -20,21 +27,19 @@ const LANGUAGE_COLORS: Record<string, string> = {
 const GH_TIMEOUT = 8_000;
 
 export async function fetchGitHubStats(): Promise<GitHubStats | null> {
+  const ac = new AbortController();
+  const timer = setTimeout(() => ac.abort(), GH_TIMEOUT);
   try {
-    const ac = new AbortController();
-    const timer = setTimeout(() => ac.abort(), GH_TIMEOUT);
-
     const [userRes, reposRes] = await Promise.all([
       fetch("https://api.github.com/users/renatojuniordw", {
         signal: ac.signal,
         next: { revalidate: 3600 },
       }),
-      fetch("https://api.github.com/users/renatojuniordw/repos?per_page=100&sort=updated", {
+      fetch(`https://api.github.com/users/renatojuniordw/repos?per_page=${GITHUB_REPO_SAMPLE}&sort=updated`, {
         signal: ac.signal,
         next: { revalidate: 3600 },
       }),
     ]);
-    clearTimeout(timer);
 
     if (!userRes.ok || !reposRes.ok) {
       if (process.env.NODE_ENV === "development") {
@@ -45,6 +50,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats | null> {
 
     const user = await userRes.json();
     const repos = await reposRes.json();
+    if (!Array.isArray(repos) || typeof user?.public_repos !== "number") return null;
 
     const totalStars = repos.reduce(
       (sum: number, repo: { stargazers_count: number }) =>
@@ -71,6 +77,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats | null> {
 
     return {
       publicRepos: user.public_repos,
+      sampledRepos: repos.length,
       totalStars,
       topLanguages,
       followers: user.followers,
@@ -80,5 +87,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats | null> {
       console.error("[GitHub API]", err);
     }
     return null;
+  } finally {
+    clearTimeout(timer);
   }
 }

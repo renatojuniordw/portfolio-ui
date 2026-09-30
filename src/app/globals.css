@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
 
+/* O tema é controlado pelo next-themes via classe .dark no <html>;
+   as variantes dark: seguem essa classe, não a preferência do sistema. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-bg: var(--bg);
   --color-surface-1: var(--surface-1);
@@ -9,23 +13,25 @@
   --color-text: var(--text);
   --color-text-secondary: var(--text-2);
   --color-muted: var(--muted);
-  
+
   --color-tech: var(--accent-tech);
   --color-ia: var(--accent-ia);
   --color-barraco: var(--accent-barraco);
-  
-  --color-danger: var(--danger);
+  --color-on-accent: var(--on-accent);
 
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-xl: var(--radius-xl);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
 
   --shadow-soft-1: var(--shadow-1);
   --shadow-soft-2: var(--shadow-2);
 
-  --ease-out: var(--ease-out);
-  
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
   --font-display: var(--font-space), "Space Grotesk", "Sora", sans-serif;
   --font-body: var(--font-inter), "Inter", sans-serif;
 }
@@ -36,15 +42,22 @@
   }
   html {
     @apply bg-bg text-text;
+    /* Âncoras e foco não ficam escondidos atrás do cabeçalho fixo. */
+    scroll-padding-top: 6rem;
   }
   body {
-    @apply font-body antialiased;
+    @apply bg-bg font-body antialiased;
   }
 
   :focus-visible {
     outline: 2px solid var(--accent-tech);
     outline-offset: 3px;
     border-radius: 4px;
+  }
+
+  /* Alvo do skip link: recebe foco programático sem contorno permanente. */
+  main:focus {
+    outline: none;
   }
 }
 
@@ -69,14 +82,12 @@
     @apply inline-block px-3 py-1 bg-surface-1 border border-border text-text text-xs font-medium rounded-full;
   }
 
-  .card-hover {
-    @apply hover:border-[#111111] dark:hover:border-white transition-colors duration-300;
-  }
 }
 
 @layer components {
   .blog-content {
     @apply text-base md:text-lg leading-[1.75] text-text-secondary;
+    overflow-wrap: break-word;
   }
 
   .blog-content h2 {
@@ -127,10 +138,15 @@
 
   .blog-content code:not(pre code) {
     @apply bg-surface-1 px-2 py-0.5 rounded-md text-sm font-mono text-tech border border-border;
+    overflow-wrap: anywhere;
   }
 
   .blog-content pre {
     @apply bg-surface-1 border border-border rounded-2xl p-5 mb-8 overflow-x-auto text-sm leading-relaxed;
+  }
+
+  .blog-content .code-block pre {
+    @apply mb-0 pt-12;
   }
 
   .blog-content pre code {
@@ -187,40 +203,159 @@
   }
 }
 
-/* Syntax highlighting — light theme */
+/*
+ * Movimento. Regras:
+ * - Animações de entrada usam CSS com fill "both": sem JS o estado final é
+ *   visível; sem suporte a animação o conteúdo nunca fica em opacity:0.
+ * - .reveal-pending só é aplicada por JS (ScrollReveal) a elementos que ainda
+ *   estão fora da viewport; o HTML inicial é sempre visível.
+ * - prefers-reduced-motion desliga deslocamentos, cascatas e pulsos.
+ */
+@keyframes fx-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--fx-x, 0), var(--fx-y, 16px), 0);
+  }
+}
+
+@keyframes split-char-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.3em);
+  }
+}
+
+@keyframes logo-intro {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+@keyframes logo-dot-intro {
+  0%,
+  40% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: var(--dialog-from, scale(0.97));
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.fx-rise {
+  animation: fx-rise 600ms var(--ease-out) both;
+  animation-delay: var(--fx-delay, 0ms);
+}
+
+.split-char {
+  display: inline-block;
+  animation: split-char-in 600ms var(--ease-out) both;
+  animation-delay: var(--split-delay, 0ms);
+}
+
+/* Intro decorativa do logo: só quando o script do <head> marca a primeira
+   visita à home na sessão (html[data-intro]). Não bloqueia nada. */
+.logo-intro > span {
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] .logo-intro > span {
+    animation: logo-intro 450ms var(--ease-out) both;
+  }
+  [data-intro] .logo-intro > span:nth-child(2) {
+    animation-delay: 60ms;
+  }
+  [data-intro] .logo-intro > span:nth-child(3) {
+    animation: logo-dot-intro 550ms var(--ease-out) both;
+  }
+}
+
+.reveal {
+  transition:
+    opacity var(--reveal-duration, 700ms) var(--ease-out) var(--reveal-delay, 0ms),
+    transform var(--reveal-duration, 700ms) var(--ease-out) var(--reveal-delay, 0ms);
+}
+.reveal-pending {
+  opacity: 0;
+  transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 40px), 0);
+}
+
+dialog.modal[open] {
+  animation: dialog-in 200ms var(--ease-out);
+}
+dialog.modal::backdrop {
+  background: rgb(0 0 0 / 0.5);
+  backdrop-filter: blur(4px);
+}
+dialog.modal[open]::backdrop {
+  animation: backdrop-in 200ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-rise,
+  .split-char,
+  dialog.modal[open],
+  dialog.modal[open]::backdrop {
+    animation: none;
+  }
+  .reveal {
+    transition: none;
+  }
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Syntax highlighting — tema claro. Cores com contraste >= 4,5:1 sobre surface-1. */
 .hljs {
   color: var(--text);
   background: transparent;
 }
 .hljs-keyword { color: #6D28D9; }
-.hljs-string { color: #059669; }
-.hljs-number { color: #DC2626; }
-.hljs-comment { color: #A3A3A3; font-style: italic; }
+.hljs-string { color: #047857; }
+.hljs-number { color: #B91C1C; }
+.hljs-comment { color: #666666; font-style: italic; }
 .hljs-function { color: #1D4ED8; }
 .hljs-title { color: #1D4ED8; }
-.hljs-built_in { color: #0891B2; }
-.hljs-type { color: #D97706; }
-.hljs-literal { color: #DC2626; }
+.hljs-built_in { color: #0E7490; }
+.hljs-type { color: #B45309; }
+.hljs-literal { color: #B91C1C; }
 .hljs-attr { color: #6D28D9; }
 .hljs-params { color: var(--text); }
-.hljs-property { color: #0891B2; }
+.hljs-property { color: #0E7490; }
 .hljs-punctuation { color: var(--text-2); }
 .hljs-operator { color: #6D28D9; }
-.hljs-variable { color: #DC2626; }
+.hljs-variable { color: #B91C1C; }
 
-@media (prefers-color-scheme: dark) {
-  .hljs-keyword { color: #A78BFA; }
-  .hljs-string { color: #34D399; }
-  .hljs-number { color: #F87171; }
-  .hljs-comment { color: #737373; }
-  .hljs-function { color: #60A5FA; }
-  .hljs-title { color: #60A5FA; }
-  .hljs-built_in { color: #22D3EE; }
-  .hljs-type { color: #FBBF24; }
-  .hljs-literal { color: #F87171; }
-  .hljs-attr { color: #A78BFA; }
-  .hljs-property { color: #22D3EE; }
-}
+/* Syntax highlighting — tema escuro (segue a classe do site, não o sistema). */
+.dark .hljs-keyword { color: #A78BFA; }
+.dark .hljs-string { color: #34D399; }
+.dark .hljs-number { color: #F87171; }
+.dark .hljs-comment { color: #8F8F8F; }
+.dark .hljs-function { color: #60A5FA; }
+.dark .hljs-title { color: #60A5FA; }
+.dark .hljs-built_in { color: #22D3EE; }
+.dark .hljs-type { color: #FBBF24; }
+.dark .hljs-literal { color: #F87171; }
+.dark .hljs-attr { color: #A78BFA; }
+.dark .hljs-operator { color: #A78BFA; }
+.dark .hljs-property { color: #22D3EE; }
+.dark .hljs-variable { color: #F87171; }
 
 @media print {
   header, 

@@ -54,6 +54,7 @@ export const mariaClaraSantosCase: ProjectCase = {
     "Landing page de alta conversão para advocacia com sistema de anti-golpe integrado.",
     "tech",
     ["Next.js", "React", "SEO", "Performance"],
+    { areas: ["frontend"] },
   ),
   jsonLd: {
     name: "Maria Clara Santos Advocacia",

@@ -62,6 +62,7 @@ export const seuBarracoEspertoCase: ProjectCase = {
     "Automação residencial prática e sem frescura com Alexa e IoT.",
     "barraco",
     ["IoT", "Alexa Skills", "Node.js", "AWS"],
+    { areas: ["automacao"] },
   ),
   jsonLd: {
     name: "Seu Barraco Esperto",

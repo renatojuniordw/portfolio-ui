@@ -1,56 +1,61 @@
-"use client";
-
-import { memo, useRef } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { cn, EASE_OUT } from "@/lib/utils";
+import { Fragment, memo, type CSSProperties } from "react";
 
 type Props = {
   text: string;
   className?: string;
+  /** Atraso inicial em segundos. */
   delay?: number;
   as?: "h1" | "h2" | "p" | "div";
 };
 
+const CHAR_STAGGER_MS = 15;
+const MAX_CHAR_DELAY_MS = 450;
+
+/**
+ * Título animado caractere a caractere, só com CSS.
+ *
+ * - O texto completo é exposto uma única vez via `.sr-only`; os caracteres
+ *   animados ficam em `aria-hidden`, então leitores de tela leem o título
+ *   inteiro e o elemento semântico (`as`) mantém seu nome acessível.
+ * - A animação usa `animation-fill-mode: both`, por isso o texto termina
+ *   visível mesmo sem JavaScript; `prefers-reduced-motion` desliga o efeito.
+ * - Cada palavra é um bloco inline-flex: quebra entre palavras normalmente e
+ *   só quebra dentro da palavra se ela for maior que a linha inteira.
+ */
 export const SplitText = memo(function SplitText({
   text,
   className,
   delay = 0,
   as: Tag = "h2",
 }: Props) {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-  const prefersReducedMotion = useReducedMotion();
-
-  const chars = text.split("");
+  const words = text.split(" ");
+  let charIndex = 0;
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    <Tag ref={ref as any} className={cn("overflow-hidden", className)}>
-      <span aria-hidden="true" className="inline-block">
-        {chars.map((char, i) => (
-          <motion.span
-            key={i}
-            className="inline-block"
-            initial={
-              prefersReducedMotion
-                ? { opacity: 1 }
-                : { opacity: 0, y: 15 }
-            }
-            animate={
-              isInView
-                ? { opacity: 1, y: 0 }
-                : prefersReducedMotion
-                  ? { opacity: 1 }
-                  : { opacity: 0, y: 15 }
-            }
-            transition={{
-              duration: prefersReducedMotion ? 0 : 0.6,
-              delay: prefersReducedMotion ? 0 : delay + i * 0.015,
-              ease: EASE_OUT,
-            }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
+    <Tag className={className}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {words.map((word, w) => (
+          <Fragment key={w}>
+            <span className="inline-flex max-w-full flex-wrap">
+              {Array.from(word).map((char, c) => {
+                const ms = Math.min(
+                  delay * 1000 + charIndex++ * CHAR_STAGGER_MS,
+                  delay * 1000 + MAX_CHAR_DELAY_MS,
+                );
+                return (
+                  <span
+                    key={c}
+                    className="split-char"
+                    style={{ "--split-delay": `${ms}ms` } as CSSProperties}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
+            </span>
+            {w < words.length - 1 && " "}
+          </Fragment>
         ))}
       </span>
     </Tag>

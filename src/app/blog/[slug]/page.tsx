@@ -6,12 +6,17 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { Tag } from "@/components/ui/Tag";
+import { CodeBlock } from "@/components/blog/CodeBlock";
+import { TableOfContents } from "@/components/blog/TableOfContents";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { SOCIALS, PROFILE } from "@/lib/constants";
-import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog";
+import { formatPostDate, isIsoDate } from "@/lib/dates";
+import { TOC_MIN_HEADINGS, extractHeadings, remarkHeadingIds } from "@/lib/markdown-headings";
 import { articleJsonLd } from "@/lib/structured-data";
+import { linkedinShareUrl, whatsappShareUrl } from "@/lib/share";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -59,9 +64,9 @@ function ShareButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Compartilhar no ${label} (abre em nova aba)`}
-      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-2 border border-border text-text-secondary hover:text-text hover:border-[#111111] dark:hover:border-white transition-all text-sm"
+      className="flex min-h-11 items-center gap-2 px-4 rounded-xl bg-surface-2 border border-border text-text-secondary hover:text-text hover:border-text transition-colors text-sm"
     >
-      <Icon className="w-4 h-4" />
+      <Icon aria-hidden="true" className="w-4 h-4" />
       {label}
     </a>
   );
@@ -69,7 +74,7 @@ function ShareButton({
 
 function ReadingProgress() {
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-border">
+    <div aria-hidden="true" className="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-border motion-reduce:hidden">
       <div
         className="h-full bg-tech origin-left scale-x-0 transition-transform duration-150"
         style={{
@@ -95,9 +100,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const allPosts = getAllPosts();
-  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
-  const relatedPosts = allPosts.filter((_, i) => i !== currentIndex).slice(0, 2);
+  const related = getRelatedPosts(slug);
+  const headings = extractHeadings(post.content);
 
   const breadcrumbs = [
     { name: "Home", item: "/" },
@@ -106,7 +110,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   ];
 
   const postUrl = `${SOCIALS.personal.site}/blog/${slug}`;
-  const shareText = encodeURIComponent(`${post.title} — por ${PROFILE.name}`);
+  const shareText = `${post.title} — por ${PROFILE.name}`;
 
   return (
     <>
@@ -150,17 +154,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <header className="mb-12">
             <div className="flex flex-wrap items-center gap-3 text-sm text-text-secondary mb-6">
-              <time className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4" />
-                {new Date(post.date).toLocaleDateString("pt-BR", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+              <time
+                dateTime={isIsoDate(post.date) ? post.date : undefined}
+                className="flex items-center gap-1.5"
+              >
+                <Calendar aria-hidden="true" className="w-4 h-4" />
+                {formatPostDate(post.date, { day: true })}
               </time>
-              <span className="text-border">·</span>
+              <span aria-hidden="true" className="text-muted">·</span>
               <span className="flex items-center gap-1.5">
-                <BookOpen className="w-4 h-4" />
+                <BookOpen aria-hidden="true" className="w-4 h-4" />
                 {post.readingTime} de leitura
               </span>
             </div>
@@ -180,13 +183,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </header>
 
+          {headings.length >= TOC_MIN_HEADINGS && <TableOfContents headings={headings} />}
+
           <div className="blog-content">
             <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
+              remarkPlugins={[remarkGfm, remarkHeadingIds]}
               rehypePlugins={[rehypeHighlight]}
               components={{
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                pre: ({ node, ...props }) => <CodeBlock {...props} />,
                 table: ({ children }) => (
-                  <div className="blog-table-wrapper">
+                  <div className="blog-table-wrapper" tabIndex={0} role="region" aria-label="Tabela">
                     <table>{children}</table>
                   </div>
                 ),
@@ -205,12 +212,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </span>
               <div className="flex gap-3 mt-3">
                 <ShareButton
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
+                  href={linkedinShareUrl(postUrl)}
                   icon={Linkedin}
                   label="LinkedIn"
                 />
                 <ShareButton
-                  href={`https://wa.me/${SOCIALS.personal.whatsapp.replace("https://wa.me/", "")}?text=${shareText}%0A${encodeURIComponent(postUrl)}`}
+                  href={whatsappShareUrl(shareText, postUrl)}
                   icon={MessageCircle}
                   label="WhatsApp"
                 />
@@ -221,40 +228,42 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               href="/blog"
               className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text transition-colors group shrink-0"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+              <ArrowLeft aria-hidden="true" className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
               Voltar para o blog
             </Link>
           </div>
         </div>
 
-        {relatedPosts.length > 0 && (
-          <section className="max-w-5xl mx-auto mt-24">
+        {related.posts.length > 0 && (
+          <section aria-labelledby="artigos-relacionados" className="max-w-5xl mx-auto mt-24">
             <hr className="border-border mb-12" />
-            <span className="text-xs font-medium text-muted uppercase tracking-widest block mb-6">
-              Artigos relacionados
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {relatedPosts.map((related) => (
-                <Link
-                  key={related.slug}
-                  href={`/blog/${related.slug}`}
-                  className="group p-8 project-card hover:border-[#111111] dark:hover:border-white transition-all"
-                >
-                  <time className="text-xs text-muted uppercase tracking-widest block mb-3">
-                    {new Date(related.date).toLocaleDateString("pt-BR", {
-                      year: "numeric",
-                      month: "short",
-                    })}
-                  </time>
-                  <h3 className="text-lg font-medium text-text mb-2 group-hover:text-text-secondary transition-colors">
-                    {related.title}
-                  </h3>
-                  <p className="text-sm text-text-secondary line-clamp-2">
-                    {related.description}
-                  </p>
-                </Link>
+            <h2
+              id="artigos-relacionados"
+              className="text-xs font-medium text-muted uppercase tracking-widest mb-6"
+            >
+              {related.kind === "related" ? "Artigos relacionados" : "Outros artigos"}
+            </h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {related.posts.map((item) => (
+                <li key={item.slug}>
+                  <Link
+                    href={`/blog/${item.slug}`}
+                    className="group block h-full p-8 project-card hover:border-text transition-colors"
+                  >
+                    <time
+                      dateTime={isIsoDate(item.date) ? item.date : undefined}
+                      className="text-xs text-muted uppercase tracking-widest block mb-3"
+                    >
+                      {formatPostDate(item.date, { month: "short" })}
+                    </time>
+                    <h3 className="text-lg font-medium text-text mb-2 group-hover:text-text-secondary transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-text-secondary line-clamp-2">{item.description}</p>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
         )}
       </article>

@@ -1,8 +1,14 @@
 import { MetadataRoute } from "next";
 import { SOCIALS } from "@/lib/constants";
 import { PROJECTS } from "@/lib/projects";
-import { getAllPosts } from "@/lib/blog";
+import { getPostSummaries } from "@/lib/blog";
+import { isIsoDate } from "@/lib/dates";
 
+/**
+ * `lastModified` só é informado quando há data editorial conhecida (data do
+ * artigo). Páginas e cases sem data registrada omitem o campo em vez de
+ * receber a data do build. /links (noindex) fica fora de propósito.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SOCIALS.personal.site;
 
@@ -16,40 +22,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/contato", priority: 0.5, changeFreq: "monthly" },
   ];
 
-  const posts = getAllPosts();
-  const postRoutes = posts.map((post) => ({
-    path: `/blog/${post.slug}`,
-    priority: 0.6,
-    changeFreq: "monthly" as const,
-    lastModified: new Date(post.date),
-  }));
-
-  const now = new Date();
-
-  const projectRoutes = PROJECTS.map((project) => ({
-    path: project.link,
-    priority: 0.8,
-    changeFreq: "monthly" as const,
-    lastModified: now,
-  }));
-
   return [
     ...staticRoutes.map((r) => ({
       url: `${baseUrl}${r.path}`,
-      lastModified: now,
       changeFrequency: r.changeFreq,
       priority: r.priority,
     })),
-    ...postRoutes.map((r) => ({
-      url: `${baseUrl}${r.path}`,
-      lastModified: r.lastModified,
-      changeFrequency: r.changeFreq,
-      priority: r.priority,
+    ...getPostSummaries().map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      ...(isIsoDate(post.date) ? { lastModified: post.date } : {}),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
-    ...projectRoutes.map((r) => ({
-      url: `${baseUrl}${r.path}`,
-      changeFrequency: r.changeFreq,
-      priority: r.priority,
+    ...PROJECTS.map((project) => ({
+      url: `${baseUrl}${project.link}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
   ];
 }

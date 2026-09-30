@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 type CaseStudyType = "challenge" | "solution" | "result";
 
 const CASE_STYLES: Record<CaseStudyType, { border: string; label: string }> = {
-  challenge: { border: "border-l-red-500", label: "text-red-500" },
+  challenge: { border: "border-l-danger", label: "text-danger" },
   solution: { border: "border-l-tech", label: "text-tech" },
-  result: { border: "border-l-green-500", label: "text-green-500" },
+  result: { border: "border-l-success", label: "text-success" },
 };
 
 const CASE_LABELS: Record<CaseStudyType, string> = {

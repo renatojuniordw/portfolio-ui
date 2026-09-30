@@ -44,7 +44,8 @@ export function ParticleField({ className }: { className?: string }) {
     let particles: Particle[] = [];
     const mouse = { x: -9999, y: -9999 };
     let rafId = 0;
-    let visible = true;
+    let pageVisible = document.visibilityState === "visible";
+    let inViewport = true;
 
     function seedParticles(count: number) {
       particles = Array.from({ length: count }, () => ({
@@ -112,7 +113,18 @@ export function ParticleField({ className }: { className?: string }) {
         }
       }
       draw();
-      if (visible) rafId = requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
+    }
+
+    // Um único loop por vez: para ao sair da viewport ou com a aba oculta.
+    function start() {
+      if (!interactive || rafId || !pageVisible || !inViewport) return;
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function stop() {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
     }
 
     function handleMouseMove(e: MouseEvent) {
@@ -127,8 +139,9 @@ export function ParticleField({ className }: { className?: string }) {
     }
 
     function handleVisibilityChange() {
-      visible = document.visibilityState === "visible";
-      if (visible && interactive) rafId = requestAnimationFrame(tick);
+      pageVisible = document.visibilityState === "visible";
+      if (pageVisible) start();
+      else stop();
     }
 
     resize();
@@ -139,18 +152,26 @@ export function ParticleField({ className }: { className?: string }) {
     });
     resizeObserver.observe(container);
 
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      inViewport = entry.isIntersecting;
+      if (inViewport) start();
+      else stop();
+    });
+
     if (interactive) {
       container.addEventListener("mousemove", handleMouseMove);
       container.addEventListener("mouseleave", handleMouseLeave);
       document.addEventListener("visibilitychange", handleVisibilityChange);
-      rafId = requestAnimationFrame(tick);
+      intersectionObserver.observe(container);
+      start();
     } else {
       draw();
     }
 
     return () => {
       resizeObserver.disconnect();
-      cancelAnimationFrame(rafId);
+      intersectionObserver.disconnect();
+      stop();
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("visibilitychange", handleVisibilityChange);

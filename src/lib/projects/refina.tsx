@@ -3,7 +3,7 @@ import { ArrowRight, ClipboardCopy, ShieldCheck, TerminalSquare } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { organizationJsonLd } from "@/lib/structured-data";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card } from "./helpers";
+import { breadcrumbs, card, UNIFICANDO_AUTHORIAL_ROLE } from "./helpers";
 
 function Overview() {
   return (
@@ -86,7 +86,7 @@ export const refinaCase: ProjectCase = {
     "CLI via npx que monta prompts de 'Engenheiro de Prompt' a partir de texto cru, imprimindo no stdout para uso com qualquer CLI de LLM (Claude Code, Gemini CLI).",
     "tech",
     ["Node.js", "CLI", "npm", "npx"],
-    "unificando",
+    { group: "unificando", areas: ["ia"] },
   ),
   jsonLd: {
     name: "@unificando/refina",
@@ -99,6 +99,7 @@ export const refinaCase: ProjectCase = {
     item: "/projetos/refina",
   }),
   categoryBadge: "DevTools",
+  role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "@unificando/refina",
   shortDescription: (
     <>
@@ -135,8 +136,8 @@ export const refinaCase: ProjectCase = {
     result: (
       <p>
         Prompts de engenheiro disponíveis em um comando, com{" "}
-        <strong>pipe validado</strong> em Claude Code e Gemini CLI — 131
-        downloads semanais no npm em poucos dias de publicação.
+        <strong>pipe validado</strong> em Claude Code e Gemini CLI, publicado
+        no npm e executável com um único <code>npx</code>.
       </p>
     ),
   },

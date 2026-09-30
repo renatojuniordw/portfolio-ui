@@ -12,7 +12,7 @@ import {
 
 import { SOCIALS } from "@/lib/constants";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card } from "./helpers";
+import { breadcrumbs, card, UNIFICANDO_AUTHORIAL_ROLE } from "./helpers";
 
 function Overview() {
   return (
@@ -132,7 +132,17 @@ export const radarUnificandoCase: ProjectCase = {
     "Plataforma de busca de vagas em tempo real (Gupy + InHire, todas as áreas) com assistente de carreira por IA: score ATS, currículo adaptado e recomendação de cursos.",
     "ia",
     ["Next.js 16", "MCP", "Vercel AI SDK", "Prisma", "Redis"],
-    "unificando",
+    {
+      group: "unificando",
+      areas: ["ia"],
+      thumbnail: {
+        src: "/projetos/radar-unificando.jpg",
+        width: 1280,
+        height: 640,
+        alt: "Página inicial do Radar Unificando com o campo de busca de vagas em Gupy e InHire",
+        source: "Captura da página pública https://radar.unificando.com.br/ (1280×640, tema claro do navegador, sem login), 29/09/2026",
+      },
+    },
   ),
   jsonLd: {
     name: "Radar Unificando",
@@ -145,6 +155,7 @@ export const radarUnificandoCase: ProjectCase = {
     { name: "Radar", item: "/projetos/unificando/radar" },
   ),
   categoryBadge: "Job Board / IA",
+  role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "Radar Unificando: Vagas com Assistente de Carreira IA",
   shortDescription: (
     <>

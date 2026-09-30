@@ -56,6 +56,9 @@ const DIFFERENTIALS: Differential[] = [
   },
 ];
 
+const PANEL_ID = "diferenciais-painel";
+const tabId = (id: string) => `diferencial-aba-${id}`;
+
 export function DifferentialsSection() {
   const [activeId, setActiveId] = useState(DIFFERENTIALS[0].id);
   const active = useMemo(
@@ -70,9 +73,8 @@ export function DifferentialsSection() {
       className="section-wrapper bg-surface-2"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <ScrollReveal>
-          <div className="mb-16">
+          <div className="mb-12 md:mb-16">
             <span className="section-label">Por que eu?</span>
             <h2 id="diferenciais-heading" className="section-title">
               O que eu faço diferente
@@ -80,12 +82,39 @@ export function DifferentialsSection() {
           </div>
         </ScrollReveal>
 
-        {/* Accordion + description panel */}
-        <ScrollReveal delay={120}>
-          <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-12">
-            {/* Text panel */}
-            <div className="w-full md:w-1/3 shrink-0">
-              <span className="text-5xl font-display font-light text-border leading-none block mb-4">
+        {/* Telas pequenas: os quatro diferenciais visíveis, sem depender de toque. */}
+        <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:hidden">
+          {DIFFERENTIALS.map((item) => (
+            <li key={item.id} className="project-card p-6">
+              <span aria-hidden="true" className="block text-sm font-medium text-muted mb-2">
+                {item.index}
+              </span>
+              <h3 className="text-xl font-medium text-text mb-2 leading-snug">
+                {item.title}
+              </h3>
+              <p className="text-text-secondary leading-relaxed mb-3">
+                {item.description}
+              </p>
+              <span className="text-xs font-medium text-muted uppercase tracking-widest">
+                {item.accent}
+              </span>
+            </li>
+          ))}
+        </ol>
+
+        {/* Telas amplas: abas interativas. Oculto (display:none) abaixo de lg. */}
+        <ScrollReveal delay={120} className="hidden lg:block">
+          <div className="flex flex-row items-center gap-12">
+            <div
+              role="tabpanel"
+              id={PANEL_ID}
+              aria-labelledby={tabId(active.id)}
+              className="w-1/3 min-w-0 shrink-0"
+            >
+              <span
+                aria-hidden="true"
+                className="text-5xl font-display font-light text-muted leading-none block mb-4"
+              >
                 {active.index}
               </span>
               <h3 className="text-2xl font-medium text-text mb-3 leading-snug">
@@ -99,12 +128,14 @@ export function DifferentialsSection() {
               </span>
             </div>
 
-            {/* Accordion */}
-            <div className="w-full md:flex-1 flex justify-center md:justify-end">
+            <div className="flex min-w-0 flex-1 justify-end">
               <InteractiveImageAccordion
                 items={DIFFERENTIALS}
                 activeId={activeId}
                 onActiveChange={setActiveId}
+                label="Diferenciais"
+                panelId={PANEL_ID}
+                tabId={tabId}
               />
             </div>
           </div>

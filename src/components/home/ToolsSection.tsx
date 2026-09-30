@@ -38,7 +38,6 @@ const TOOLS: Tool[] = [
     command: "npx @unificando/refina \"ideia\" | claude",
     npmUrl: "https://www.npmjs.com/package/@unificando/refina",
     githubUrl: "https://github.com/Unificando/refina",
-    stats: "131 downloads/semana",
   },
   {
     id: "mcp-med-unificando",
@@ -68,18 +67,18 @@ const TOOLS: Tool[] = [
 
 function TerminalCommand({ command }: { command: string }) {
   return (
-    <div className="mt-6 p-4 rounded-xl bg-bg border border-border font-mono text-sm overflow-x-auto">
-      <span className="text-ia shrink-0">$ </span>
-      <span className="text-text-secondary">{command}</span>
+    <div className="mt-6 p-4 rounded-xl bg-bg border border-border font-mono text-sm">
+      <span className="text-ia shrink-0" aria-hidden="true">$ </span>
+      <span className="text-text-secondary [overflow-wrap:anywhere]">{command}</span>
     </div>
   );
 }
 
 function EndpointBlock({ endpoint }: { endpoint: string }) {
   return (
-    <div className="mt-6 p-4 rounded-xl bg-bg border border-border font-mono text-sm overflow-x-auto">
-      <span className="text-ia shrink-0">▸ </span>
-      <span className="text-text-secondary">{endpoint}</span>
+    <div className="mt-6 p-4 rounded-xl bg-bg border border-border font-mono text-sm">
+      <span className="text-ia shrink-0" aria-hidden="true">▸ </span>
+      <span className="text-text-secondary [overflow-wrap:anywhere]">{endpoint}</span>
     </div>
   );
 }
@@ -109,23 +108,24 @@ export function ToolsSection() {
               href="https://www.npmjs.com/~renatojunior"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text rounded-full text-sm font-medium hover:border-[#111111] dark:hover:border-white transition-colors shrink-0"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text rounded-full text-sm font-medium hover:border-text transition-colors shrink-0"
             >
-              Ver no npm →
+              Ver no npm <span aria-hidden="true">→</span>
+              <span className="sr-only">(abre em nova aba)</span>
             </a>
           </div>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {TOOLS.map((tool, index) => (
-            <ScrollReveal key={tool.id} delay={index * 100}>
-              <article className="group p-8 rounded-2xl bg-bg border border-border hover:border-[#111111] dark:hover:border-white transition-colors duration-300 flex flex-col h-full">
+            <ScrollReveal key={tool.id} delay={index * 100} className="min-w-0">
+              <article className="group p-6 sm:p-8 rounded-2xl bg-bg border border-border hover:border-text transition-colors duration-300 flex flex-col h-full">
                 <div className="flex items-start justify-between gap-4">
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-xs font-medium text-muted uppercase tracking-widest">
                       {tool.tagline}
                     </span>
-                    <h3 className="text-2xl font-medium text-text mt-2 font-mono">
+                    <h3 className="text-lg sm:text-2xl font-medium text-text mt-2 font-mono [overflow-wrap:anywhere]">
                       {tool.name}
                     </h3>
                   </div>
@@ -163,7 +163,8 @@ export function ToolsSection() {
                     href={tool.casePath ?? `/projetos/${tool.id}`}
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-text hover:text-text-secondary transition-colors"
                   >
-                    Ver case <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                    Ver case<span className="sr-only"> de {tool.name}</span>{" "}
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
                   {tool.npmUrl && (
                     <a
@@ -172,7 +173,9 @@ export function ToolsSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
                     >
-                      npm <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                      npm
+                      <span className="sr-only"> de {tool.name} (abre em nova aba)</span>{" "}
+                      <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                     </a>
                   )}
                   {tool.docsUrl && (
@@ -182,7 +185,8 @@ export function ToolsSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
                     >
-                      {tool.docsLabel ?? "Docs"}{" "}
+                      {tool.docsLabel ?? "Docs"}
+                      <span className="sr-only"> de {tool.name} (abre em nova aba)</span>{" "}
                       <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                     </a>
                   )}
@@ -194,6 +198,7 @@ export function ToolsSection() {
                       className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-text transition-colors"
                     >
                       <Github className="w-4 h-4" aria-hidden="true" /> GitHub
+                      <span className="sr-only"> de {tool.name} (abre em nova aba)</span>
                     </a>
                   )}
                 </div>

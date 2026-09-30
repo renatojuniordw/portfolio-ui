@@ -3,28 +3,29 @@ import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { Tag } from "@/components/ui/Tag";
 import { ArrowCta } from "@/components/ui/ArrowCta";
-import type { BlogPost } from "@/types/blog";
+import { formatPostDate, isIsoDate } from "@/lib/dates";
+import type { BlogPostSummary } from "@/types/blog";
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: BlogPostSummary;
 }
 
 export const BlogCard = memo(function BlogCard({ post }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group p-8 project-card hover:border-[#111111] dark:hover:border-white transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
+      className="group p-8 project-card hover:border-text transition-colors duration-300 flex flex-col justify-between min-h-[240px]"
     >
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <time className="text-xs font-medium text-muted uppercase tracking-widest">
-            {new Date(post.date).toLocaleDateString("pt-BR", {
-              year: "numeric",
-              month: "short",
-            })}
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <time
+            dateTime={isIsoDate(post.date) ? post.date : undefined}
+            className="text-xs font-medium text-muted uppercase tracking-widest"
+          >
+            {formatPostDate(post.date, { month: "short" })}
           </time>
           <span className="flex items-center gap-1.5 text-xs text-muted">
-            <BookOpen className="w-3 h-3" />
+            <BookOpen aria-hidden="true" className="w-3 h-3" />
             {post.readingTime} de leitura
           </span>
         </div>

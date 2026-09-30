@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { PROFILE } from "../constants";
 import {
   breadcrumbJsonLd,
-  faqJsonLd,
   personJsonLd,
   projectJsonLd,
 } from "../structured-data";
@@ -22,12 +21,6 @@ describe("structured-data", () => {
     expect(data["@type"]).toBe("BreadcrumbList");
     expect(data.itemListElement).toHaveLength(2);
     expect(data.itemListElement[1].item).toContain("https://");
-  });
-
-  it("faqJsonLd mapeia perguntas e respostas", () => {
-    const data = faqJsonLd([{ question: "Pergunta?", answer: "Resposta." }]);
-    expect(data.mainEntity[0].name).toBe("Pergunta?");
-    expect(data.mainEntity[0].acceptedAnswer.text).toBe("Resposta.");
   });
 
   it("projectJsonLd representa um CreativeWork", () => {

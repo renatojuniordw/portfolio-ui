@@ -2,7 +2,7 @@ import { Box, Combine, FileDigit, Lock, ShieldCheck, Zap } from "lucide-react";
 
 import { SOCIALS } from "@/lib/constants";
 import type { ProjectCase } from "@/types/project";
-import { breadcrumbs, card } from "./helpers";
+import { breadcrumbs, card, UNIFICANDO_AUTHORIAL_ROLE } from "./helpers";
 
 function Overview() {
   return (
@@ -104,7 +104,7 @@ export const unificandoPdfCase: ProjectCase = {
     "Uma suíte completa de ferramentas para documentos, com foco em privacidade e processamento de alto desempenho.",
     "tech",
     ["Next.js", "pdf-lib", "Docker", "Ghostscript"],
-    "unificando",
+    { group: "unificando", areas: ["frontend"] },
   ),
   jsonLd: {
     name: "PDF Unificando",
@@ -117,6 +117,7 @@ export const unificandoPdfCase: ProjectCase = {
     { name: "PDF", item: "/projetos/unificando/pdf" },
   ),
   categoryBadge: "SaaS & Utilitários",
+  role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "PDF Unificando: Privacidade & Produtividade",
   shortDescription: (
     <>

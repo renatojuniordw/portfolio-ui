@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import type { BlogPost } from "@/types/blog";
+import type { BlogPost, BlogPostSummary } from "@/types/blog";
+import { normalizeText } from "./search";
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
 
@@ -53,6 +54,58 @@ export function getPostBySlug(slug: string): BlogPost | null {
   return parsePost(slug);
 }
 
-export function getRecentPosts(count: number = 3): BlogPost[] {
-  return getAllPosts().slice(0, count);
+export function getRecentPosts(count: number = 3): BlogPostSummary[] {
+  return getPostSummaries().slice(0, count);
+}
+
+/** Metadados de todos os artigos, sem o Markdown (seguro para enviar ao client). */
+export function getPostSummaries(): BlogPostSummary[] {
+  return getAllPosts().map(toSummary);
+}
+
+function toSummary(post: BlogPost): BlogPostSummary {
+  const { slug, title, description, date, tags, readingTime } = post;
+  return { slug, title, description, date, tags, readingTime };
+}
+
+export interface RelatedPosts {
+  /** "related": há tags em comum; "recent": nenhuma relação, mostra recentes. */
+  kind: "related" | "recent";
+  posts: BlogPostSummary[];
+}
+
+/**
+ * Artigos relacionados por quantidade de tags em comum (normalizadas),
+ * excluindo o atual; empate por data (mais recente) e depois slug.
+ * Sem nenhuma tag em comum, devolve os mais recentes como "Outros artigos".
+ */
+export function getRelatedPosts(
+  slug: string,
+  count = 2,
+  posts: BlogPostSummary[] = getPostSummaries(),
+): RelatedPosts {
+  const current = posts.find((post) => post.slug === slug);
+  const others = posts.filter((post) => post.slug !== slug);
+  const tags = new Set((current?.tags ?? []).map(normalizeText));
+
+  const scored = others
+    .map((post) => ({
+      post,
+      score: new Set(post.tags.map(normalizeText).filter((tag) => tags.has(tag))).size,
+    }))
+    .filter(({ score }) => score > 0)
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        b.post.date.localeCompare(a.post.date) ||
+        a.post.slug.localeCompare(b.post.slug),
+    );
+
+  if (scored.length > 0) {
+    return { kind: "related", posts: scored.slice(0, count).map(({ post }) => post) };
+  }
+  const recent = [...others].sort(
+    (a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug),
+  );
+  return { kind: "recent", posts: recent.slice(0, count) };
 }

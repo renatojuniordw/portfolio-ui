@@ -1,60 +1,79 @@
-# Design System Extraído do Protótipo
+# Design system
 
-Este documento detalha o design system inferido a partir do protótipo fornecido, servindo como base para as futuras melhorias no projeto.
+Identidade: base neutra (branco/quase preto), tipografia marcante (Space Grotesk nos títulos, Inter no texto), fotografia pessoal em escala de cinza e três acentos — azul (tech), roxo (IA) e laranja (Seu Barraco Esperto). Temas claro e escuro.
 
-## 1. Princípios Gerais de Design
-* **Estilo:** Minimalista, limpo e sofisticado.
-* **Espaçamento (Whitespace):** Uso abundante de espaços em branco para separar seções e dar respiro aos elementos, focando na tipografia e nas imagens.
-* **Formas:** Mistura de bordas retas (ou levemente arredondadas) para imagens/cards, contrastando com formas totalmente arredondadas (pill-shape) para tags e botões circulares.
+## Tokens de cor
 
-## 2. Paleta de Cores
+Definidos em `src/styles/tokens.css` e expostos como classes Tailwind em `src/app/globals.css` (`@theme`).
 
-### Fundos (Backgrounds)
-* **Background Principal:** Branco puro (`#FFFFFF`) - Usado na maior parte do site para garantir um visual limpo.
-* **Background Secundário (Seções):** Cinza muito claro/Off-white (ex: `#F5F5F5` ou `#F9F9F9`) - Usado sutilmente no hero e em algumas seções para criar quebras visuais sem usar linhas duras.
-* **Background Escuro (Footer/CTA):** Preto ou Cinza muito escuro (ex: `#1A1A1A` ou `#111111`) - Usado em blocos de destaque (como o banner "Exclusive Winter Deal") e no rodapé.
+| Token | Classe | Claro | Escuro | Uso |
+| --- | --- | --- | --- | --- |
+| `--bg` | `bg-bg` | `#FFFFFF` | `#0A0A0A` | Fundo da página |
+| `--surface-1` | `bg-surface-1` | `#F5F5F5` | `#141414` | Cards, código, rodapé |
+| `--surface-2` | `bg-surface-2` | `#F9F9F9` | `#1A1A1A` | Seções alternadas |
+| `--border` | `border-border` | `#E5E5E5` | `#262626` | Bordas (decorativas) |
+| `--text` | `text-text` | `#111111` | `#F5F5F5` | Texto principal; fundo de botão primário (`bg-text text-bg`) |
+| `--text-2` | `text-text-secondary` | `#666666` | `#A3A3A3` | Texto secundário |
+| `--muted` | `text-muted` | `#6B6B6B` | `#8F8F8F` | Labels e metadados |
+| `--accent-tech` | `text-tech`, `bg-tech` | `#1D4ED8` | `#60A5FA` | Links, foco, botão primário azul |
+| `--accent-ia` | `text-ia` | `#6D28D9` | `#A78BFA` | IA, Unificando |
+| `--accent-barraco` | `text-barraco` | `#C2410C` | `#FB923C` | Seu Barraco Esperto |
+| `--on-accent` | `text-on-accent` | `#FFFFFF` | `#0A0A0A` | Texto sobre `bg-tech`/`bg-danger` |
+| `--danger` | `text-danger` | `#B91C1C` | `#F87171` | Erros, "Desafio" nos cases |
+| `--success` | `text-success` | `#047857` | `#34D399` | "Resultado" nos cases |
 
-### Texto
-* **Texto Primário (Títulos):** Preto/Cinza Escuro (`#111111`) - Alto contraste para legibilidade.
-* **Texto Secundário (Parágrafos e Labels):** Cinza Médio (`#666666` ou `#777777`) - Usado para descrições para não competir com os títulos.
+Não existe `bg-surface` (sem sufixo): use `surface-1` ou `surface-2`. Não use cores fixas (`#111111`, `hover:bg-black`, `red-500`) em componentes; elas quebram um dos temas.
 
-### Acentos/UI
-* **Bordas e Linhas Divisórias:** Cinza claro (`#E5E5E5` ou `#EEEEEE`).
-* **Elementos Ativos/Ícones:** Preto para fundos de botões com ícones brancos.
+### Contraste
 
-## 3. Tipografia
+Meta WCAG 2.2 AA: 4,5:1 para texto normal, 3:1 para texto grande e indicadores de interface. `src/lib/__tests__/contrast.test.ts` lê os tokens reais e falha se qualquer token de texto ficar abaixo de 4,5:1 sobre `bg`, `surface-1` ou `surface-2` nos dois temas, ou se `on-accent` perder contraste. O mesmo teste cobre as cores de syntax highlighting.
 
-* **Fonte Principal:** Sans-serif geométrica e limpa (Recomendação: `Inter`, `Helvetica Neue`, `Outfit` ou `Roboto`).
-* **Hero Text ("Hello"):** Tamanho muito grande, peso **Light** ou **Thin**.
-* **Títulos de Seções (H2/H3):** Tamanho grande, peso **Regular** ou **Medium**.
-* **Corpo de Texto (Body):** Tamanho legível (16px - 18px), peso **Regular**, altura de linha (line-height) espaçosa (1.5 a 1.6).
-* **Labels / Tags:** Tamanho pequeno (12px - 14px), peso **Medium**, text-transform normal ou uppercase dependendo do uso.
+Pares que mudaram nesta revisão (contraste calculado pela fórmula WCAG):
 
-## 4. Componentes de UI
+| Par | Antes | Depois |
+| --- | --- | --- |
+| IA sobre fundo escuro | `#6D28D9` / `#0A0A0A` = 2,79 | `#A78BFA` = 7,27 |
+| Tech sobre fundo escuro | `#1D4ED8` / `#0A0A0A` = 2,95 | `#60A5FA` = 7,79 |
+| Muted sobre surface-1 escuro | `#737373` / `#141414` = 3,89 | `#8F8F8F` = 5,70 |
+| Barraco sobre branco | `#EA580C` / `#FFFFFF` = 3,56 | `#C2410C` = 5,18 |
+| Danger sobre surface-1 claro | `#DC2626` / `#F5F5F5` = 4,43 | `#B91C1C` = 5,93 |
+| Danger sobre fundo escuro | `#DC2626` / `#0A0A0A` = 4,10 | `#F87171` = 7,16 |
+| Comentário de código (claro) | `#A3A3A3` / `#F5F5F5` = 2,31 | `#666666` = 5,27 |
+| Comentário de código (escuro) | `#737373` / `#141414` = 3,89 | `#8F8F8F` = 5,70 |
+| Texto branco em botão azul (escuro) | branco / `#60A5FA` = 2,54 | `on-accent` `#0A0A0A` = 7,79 |
 
-### Botões e Tags (Pills)
-* **Formato:** Totalmente arredondado (`border-radius: 9999px` ou `rounded-full`).
-* **Variante Escura:** Fundo preto, texto branco. Usado para destacar ou indicar estado ativo.
-* **Variante Clara:** Fundo cinza claro, texto escuro. Usado para categorias ou filtros inativos (ex: "UI/UX", "Branding").
-* **Padding:** Espaçamento horizontal generoso em relação ao vertical (ex: `px-4 py-1`).
+Estados ativos não dependem só de cor: link ativo do menu tem peso e borda inferior (desktop) ou lateral (gaveta) além de `aria-current`; filtro ativo inverte fundo e usa `aria-pressed`.
 
-### Botões de Ação (Ícones Circulares)
-* **Formato:** Círculo perfeito.
-* **Estilo:** Fundo preto/escuro com ícone de seta apontando para a diagonal superior direita (↗) em branco.
-* Usados como affordance para "ver mais" ou abrir links, frequentemente sobrepostos a imagens ou alinhados à direita em listas.
+## Tipografia
 
-### Cards e Imagens
-* **Formato:** Retangulares ou quadrados com cantos levemente arredondados (`rounded-md` ou `rounded-lg`) ou cantos retos dependendo da seção.
-* **Apresentação:** Sem sombras pesadas (drop shadows); o design confia no grid e no espaçamento para definir as áreas.
+- Títulos: `font-display` (Space Grotesk). Corpo: `font-body` (Inter), 16–18 px, entrelinha 1,6–1,75.
+- `.section-title`, `.section-label` e `.blog-content` em `globals.css`.
+- Nome no hero com escala fluida `clamp(3rem, 10vw + 1rem, 13rem)`, que cabe em 320 px.
+- Textos longos sem espaço (pacotes npm, endpoints) usam `overflow-wrap: anywhere`; código em bloco rola dentro do próprio bloco.
 
-### Listas / Jornada
-* Estrutura em formato de lista simples, separada por linhas divisórias sutis (cinza claro).
-* Alinhamento limpo da esquerda para a direita (Data/Empresa -> Papel -> Tags).
+## Raios, sombras e easing
 
-## 5. Layout & Estrutura
-* **Grid:** Alinhamento centralizado com margens laterais generosas (max-width contido).
-* **Navegação (Header):** Topo limpo, logo minimalista na esquerda, links centralizados, botão secundário ("Book A Call") na direita com um pequeno ícone de seta.
-* **Hero:** Foco central, tipografia gigante equilibrada com imagem (foto pessoal).
+`--radius-sm/md/lg/xl` = 10/14/18/24 px e `--ease-out` = `cubic-bezier(0.16, 1, 0.3, 1)`, com valores literais no `@theme`. Sombras: `shadow-soft-1`, `shadow-soft-2`.
 
----
-*Você pode usar este documento como referência para aplicar as classes utilitárias no Tailwind ou criar os componentes no projeto.*
+## Componentes e padrões
+
+| Padrão | Onde | Regras |
+| --- | --- | --- |
+| Botão primário | `bg-text text-bg rounded-full`, hover `opacity-90` | Altura mínima 44–48 px |
+| Botão secundário | `border border-border`, hover `border-text` | |
+| Card | `.project-card` ou `rounded-3xl border bg-surface-1`, hover `border-text`/`text-secondary` | Link com nome distinto do item |
+| Pill/tag | `.tag-pill` | Decorativa; não é interativa |
+| Diálogo | `ModalDialog` | Título, botão fechar, foco preso, Esc/backdrop |
+| Filtro | botões com `aria-pressed` + `role="status"` com a contagem | Não usar semântica de abas para filtrar lista |
+| Abas | `InteractiveImageAccordion` | Padrão APG com setas e Home/End |
+| Título animado | `SplitText` | Texto completo em `sr-only`, animação só em CSS |
+| Revelação | `ScrollReveal` | Nunca oculta conteúdo no HTML inicial |
+| Seta de card | `ArrowCta` | Decorativa (`aria-hidden`) |
+
+## Movimento
+
+Duração curta (200–700 ms), `--ease-out`, sem bloquear conteúdo. Tudo que desloca, faz parallax, magnetismo, pulsa ou cascateia desliga com `prefers-reduced-motion`; transições de cor podem ficar. Nenhuma informação depende de animação.
+
+## Foco
+
+`:focus-visible` com contorno de 2 px em `--accent-tech` e afastamento de 3 px, visível nos dois temas. Não remova o contorno por estética.
