@@ -1,10 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getFeaturedProjects, PROJECTS } from "@/lib/projects";
 import { PROJECT_AREAS } from "@/lib/project-areas";
-import { ACCENT_DOT } from "@/lib/project-theme";
-import { cn } from "@/lib/utils";
 
 export function FeaturedProjectsSection() {
   const featured = getFeaturedProjects();
@@ -39,30 +36,7 @@ export function FeaturedProjectsSection() {
         <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((project) => (
             <li key={project.id} className="min-w-0">
-              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface-1 transition-colors duration-300 hover:border-text-secondary">
-                <div className="relative aspect-[2/1] w-full overflow-hidden border-b border-border bg-surface-2">
-                  {project.thumbnail ? (
-                    <Image
-                      src={project.thumbnail.src}
-                      alt={project.thumbnail.alt}
-                      width={project.thumbnail.width}
-                      height={project.thumbnail.height}
-                      sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
-                      className="h-full w-full object-cover object-top"
-                    />
-                  ) : (
-                    // Sem captura real disponível: fallback editorial, sem imagem simulada.
-                    <div
-                      aria-hidden="true"
-                      className="flex h-full w-full flex-col justify-between p-6"
-                    >
-                      <span className={cn("h-2 w-2 rounded-full", ACCENT_DOT[project.accent])} />
-                      <span className="font-display text-3xl font-light leading-tight text-text">
-                        {project.title}
-                      </span>
-                    </div>
-                  )}
-                </div>
+              <article className="group flex h-full flex-col rounded-3xl border border-border bg-surface-1 transition-colors duration-300 hover:border-text-secondary">
                 <div className="flex flex-1 flex-col gap-4 p-7">
                   <p className="text-xs font-medium uppercase tracking-widest text-muted">
                     {project.category}
