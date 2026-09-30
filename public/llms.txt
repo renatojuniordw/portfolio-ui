@@ -6,7 +6,7 @@
 https://renatobezerra.com.br
 
 ## Summary
-Engenheiro de Software com +7 anos de experiência. Foco atual em IA aplicada à engenharia de software e automação: agentes autônomos, engenharia de prompts, RAG, n8n. Base sólida em front-end (Angular, React, Next.js) e arquitetura de software — pós-graduado pela FIAP.
+Engenheiro de Software com +7 anos de experiência. Foco atual em IA aplicada à engenharia de software e automação: agentes autônomos, engenharia de prompts, RAG, n8n. Base sólida em front-end (Angular, React, Next.js) e arquitetura de software — pós-graduado pela FIAP e cursando especialização em NLP pela UFG.
 
 ## Páginas principais
 - Home: https://renatobezerra.com.br/ — Portfólio completo

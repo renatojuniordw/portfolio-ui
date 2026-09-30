@@ -2,9 +2,17 @@ export interface Education {
   institution: string;
   degree: string;
   period: string;
+  inProgress?: boolean;
 }
 
 export const EDUCATIONS: Education[] = [
+  {
+    institution: "UFG - Universidade Federal de Goiás",
+    degree:
+      "Pós-graduação Lato Sensu - Especialização, Processamento de Linguagem Natural",
+    period: "Set 2026 - Set 2027",
+    inProgress: true,
+  },
   {
     institution: "FIAP",
     degree: "Pós-graduação Lato Sensu - Especialização, Software Architecture",

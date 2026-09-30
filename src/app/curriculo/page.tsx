@@ -105,7 +105,14 @@ export default function CurriculoPage() {
             <div className="space-y-6">
               {EDUCATIONS.map((edu, index) => (
                 <article key={index}>
-                  <h3 className="font-bold">{edu.degree}</h3>
+                  <h3 className="font-bold">
+                    {edu.degree}
+                    {edu.inProgress && (
+                      <span className="ml-2 inline-flex items-center rounded-full border border-ia/30 bg-ia/5 px-2.5 py-0.5 align-middle text-xs font-medium text-ia">
+                        Cursando
+                      </span>
+                    )}
+                  </h3>
                   <p className="text-text-secondary text-sm">
                     {edu.institution} {edu.period && `· ${edu.period}`}
                   </p>

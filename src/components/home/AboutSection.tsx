@@ -58,10 +58,11 @@ export function AboutSection() {
                   </div>
                   <div className="pt-6 border-t border-border">
                     <h3 className="text-xl font-medium text-text mb-1">
-                      Arquitetura de Software
+                      Formação
                     </h3>
                     <p className="text-text-secondary leading-relaxed">
-                      Especialização pela FIAP • Microsoft Specialist Certified
+                      Especialização em NLP (UFG, em andamento) • Arquitetura de
+                      Software (FIAP) • Microsoft Specialist Certified
                     </p>
                   </div>
                 </div>

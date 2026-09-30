@@ -10,7 +10,7 @@ export const generateMetadata = () =>
   buildMetadata({
     title: "Certificações | Renato Bezerra — Engenheiro de Software",
     description:
-      "Formação acadêmica e certificações profissionais de Renato Bezerra: Pós-graduação em Arquitetura de Software pela FIAP, certificações Microsoft em HTML5, JavaScript e CSS3.",
+      "Formação acadêmica e certificações profissionais de Renato Bezerra: Especialização em Processamento de Linguagem Natural pela UFG, Pós-graduação em Arquitetura de Software pela FIAP, certificações Microsoft em HTML5, JavaScript e CSS3.",
     path: "/certificacoes",
   });
 
@@ -44,11 +44,16 @@ export default function CertificacoesPage() {
               key={index}
               className="p-8 project-card hover:border-text transition-colors"
             >
-              <span className="text-sm font-medium text-muted uppercase tracking-widest block mb-3">
+              <span className="text-sm font-medium text-muted uppercase tracking-widest flex flex-wrap items-center gap-3 mb-3">
                 {edu.period && (
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
                     {edu.period}
+                  </span>
+                )}
+                {edu.inProgress && (
+                  <span className="inline-flex items-center rounded-full border border-ia/30 bg-ia/5 px-3 py-1 text-xs font-medium normal-case tracking-normal text-ia">
+                    Cursando
                   </span>
                 )}
               </span>
