@@ -47,8 +47,8 @@ function VitrineCard() {
   return (
     <>
       <p className="text-sm text-text-secondary leading-relaxed mb-4">
-        Interessado na experiência visual e na calculadora de serviços deste
-        projeto?
+        Quer conhecer o site do laboratório, com os produtos, ferramentas
+        abertas e frentes de P&D da marca?
       </p>
       <Button variant="outline" size="sm" className="w-full rounded-full" asChild>
         <a href={projectPath("unificando", "vitrine")}>

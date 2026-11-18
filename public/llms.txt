@@ -26,7 +26,7 @@ Engenheiro de Software com +7 anos de experiência. Foco atual em IA aplicada à
 - Med Unificando: https://renatobezerra.com.br/projetos/unificando/med — Busca semântica de medicamentos intercambiáveis da ANVISA com IA 100% local
 - PDF Unificando: https://renatobezerra.com.br/projetos/unificando/pdf — Suíte de ferramentas de documentos com privacidade por design
 - Unificando: IA & Automação: https://renatobezerra.com.br/projetos/unificando/automacao — Engine de atendimento com IA, orquestração de LLMs e automação via n8n
-- Unificando: Vitrine Digital: https://renatobezerra.com.br/projetos/unificando/vitrine — Site institucional interativo com calculadora de planos
+- Unificando: Vitrine Digital: https://renatobezerra.com.br/projetos/unificando/vitrine — Site do laboratório Unificando: vitrine dos produtos com IA, ferramentas abertas e frentes de P&D
 - @unificando/prompts: https://renatobezerra.com.br/projetos/prompts — Biblioteca de prompts padronizados para auditoria de código, segurança, testes e copy
 - @unificando/refina: https://renatobezerra.com.br/projetos/refina — CLI que monta prompts de Engenheiro de Prompt no stdout para qualquer CLI de LLM
 

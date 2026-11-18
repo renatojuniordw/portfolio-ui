@@ -1,4 +1,4 @@
-import { ArrowRight, Cpu, Github, Globe, Store } from "lucide-react";
+import { ArrowRight, Bot, FlaskConical, Github, Globe, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { SocialLinkCard } from "@/components/ui/SocialLinkCard";
@@ -10,14 +10,17 @@ function Overview() {
   return (
     <>
       <p>
-        O site do <strong>Unificando</strong> foi projetado para ser a face
-        digital de um ecossistema de atendimento. Ele funciona como uma{" "}
-        <strong>vitrine interativa</strong> onde o usuário pode simular cenários e
-        entender custos.
+        O site do <strong>Unificando</strong> é a vitrine do{" "}
+        <strong>laboratório de projetos autorais &amp; IA</strong>: um único
+        lugar que reúne os produtos no ar (PDF, Med e Radar), as ferramentas
+        abertas (pacotes npm e servidor MCP) e as frentes de pesquisa e
+        desenvolvimento por trás deles.
       </p>
       <p>
-        A tecnologia (React 19 + Vite 6) garante{" "}
-        <strong>performance consistente</strong> em Core Web Vitals.
+        Cada projeto publicado funciona como prova prática de conhecimento em{" "}
+        <strong>IA aplicada</strong>, automação e engenharia web — o site
+        organiza essa evidência e a torna fácil de encontrar, tanto para pessoas
+        quanto para buscadores e agentes de IA.
       </p>
     </>
   );
@@ -27,12 +30,15 @@ function TechnicalResultsContent() {
   return (
     <>
       <p className="text-text-secondary">
-        Utilizando <strong>React 19</strong>, o site atinge pontuações máximas em{" "}
-        <strong>Core Web Vitals</strong>.
+        Front-end em <strong>React 19</strong> e <strong>TypeScript</strong>{" "}
+        estrito, com rotas carregadas sob demanda, conteúdo separado da
+        apresentação e <strong>SEO técnico</strong> pensado desde o início:
+        sitemap gerado no build, dados estruturados (JSON-LD) e{" "}
+        <code>llms.txt</code> para crawlers de IA.
       </p>
       <div className="pt-4 mt-6 border-t border-tech/20">
         <p className="text-sm text-text-secondary italic mb-3">
-          Quer saber sobre a Engenharia de IA por trás da marca?
+          Quer ver a engenharia de IA por trás do laboratório?
         </p>
         <Button variant="outline" size="sm" className="rounded-full" asChild>
           <a href={projectPath("unificando", "automacao")}>
@@ -70,49 +76,55 @@ export const unificandoVitrineCase: ProjectCase = {
   card: card(
     "unificando-vitrine",
     "Unificando: Vitrine Digital",
-    "Branding & Conversão",
-    "Site institucional interativo com foco em autoridade de marca e calculadora de planos em tempo real.",
+    "Laboratório & Vitrine",
+    "Site do laboratório Unificando: vitrine dos produtos com IA, ferramentas abertas e frentes de P&D.",
     "tech",
-    ["Next.js", "React", "TypeScript", "Tailwind"],
+    ["React", "Vite", "TypeScript", "Tailwind"],
     { group: "unificando", areas: ["frontend"] },
   ),
   jsonLd: {
     name: "Unificando - Vitrine Digital",
     description:
-      "Desenvolvimento de site institucional interativo com calculadora de planos e foco em conversão e branding.",
+      "Site do laboratório Unificando: vitrine de produtos com IA, ferramentas abertas e frentes de P&D, construído com React 19, Vite e Tailwind.",
     url: `${SOCIALS.personal.site}/projetos/unificando/vitrine`,
   },
   breadcrumbs: breadcrumbs(
     { name: "Unificando", item: "/projetos/unificando/automacao" },
     { name: "Vitrine Digital", item: "/projetos/unificando/vitrine" },
   ),
-  categoryBadge: "Branding & Conversion Case",
+  categoryBadge: "Laboratório & Vitrine Case",
   role: UNIFICANDO_AUTHORIAL_ROLE,
   title: "Unificando: Vitrine Digital",
   shortDescription: (
     <>
-      Criação de uma <strong>experiência de marca</strong> focada em{" "}
-      <strong>conversão</strong>, unindo design premium a uma{" "}
-      <strong>calculadora de serviços interativa</strong>.
+      A <strong>vitrine digital</strong> do laboratório Unificando: reúne os{" "}
+      <strong>produtos com IA</strong>, as ferramentas abertas e as frentes de{" "}
+      <strong>P&amp;D</strong> que demonstram o que a marca sabe fazer.
     </>
   ),
   themeColor: "tech",
   liveUrl: SOCIALS.unificando.site,
-  overviewTitle: "O Desafio da Conversão",
+  overviewTitle: "Um Laboratório Mostrando o que Faz",
   overviewContent: <Overview />,
-  featuresTitle: "Destaques da Experiência",
+  featuresTitle: "O que o Site Reúne",
   features: [
     {
-      icon: <Cpu className="text-tech" />,
-      title: "Simulador de Planos",
+      icon: <Search className="text-tech" />,
+      title: "Portfólio de Produtos no Ar",
       description:
-        "Sistema dinâmico para configurar soluções e visualizar orçamentos na hora.",
+        "PDF, Med e Radar Unificando apresentados como demonstrações práticas, cada um com seu subdomínio.",
     },
     {
-      icon: <Store className="text-tech" />,
-      title: "Brand Authority",
+      icon: <Bot className="text-tech" />,
+      title: "Ferramentas Abertas",
       description:
-        "Design visual 'Tech-Clean' que posiciona a marca como referência tecnológica.",
+        "Pacotes npm (@unificando/prompts e @unificando/refina) e o servidor MCP do Med para agentes de IA.",
+    },
+    {
+      icon: <FlaskConical className="text-tech" />,
+      title: "Frentes de P&D",
+      description:
+        "Busca semântica 100% local, robustez contra prompt injection, MCP com fontes oficiais e engenharia de custo de IA.",
     },
   ],
   extraSections: [
@@ -127,6 +139,8 @@ export const unificandoVitrineCase: ProjectCase = {
     { label: "Core", name: "React 19 / TS 5.8" },
     { label: "Styling", name: "Tailwind CSS 4" },
     { label: "Build Tool", name: "Vite 6" },
+    { label: "Animação", name: "Framer Motion 12" },
+    { label: "Roteamento", name: "React Router 7" },
   ],
   sidebarExtraCards: [
     {
