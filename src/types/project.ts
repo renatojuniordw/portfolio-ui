@@ -27,6 +27,8 @@ export interface ProjectCard {
   thumbnail?: ProjectThumbnail;
   link?: string;
   group?: "unificando" | "standalone";
+  /** Estágio do projeto; omitir quando já está no ar. */
+  status?: "em-desenvolvimento";
 }
 
 export interface ProjectFeature {

@@ -23,7 +23,7 @@ test.describe("SEO e dados estruturados", () => {
     expect(sitemap).not.toContain("/links");
     expect(sitemap).toContain("/blog/por-que-seu-prompt-nao-funciona");
     expect(sitemap).toContain("<lastmod>2026-05-12");
-    expect(sitemap).toContain("/projetos/fabia-souza");
+    expect(sitemap).toContain("/projetos/loja-doces");
   });
 
   test("case e artigo mantêm canonical e schema próprios", async ({ page }) => {

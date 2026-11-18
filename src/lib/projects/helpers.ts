@@ -15,7 +15,9 @@ export function card(
     group,
     areas,
     thumbnail,
-  }: Pick<ProjectCard, "areas"> & Partial<Pick<ProjectCard, "group" | "thumbnail">>,
+    status,
+  }: Pick<ProjectCard, "areas"> &
+    Partial<Pick<ProjectCard, "group" | "thumbnail" | "status">>,
 ): ProjectCard {
   return {
     id,
@@ -27,6 +29,7 @@ export function card(
     areas,
     ...(group ? { group } : {}),
     ...(thumbnail ? { thumbnail } : {}),
+    ...(status ? { status } : {}),
   };
 }
 

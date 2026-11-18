@@ -72,6 +72,11 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                 <span className="inline-block px-4 py-1.5 bg-surface-1 text-text text-xs font-medium rounded-full uppercase tracking-wider">
                   {categoryBadge}
                 </span>
+                {project.card.status === "em-desenvolvimento" && (
+                  <span className="inline-block px-4 py-1.5 border border-border text-text-secondary text-xs font-medium rounded-full uppercase tracking-wider">
+                    Em desenvolvimento
+                  </span>
+                )}
                 {project.card.group === "unificando" && (
                   <Link
                     href="/unificando"

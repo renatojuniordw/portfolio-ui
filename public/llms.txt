@@ -32,7 +32,9 @@ Engenheiro de Software com +7 anos de experiência. Foco atual em IA aplicada à
 
 ### Projetos independentes
 - Maria Clara Santos: https://renatobezerra.com.br/projetos/mariaclarasantos — Landing page de alta conversão para advocacia com sistema anti-golpe
-- Fábia Souza Advocacia: https://renatobezerra.com.br/projetos/fabia-souza — Site institucional para advocacia em Direito da Saúde, com triagem de falso coletivo e verificação de canal oficial anti-golpe
+- Mundo do Chocolate (loja de doces): https://renatobezerra.com.br/projetos/loja-doces — Site de encomendas de doces e chocolates com painel administrativo e agenda de retirada
+- Aventura do Nicolas&Eloá: https://renatobezerra.com.br/projetos/aventura-nicolas-eloa — Jogo de plataforma 2D educativo para alfabetização, com motor em TypeScript e Canvas 2D
+- Previando (em desenvolvimento): https://renatobezerra.com.br/projetos/previando — SaaS para advocacia previdenciária, em desenvolvimento
 - Seu Barraco Esperto: https://renatobezerra.com.br/projetos/seu-barraco-esperto — Automação residencial prática com Alexa e IoT
 - Sistema 18IA: https://renatobezerra.com.br/projetos/18ia — Landing page de alta conversão para produto digital técnico
 - Ariano Suassuna: https://renatobezerra.com.br/projetos/ariano-suassuna — Site educacional sobre a vida e obra de Ariano Suassuna

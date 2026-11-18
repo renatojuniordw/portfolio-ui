@@ -13,6 +13,11 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
               <p className="text-xs font-medium uppercase tracking-widest text-muted">
                 {project.category}
               </p>
+              {project.status === "em-desenvolvimento" && (
+                <span className="inline-block rounded-full border border-border px-3 py-0.5 text-xs font-medium text-text-secondary">
+                  Em desenvolvimento
+                </span>
+              )}
               <h3 className="text-xl font-semibold leading-tight text-text break-words">
                 {project.title}
               </h3>
