@@ -9,11 +9,12 @@ import { breadcrumbs, card, projectPath, UNIFICANDO_AUTHORIAL_ROLE } from "./hel
 function Overview() {
   return (
     <p>
-      O desafio central do <strong>Unificando</strong> foi criar um{" "}
-      <strong>painel de atendimento</strong> que não apenas respondesse usuários,
-      mas que entendesse a intenção de compra, calculasse orçamentos em tempo
-      real no <strong>atendimento WhatsApp</strong> e soubesse o momento exato de
-      transferir para um humano.
+      O <strong>Unificando</strong> é um laboratório de projetos autorais, e a
+      camada de <strong>IA aplicada</strong> é o que liga todos eles. O desafio
+      foi fazer isso com <strong>privacidade por design</strong> e{" "}
+      <strong>custo sob controle</strong>: embeddings rodando localmente,
+      defesas contra prompt injection e fontes oficiais integradas por{" "}
+      <strong>Model Context Protocol (MCP)</strong>.
     </p>
   );
 }
@@ -23,20 +24,42 @@ function DecisionIntelligenceContent() {
     <>
       <div className="space-y-2">
         <h3 className="text-lg font-bold text-text">
-          Roteamento Inteligente (Triage Agent)
+          Busca Semântica 100% Local
         </h3>
         <p>
-          Desenvolvi um agente de triagem baseado em LLM que classifica intenções
-          (Lead, FAQ, Pricing, Human) em milissegundos, para um{" "}
-          <strong>atendimento WhatsApp com IA</strong> mais fluido.
+          No Med Unificando, os embeddings (ONNX) rodam no próprio servidor:
+          a busca em linguagem natural funciona sem enviar dados a APIs
+          externas de IA.
         </p>
       </div>
       <div className="space-y-2">
-        <h3 className="text-lg font-bold text-text">Arquitetura Dual-Agent</h3>
+        <h3 className="text-lg font-bold text-text">
+          MCP: Produtos que Agentes Conseguem Usar
+        </h3>
         <p>
-          Implementação de sub-agentes especializados que consultam bases de
-          conhecimento dinâmicas, reduzindo a carga do suporte humano através da{" "}
-          <strong>automação com IA</strong>.
+          O Med expõe um servidor MCP com 12 ferramentas somente leitura, e o
+          Radar consome vagas da Gupy via MCP com fallback automático. Os
+          produtos servem tanto a pessoas quanto a <strong>agentes de IA</strong>.
+        </p>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-lg font-bold text-text">
+          Robustez e Custo de IA
+        </h3>
+        <p>
+          Defesa em três camadas contra prompt injection, limites de custo
+          (controle de tokens e filas) e LGPD por design em produtos em
+          produção.
+        </p>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-lg font-bold text-text">
+          Hub de Conhecimento com RAG
+        </h3>
+        <p>
+          O hub do ecossistema indexa a documentação dos projetos em pgvector
+          e combina busca vetorial, textual e fuzzy (RRF). Ele entrega o
+          resultado por REST, CLI e servidor MCP.
         </p>
       </div>
     </>
@@ -67,15 +90,15 @@ export const unificandoAutomacaoCase: ProjectCase = {
     "unificando-automacao",
     "Unificando: IA & Automação",
     "Inteligência Artificial",
-    "Engine de atendimento distribuído, orquestração de LLMs e automação de fluxos via n8n.",
+    "Camada de IA aplicada do laboratório: embeddings locais, RAG, servidores MCP e defesas contra prompt injection.",
     "ia",
-    ["n8n", "OpenAI", "Node.js", "AWS Lambda"],
+    ["RAG", "MCP", "pgvector", "ONNX"],
     { group: "unificando", areas: ["ia", "automacao"] },
   ),
   jsonLd: {
     name: "Unificando - Automação & IA",
     description:
-      "Ecossistema de atendimento inteligente com orquestração de LLMs e automação de processos via n8n.",
+      "Camada de IA aplicada do laboratório Unificando: embeddings locais, RAG, servidores MCP e defesas contra prompt injection.",
     url: `${SOCIALS.personal.site}/projetos/unificando/automacao`,
   },
   breadcrumbs: breadcrumbs(
@@ -87,29 +110,41 @@ export const unificandoAutomacaoCase: ProjectCase = {
   title: "Unificando: IA & Automação",
   shortDescription: (
     <>
-      Ecossistema completo de <strong>atendimento inteligente</strong> para redes
-      sociais, transformando <strong>caixa de entrada unificada</strong> em
-      conversões reais com <strong>automação com IA</strong>.
+      A <strong>engenharia de IA</strong> por trás do laboratório:{" "}
+      <strong>busca semântica local</strong>, <strong>RAG</strong>,{" "}
+      <strong>servidores MCP</strong> e defesas contra prompt injection em
+      produtos reais.
     </>
   ),
   themeColor: "ia",
   liveUrl: SOCIALS.unificando.site,
-  overviewTitle: "O Desafio Técnico: Atendimento WhatsApp",
+  overviewTitle: "O Desafio: IA Aplicada com Privacidade e Custo Sob Controle",
   overviewContent: <Overview />,
   caseStudy: {
     challenge: (
       <p>
-        O ecossistema Unificando precisava gerenciar <strong>múltiplos canais de atendimento</strong> (WhatsApp, Instagram, site) sem uma equipe de suporte 24h. O lead time de resposta era de horas, e clientes em potencial estavam perdendo o interesse antes de qualquer contato humano.
+        Produtos com IA costumam depender de APIs externas: isso expõe dados
+        sensíveis, torna o custo imprevisível e abre espaço para{" "}
+        <strong>prompt injection</strong>. O laboratório precisava mostrar IA
+        útil sem esses riscos, em produtos gratuitos e sustentáveis.
       </p>
     ),
     solution: (
       <p>
-        Implementei uma <strong>arquitetura de agentes de IA</strong> orquestrados via n8n: um agente de triagem classifica a intenção da mensagem em ms, um agente de vendas responde com base em uma base de conhecimento RAG, e um sistema de <strong>handoff estruturado</strong> transfere para humanos quando necessário — tudo com saída JSON validada.
+        Usei <strong>embeddings locais (ONNX)</strong> para a busca semântica,
+        defesa em <strong>três camadas</strong> contra prompt injection,
+        integração com fontes oficiais via <strong>MCP</strong> com fallback
+        automático e um <strong>hub com RAG</strong> (pgvector) que indexa a
+        documentação do ecossistema para humanos, CLIs e agentes.
       </p>
     ),
     result: (
       <p>
-        Redução do tempo de resposta de <strong>horas para segundos</strong>. Mais de 60% dos leads qualificados foram atendidos completamente pelo agente, sem necessidade de intervenção humana. O cliente reportou aumento na taxa de conversão de leads inbound.
+        Produtos no ar que demonstram a abordagem: o{" "}
+        <a href={projectPath("unificando", "med")}>Med Unificando</a>, com
+        busca 100% local e MCP próprio, e o{" "}
+        <a href={projectPath("unificando", "radar")}>Radar Unificando</a>, com
+        assistente de carreira por IA.
       </p>
     ),
   },
@@ -123,9 +158,10 @@ export const unificandoAutomacaoCase: ProjectCase = {
   ],
   sidebarTechStackTitle: "Tech Stack",
   sidebarTechStack: [
-    { label: "Orchestration", name: "n8n" },
-    { label: "AI Engine", name: "OpenAI (GPT-4)" },
-    { label: "Database", name: "Supabase" },
+    { label: "Embeddings", name: "ONNX local (Transformers.js)" },
+    { label: "Vetores", name: "PostgreSQL + pgvector" },
+    { label: "Agentes", name: "Model Context Protocol (MCP)" },
+    { label: "Hub", name: "NestJS 11 + Prisma 7" },
   ],
   sidebarExtraCards: [
     {

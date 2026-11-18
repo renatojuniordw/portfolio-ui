@@ -30,7 +30,7 @@ export default function ProjectsPage() {
 
       <PageHeader
         title="Meus Projetos"
-        description={<>Uma seleção de trabalhos que unem código, design e impacto real no negócio — de <strong>atendimento WhatsApp com IA</strong> a <strong>interações web de alto desempenho</strong>.</>}
+        description={<>Uma seleção de trabalhos que unem código, design e impacto real no negócio — de <strong>IA aplicada com busca semântica local</strong> a <strong>interações web de alto desempenho</strong>.</>}
       />
 
       <ProjectsClient projects={PROJECTS} />
