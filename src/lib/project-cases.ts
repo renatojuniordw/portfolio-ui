@@ -9,6 +9,7 @@ import { mariaClaraSantosCase } from "./projects/mariaclarasantos";
 import { aventuraNicolasEloaCase } from "./projects/aventura-nicolas-eloa";
 import { lojaDocesCase } from "./projects/loja-doces";
 import { previandoCase } from "./projects/previando";
+import { oferticandoCase } from "./projects/oferticando";
 import { seuBarracoEspertoCase } from "./projects/seu-barraco-esperto";
 import { arianoSuassunaCase } from "./projects/ariano-suassuna";
 import { sheikCase } from "./projects/sheik";
@@ -28,6 +29,7 @@ export const PROJECT_CASES: ProjectCase[] = [
   lojaDocesCase,
   aventuraNicolasEloaCase,
   previandoCase,
+  oferticandoCase,
   seuBarracoEspertoCase,
   arianoSuassunaCase,
   sheikCase,
