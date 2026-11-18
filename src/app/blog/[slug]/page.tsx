@@ -192,6 +192,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               components={{
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 pre: ({ node, ...props }) => <CodeBlock {...props} />,
+                // Links externos abrem em nova guia; internos (/blog/...) e âncoras seguem na mesma.
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                a: ({ node, href, children, ...props }) => {
+                  const isExternal = /^https?:\/\//.test(href ?? "");
+                  return (
+                    <a
+                      href={href}
+                      {...props}
+                      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      {children}
+                    </a>
+                  );
+                },
                 table: ({ children }) => (
                   <div className="blog-table-wrapper" tabIndex={0} role="region" aria-label="Tabela">
                     <table>{children}</table>
