@@ -55,7 +55,12 @@ function Catalog({
 }: ProjectsClientProps & { area: AreaFilter; onSelect?: (area: AreaFilter) => void }) {
   const visible = filterByArea(projects, area);
   const unificando = visible.filter((project) => project.group === "unificando");
-  const standalone = visible.filter((project) => project.group !== "unificando");
+  const inDevelopment = visible.filter(
+    (project) => project.group !== "unificando" && project.status === "em-desenvolvimento",
+  );
+  const standalone = visible.filter(
+    (project) => project.group !== "unificando" && project.status !== "em-desenvolvimento",
+  );
   const totalUnificando = projects.filter((project) => project.group === "unificando").length;
   const areaLabel = AREA_FILTERS.find((f) => f.value === area)?.label;
 
@@ -144,6 +149,21 @@ function Catalog({
             </p>
           </div>
           <ProjectGrid projects={standalone} />
+        </section>
+      )}
+
+      {inDevelopment.length > 0 && (
+        <section aria-labelledby="grupo-em-desenvolvimento" className="space-y-6">
+          <div>
+            <p className="text-xs uppercase tracking-widest text-muted">Ainda sem versão pública</p>
+            <h2 id="grupo-em-desenvolvimento" className="mt-2 text-2xl font-semibold text-text">
+              Em desenvolvimento
+            </h2>
+            <p className="mt-1 text-sm text-text-secondary">
+              Produtos em construção, apresentados como case enquanto não são lançados.
+            </p>
+          </div>
+          <ProjectGrid projects={inDevelopment} />
         </section>
       )}
     </div>
